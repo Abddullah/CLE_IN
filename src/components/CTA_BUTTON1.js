@@ -22,7 +22,7 @@ const CTAButton1 = ({
                         {
                             icon && icon
                         }
-                        <Text style={[styles.CRAButton1_Text, Typography.body_large_bold]}>{title}</Text>
+                        <Text style={[styles.CRAButton1_Text, Typography.text_CTA1]}>{title}</Text>
                     </View>
                 ) : (
                     <ActivityIndicator color={"white"} />

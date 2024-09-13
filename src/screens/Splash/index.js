@@ -11,28 +11,24 @@ export default function Splash({ navigation }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // dispatch(getCurrentUser(navigation))
+    dispatch(getCurrentUser(navigation))
   }, []);
 
   return (
-    <>
-      <Text style={{ color: 'red' }}>{t('slide1Para')}</Text>
-      <Text style={{ color: 'red' }}>{'slide1Para'}</Text>
-    </>
-    // <ImageBackground
-    //   style={styles.background}
-    //   resizeMode="stretch"
-    //   source={Images.splashBg}
-    // >
-    //   <View style={styles.overlay}>
-    //     <Image
-    //       resizeMode="contain"
-    //       style={{ width: 100, height: 100 }}
-    //       source={Images.Logo}
-    //     />
-    //     {/* <GoogleIcon /> */}
-    //   </View>
-    // </ImageBackground>
+    <ImageBackground
+      style={styles.background}
+      resizeMode="stretch"
+      source={Images.splashBg}
+    >
+      <View style={styles.overlay}>
+        <Image
+          resizeMode="contain"
+          style={{ width: 100, height: 100 }}
+          source={Images.Logo}
+        />
+        {/* <GoogleIcon /> */}
+      </View>
+    </ImageBackground>
   );
 }
 

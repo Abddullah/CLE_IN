@@ -275,6 +275,12 @@ export const Typography = StyleSheet.create({
         color: colors.Neutral_01,
         textAlign: 'center'
     },
+    text_CTA1: {
+        fontSize: 16,
+        color: colors.white,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
 })
 
 export const Layout = StyleSheet.create({

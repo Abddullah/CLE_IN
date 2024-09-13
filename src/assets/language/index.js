@@ -5,17 +5,13 @@ import { appLanguages } from '../../utilities/languageData'
 import { languageData } from '../../utilities'
 import { getItem, setItem } from '../../services/assynsStorage'
 
-type LanguageDataType = {
-  locale: string;
-  translation: object;
-}
 
 // CHANGE LANGUAGE 
-const setLanguageAsync = async (lang: string) => {
+const setLanguageAsync = async (lang) => {
   await setItem('languagecode', lang);
 };
-export const onLanguageSelect = async (langId: string, setflag?: any, flag?: boolean) => {
-  let lang = appLanguages.find((item: any) => item.code === langId);
+export const onLanguageSelect = async (langId, setflag, flag) => {
+  let lang = appLanguages.find((item) => item.code === langId);
   // console.log(appLanguages, 'appLanguages', langId)
   if (lang) {
     await i18n.changeLanguage(lang.code);
@@ -31,13 +27,13 @@ export const fetchTranslations = async () => {
 
   if (translations.length) {
     if (translations.length) {
-      translations.forEach((translation: LanguageDataType) => {
+      translations.forEach((translation) => {
         i18n.addResourceBundle(translation.locale, 'translation', translation.translation, true, true)
       })
 
       const locales = translations.map((translation) => translation.locale)
 
-      let lang: string;
+      let lang;
 
       try {
         lang = await getItem('languagecode', DEFAULT_LANGUAGE)
@@ -45,7 +41,7 @@ export const fetchTranslations = async () => {
         console.log(error)
       }
 
-      selectedLocale = locales.find((locale: string) => locale === lang)
+      selectedLocale = locales.find((locale) => locale === lang)
     }
 
     if (selectedLocale) {
@@ -59,7 +55,7 @@ export const fetchTranslations = async () => {
   return true
 }
 
-export const translate = (value: string) => i18n.t(value)
+export const translate = (value) => i18n.t(value)
 
 // Set fallback language to mumbo jumbo so it displays missing tags
 i18n.use(initReactI18next).init(

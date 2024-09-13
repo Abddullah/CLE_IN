@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const getItem = async (key: string, defaultValue?: any) => {
+export const getItem = async (key, defaultValue) => {
     try {
-        const value: any = await AsyncStorage.getItem(`${key}`)
+        const value = await AsyncStorage.getItem(`${key}`)
 
         if (value) {
             return JSON.parse(value)
@@ -14,7 +14,7 @@ export const getItem = async (key: string, defaultValue?: any) => {
     }
 }
 
-export const setItem = async (key: string, value: any) => {
+export const setItem = async (key, value) => {
     try {
         await AsyncStorage.setItem(`${key}`, JSON.stringify(value))
         return true
@@ -23,7 +23,7 @@ export const setItem = async (key: string, value: any) => {
     }
 }
 
-export const deleteItem = async (key: string) => {
+export const deleteItem = async (key) => {
     try {
         await AsyncStorage.removeItem(`${key}`);
         return true;
@@ -32,7 +32,7 @@ export const deleteItem = async (key: string) => {
     }
 }
 
-export const changeRoute = async (navigation: any, value: string, prams?: any) => {
+export const changeRoute = async (navigation, value, prams) => {
     try {
         if (value == 'pop') { navigation.pop() }
         else { navigation.navigate(value, prams) }
@@ -41,7 +41,7 @@ export const changeRoute = async (navigation: any, value: string, prams?: any) =
     }
 }
 
-export const formatPhoneNumber = (phoneNumber?: string) => {
+export const formatPhoneNumber = (phoneNumber) => {
     var cleaned = ('' + phoneNumber)
         .replace(/\D+/g, '')
         .replace(/(\d{3})(\d{4})(\d{4})/, '+$1 $2 $3');
@@ -49,7 +49,7 @@ export const formatPhoneNumber = (phoneNumber?: string) => {
     return cleaned;
 };
 
-export const findClosest = (arr: any, target: any) => {
+export const findClosest = (arr, target) => {
     let distance = Math.abs(arr[0] - target);
     let idx = 0;
     for (let c = 1; c < arr.length; c++) {
