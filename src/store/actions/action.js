@@ -12,5 +12,7 @@ export const showError = (errMsg) => async dispatch => {
 };
 
 export const getCurrentUser = (navigation) => async dispatch => {
-  
+  setTimeout(() => {
+    navigation.navigate('GetStarted')
+  }, 2000);
 };

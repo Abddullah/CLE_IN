@@ -4,31 +4,35 @@ import { StyleSheet, Image, ImageBackground, View, Text } from 'react-native';
 import { _retrieveData } from '../../services/assynsStorage';
 import Images from '../../assets/images/index'
 import { Logo, GoogleIcon } from '../../assets/icons';
-
 import { getCurrentUser } from '../../store/actions/action'
+import { t } from 'i18next';
 
 export default function Splash({ navigation }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCurrentUser(navigation))
+    // dispatch(getCurrentUser(navigation))
   }, []);
 
   return (
-    <ImageBackground
-      style={styles.background}
-      resizeMode="stretch"
-      source={Images.splashBg}
-    >
-      <View style={styles.overlay}>
-        <Image
-          resizeMode="contain"
-          style={{ width: 100, height: 100 }}
-          source={Images.Logo}
-        />
-        {/* <GoogleIcon /> */}
-      </View>
-    </ImageBackground>
+    <>
+      <Text style={{ color: 'red' }}>{t('slide1Para')}</Text>
+      <Text style={{ color: 'red' }}>{'slide1Para'}</Text>
+    </>
+    // <ImageBackground
+    //   style={styles.background}
+    //   resizeMode="stretch"
+    //   source={Images.splashBg}
+    // >
+    //   <View style={styles.overlay}>
+    //     <Image
+    //       resizeMode="contain"
+    //       style={{ width: 100, height: 100 }}
+    //       source={Images.Logo}
+    //     />
+    //     {/* <GoogleIcon /> */}
+    //   </View>
+    // </ImageBackground>
   );
 }
 
