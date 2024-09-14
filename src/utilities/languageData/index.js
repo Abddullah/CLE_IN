@@ -33,6 +33,8 @@ export const languageData = [
             enter6digitcode: 'Enter 6 digit code sent to your email address to verify your identity',
             sendagain: 'Send again',
             verify: 'Verify',
+            success: 'Success',
+            registerissucessfullyhaveenjoy: 'Register is sucessfully have enjoy!',
             new: '',
         }
     },

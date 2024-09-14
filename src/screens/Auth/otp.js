@@ -11,15 +11,18 @@ import { Typography } from '../../utilities/constants/constant.style';
 import { colors } from '../../utilities/constants';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import SuccessModal from '../../components/Success_Popup';
 
 export default function Otp({ navigation }) {
     const dispatch = useDispatch()
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
     const [code, setcode] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
 
 
     const submit = () => {
+        setModalVisible(true)
         let credentials = {
             token: code,
         }
@@ -29,6 +32,7 @@ export default function Otp({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
+            <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
 
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <View style={styles.containerc1_c1}>
