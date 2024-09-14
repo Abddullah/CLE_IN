@@ -23,6 +23,7 @@ export default function Signup({ navigation }) {
     const [rePassword, setrePassword] = useState('');
     const [role, setrole] = useState('');
     const [adFor, setadFor] = useState("");
+    const [isSelectedTerm, setisSelectedTerm] = useState(false);
 
 
     const submit = () => {
@@ -155,6 +156,32 @@ export default function Signup({ navigation }) {
                             </View>
                         </View>
 
+                        <View style={[styles.checkboxContainer, { marginTop: 10 }]}>
+                            <CheckBox
+                                tintColors={{
+                                    true: colors.Primary_01,
+                                    false: colors.Neutral_01,
+                                }}
+                                disabled={false}
+                                value={isSelectedTerm}
+                                onValueChange={setisSelectedTerm}
+                            />
+                            <View style={[styles.checkboxContainer, {}]}>
+                                <Text style={styles.label}>I agree to</Text>
+                                <TouchableOpacity
+                                // onPress={() => navigation.navigate('TermsAndCondition')}
+                                >
+                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>Terms & Conditions </Text>
+                                </TouchableOpacity>
+                                <Text style={styles.label}>& </Text>
+                                <TouchableOpacity
+                                // onPress={() => navigation.navigate('PrivacyPolicy')}
+                                >
+                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>Privacy Policy</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
                         <View style={{ marginTop: 20 }}>
                             <CTAButton1 title={t('signup')} submitHandler={() => submit()} />
                         </View>
@@ -174,8 +201,8 @@ export default function Signup({ navigation }) {
                         </View>
                     </View>
                 </ScrollView>
-            </View >
-        </View >
+            </View>
+        </View>
     );
 }
 
@@ -263,7 +290,6 @@ const styles = StyleSheet.create({
         height: 50,
     },
     checkboxContainer: {
-        marginTop: 5,
         flexDirection: "row",
         alignItems: 'center'
     },
