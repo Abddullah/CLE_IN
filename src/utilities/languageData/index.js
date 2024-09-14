@@ -20,6 +20,11 @@ export const languageData = [
             signup: 'Sign up',
             or: 'OR',
             signIn: 'Sign In',
+            pleaseRegisterHere: 'Please Register Here!',
+            fullname: 'Full Name',
+            confirmpassword: 'Confirm password',
+            role: 'Role',
+            alreadyhaveanaccount : 'Already have an account ',
             new: '',
         }
     },

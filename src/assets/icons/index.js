@@ -7,3 +7,4 @@ export { default as GetstartedIcon2} from './getstartedIcon2.svg';
 export { default as CountrySelection} from './countrySelection.svg';
 export { default as LanguageIcon} from './languageIcon.svg';
 export { default as ItalyFlag} from './ItalyFlag.svg';
+export { default as BackIcon} from './backIcon.svg';

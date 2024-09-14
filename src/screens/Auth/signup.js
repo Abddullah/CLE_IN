@@ -4,20 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
-import { GoogleIcon, AppleIcon } from '../../assets/icons';
+import { GoogleIcon, AppleIcon, BackIcon } from '../../assets/icons';
 import CheckBox from '@react-native-community/checkbox';
+import { Select } from 'native-base';
 import { Typography } from '../../utilities/constants/constant.style';
 import { colors } from '../../utilities/constants';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
 
-export default function SignIn({ navigation }) {
+export default function Signup({ navigation }) {
     const dispatch = useDispatch()
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
+
+    const [fullName, setfullName] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
-    const [isSelectedRemember, setisSelectedRemember] = useState(false);
+    const [rePassword, setrePassword] = useState('');
+    const [role, setrole] = useState('');
+    const [adFor, setadFor] = useState("");
+
 
     const submit = () => {
         let credentials = {
@@ -32,6 +38,13 @@ export default function SignIn({ navigation }) {
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
 
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Signin')}
+                    activeOpacity={.8}
+                    style={{ position: 'absolute', left: 20, top: 20 }}
+                >
+                    <BackIcon />
+                </TouchableOpacity>
                 <View style={styles.containerc1_c1}>
                     <Image resizeMode='contain' style={{ width: 250, height: 120, }} source={Images.LogoWithText} />
                 </View>
@@ -39,8 +52,27 @@ export default function SignIn({ navigation }) {
 
             <View style={{ flex: 8, }}>
                 <ScrollView contentContainerStyle={styles.containerC1}>
-                    <Text style={[Typography.text_subHeading, { marginTop: 10 }]}>{t('pleaseLoginHere')}</Text>
+                    <Text style={[Typography.text_subHeading, { marginTop: 10 }]}>{t('pleaseRegisterHere')}</Text>
                     <View style={styles.containerc1_c2}>
+
+                        <View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('fullname')}</Text>
+                                {
+                                    isError && email == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                }
+                            </View>
+                            <View style={styles.inputContiner}>
+                                <TextInput
+                                    style={styles.input}
+                                    value={fullName}
+                                    onChangeText={(e) => { setfullName(e) }}
+                                    placeholder={t('fullname')}
+                                    placeholderTextColor={colors.Neutral_01}
+                                />
+                            </View>
+                        </View>
+
                         <View>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('emailAddress')}</Text>
@@ -78,34 +110,62 @@ export default function SignIn({ navigation }) {
                             </View>
                         </View>
 
-                        <View style={styles.checkboxContainer}>
-                            <CheckBox
-                                tintColors={{
-                                    true: colors.Primary_01,
-                                    false: colors.Neutral_01,
-                                }}
-                                disabled={false}
-                                value={isSelectedRemember}
-                                onValueChange={setisSelectedRemember}
-                            />
-                            <Text style={styles.label}>{t('rememberme')}</Text>
+                        <View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('confirmpassword')}</Text>
+                                {
+                                    isError && password == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                }
+                            </View>
+                            <View style={styles.inputContiner}>
+                                <TextInput
+                                    secureTextEntry
+                                    style={styles.input}
+                                    value={rePassword}
+                                    onChangeText={(e) => { setrePassword(e) }}
+                                    placeholder={t('confirmpassword')}
+                                    placeholderTextColor={colors.Neutral_01}
+                                />
+                            </View>
                         </View>
 
-                        <TouchableOpacity>
-                            <Text style={styles.forget_Password} onPress={() => navigation.navigate('ForgotPassword')}>{t('forgotPassword')}</Text>
-                        </TouchableOpacity>
-
                         <View style={{ marginTop: 10 }}>
-                            <CTAButton1 title={t('signIn')} submitHandler={() => submit()} />
+                            < View style={{ flexDirection: 'row' }}>
+                                <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('role')}</Text>
+                                {
+                                    isError && password == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                }
+                            </View>
+                            <View style={styles.list}>
+                                <Select
+                                    bg="white"
+                                    borderWidth={0}
+                                    selectedValue={role}
+                                    minWidth="100%"
+                                    accessibilityLabel="User"
+                                    placeholder="User"
+                                    _selectedItem={{
+                                        background: colors.Primary_01
+                                    }}
+                                    mt={1} onValueChange={itemValue => setrole(itemValue)}
+                                >
+                                    <Select.Item label="User" value="User" />
+                                    <Select.Item label="Provider" value="Provider" />
+                                </Select>
+                            </View>
+                        </View>
+
+                        <View style={{ marginTop: 20 }}>
+                            <CTAButton1 title={t('signup')} submitHandler={() => submit()} />
                         </View>
                     </View>
 
                     <View style={styles.containerc1_c3}>
                         <TouchableOpacity style={styles.socialText}
-                            onPress={() => navigation.navigate('Signup')}
+                            onPress={() => navigation.navigate('Signin')}
                         >
-                            <Text style={[styles.socialTextC1, {}]}>{t('donthaveaccount')} </Text>
-                            <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}> {t('signup')}</Text>
+                            <Text style={[styles.socialTextC1, {}]}>{t('alreadyhaveanaccount')} </Text>
+                            <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
                         </TouchableOpacity>
                         <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
@@ -114,8 +174,8 @@ export default function SignIn({ navigation }) {
                         </View>
                     </View>
                 </ScrollView>
-            </View>
-        </View>
+            </View >
+        </View >
     );
 }
 
@@ -206,5 +266,17 @@ const styles = StyleSheet.create({
         marginTop: 5,
         flexDirection: "row",
         alignItems: 'center'
+    },
+    list: {
+        marginTop: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+        borderColor: colors.Primary_01,
+        borderWidth: 1,
+        borderRadius: 7,
+        height: 50,
+        overflow: 'hidden',
+        backgroundColor: colors.white
     },
 });
