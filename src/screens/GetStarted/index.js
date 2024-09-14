@@ -13,13 +13,11 @@ export default function GetStarted({ navigation }) {
   const [page, setpage] = useState(0);
   const [language, setlanguage] = useState("");
 
-  console.log(page, 'page');
 
   const submit = () => {
     page === 0 && setpage(1)
     if (page !== 0) {
-      setpage(0)
-      // navigation.navigate('Login')
+      navigation.navigate('Signin')
     }
   }
 

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // local imports
 import Splash from './../screens/Splash/index';
 import GetStarted from './../screens/GetStarted/index';
+import Signin from './../screens/Auth/signin';
 import { AppBottomNavigator } from './BottomNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -13,6 +14,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
         <Stack.Screen options={{ headerShown: false }} component={GetStarted} name="GetStarted" />
+        <Stack.Screen options={{ headerShown: false }} component={Signin} name="Signin" />
         {/* <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} /> */}
       </Stack.Navigator>
     </NavigationContainer>

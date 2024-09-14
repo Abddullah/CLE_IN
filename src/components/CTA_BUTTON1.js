@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     CRAButton1: {
         backgroundColor: colors.Primary_01,
         borderRadius: 5,
-        height: 40,
+        height: 50,
         width:'100%',
         justifyContent: 'center',
         alignItems: 'center'

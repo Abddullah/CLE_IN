@@ -270,6 +270,12 @@ export const Typography = StyleSheet.create({
         fontWeight: 'bold',
         color: colors.black
     },
+    text_subHeading: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: colors.Primary_01,
+        textAlign: 'center'
+    },
     text_paragraph: {
         fontSize: 14,
         color: colors.Neutral_01,
