@@ -4,7 +4,7 @@ const Colors = {
 
     Neutral_01: '#7C7C7C',
     Neutral_02: '#E2E5E5',
-    Neutral_03: '#',
+    Neutral_03: '#FBFAFF',
     Neutral_04: '#',
     Neutral_05: '#',
     Neutral_06: '#',

@@ -9,6 +9,7 @@ export const languageData = [
             language: 'Language',
             country: 'Country',
             getstarted: 'GET STARTED',
+            italy: 'Italy',
             new: '',
         }
     },
