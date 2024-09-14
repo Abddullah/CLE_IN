@@ -29,6 +29,10 @@ export const languageData = [
             TermsConditions: 'Terms & Conditions',
             and1: '&',
             privacyPolicy: 'Privacy Policy',
+            otp: 'OTP',
+            enter6digitcode: 'Enter 6 digit code sent to your email address to verify your identity',
+            sendagain: 'Send again',
+            verify: 'Verify',
             new: '',
         }
     },
