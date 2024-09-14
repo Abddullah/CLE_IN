@@ -23,7 +23,7 @@ const SuccessModal = ({ modalVisible, setModalVisible }) => {
                         source={Images.popupBg}
                     >
                         <Text style={[Typography.text_subHeading, { marginTop: 60 }]}>{t('success')}</Text>
-                        <Text style={[Typography.text_paragraph, { marginTop: 5, color: colors.black }]}>{t('registerissucessfullyhaveenjoy')}</Text>
+                        <Text style={[Typography.text_paragraph, { marginTop: 5, color: colors.black, fontWeight: 'bold' }]}>{t('registerissucessfullyhaveenjoy')}</Text>
                         <View style={{ marginTop: 10, width: '80%' }}>
                             <CTAButton1 title={'OK'} submitHandler={() => setModalVisible(!modalVisible)} />
                         </View>
