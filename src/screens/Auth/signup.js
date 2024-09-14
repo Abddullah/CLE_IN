@@ -167,17 +167,18 @@ export default function Signup({ navigation }) {
                                 onValueChange={setisSelectedTerm}
                             />
                             <View style={[styles.checkboxContainer, {}]}>
-                                <Text style={styles.label}>I agree to</Text>
+                                {/* <Text style={styles.label}>{t('')}</Text> */}
+                                <Text style={styles.label}>{t('iagreeto')}</Text>
                                 <TouchableOpacity
                                 // onPress={() => navigation.navigate('TermsAndCondition')}
                                 >
-                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>Terms & Conditions </Text>
+                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>{t('TermsConditions')}</Text>
                                 </TouchableOpacity>
-                                <Text style={styles.label}>& </Text>
+                                <Text style={styles.label}>{t('and1')} </Text>
                                 <TouchableOpacity
                                 // onPress={() => navigation.navigate('PrivacyPolicy')}
                                 >
-                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>Privacy Policy</Text>
+                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>{t('privacyPolicy')}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

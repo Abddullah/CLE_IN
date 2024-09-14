@@ -24,7 +24,11 @@ export const languageData = [
             fullname: 'Full Name',
             confirmpassword: 'Confirm password',
             role: 'Role',
-            alreadyhaveanaccount : 'Already have an account ',
+            alreadyhaveanaccount: 'Already have an account ',
+            iagreeto: 'I agree to',
+            TermsConditions: 'Terms & Conditions',
+            and1: '&',
+            privacyPolicy: 'Privacy Policy',
             new: '',
         }
     },
