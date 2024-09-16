@@ -12,8 +12,6 @@ const Colors = {
     Primary_01: '#00BFFF',
     Primary_02: '#',
 
-
-
     Error_Red: '#ED625A',
 
 

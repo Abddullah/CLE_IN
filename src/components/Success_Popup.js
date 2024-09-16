@@ -12,9 +12,7 @@ const SuccessModal = ({ modalVisible, setModalVisible }) => {
             animationType="slide"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={() => {
-                setModalVisible(!modalVisible);
-            }}>
+            onRequestClose={() => { setModalVisible() }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <ImageBackground
@@ -25,7 +23,7 @@ const SuccessModal = ({ modalVisible, setModalVisible }) => {
                         <Text style={[Typography.text_subHeading, { marginTop: 60 }]}>{t('success')}</Text>
                         <Text style={[Typography.text_paragraph, { marginTop: 5, color: colors.black, fontWeight: 'bold' }]}>{t('registerissucessfullyhaveenjoy')}</Text>
                         <View style={{ marginTop: 10, width: '80%' }}>
-                            <CTAButton1 title={'OK'} submitHandler={() => setModalVisible(!modalVisible)} />
+                            <CTAButton1 title={'OK'} submitHandler={() => setModalVisible()} />
                         </View>
                     </ImageBackground>
                 </View>

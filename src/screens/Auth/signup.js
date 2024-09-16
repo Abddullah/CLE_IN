@@ -31,6 +31,7 @@ export default function Signup({ navigation }) {
             email: email,
             password: password,
         }
+        navigation.navigate('OtpVerify')
         // dispatch(signIn(credentials, isSelectedRemember, navigation))
         // dispatch(showError())
     }

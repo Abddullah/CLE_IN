@@ -1,43 +1,36 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Text, View, Image, Keyboard, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
-import SMSVerifyCode from 'react-native-sms-verifycode'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
 import { BackIcon } from '../../assets/icons';
+import CheckBox from '@react-native-community/checkbox';
 import { Typography } from '../../utilities/constants/constant.style';
 import { colors } from '../../utilities/constants';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
-import SuccessModal from '../../components/Success_Popup';
 
-export default function OtpVerify({ navigation }) {
+export default function ResetPassword({ navigation }) {
     const dispatch = useDispatch()
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
-    const [code, setcode] = useState('');
-    const [modalVisible, setModalVisible] = useState(false);
-
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+    const [rePassword, setrePassword] = useState('');
+    const [isSelectedRemember, setisSelectedRemember] = useState(false);
 
     const submit = () => {
-        setModalVisible(true)
         let credentials = {
-            token: code,
+            email: email,
         }
+        navigation.navigate('Signin')
         // dispatch(signIn(credentials, isSelectedRemember, navigation))
         // dispatch(showError())
     }
 
-    const modalClose = () => {
-        setModalVisible(false)
-        // navigation.navigate('Signin')
-    }
-
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-            <SuccessModal modalVisible={modalVisible} setModalVisible={() => modalClose()} />
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
@@ -51,35 +44,55 @@ export default function OtpVerify({ navigation }) {
                 </View>
             </View>
 
-            <View style={{ flex: 8, width: '90%', marginHorizontal: '5%', justifyContent: 'space-between', }}>
-                <View>
-                    <Text style={[Typography.text_subHeading, { marginTop: 10 }]}>{t('otp')}</Text>
-                    <Text style={[styles.socialTextC1, {}]}>{t('enter6digitcode')} </Text>
-                    <View style={{ marginTop: 20 }}>
-                        <View style={styles.inputContiner}>
-                            <SMSVerifyCode
-                                codeViewBorderColor={colors.Neutral_01}
-                                focusedCodeViewBorderColor={colors.Primary_01}
-                                verifyCodeLength={6}
-                                containerPaddingHorizontal={30}
-                                onInputChangeText={(e) => { setcode(e) }}
-                                onInputCompleted={(e) => { Keyboard.dismiss() }}
-                            />
+            <View style={{ flex: 8, }}>
+                <ScrollView contentContainerStyle={styles.containerC1}>
+                    <Text style={[Typography.text_subHeading, { marginTop: 10 }]}>{t('changePassword')}</Text>
+                    <Text style={[styles.socialTextC1, {}]}>{t('enteryournewpassword')} </Text>
+                    <View style={styles.containerc1_c2}>
+
+                        <View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('password')}</Text>
+                                {
+                                    isError && password == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                }
+                            </View>
+                            <View style={styles.inputContiner}>
+                                <TextInput
+                                    secureTextEntry
+                                    style={styles.input}
+                                    value={password}
+                                    onChangeText={(e) => { setpassword(e) }}
+                                    placeholder={t('password')}
+                                    placeholderTextColor={colors.Neutral_01}
+                                />
+                            </View>
+                        </View>
+
+                        <View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('confirmpassword')}</Text>
+                                {
+                                    isError && password == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                }
+                            </View>
+                            <View style={styles.inputContiner}>
+                                <TextInput
+                                    secureTextEntry
+                                    style={styles.input}
+                                    value={rePassword}
+                                    onChangeText={(e) => { setrePassword(e) }}
+                                    placeholder={t('confirmpassword')}
+                                    placeholderTextColor={colors.Neutral_01}
+                                />
+                            </View>
+                        </View>
+
+                        <View style={{ marginTop: 10 }}>
+                            <CTAButton1 title={t('save')} submitHandler={() => submit()} />
                         </View>
                     </View>
-                    <Text style={[Typography.text_subHeading, { marginTop: 30 }]}>{'00:54'}</Text>
-                    <Text style={[styles.socialTextC1, {}]}>{t('sendagain')} </Text>
-                </View>
-
-                <View style={styles.containerc1_c2}>
-                    {
-                        code.length >= 6 &&
-                        <View style={{ marginTop: 10, marginBottom: 10 }}>
-                            <CTAButton1 title={t('verify')} submitHandler={() => submit()} />
-                        </View>
-                    }
-                </View>
-
+                </ScrollView>
             </View>
         </View>
     );
@@ -127,8 +140,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     inputContiner: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: 'white',
+        borderColor: colors.Primary_01,
+        borderRadius: 5,
+        borderWidth: 1,
+        marginTop: 10,
     },
     input: {
         height: 50, width: "90%", color: colors.black,
