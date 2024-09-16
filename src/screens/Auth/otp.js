@@ -39,13 +39,13 @@ export default function OtpVerify({ navigation }) {
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
             <SuccessModal modalVisible={modalVisible} setModalVisible={() => modalClose()} />
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     activeOpacity={.8}
                     style={{ position: 'absolute', left: 20, top: 20 }}
                 >
                     <BackIcon />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <View style={styles.containerc1_c1}>
                     <Image resizeMode='contain' style={{ width: 250, height: 120, }} source={Images.LogoWithText} />
                 </View>
