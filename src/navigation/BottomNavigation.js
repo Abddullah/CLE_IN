@@ -3,6 +3,8 @@ import React from 'react';
 import { Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
+import { colors } from '../utilities/constants';
+import { t } from 'i18next';
 // icons
 import Feather from 'react-native-vector-icons/Feather';
 // icons
@@ -29,8 +31,6 @@ function HomeRoutes({ navigation }) {
     )
 }
 
-
-
 export function AppBottomNavigator() {
     return (
         <Tab.Navigator
@@ -42,7 +42,7 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Home</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('home')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <HomeActive /> : <HomeInactive />) },
                 }}
                 name="Home"
@@ -51,7 +51,7 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Booking</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('booking')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : <BookingInactive />) },
                 }}
                 name="Booking"
@@ -60,7 +60,7 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Map</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('map')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : <MapInactive />) },
                 }}
                 name="Map"
@@ -69,8 +69,8 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Notification</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? '#00BFFF' : '#818888' }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('notification')}</Text>) },
+                    tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? colors.Primary_01 : colors.Neutral_01 }} />) },
                 }}
                 name="Notification"
                 component={HomeRoutes}
@@ -78,7 +78,7 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Profile</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('profile')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : <ProfileInactive />) },
                 }}
                 name="Profile"

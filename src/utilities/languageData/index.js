@@ -42,6 +42,11 @@ export const languageData = [
             changePassword: 'Change password',
             enteryournewpassword: 'Enter your new password to access to your account',
             save: 'SAVE',
+            home: 'Home',
+            booking: 'Booking',
+            map: 'Map',
+            notification: 'Notification',
+            profile: 'Profile',
             new: '',
         }
     },
