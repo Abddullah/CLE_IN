@@ -22,7 +22,6 @@ export default function Signup({ navigation }) {
     const [password, setpassword] = useState('');
     const [rePassword, setrePassword] = useState('');
     const [role, setrole] = useState('');
-    const [adFor, setadFor] = useState("");
     const [isSelectedTerm, setisSelectedTerm] = useState(false);
 
 

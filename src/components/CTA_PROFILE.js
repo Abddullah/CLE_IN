@@ -18,7 +18,7 @@ const CTA_Profile = ({
                     icon
                 }
             </View>
-            <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black }]}>{title}</Text>
+            <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize:13 }]}>{title}</Text>
         </TouchableOpacity>
     );
 };
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         marginTop: 10,
-        paddingLeft: 15
+        paddingLeft: 15,
+        borderRadius: 5
     },
 
 });
