@@ -9,7 +9,6 @@ export { default as CountrySelection } from './countrySelection.svg';
 export { default as LanguageIcon } from './languageIcon.svg';
 export { default as ItalyFlag } from './ItalyFlag.svg';
 export { default as BackIcon } from './backIcon.svg';
-export { default as Popupbg } from './popupbg.svg';
 // footer icons
 export { default as HomeActive } from './footerIcon/HomeActive.svg';
 export { default as HomeInactive } from './footerIcon/HomeInactive.svg';
@@ -25,4 +24,12 @@ export { default as MapInactive } from './footerIcon/MapInactive.svg';
 
 export { default as ProfileActive } from './footerIcon/ProfileActive.svg';
 export { default as ProfileInactive } from './footerIcon/ProfileInactive.svg';
+
+// profile icons
+export { default as Heart } from './profileIcons/heart.svg';
+export { default as Payment } from './profileIcons/payment.svg';
+export { default as Referral } from './profileIcons/referral.svg';
+export { default as Preferences } from './profileIcons/Preferences.svg';
+export { default as FAQ } from './profileIcons/FAQ.svg';
+export { default as Settings } from './profileIcons/settings.svg';
 

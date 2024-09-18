@@ -3,5 +3,6 @@ export default Images = {
   LogoWithText: require('./logoWithText.png'),
   splashBg: require('./splashBg.png'),
   popupBg: require('./popupBg.png'),
+  profilePic: require('./profilePic.png'),
 
 };

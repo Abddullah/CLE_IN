@@ -13,7 +13,6 @@ export default function GetStarted({ navigation }) {
   const [page, setpage] = useState(0);
   const [language, setlanguage] = useState("");
 
-
   const submit = () => {
     page === 0 && setpage(1)
     if (page !== 0) {

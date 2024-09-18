@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-const { width, height } = Dimensions.get('window');
+import { colors } from '../utilities/constants';
 
-const Header = ({
+const CustomHeader = ({
     title,
     leftPress = () => { },
     rightPress = () => { },
@@ -28,7 +28,7 @@ const Header = ({
     );
 };
 
-export default Header;
+export default CustomHeader;
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 80,
-        // paddingVertical: height * 0.02,
-        backgroundColor: 'red'
+        backgroundColor: colors.Primary_01
     },
     title: {
         fontSize: 18,

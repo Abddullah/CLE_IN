@@ -17,7 +17,7 @@ import {
     ProfileInactive,
 } from '../assets/icons';
 // bottom navigation screens
-import Splash from './../screens/GetStarted/index';
+import Profile from './../screens/Profile/index';
 
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +26,14 @@ const Stack = createNativeStackNavigator();
 function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={Splash} />
+            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
+        </Stack.Navigator>
+    )
+}
+function ProfileRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
         </Stack.Navigator>
     )
 }
@@ -82,7 +89,7 @@ export function AppBottomNavigator() {
                     tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : <ProfileInactive />) },
                 }}
                 name="Profile"
-                component={HomeRoutes}
+                component={ProfileRoutes}
             />
 
         </Tab.Navigator>

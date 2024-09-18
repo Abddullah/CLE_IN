@@ -47,6 +47,12 @@ export const languageData = [
             map: 'Map',
             notification: 'Notification',
             profile: 'Profile',
+            Favorites: 'Favorites',
+            paymentMethod: 'Payment Method',
+            referralDiscounts: 'Referral Discounts',
+            preferences: 'Preferences',
+            fAQ: 'FAQ',
+            settings: 'Settings',
             new: '',
         }
     },

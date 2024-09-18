@@ -276,6 +276,17 @@ export const Typography = StyleSheet.create({
         color: colors.Primary_01,
         textAlign: 'center'
     },
+    text_subHeading_1: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: colors.black,
+        textAlign: 'center'
+    },
+    text_paragraph_1: {
+        fontSize: 16,
+        color: colors.Neutral_01,
+        textAlign: 'center'
+    },
     text_paragraph: {
         fontSize: 14,
         color: colors.Neutral_01,
