@@ -21,9 +21,9 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} component={Signin} name="Signin" />
         <Stack.Screen options={{ headerShown: false }} component={Signup} name="Signup" />
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />
-        {/* <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
-        <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" /> */}
-        {/* <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} /> */}
+        <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
+        <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" />
+        <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

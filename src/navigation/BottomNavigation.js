@@ -4,11 +4,18 @@ import { Text } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 // icons
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
+// icons
+import {
+    HomeActive, HomeInactive,
+    BookingActive, BookingInactive,
+    MapActive,
+    MapInactive,
+    ProfileActive,
+    ProfileInactive,
+} from '../assets/icons';
 // bottom navigation screens
-import Splash from './../screens/Splash/index';
+import Splash from './../screens/GetStarted/index';
 
 
 const Tab = createBottomTabNavigator();
@@ -22,37 +29,7 @@ function HomeRoutes({ navigation }) {
     )
 }
 
-function AdsRoutes({ navigation }) {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="MyAdsScreen" component={Splash} />
-        </Stack.Navigator>
-    )
-}
 
-function SellNowRoutes({ navigation }) {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="SellNowScreen" component={Splash} />
-        </Stack.Navigator>
-    )
-}
-
-function ChatRoutes({ navigation }) {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="SavedAds" component={Splash} />
-        </Stack.Navigator>
-    )
-}
-
-function MoreRoutes({ navigation }) {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="MoreScreen" component={Splash} />
-        </Stack.Navigator>
-    )
-}
 
 export function AppBottomNavigator() {
     return (
@@ -65,8 +42,8 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? 'red' : '#344054' }}>Home</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<AntDesign name="home" style={{ fontSize: 20, color: focused ? 'red' : '#344054' }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Home</Text>) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <HomeActive /> : <HomeInactive />) },
                 }}
                 name="Home"
                 component={HomeRoutes}
@@ -74,41 +51,38 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? 'red' : '#344054' }}>Booking</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<MaterialCommunityIcons name="book-open-outline" style={{ fontSize: 20, color: focused ? 'red' : '#344054' }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Booking</Text>) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : <BookingInactive />) },
                 }}
                 name="Booking"
-                component={AdsRoutes}
+                component={HomeRoutes}
             />
-
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? 'red' : '#344054' }}>Favorite</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<Ionicons name="add-circle" style={{ fontSize: 20, color: focused ? 'red' : '#344054' }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Map</Text>) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : <MapInactive />) },
                 }}
-                name="Favorite"
-                component={SellNowRoutes}
+                name="Map"
+                component={HomeRoutes}
             />
-
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? 'red' : '#344054' }}>Notification</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<Ionicons name="bookmark-sharp" style={{ fontSize: 20, color: focused ? 'red' : '#344054' }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Notification</Text>) },
+                    tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? '#00BFFF' : '#818888' }} />) },
                 }}
                 name="Notification"
-                component={ChatRoutes}
+                component={HomeRoutes}
             />
-
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? 'red' : '#344054' }}>Profile</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<AntDesign name="profile" style={{ fontSize: 18, color: focused ? 'red' : '#344054' }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? '#00BFFF' : '#818888', fontSize: 12, top: -5 }}>Profile</Text>) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : <ProfileInactive />) },
                 }}
                 name="Profile"
-                component={MoreRoutes}
+                component={HomeRoutes}
             />
 
         </Tab.Navigator>

@@ -24,6 +24,7 @@ export default function SignIn({ navigation }) {
             email: email,
             password: password,
         }
+        navigation.navigate('Tabs')
         // dispatch(signIn(credentials, isSelectedRemember, navigation))
         // dispatch(showError())
     }
