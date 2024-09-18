@@ -13,11 +13,8 @@ import { Select } from 'native-base';
 
 const Profile = ({ navigation }) => {
     const [language, setLanguage] = useState('');
-
     const [darkMode, setdarkMode] = useState(false);
-    const toggleSwitch = (e) => {
-        console.log(e, 'Param')
-    }
+
 
     return (
         <View style={styles.container}>
@@ -39,7 +36,7 @@ const Profile = ({ navigation }) => {
                     <Text style={Typography.text_heading}>Jenny Abbas</Text>
                     <Text style={Typography.text_paragraph_1}> +61 588 74637</Text>
                     <View style={{ marginTop: 10, width: '60%', }}>
-                        <CTAButton1 title={'Edit Profile'} />
+                        <CTAButton1 title={t('editProfile')} submitHandler={() => { navigation.navigate('EditProfile') }} />
                     </View>
                 </View>
 

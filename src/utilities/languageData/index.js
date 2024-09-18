@@ -53,6 +53,13 @@ export const languageData = [
             preferences: 'Preferences',
             fAQ: 'FAQ',
             settings: 'Settings',
+            editProfile: 'Edit Profile',
+            phoneNo: 'Phone No',
+            address: 'Address',
+            gender: 'Gender',
+            male: 'Male',
+            female: 'Female',
+            SAVE: 'SAVE',
             new: '',
         }
     },

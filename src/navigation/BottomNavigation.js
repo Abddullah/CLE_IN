@@ -17,8 +17,9 @@ import {
     ProfileInactive,
 } from '../assets/icons';
 // bottom navigation screens
+import Splash from '../screens/Splash';
 import Profile from './../screens/Profile/index';
-
+import EditProfile from './../screens/Profile/editProfile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,14 +27,16 @@ const Stack = createNativeStackNavigator();
 function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
+            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Splash} />
         </Stack.Navigator>
     )
 }
+
 function ProfileRoutes({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
+            <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
         </Stack.Navigator>
     )
 }

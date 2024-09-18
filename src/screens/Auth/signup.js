@@ -249,7 +249,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     inputContiner: {
-        backgroundColor: 'white',
+        paddingLeft: 10,
+        backgroundColor: colors.white,
         borderColor: colors.Primary_01,
         borderRadius: 5,
         borderWidth: 1,
