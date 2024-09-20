@@ -33,3 +33,5 @@ export { default as Preferences } from './profileIcons/Preferences.svg';
 export { default as FAQ } from './profileIcons/FAQ.svg';
 export { default as Settings } from './profileIcons/settings.svg';
 
+export { default as NotificationIcon } from './notification.svg';
+

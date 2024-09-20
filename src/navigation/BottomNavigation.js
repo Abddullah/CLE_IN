@@ -17,7 +17,8 @@ import {
     ProfileInactive,
 } from '../assets/icons';
 // bottom navigation screens
-import Splash from '../screens/Splash';
+import Map from '../screens/Map/index';
+import Notification from './../screens/Notification/index';
 import Profile from './../screens/Profile/index';
 import EditProfile from './../screens/Profile/editProfile';
 
@@ -27,7 +28,22 @@ const Stack = createNativeStackNavigator();
 function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Splash} />
+            <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
+        </Stack.Navigator>
+    )
+}
+
+function MapRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
+        </Stack.Navigator>
+    )
+}
+function NotificationRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Notification" component={Notification} />
         </Stack.Navigator>
     )
 }
@@ -74,7 +90,7 @@ export function AppBottomNavigator() {
                     tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : <MapInactive />) },
                 }}
                 name="Map"
-                component={HomeRoutes}
+                component={MapRoutes}
             />
             <Tab.Screen
                 options={{
@@ -83,7 +99,7 @@ export function AppBottomNavigator() {
                     tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? colors.Primary_01 : colors.Neutral_01 }} />) },
                 }}
                 name="Notification"
-                component={HomeRoutes}
+                component={NotificationRoutes}
             />
             <Tab.Screen
                 options={{

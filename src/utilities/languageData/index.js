@@ -60,7 +60,9 @@ export const languageData = [
             male: 'Male',
             female: 'Female',
             SAVE: 'SAVE',
-            new: '',
+            notificationReceivedw: 'Notification received',
+            new: 'New',
+            news: '',
         }
     },
     {
