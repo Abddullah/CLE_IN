@@ -74,7 +74,7 @@ const Profile = ({ navigation }) => {
 
                 <CTA_Profile title={t('Favorites')} icon={<Heart />} submitHandler={() => { navigation.navigate('Favorite') }} />
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
-                <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} />
+                <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />
                 <CTA_Profile title={t('preferences')} icon={<Preferences />} />
                 <CTA_Profile title={t('fAQ')} icon={<FAQ />} />
                 <CTA_Profile title={t('settings')} icon={<Settings />} />

@@ -37,4 +37,5 @@ export { default as NotificationIcon } from './notification.svg';
 export { default as PantagonShap } from './pantagonShap.svg';
 export { default as Nocard } from './nocard.svg';
 export { default as CardIcon } from './cardIcon.svg';
+export { default as ShareCredit } from './shareCredit.svg';
 

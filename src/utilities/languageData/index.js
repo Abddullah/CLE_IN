@@ -70,6 +70,9 @@ export const languageData = [
             cvvNumber: 'CVV Number',
             expiryDate: 'Expiry Date',
             creditDebitCard: 'Credit/Debit Card',
+            getfreecredit: 'Get Free Credit',
+            sharethebestkepthome: "Share the best-kept home care secret! Share the link to give your friend ILT 40 off their booking! Once they use it to book, you will automatically receive ILT 40 credit added to your account! Now that's what we call a win-win-win!",
+            sharefreecredit: 'Share free credit',
             news: '',
         }
     },
