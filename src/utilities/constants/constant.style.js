@@ -287,15 +287,15 @@ export const Typography = StyleSheet.create({
         color: colors.Neutral_01,
         textAlign: 'center'
     },
-    text_paragraph: {
-        fontSize: 14,
-        color: colors.Neutral_01,
-        textAlign: 'center'
-    },
     text_CTA1: {
         fontSize: 16,
         color: colors.white,
         fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    text_paragraph: {
+        fontSize: 14,
+        color: colors.Neutral_01,
         textAlign: 'center'
     },
 })

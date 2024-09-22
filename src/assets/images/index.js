@@ -6,5 +6,6 @@ export default Images = {
   profilePic: require('./profilePic.png'),
   map: require('./map.png'),
   mapWhite: require('./mapWhite.png'),
+  cleaning: require('./cleaning.jpg'),
 
 };

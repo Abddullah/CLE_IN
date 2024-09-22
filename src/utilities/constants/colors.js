@@ -10,7 +10,7 @@ const Colors = {
     Neutral_06: '#',
 
     Primary_01: '#00BFFF',
-    Primary_02: '#',
+    Primary_02: '#2A76D8',
 
     Error_Red: '#ED625A',
 

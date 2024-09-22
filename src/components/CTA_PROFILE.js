@@ -6,10 +6,12 @@ import { Typography } from '../utilities/constants/constant.style';
 
 const CTA_Profile = ({
     title,
-    icon
+    icon,
+    submitHandler
 }) => {
     return (
         <TouchableOpacity
+            onPress={submitHandler}
             style={styles.wrapper}
             activeOpacity={.8}
         >
@@ -18,7 +20,7 @@ const CTA_Profile = ({
                     icon
                 }
             </View>
-            <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize:13 }]}>{title}</Text>
+            <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize: 13 }]}>{title}</Text>
         </TouchableOpacity>
     );
 };

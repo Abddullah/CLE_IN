@@ -62,6 +62,8 @@ export const languageData = [
             SAVE: 'SAVE',
             notificationReceivedw: 'Notification received',
             new: 'New',
+            allFavorites: 'All Favorites',
+            discountinFavorites: 'Discount in Favorites',
             news: '',
         }
     },

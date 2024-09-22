@@ -21,6 +21,7 @@ import Map from '../screens/Map/index';
 import Notification from './../screens/Notification/index';
 import Profile from './../screens/Profile/index';
 import EditProfile from './../screens/Profile/editProfile';
+import Favorite from './../screens/Profile/favorite';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -53,6 +54,7 @@ function ProfileRoutes({ navigation }) {
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
             <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
+            <Stack.Screen options={{ headerShown: false }} name="Favorite" component={Favorite} />
         </Stack.Navigator>
     )
 }
