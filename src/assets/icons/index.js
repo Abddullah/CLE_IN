@@ -35,4 +35,6 @@ export { default as Settings } from './profileIcons/settings.svg';
 
 export { default as NotificationIcon } from './notification.svg';
 export { default as PantagonShap } from './pantagonShap.svg';
+export { default as Nocard } from './nocard.svg';
+export { default as CardIcon } from './cardIcon.svg';
 

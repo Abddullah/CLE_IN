@@ -64,6 +64,12 @@ export const languageData = [
             new: 'New',
             allFavorites: 'All Favorites',
             discountinFavorites: 'Discount in Favorites',
+            creditCards: 'Credit Cards',
+            addanewcard: 'Add a new card',
+            cardNumber: 'Card Number',
+            cvvNumber: 'CVV Number',
+            expiryDate: 'Expiry Date',
+            creditDebitCard: 'Credit/Debit Card',
             news: '',
         }
     },
