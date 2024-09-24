@@ -76,7 +76,7 @@ const Profile = ({ navigation }) => {
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />
                 <CTA_Profile title={t('preferences')} icon={<Preferences />} submitHandler={() => { navigation.navigate('Preferences') }} />
-                <CTA_Profile title={t('fAQ')} icon={<FAQ />} />
+                <CTA_Profile title={t('fAQ')} icon={<FAQ />} submitHandler={() => { navigation.navigate('FAQ') }} />
                 <CTA_Profile title={t('settings')} icon={<Settings />} />
 
             </ScrollView>

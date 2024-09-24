@@ -82,6 +82,11 @@ export const languageData = [
             request: 'Request',
             cleaning: 'Cleaning',
             preferences: 'Preferences',
+            search: 'Search',
+            howdoibookacleaning: 'How do I book a cleaning service?',
+            howdoipayforthe: 'How do I pay for the cleaning services?',
+            howdoicontact: 'How do I contact customer support?',
+            news: '',
             news: '',
         }
     },
