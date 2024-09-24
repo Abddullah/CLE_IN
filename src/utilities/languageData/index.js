@@ -89,8 +89,9 @@ export const languageData = [
             feedback: 'Feedback',
             supportandhelp: 'Support & Help Center',
             deletemyaccount: 'Delete my account',
-            news: '',
-            news: '',
+            tellusaboutyour: 'Tell us about your experience',
+            yourfeedback: 'Your feedback',
+            send: 'SEND',
             news: '',
         }
     },
