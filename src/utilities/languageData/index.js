@@ -86,7 +86,9 @@ export const languageData = [
             howdoibookacleaning: 'How do I book a cleaning service?',
             howdoipayforthe: 'How do I pay for the cleaning services?',
             howdoicontact: 'How do I contact customer support?',
-            news: '',
+            feedback: 'Feedback',
+            supportandhelp: 'Support & Help Center',
+            deletemyaccount: 'Delete my account',
             news: '',
         }
     },

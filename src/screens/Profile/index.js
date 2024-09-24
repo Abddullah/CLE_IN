@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Switch, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import { colors } from '../../utilities/constants';
@@ -9,12 +9,8 @@ import Images from '../../assets/images/index'
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import CTA_Profile from '../../components/CTA_PROFILE';
 import { Heart, Payment, Referral, Preferences, FAQ, Settings } from '../../assets/icons';
-import { Select } from 'native-base';
 
 const Profile = ({ navigation }) => {
-    const [language, setLanguage] = useState('');
-    const [darkMode, setdarkMode] = useState(false);
-
 
     return (
         <View style={styles.container}>
@@ -40,44 +36,12 @@ const Profile = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={styles.list}>
-                    <Select
-                        bg="white"
-                        borderWidth={0}
-                        selectedValue={language}
-                        minWidth="100%"
-                        accessibilityLabel="Language"
-                        placeholder="Language"
-                        placeholderTextColor="black"
-                        _selectedItem={{
-                            background: colors.Primary_01
-                        }}
-                        mt={1}
-                        onValueChange={itemValue => setLanguage(itemValue)}
-                    >
-                        <Select.Item label="Language (ENGLISH)" value="en" />
-                        <Select.Item label="Language (Czech)" value="cz" />
-                        <Select.Item label="Language (Urdu)" value="ur" />
-                    </Select>
-                </View>
-
-                <View style={styles.list}>
-                    <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize: 13 }]}>{darkMode ? 'Theme (Dark Mode)' : 'Theme (Normal)'}</Text>
-                    <Switch
-                        trackColor={{ false: '#3e3e3e', true: '#3e3e3e' }}
-                        thumbColor={darkMode ? colors.Primary_01 : '#f4f3f4'}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={() => { setdarkMode(!darkMode) }}
-                        value={darkMode}
-                    />
-                </View>
-
                 <CTA_Profile title={t('Favorites')} icon={<Heart />} submitHandler={() => { navigation.navigate('Favorite') }} />
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />
                 <CTA_Profile title={t('preferences')} icon={<Preferences />} submitHandler={() => { navigation.navigate('Preferences') }} />
                 <CTA_Profile title={t('fAQ')} icon={<FAQ />} submitHandler={() => { navigation.navigate('FAQ') }} />
-                <CTA_Profile title={t('settings')} icon={<Settings />} />
+                <CTA_Profile title={t('settings')} icon={<Settings />} submitHandler={() => { navigation.navigate('Settings') }} />
 
             </ScrollView>
 
