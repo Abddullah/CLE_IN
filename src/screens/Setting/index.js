@@ -24,7 +24,6 @@ const Settings = ({ navigation }) => {
                 leftPress={() => { navigation.goBack() }}
             />
 
-
             <ScrollView
                 style={{ width: '90%' }}
                 contentContainerStyle={styles.scrollBar}
@@ -67,7 +66,6 @@ const Settings = ({ navigation }) => {
                 <CTA_Setting title={t('feedback')} icon={<AntDesign name="caretright" />} />
                 <CTA_Setting title={t('supportandhelp')} icon={<AntDesign name="caretright" />} />
                 <CTA_Setting title={t('deletemyaccount')} icon={<AntDesign name="caretright" />} />
-
 
             </ScrollView>
 
