@@ -31,6 +31,7 @@ import Settings from './../screens/Setting/index';
 import PrivacyPolicy from './../screens/PrivacyPolicy/index';
 import TermsAndCondition from './../screens/TermsAndCondition/index';
 import Feedback from './../screens/FeedBack/index';
+import Support from './../screens/Support/index';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,6 +74,7 @@ function ProfileRoutes({ navigation }) {
             <Stack.Screen options={{ headerShown: false }} name="PrivacyPolicy" component={PrivacyPolicy} />
             <Stack.Screen options={{ headerShown: false }} name="TermsAndCondition" component={TermsAndCondition} />
             <Stack.Screen options={{ headerShown: false }} name="Feedback" component={Feedback} />
+            <Stack.Screen options={{ headerShown: false }} name="Support" component={Support} />
         </Stack.Navigator>
     )
 }

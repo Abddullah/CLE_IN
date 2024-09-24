@@ -7,5 +7,6 @@ export default Images = {
   map: require('./map.png'),
   mapWhite: require('./mapWhite.png'),
   cleaning: require('./cleaning.jpg'),
+  noPhoto: require('./noPhoto.jpg'),
 
 };
