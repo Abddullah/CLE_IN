@@ -28,6 +28,8 @@ import ReferralDiscounts from './../screens/ReferralDiscounts/index';
 import Preferences from './../screens/Preferences/index';
 import FAQ from './../screens/FAQ/index';
 import Settings from './../screens/Setting/index';
+import PrivacyPolicy from './../screens/PrivacyPolicy/index';
+import TermsAndCondition from './../screens/TermsAndCondition/index';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -67,6 +69,8 @@ function ProfileRoutes({ navigation }) {
             <Stack.Screen options={{ headerShown: false }} name="Preferences" component={Preferences} />
             <Stack.Screen options={{ headerShown: false }} name="FAQ" component={FAQ} />
             <Stack.Screen options={{ headerShown: false }} name="Settings" component={Settings} />
+            <Stack.Screen options={{ headerShown: false }} name="PrivacyPolicy" component={PrivacyPolicy} />
+            <Stack.Screen options={{ headerShown: false }} name="TermsAndCondition" component={TermsAndCondition} />
         </Stack.Navigator>
     )
 }

@@ -90,6 +90,8 @@ export const languageData = [
             supportandhelp: 'Support & Help Center',
             deletemyaccount: 'Delete my account',
             news: '',
+            news: '',
+            news: '',
         }
     },
     {
