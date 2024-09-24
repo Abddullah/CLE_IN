@@ -25,6 +25,7 @@ import Favorite from './../screens/Profile/favorite';
 import CreditCard from './../screens/CreditCard/index';
 import AddNewCard from './../screens/CreditCard/addNewCard';
 import ReferralDiscounts from './../screens/ReferralDiscounts/index';
+import Preferences from './../screens/Preferences/index';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -61,6 +62,7 @@ function ProfileRoutes({ navigation }) {
             <Stack.Screen options={{ headerShown: false }} name="CreditCard" component={CreditCard} />
             <Stack.Screen options={{ headerShown: false }} name="AddNewCard" component={AddNewCard} />
             <Stack.Screen options={{ headerShown: false }} name="ReferralDiscounts" component={ReferralDiscounts} />
+            <Stack.Screen options={{ headerShown: false }} name="Preferences" component={Preferences} />
         </Stack.Navigator>
     )
 }

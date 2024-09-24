@@ -33,7 +33,6 @@ const ReferralDiscounts = ({ navigation }) => {
                     <Text style={[Typography.text_CTA1, { color: colors.black, marginTop: 10 }]}>{'tokyo1092371008'}</Text>
                 </View>
 
-
                 <CTA_Profile title={t('Favorites')} icon={<ShareCredit />} submitHandler={() => { }} />
 
 
