@@ -67,6 +67,7 @@ const Favorite = ({ navigation }) => {
                     <Text style={{ color: colors.white, fontWeight: 'bold' }}>{t('discountinFavorites')}</Text>
                 </TouchableOpacity>
             </View>
+
             {
                 allFavorites &&
                 <FlatList
@@ -74,7 +75,7 @@ const Favorite = ({ navigation }) => {
                     contentContainerStyle={{ marginTop: 10, width: '95%' }}
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) => <ServiceCard data={item} />}
+                    renderItem={({ item }) => <ServiceCard data={item} isFav={true} />}
                 />
             }
             {
@@ -88,6 +89,7 @@ const Favorite = ({ navigation }) => {
                     renderItem={({ item }) => <ServiceCardDiscounted data={item} />}
                 />
             }
+
         </View>
     );
 };

@@ -32,10 +32,16 @@ export { default as Referral } from './profileIcons/referral.svg';
 export { default as Preferences } from './profileIcons/Preferences.svg';
 export { default as FAQ } from './profileIcons/FAQ.svg';
 export { default as Settings } from './profileIcons/settings.svg';
-
+// setting icons
 export { default as NotificationIcon } from './notification.svg';
 export { default as PantagonShap } from './pantagonShap.svg';
 export { default as Nocard } from './nocard.svg';
 export { default as CardIcon } from './cardIcon.svg';
 export { default as ShareCredit } from './shareCredit.svg';
+// category icons
+export { default as CatHome } from './category/cleaningathome.svg';
+export { default as CatCompany } from './category/cleaningatcompany.svg';
+export { default as CatHospital } from './category/cleaningathospital.svg';
+export { default as CatOffice } from './category/cleaningatoffice.svg';
+export { default as CatFactory } from './category/cleaningatfactory.svg';
 

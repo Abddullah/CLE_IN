@@ -7,7 +7,6 @@ import { colors } from '../utilities/constants';
 import { t } from 'i18next';
 // icons
 import Feather from 'react-native-vector-icons/Feather';
-// icons
 import {
     HomeActive, HomeInactive,
     BookingActive, BookingInactive,
@@ -17,8 +16,12 @@ import {
     ProfileInactive,
 } from '../assets/icons';
 // bottom navigation screens
+import Home from '../screens/Home/index';
+// map
 import Map from '../screens/Map/index';
+// notification
 import Notification from './../screens/Notification/index';
+// profile
 import Profile from './../screens/Profile/index';
 import EditProfile from './../screens/Profile/editProfile';
 import Favorite from './../screens/Profile/favorite';
@@ -40,7 +43,7 @@ const Stack = createNativeStackNavigator();
 function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
+            <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
         </Stack.Navigator>
     )
 }
@@ -52,6 +55,7 @@ function MapRoutes({ navigation }) {
         </Stack.Navigator>
     )
 }
+
 function NotificationRoutes({ navigation }) {
     return (
         <Stack.Navigator>
@@ -134,7 +138,6 @@ export function AppBottomNavigator() {
                 name="Profile"
                 component={ProfileRoutes}
             />
-
         </Tab.Navigator>
     );
 }

@@ -108,6 +108,12 @@ export const languageData = [
             clein: 'CLE IN',
             enterpassword: 'Enter password',
             delete: 'DELETE',
+            specialservices: 'Special Services',
+            cleaningathome: 'Cleaning at Home',
+            cleaningatcompany: 'Cleaning at Company',
+            cleaningathospital: 'Cleaning at Hospital',
+            cleaningatoffice: 'Cleaning at Offices',
+            cleaningatfactory: 'Cleaning at Factory',
             news: '',
         }
     },

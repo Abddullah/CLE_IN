@@ -8,8 +8,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const ServiceCard = ({
     data,
-    submitHandler
+    submitHandler,
+    isFav
 }) => {
+
+    console.log(isFav, 'isfav');
+
     return (
         <TouchableOpacity
             onPress={submitHandler}
@@ -24,9 +28,12 @@ const ServiceCard = ({
                     }}
                     source={images.cleaning}
                 />
-                <TouchableOpacity activeOpacity={.8} style={{ position: 'absolute', right: 10, top: 10 }}>
-                    <AntDesign name="heart" style={{ fontSize: 20, color: colors.Primary_01, }} />
-                </TouchableOpacity>
+                {
+                    isFav === true &&
+                    <TouchableOpacity activeOpacity={.8} style={{ position: 'absolute', right: 10, top: 10 }}>
+                        <AntDesign name="heart" style={{ fontSize: 20, color: colors.Primary_01, }} />
+                    </TouchableOpacity>
+                }
             </View>
             <View style={styles.textContainer}>
                 <Text style={[Typography.text_paragraph, { marginLeft: 10, color: colors.Primary_02, fontWeight: 'bold' }]}>{'$' + data.price + '/hr'}</Text>
@@ -46,7 +53,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        borderWidth: 0.1,
+        borderWidth: 0.3,
         borderColor: 'gray',
         margin: 10,
     },
