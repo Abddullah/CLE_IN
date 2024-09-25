@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
-import { CatHome } from '../../assets/icons';
+import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import ServiceCard from '../../components/ServiceCard';
@@ -46,27 +46,27 @@ const Home = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.boxContainer}>
+                <View style={{ width: '100%', }}>
+                    <View style={styles.inputContiner}>
+                        <AntDesign name="search1" style={{ fontSize: 20, color: colors.Primary_01, }} />
+                        <TextInput
+                            keyboardType='number-pad'
+                            style={styles.input}
+                            value={search}
+                            onChangeText={(e) => { setsearch(e) }}
+                            placeholder={t('search')}
+                            placeholderTextColor={colors.Neutral_01}
+                        />
+                    </View>
+                </View>
+            </View>
+
             <ScrollView
-                style={{ width: '95%' }}
+                style={{ width: '95%', }}
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.boxContainer}>
-                    <View style={{ width: '100%', }}>
-                        <View style={styles.inputContiner}>
-                            <AntDesign name="search1" style={{ fontSize: 20, color: colors.Primary_01, }} />
-                            <TextInput
-                                keyboardType='number-pad'
-                                style={styles.input}
-                                value={search}
-                                onChangeText={(e) => { setsearch(e) }}
-                                placeholder={t('search')}
-                                placeholderTextColor={colors.Neutral_01}
-                            />
-                        </View>
-                    </View>
-                </View>
-
                 <View style={styles.catContainer}>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
                     <ScrollView
@@ -85,28 +85,28 @@ const Home = ({ navigation }) => {
                             activeOpacity={.8}
                             style={styles.catBox}
                         >
-                            <CatHome />
+                            <CatCompany />
                             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningatcompany')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={.8}
                             style={styles.catBox}
                         >
-                            <CatHome />
+                            <CatHospital />
                             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningathospital')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={.8}
                             style={styles.catBox}
                         >
-                            <CatHome />
+                            <CatOffice />
                             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningatoffice')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={.8}
                             style={styles.catBox}
                         >
-                            <CatHome />
+                            <CatFactory />
                             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningatfactory')}</Text>
                         </TouchableOpacity>
                     </ScrollView>
@@ -140,13 +140,12 @@ const styles = StyleSheet.create({
         paddingBottom: 50
     },
     boxContainer: {
-        flex: 1,
         width: '90%',
+        height: 70,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
         marginTop: 10,
-        // backgroundColor: 'red'
     },
     inputContiner: {
         justifyContent: 'flex-start',
