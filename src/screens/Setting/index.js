@@ -65,7 +65,7 @@ const Settings = ({ navigation }) => {
                 <CTA_Setting title={t('TermsConditions')} icon={<AntDesign name="caretright" />} submitHandler={() => { navigation.navigate('TermsAndCondition') }} />
                 <CTA_Setting title={t('feedback')} icon={<AntDesign name="caretright" />} submitHandler={() => { navigation.navigate('Feedback') }} />
                 <CTA_Setting title={t('supportandhelp')} icon={<AntDesign name="caretright" />} submitHandler={() => { navigation.navigate('Support') }} />
-                <CTA_Setting title={t('deletemyaccount')} icon={<AntDesign name="caretright" />} />
+                <CTA_Setting title={t('deletemyaccount')} icon={<AntDesign name="caretright" />} submitHandler={() => { navigation.navigate('DeleteAccount') }} />
 
             </ScrollView>
 

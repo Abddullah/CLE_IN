@@ -12,7 +12,7 @@ export default function Support({ ...props }) {
     return (
         <View style={styles.mainContainer}>
             <CustomHeader
-                title={t('settings')}
+                title={t('support')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
@@ -22,7 +22,6 @@ export default function Support({ ...props }) {
             {/* <View style={styles.footer}>
                 <CommentInput />
             </View> */}
-
         </View>
     );
 }
