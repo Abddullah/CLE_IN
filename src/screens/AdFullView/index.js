@@ -70,6 +70,7 @@ const AdFullView = ({ navigation }) => {
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('reviews')}</Text>
                     <TouchableOpacity
                         activeOpacity={.8}
+                        onPress={() => { navigation.navigate('Reviews') }}
                     >
                         <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.Primary_01, }]}>{t('seeAll')}</Text>
                     </TouchableOpacity>
@@ -85,11 +86,11 @@ const AdFullView = ({ navigation }) => {
                         <View>
                             <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.Primary_01, }]}>{'Charollette Hanlin'}</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <FontAwesome name="star" size={15} color="gold" />
-                                <FontAwesome name="star" size={15} color="gold" />
-                                <FontAwesome name="star" size={15} color="gold" />
-                                <FontAwesome name="star" size={15} color="gold" />
-                                <FontAwesome name="star" size={15} color="gold" />
+                                <FontAwesome name="star" size={20} color={colors.yellow} />
+                                <FontAwesome name="star" size={20} color={colors.yellow} />
+                                <FontAwesome name="star" size={20} color={colors.yellow} />
+                                <FontAwesome name="star" size={20} color={colors.yellow} />
+                                <FontAwesome name="star" size={20} color={colors.yellow} />
                             </View>
                         </View>
                         <Text style={Typography.text_paragraph}>{'23 May, 2023 | 02:00 PM'}</Text>

@@ -122,6 +122,7 @@ export const languageData = [
             location: 'Location',
             reviews: 'Reviews',
             seeAll: 'See All',
+            all: 'All',
             news: '',
         }
     },
