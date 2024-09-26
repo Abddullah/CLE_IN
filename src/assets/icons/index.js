@@ -45,3 +45,5 @@ export { default as CatHospital } from './category/cleaningathospital.svg';
 export { default as CatOffice } from './category/cleaningatoffice.svg';
 export { default as CatFactory } from './category/cleaningatfactory.svg';
 
+export { default as MapSmall } from './mapSmall.svg';
+

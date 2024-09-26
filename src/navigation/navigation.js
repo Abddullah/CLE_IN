@@ -10,6 +10,7 @@ import ForgotPassword from './../screens/Auth/forgotPassword';
 import ResetPassword from './../screens/Auth/resetPassword';
 import OtpVerify from './../screens/Auth/otp';
 import { AppBottomNavigator } from './BottomNavigation';
+import AdFullView from '../screens/AdFullView/index';
 
 const Stack = createNativeStackNavigator();
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
         <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" /> */}
         <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
+        <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

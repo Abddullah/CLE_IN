@@ -8,6 +8,7 @@ import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../a
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import ServiceCard from '../../components/ServiceCard';
+import Images from '../../assets/images/index'
 
 const Home = ({ navigation }) => {
     let isError = useSelector((state) => state.reducer.isError);
@@ -18,29 +19,56 @@ const Home = ({ navigation }) => {
             description: 'We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.',
             price: 25,
             discount: 30,
-            images: Images.cleaning
+            images: [Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning],
+            openTime: '10:00 AM to 12:00 PM',
+            let: 0,
+            lng: 0,
+            reviews: [{ img: Images.profilePic, name: 'Charollette Hanlin', date: '23 May, 2023 | 02:00 PM', star: '5', review: 'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. ' },]
+        }, {
+            title: 'Cleaning at Company',
+            description: 'We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.',
+            price: 25,
+            discount: 30,
+            images: [Images.cleaning],
+            openTime: '10:00 AM to 12:00 PM',
+            let: 0,
+            lng: 0,
+            reviews: [{ img: Images.profilePic, name: 'Charollette Hanlin', date: '23 May, 2023 | 02:00 PM', star: '5', review: 'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. ' },]
         },
         {
             title: 'Cleaning at Company',
             description: 'We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.',
             price: 25,
             discount: 30,
-            images: Images.cleaning
+            images: [Images.cleaning],
+            openTime: '10:00 AM to 12:00 PM',
+            let: 0,
+            lng: 0,
+            reviews: [{ img: Images.profilePic, name: 'Charollette Hanlin', date: '23 May, 2023 | 02:00 PM', star: '5', review: 'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. ' },]
         },
         {
             title: 'Cleaning at Company',
             description: 'We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.',
             price: 25,
             discount: 30,
-            images: Images.cleaning
+            images: [Images.cleaning],
+            openTime: '10:00 AM to 12:00 PM',
+            let: 0,
+            lng: 0,
+            reviews: [{ img: Images.profilePic, name: 'Charollette Hanlin', date: '23 May, 2023 | 02:00 PM', star: '5', review: 'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. ' },]
         },
         {
             title: 'Cleaning at Company',
             description: 'We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.',
             price: 25,
             discount: 30,
-            images: Images.cleaning
+            images: [Images.cleaning],
+            openTime: '10:00 AM to 12:00 PM',
+            let: 0,
+            lng: 0,
+            reviews: [{ img: Images.profilePic, name: 'Charollette Hanlin', date: '23 May, 2023 | 02:00 PM', star: '5', review: 'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. ' },]
         },
+
 
     ]);
 
@@ -118,7 +146,7 @@ const Home = ({ navigation }) => {
                     contentContainerStyle={{ marginTop: 10, width: '100%', }}
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) => <ServiceCard data={item} />}
+                    renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item }) }} />}
                 />
             </ScrollView>
         </View>

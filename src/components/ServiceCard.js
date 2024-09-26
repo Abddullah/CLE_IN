@@ -11,9 +11,6 @@ const ServiceCard = ({
     submitHandler,
     isFav
 }) => {
-
-    console.log(isFav, 'isfav');
-
     return (
         <TouchableOpacity
             onPress={submitHandler}
