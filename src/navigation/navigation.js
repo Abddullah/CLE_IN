@@ -26,8 +26,8 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />
         <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
         <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" /> */}
-        <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
-        <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
+        {/* <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
+        <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} /> */}
         <Stack.Screen options={{ headerShown: false }} name="Booking" component={Booking} />
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
       </Stack.Navigator>

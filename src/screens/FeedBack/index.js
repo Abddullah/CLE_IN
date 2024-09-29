@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        backgroundColor: colors.white
+        backgroundColor: colors.white,
+        borderColor: colors.Primary_01,
+        borderWidth: 1
     }
 
 });

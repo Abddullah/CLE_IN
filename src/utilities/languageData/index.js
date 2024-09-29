@@ -126,6 +126,13 @@ export const languageData = [
             bookservice: 'Book Service',
             next: 'NEXT',
             howmanyhoursdoyou: 'How many hours do you need your professional to stay?',
+            howmanyprofessional: 'How many professionals do you need?',
+            anyspecificinstruction: 'Any Specific Instructions ?',
+            yourtext: 'Your Text',
+            whenwouldyoulike: 'When would you like to schedule your service?',
+            selectDate: 'Select Date',
+            selectTime: 'Select Time',
+            to: 'To',
             news: '',
         }
     },

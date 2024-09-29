@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
-import Images from '../../assets/images/index'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import HorizontalListWithStar from '../../components/horizontalListWithStar';
 import VerticalStarList from '../../components/VerticalStarList';
