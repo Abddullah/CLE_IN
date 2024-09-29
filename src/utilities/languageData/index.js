@@ -123,6 +123,9 @@ export const languageData = [
             reviews: 'Reviews',
             seeAll: 'See All',
             all: 'All',
+            bookservice: 'Book Service',
+            next: 'NEXT',
+            howmanyhoursdoyou: 'How many hours do you need your professional to stay?',
             news: '',
         }
     },
