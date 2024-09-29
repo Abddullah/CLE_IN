@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, FlatList, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
@@ -58,6 +58,7 @@ const Booking = ({ navigation }) => {
             isSelected: false
         },
     ])
+
     const [location, setlocation] = useState('')
 
     const timeSlotHandler = (index) => {
@@ -69,7 +70,7 @@ const Booking = ({ navigation }) => {
     };
 
     const stepsHandler = () => {
-        setstep(step + 1)
+        step < 4 && setstep(step + 1)
     }
 
     const backHandler = () => {
@@ -79,7 +80,6 @@ const Booking = ({ navigation }) => {
             setstep(step - 1)
         }
     }
-
 
     return (
         <View style={styles.container}>
@@ -159,7 +159,6 @@ const Booking = ({ navigation }) => {
                         <View style={styles.heading}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('whenwouldyoulike')}</Text>
                         </View>
-
                         <View style={{ width: '100%', marginTop: 10 }}>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.fieldHeading}>{t('selectDate')}</Text>
@@ -199,11 +198,9 @@ const Booking = ({ navigation }) => {
                                 </View>
                             </View>
                         </View>
-
                         <View style={styles.heading}>
                             <Text style={[styles.listText, { color: colors.Neutral_01 }]}>{t('selectTime')}</Text>
                         </View>
-
                         <FlatList
                             data={timeSlots}
                             contentContainerStyle={styles.timeFlatList}
@@ -214,16 +211,13 @@ const Booking = ({ navigation }) => {
                                     activeOpacity={.8}
                                     style={[styles.timeContainer, { borderColor: item.isSelected ? colors.Primary_01 : colors.Neutral_02, }]}
                                     onPress={() => timeSlotHandler(index)}
-
                                 >
                                     <Text style={[styles.listText, { color: colors.black }]}>{timeSlots[0].startTime}</Text>
                                     <Text style={[styles.listText, { color: colors.black }]}>{t('to')}</Text>
                                     <Text style={[styles.listText, { color: colors.black }]}>{timeSlots[0].endTime}</Text>
-
                                 </TouchableOpacity>
                             }
                         />
-
                     </View>
                 </View>
             }
@@ -246,7 +240,6 @@ const Booking = ({ navigation }) => {
                             />
                             <Feather name="map-pin" style={styles.listIcon} />
                         </View>
-
                         <View style={styles.heading}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('addNote')}</Text>
                         </View>
@@ -261,14 +254,65 @@ const Booking = ({ navigation }) => {
                                 multiline={true}
                             />
                         </View>
-
                     </View>
                 </View>
             }
 
+            {
+                step === 4 &&
+                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', paddingBottom: 50 }} style={{ width: '100%', }}>
+                    <View style={{ width: '90%', }}>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('price')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'$30/hr'}</Text>
+                        </View>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectDate')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText,]}>{'8 Jan, 2024'}</Text>
+                        </View>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectTime')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'10:00 AM - 12:00 AM'}</Text>
+                        </View>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('location')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Jameria Residence'}</Text>
+                        </View>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('service')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Cleaning at Home'}</Text>
+                        </View>
+
+                        <View style={{ height: 185, width: '100%', padding: 10, marginTop: 20, borderRadius: 5, justifyContent: 'flex-start', alignItems: 'flex-start', backgroundColor: colors.white }}>
+                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('pay') + ':'}</Text>
+
+                            <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }}>
+                                <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('amount')}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$450'}</Text>
+                            </View>
+
+                            <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }}>
+                                <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('vat')}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$50'}</Text>
+                            </View>
+
+                            <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }}>
+                                <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('total')}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$500'}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </ScrollView>
+            }
+
             <View style={styles.footer}>
-                <View style={{ width: '90%', marginBottom: 20 }}>
-                    <CTAButton1 title={t('next')} submitHandler={() => { stepsHandler() }} />
+                <View style={{ width: '90%', }}>
+                    <CTAButton1 title={step < 4 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} />
                 </View>
             </View>
         </View>
@@ -291,10 +335,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     footer: {
-        flex: 2,
+        // flex: 2,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 20
     },
     heading: {
         width: '100%',
@@ -303,6 +348,10 @@ const styles = StyleSheet.create({
     headingText: {
         fontWeight: 'bold',
         color: colors.black,
+        textAlign: 'left'
+    },
+    editText: {
+        fontSize: 14,
         textAlign: 'left'
     },
     horizontalScroll: {

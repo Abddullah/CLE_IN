@@ -134,6 +134,10 @@ export const languageData = [
             selectTime: 'Select Time',
             to: 'To',
             addNote: 'Add Note',
+            pay: 'Pay',
+            amount: 'Amount',
+            vat: 'VAT',
+            total: 'Total',
             news: '',
         }
     },
