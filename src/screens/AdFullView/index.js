@@ -102,7 +102,7 @@ const AdFullView = ({ navigation }) => {
             </ScrollView>
 
             <View style={{ width: '90%', marginBottom: 20 }}>
-                <CTAButton1 title={t('book')} submitHandler={() => { navigation.navigate('Booking') }} />
+                <CTAButton1 title={t('book')} submitHandler={() => { navigation.navigate('CreateBooking') }} />
             </View>
 
         </View>

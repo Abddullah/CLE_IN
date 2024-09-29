@@ -10,13 +10,14 @@ import Feather from 'react-native-vector-icons/Feather';
 import {
     HomeActive, HomeInactive,
     BookingActive, BookingInactive,
-    MapActive,
-    MapInactive,
-    ProfileActive,
-    ProfileInactive,
+    MapActive, MapInactive,
+    ProfileActive, ProfileInactive,
 } from '../assets/icons';
+
 // bottom navigation screens
 import Home from '../screens/Home/index';
+// booking
+import Bookings from '../screens/Bookings/index';
 // map
 import Map from '../screens/Map/index';
 // notification
@@ -44,6 +45,14 @@ function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+        </Stack.Navigator>
+    )
+}
+
+function BookingRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Booking" component={Bookings} />
         </Stack.Navigator>
     )
 }
@@ -109,7 +118,7 @@ export function AppBottomNavigator() {
                     tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : <BookingInactive />) },
                 }}
                 name="Booking"
-                component={HomeRoutes}
+                component={BookingRoutes}
             />
             <Tab.Screen
                 options={{

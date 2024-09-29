@@ -12,7 +12,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
 import moment from 'moment';
 
-const Booking = ({ navigation }) => {
+const CreateBooking = ({ navigation }) => {
     let isError = useSelector((state) => state.reducer.isError);
     const [selectedHour, setselectedHour] = useState('');
     const [selectedProfessional, setselectedProfessional] = useState('');
@@ -319,7 +319,7 @@ const Booking = ({ navigation }) => {
     );
 };
 
-export default Booking;
+export default CreateBooking;
 
 const styles = StyleSheet.create({
     container: {

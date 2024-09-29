@@ -138,6 +138,10 @@ export const languageData = [
             amount: 'Amount',
             vat: 'VAT',
             total: 'Total',
+            pending: 'Pending',
+            upcoming: 'Upcoming',
+            ongoing: 'Ongoing',
+            completed: 'Completed',
             news: '',
         }
     },

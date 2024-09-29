@@ -11,7 +11,7 @@ import ResetPassword from './../screens/Auth/resetPassword';
 import OtpVerify from './../screens/Auth/otp';
 import { AppBottomNavigator } from './BottomNavigation';
 import AdFullView from '../screens/AdFullView/index';
-import Booking from '../screens/Booking/index';
+import CreateBooking from '../screens/Services/index';
 import Reviews from '../screens/Reviews/index';
 
 const Stack = createNativeStackNavigator();
@@ -26,9 +26,9 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />
         <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
         <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" /> */}
-        {/* <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
-        <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} /> */}
-        <Stack.Screen options={{ headerShown: false }} name="Booking" component={Booking} />
+        <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
+        <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
+        <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
       </Stack.Navigator>
     </NavigationContainer>
