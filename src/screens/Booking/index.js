@@ -9,6 +9,7 @@ import { Typography } from '../../utilities/constants/constant.style';
 import HorizontalList from '../../components/horizontalList';
 import DatePicker from 'react-native-date-picker';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import Feather from 'react-native-vector-icons/Feather';
 import moment from 'moment';
 
 const Booking = ({ navigation }) => {
@@ -57,6 +58,7 @@ const Booking = ({ navigation }) => {
             isSelected: false
         },
     ])
+    const [location, setlocation] = useState('')
 
     const timeSlotHandler = (index) => {
         const updatedTimeSlots = timeSlots.map((slot, i) => ({
@@ -132,7 +134,6 @@ const Booking = ({ navigation }) => {
                 step === 1 &&
                 <View style={styles.body}>
                     <View style={{ width: '90%' }}>
-
                         <View style={styles.heading}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('anyspecificinstruction')}</Text>
                         </View>
@@ -222,6 +223,44 @@ const Booking = ({ navigation }) => {
                                 </TouchableOpacity>
                             }
                         />
+
+                    </View>
+                </View>
+            }
+
+            {
+                step === 3 &&
+                <View style={styles.body}>
+                    <View style={{ width: '90%', }}>
+                        <View style={styles.heading}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('location')}</Text>
+                        </View>
+                        <View style={styles.inputContiner}>
+                            <TextInput
+                                keyboardType='number-pad'
+                                style={styles.input}
+                                value={location}
+                                onChangeText={(e) => { setlocation(e) }}
+                                placeholder={t('location')}
+                                placeholderTextColor={colors.Neutral_01}
+                            />
+                            <Feather name="map-pin" style={styles.listIcon} />
+                        </View>
+
+                        <View style={styles.heading}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('addNote')}</Text>
+                        </View>
+                        <View style={styles.textAreaContainer}>
+                            <TextInput
+                                keyboardType="default"
+                                style={{ height: '100%', width: '100%', textAlignVertical: 'top' }}
+                                value={instructions}
+                                onChangeText={(e) => { setinstructions(e) }}
+                                placeholder={t('yourtext')}
+                                placeholderTextColor={colors.Neutral_01}
+                                multiline={true}
+                            />
+                        </View>
 
                     </View>
                 </View>
@@ -318,7 +357,22 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: '90%',
         marginHorizontal: '5%',
-    }
+    },
+    inputContiner: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        paddingLeft: 10,
+        backgroundColor: colors.white,
+        borderColor: colors.Primary_01,
+        borderRadius: 5,
+        borderWidth: 1,
+        marginTop: 10,
+    },
+    listIcon: {
+        fontSize: 18,
+        marginRight: 15,
+    },
 });
 
 

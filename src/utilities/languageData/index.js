@@ -133,6 +133,7 @@ export const languageData = [
             selectDate: 'Select Date',
             selectTime: 'Select Time',
             to: 'To',
+            addNote: 'Add Note',
             news: '',
         }
     },

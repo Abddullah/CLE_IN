@@ -39,7 +39,6 @@ const AddNewCard = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
             >
 
-
                 <View style={{ width: '100%', marginTop: 20 }}>
                     <View style={[styles.inputContiner, { height: 53, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: colors.Primary_03, borderWidth: 0 }]}>
                         <CardIcon style={{ marginLeft: 10 }} />
@@ -47,7 +46,6 @@ const AddNewCard = ({ navigation }) => {
 
                     </View>
                 </View>
-
 
                 <View style={{ width: '100%', }}>
                     <View style={{ flexDirection: 'row' }}>
@@ -86,8 +84,6 @@ const AddNewCard = ({ navigation }) => {
                         />
                     </View>
                 </View>
-
-
 
                 <View style={{ width: '100%', marginTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
