@@ -46,4 +46,6 @@ export { default as CatOffice } from './category/cleaningatoffice.svg';
 export { default as CatFactory } from './category/cleaningatfactory.svg';
 
 export { default as MapSmall } from './mapSmall.svg';
+export { default as CallIcon } from './callIcon.svg';
+export { default as MsgIcon } from './msgIcon.svg';
 

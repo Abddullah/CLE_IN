@@ -3,8 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, } from 'react-native';
 import { colors } from '../utilities/constants';
 import { Typography } from '../utilities/constants/constant.style';
-import { t } from 'i18next';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const BookingStatusTab = ({ selectedState, setselectedState, title }) => {
     return (
@@ -17,7 +15,7 @@ const BookingStatusTab = ({ selectedState, setselectedState, title }) => {
             }]}
             onPress={() => { setselectedState(title) }}
         >
-            <Text style={[Typography.text_paragraph, { color: selectedState !== title ? colors.Primary_01 : colors.Neutral_02, fontSize: 16, }]}>{title}</Text>
+            <Text style={[Typography.text_paragraph, { color: colors.black, fontSize: 16, fontWeight: selectedState !== title ? 'normal' : 'bold' }]}>{title}</Text>
         </TouchableOpacity>
     );
 };
