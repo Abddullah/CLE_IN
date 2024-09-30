@@ -148,6 +148,7 @@ export const languageData = [
             addreview: 'Add Review',
             status: 'Status',
             comment: 'Comment',
+            successful: 'Successful',
             news: '',
         }
     },

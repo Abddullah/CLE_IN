@@ -7,22 +7,22 @@ import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import SuccessModalBooking from '../../components/Booking_Success_Popup';
 
 const AddReview = ({ navigation }) => {
     let isError = useSelector((state) => state.reducer.isError);
     const [review, setreview] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <View style={styles.container}>
-
+            <SuccessModalBooking modalVisible={modalVisible} setModalVisible={() => { setModalVisible(false); navigation.navigate('Home') }} navigation={navigation} />
             <CustomHeader
                 title={t('addreview')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
-
             <View style={styles.body}>
-
                 <View style={{ flexDirection: 'row', marginTop: 20, width: '60%', justifyContent: 'space-evenly', }}>
                     <TouchableOpacity activeOpacity={.8}>
                         <FontAwesome name="star" size={30} color={colors.yellow} />
@@ -40,7 +40,6 @@ const AddReview = ({ navigation }) => {
                         <FontAwesome name="star" size={30} color={colors.yellow} />
                     </TouchableOpacity>
                 </View>
-
                 <View style={{ width: '90%', marginTop: 20 }}>
                     <View style={styles.heading}>
                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('comment')}</Text>
@@ -58,10 +57,9 @@ const AddReview = ({ navigation }) => {
                     </View>
                 </View>
             </View>
-
             <View style={styles.footer}>
                 <View style={{ width: '90%', }}>
-                    <CTAButton1 title={t('send')} submitHandler={() => { }} />
+                    <CTAButton1 title={t('send')} submitHandler={() => { setModalVisible(true); }} />
                 </View>
             </View>
         </View>

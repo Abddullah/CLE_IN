@@ -8,5 +8,6 @@ export default Images = {
   mapWhite: require('./mapWhite.png'),
   cleaning: require('./cleaning.jpg'),
   noPhoto: require('./noPhoto.jpg'),
+  popupBgBooking: require('./popupBgBooking.png'),
 
 };
