@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import { colors } from '../../utilities/constants';
-import { Typography } from '../../utilities/constants/constant.style';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import BookingStatusTab from '../../components/BookingStatusTab';
-import images from '../../assets/images';
 import BookingCard from '../../components/BookingCard';
 
 const Bookings = ({ navigation }) => {
     let isError = useSelector((state) => state.reducer.isError);
     const [selectedTab, setselectedTab] = useState('');
-    
+
     return (
         <View style={styles.container}>
             <CustomHeader
@@ -38,14 +35,9 @@ const Bookings = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-
-
                 <BookingCard />
                 <BookingCard />
                 <BookingCard />
-
-
-
             </ScrollView>
         </View>
     );
