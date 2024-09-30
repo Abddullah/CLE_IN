@@ -1,15 +1,15 @@
 
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image, } from 'react-native';
 import Images from '../assets/images/index'
 import { colors } from '../utilities/constants';
 
 const ChatBox = ({ }) => {
     return (
-        <ScrollView style={styles.wrapper}>
+        <ScrollView style={styles.wrapper} contentContainerStyle={{ paddingBottom: 30 }}>
 
             <View style={{ marginTop: 10, alignItems: 'flex-start', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_04 }]}>
+                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_05 }]}>
                     <Image
                         source={Images.noPhoto}
                         style={{ width: 40, height: 40, borderRadius: 50 }}
@@ -24,7 +24,7 @@ const ChatBox = ({ }) => {
 
 
             <View style={{ marginTop: 10, alignItems: 'flex-start', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_04 }]}>
+                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_05 }]}>
                     <Image
                         source={Images.noPhoto}
                         style={{ width: 40, height: 40, borderRadius: 50 }}
@@ -40,7 +40,7 @@ const ChatBox = ({ }) => {
 
 
             <View style={{ marginTop: 10, alignItems: 'flex-start', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_04 }]}>
+                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_05 }]}>
                     <Image
                         source={Images.noPhoto}
                         style={{ width: 40, height: 40, borderRadius: 50 }}
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     msgContainer: {
-        backgroundColor: 'white',
         borderRadius: 10,
         padding: 10,
         marginHorizontal: 10,

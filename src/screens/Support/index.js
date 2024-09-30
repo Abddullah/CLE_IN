@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ChatBox from '../../components/chatBox';
 import CommentInput from '../../components/commentsInput';

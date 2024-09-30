@@ -11,7 +11,6 @@ import CTA_Profile from '../../components/CTA_PROFILE';
 import { Heart, Payment, Referral, Preferences, FAQ, Settings } from '../../assets/icons';
 
 const Profile = ({ navigation }) => {
-
     return (
         <View style={styles.container}>
             <CustomHeader title={t('Profile')} />
@@ -42,9 +41,7 @@ const Profile = ({ navigation }) => {
                 <CTA_Profile title={t('preferences')} icon={<Preferences />} submitHandler={() => { navigation.navigate('Preferences') }} />
                 <CTA_Profile title={t('fAQ')} icon={<FAQ />} submitHandler={() => { navigation.navigate('FAQ') }} />
                 <CTA_Profile title={t('settings')} icon={<Settings />} submitHandler={() => { navigation.navigate('Settings') }} />
-
             </ScrollView>
-
         </View>
     );
 };

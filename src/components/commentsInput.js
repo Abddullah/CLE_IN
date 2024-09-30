@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions, TouchableOpacity, TextInput, Text, Alert } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, TextInput, Alert } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors } from '../utilities/constants';
+import { t } from 'i18next';
 const { width, height } = Dimensions.get('window');
+import { SendButton } from '../assets/icons';
 
 
 const CommentInput = ({ onPress }) => {
@@ -13,7 +16,7 @@ const CommentInput = ({ onPress }) => {
             <View style={styles.inputBox(isFocus)}>
                 <TextInput
                     value={text}
-                    placeholder="Add comment here..."
+                    placeholder={t('typeamsg')}
                     placeholderTextColor={isFocus ? 'black' : 'gray'}
                     onChangeText={onChangeText}
                     onFocus={() => setIsFocus(true)}
@@ -28,7 +31,8 @@ const CommentInput = ({ onPress }) => {
                 }}
                 activeOpacity={0.8}
                 style={styles.sendBtn}>
-                <MaterialCommunityIcons name="send" style={{ fontSize: 25, color: 'red' }} />
+
+                <SendButton />
             </TouchableOpacity>
         </View>
     );
@@ -38,7 +42,7 @@ export default CommentInput;
 
 const styles = StyleSheet.create({
     wrapper: {
-        backgroundColor: 'white',
+        backgroundColor: colors.Neutral_05,
         position: 'absolute',
         overflow: 'hidden',
         width: '100%',
@@ -54,25 +58,24 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.22,
         shadowRadius: 2.22,
         elevation: 3,
+
     },
     inputBox: isFocus => ({
         width: '80%',
         height: 60,
         borderRadius: 15,
         paddingHorizontal: width * 0.04,
-        backgroundColor: isFocus ? 'white' : 'white',
-        borderColor: isFocus ? 'red' : 'white',
-        borderWidth: isFocus ? 1 : 0,
+        justifyContent: 'center',
     }),
     input: {
         borderRadius: 20,
         height: height * 0.07,
-        color: '#000000',
+        color: colors.black,
         fontSize: 16,
     },
     sendBtn: {
         borderRadius: 20,
-        backgroundColor: 'white',
+        backgroundColor: colors.Neutral_05,
         width: '20%',
         height: 60,
         alignItems: 'center',

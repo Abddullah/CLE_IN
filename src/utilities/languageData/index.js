@@ -142,6 +142,8 @@ export const languageData = [
             upcoming: 'Upcoming',
             ongoing: 'Ongoing',
             completed: 'Completed',
+            chat: 'Chat',
+            typeamsg: 'Type a message ',
             news: '',
         }
     },

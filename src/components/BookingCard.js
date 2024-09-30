@@ -1,15 +1,18 @@
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Linking } from 'react-native';
 import { CallIcon, MsgIcon } from '../assets/icons';
 import { colors } from '../utilities/constants';
 import { Typography } from '../utilities/constants/constant.style';
 import images from '../assets/images';
+import { useNavigation } from '@react-navigation/native';
 
 const BookingCard = ({
     data,
     submitHandler,
 }) => {
+    const navigation = useNavigation();
+
     return (
         <TouchableOpacity
             activeOpacity={.8}
@@ -37,8 +40,12 @@ const BookingCard = ({
                 <View style={styles.container_C2_C1}>
                     <Text style={[Typography.text_CTA1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{'$450'}</Text>
                     <View style={styles.callMsgButtons}>
-                        <CallIcon />
-                        <MsgIcon />
+                        <TouchableOpacity activeOpacity={.8} onPress={() => Linking.openURL(`tel:${+923450558623}`)}>
+                            <CallIcon />
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('Chat') }}>
+                            <MsgIcon />
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -65,7 +72,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
         elevation: 5,
     },
     container_C1: {
@@ -108,7 +114,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
     }
-
 });
 
 

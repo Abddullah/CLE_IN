@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { colors } from '../utilities/constants';
-import { BackIcon } from '../assets/icons';
+import { BackIcon, CallIcon } from '../assets/icons';
 
 const CustomHeader = ({
     title,
@@ -20,9 +20,10 @@ const CustomHeader = ({
                 }
             </TouchableOpacity>
             <Text style={styles.title}>{title}</Text>
-            <TouchableOpacity style={{ flex: 2, alignItems: 'flex-end', }} onPress={isRight ? rightPress : null}>
+            <TouchableOpacity style={{ flex: 2, alignItems: 'flex-end', }} activeOpacity={0.8} onPress={isRight ? rightPress : null}>
+
                 {
-                    isRight && <Ionicons name="arrow-forward" style={{ fontSize: 30, color: 'white', marginRight: 15 }} />
+                    isRight && <CallIcon style={{ fontSize: 30, color: 'white', marginRight: 15 }} />
                 }
             </TouchableOpacity>
         </View>

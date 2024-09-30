@@ -13,6 +13,7 @@ import { AppBottomNavigator } from './BottomNavigation';
 import AdFullView from '../screens/AdFullView/index';
 import CreateBooking from '../screens/Services/index';
 import Reviews from '../screens/Reviews/index';
+import Chat from '../screens/Chat/index';
 
 const Stack = createNativeStackNavigator();
 function App() {
@@ -30,6 +31,8 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
         <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
+        <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
