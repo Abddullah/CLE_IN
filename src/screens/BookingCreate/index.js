@@ -288,20 +288,20 @@ const CreateBooking = ({ navigation }) => {
                             <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Cleaning at Home'}</Text>
                         </View>
 
-                        <View style={{ height: 185, width: '100%', padding: 10, marginTop: 20, borderRadius: 5, justifyContent: 'flex-start', alignItems: 'flex-start', backgroundColor: colors.white }}>
+                        <View style={styles.taxContainer}>
                             <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('pay') + ':'}</Text>
 
-                            <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }}>
+                            <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('amount')}</Text>
                                 <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$450'}</Text>
                             </View>
 
-                            <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }}>
+                            <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('vat')}</Text>
                                 <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$50'}</Text>
                             </View>
 
-                            <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', }}>
+                            <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('total')}</Text>
                                 <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$500'}</Text>
                             </View>
@@ -422,6 +422,25 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginRight: 15,
     },
+    taxContainer: {
+        height: 185,
+        width: '100%',
+        padding: 10,
+        marginTop: 20,
+        borderRadius: 5,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        backgroundColor: colors.white
+    },
+    taxContainer_C1: {
+        width: '100%',
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+    },
+
+
 });
 
 

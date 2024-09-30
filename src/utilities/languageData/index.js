@@ -144,6 +144,10 @@ export const languageData = [
             completed: 'Completed',
             chat: 'Chat',
             typeamsg: 'Type a message ',
+            cancel: 'CANCEL',
+            addreview: 'Add Review',
+            status: 'Status',
+            comment: 'Comment',
             news: '',
         }
     },

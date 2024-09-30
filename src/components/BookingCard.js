@@ -17,12 +17,12 @@ const BookingCard = ({
         <TouchableOpacity
             activeOpacity={.8}
             style={styles.container}
+            onPress={() => { navigation.navigate('BookingView') }}
         >
             <View style={styles.container_C1}>
                 <Text style={[Typography.text_CTA1, { color: colors.black, fontWeight: 'normal' }]}>{'10:00 AM - 12:00 AM'}</Text>
-
                 <View style={styles.statusButton}>
-                    <Text style={[Typography.text_CTA1, { color: colors.Primary_01, fontWeight: 'normal' }]}>{'Pending'}</Text>
+                    <Text style={[Typography.text_CTA1, { color: colors.Primary_01, fontWeight: 'normal' }]}>{'Completed'}</Text>
                 </View>
             </View>
             <View style={styles.container_C2}>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     statusButton: {
-        width: 90,
+        width: 100,
         height: 28,
         justifyContent: 'center',
         alignItems: 'center',
