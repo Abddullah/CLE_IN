@@ -1,12 +1,10 @@
 import React from 'react';
 import { Modal, StyleSheet, ImageBackground, Text, View, TouchableOpacity } from 'react-native';
 import Images from '../assets/images/index'
-import CTAButton1 from './CTA_BUTTON1';
 import { Typography } from '../utilities/constants/constant.style';
-import { colors } from '../utilities/constants';
 import { t } from 'i18next';
 
-const SuccessModalBooking = ({ modalVisible, setModalVisible, }) => {
+const SuccessModalBooking = ({ modalVisible, setModalVisible, isCancel }) => {
     return (
         <Modal
             animationType="slide"
@@ -24,10 +22,13 @@ const SuccessModalBooking = ({ modalVisible, setModalVisible, }) => {
                         resizeMode="contain"
                         source={Images.popupBgBooking}
                     >
-                        <Text style={[Typography.text_subHeading, { marginTop: '55%' }]}>{t('successful')}</Text>
-                        {/* <View style={{ marginTop: 10, width: '80%' }}>
-                            <CTAButton1 title={'OK'} submitHandler={() => { setModalVisible(); }} />
-                        </View> */}
+                        {
+                            (isCancel) ? (
+                                <Text style={[Typography.text_subHeading, { marginTop: '55%' }]}>{t('bookingCancel')}</Text>
+                            ) : (
+                                <Text style={[Typography.text_subHeading, { marginTop: '55%' }]}>{t('successful')}</Text>
+                            )
+                        }
                     </ImageBackground>
                 </View>
             </TouchableOpacity>

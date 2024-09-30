@@ -17,6 +17,7 @@ const BookingView = ({ navigation }) => {
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
+
             {/* <View style={styles.body}>
             </View> */}
 
@@ -80,9 +81,9 @@ const BookingView = ({ navigation }) => {
                 <View style={{ width: '90%', }}>
                     <CTAButton1 title={t('addreview')} submitHandler={() => { navigation.navigate('AddReview') }} />
                 </View>
-                {/* <View style={{ width: '90%', }}>
-                    <CTAButton1 title={t('cancel')} submitHandler={() => { }} />
-                </View> */}
+                <View style={{ width: '90%', marginTop: 10 }}>
+                    <CTAButton1 title={t('cancel')} submitHandler={() => { navigation.navigate('CancelBooking') }} />
+                </View>
             </View>
         </View>
     );

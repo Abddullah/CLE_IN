@@ -15,7 +15,22 @@ import CreateBooking from '../screens/BookingCreate/index';
 import Reviews from '../screens/Reviews/index';
 import Chat from '../screens/Chat/index';
 import BookingView from '../screens/Bookings/BookingView';
+import CancelBooking from '../screens/Bookings/CancelBooking';
 import AddReview from '../screens/Reviews/addReview';
+
+import EditProfile from './../screens/Profile/editProfile';
+import Favorite from './../screens/Profile/favorite';
+import CreditCard from './../screens/CreditCard/index';
+import AddNewCard from './../screens/CreditCard/addNewCard';
+import ReferralDiscounts from './../screens/ReferralDiscounts/index';
+import Preferences from './../screens/Preferences/index';
+import FAQ from './../screens/FAQ/index';
+import Settings from './../screens/Setting/index';
+import PrivacyPolicy from './../screens/PrivacyPolicy/index';
+import TermsAndCondition from './../screens/TermsAndCondition/index';
+import Feedback from './../screens/FeedBack/index';
+import Support from './../screens/Support/index';
+import DeleteAccount from './../screens/DeleteAccount/index';
 
 const Stack = createNativeStackNavigator();
 function App() {
@@ -35,7 +50,22 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
         <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
         <Stack.Screen options={{ headerShown: false }} name="BookingView" component={BookingView} />
+        <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />
         <Stack.Screen options={{ headerShown: false }} name="AddReview" component={AddReview} />
+        {/* //profile screens */}
+        <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
+        <Stack.Screen options={{ headerShown: false }} name="Favorite" component={Favorite} />
+        <Stack.Screen options={{ headerShown: false }} name="CreditCard" component={CreditCard} />
+        <Stack.Screen options={{ headerShown: false }} name="AddNewCard" component={AddNewCard} />
+        <Stack.Screen options={{ headerShown: false }} name="ReferralDiscounts" component={ReferralDiscounts} />
+        <Stack.Screen options={{ headerShown: false }} name="Preferences" component={Preferences} />
+        <Stack.Screen options={{ headerShown: false }} name="FAQ" component={FAQ} />
+        <Stack.Screen options={{ headerShown: false }} name="Settings" component={Settings} />
+        <Stack.Screen options={{ headerShown: false }} name="PrivacyPolicy" component={PrivacyPolicy} />
+        <Stack.Screen options={{ headerShown: false }} name="TermsAndCondition" component={TermsAndCondition} />
+        <Stack.Screen options={{ headerShown: false }} name="Feedback" component={Feedback} />
+        <Stack.Screen options={{ headerShown: false }} name="Support" component={Support} />
+        <Stack.Screen options={{ headerShown: false }} name="DeleteAccount" component={DeleteAccount} />
 
       </Stack.Navigator>
     </NavigationContainer>
