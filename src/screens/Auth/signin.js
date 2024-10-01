@@ -37,19 +37,6 @@ export default function SignIn({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity >
-
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <View style={styles.containerc1_c1}>
                     <Image resizeMode='contain' style={{ width: 250, height: 120, }} source={Images.LogoWithText} />
@@ -73,7 +60,7 @@ export default function SignIn({ navigation }) {
                                     value={email}
                                     onChangeText={(e) => { setemail(e) }}
                                     placeholder={t('email')}
-                                    placeholderTextColor={theme === 'dark' ? colors.white : colors.Neutral_01}
+                                    placeholderTextColor={colors.Neutral_01}
                                 />
                             </View>
                         </View>
@@ -92,7 +79,7 @@ export default function SignIn({ navigation }) {
                                     value={password}
                                     onChangeText={(e) => { setpassword(e) }}
                                     placeholder={t('password')}
-                                    placeholderTextColor={theme === 'dark' ? colors.white : colors.Neutral_01}
+                                    placeholderTextColor={colors.Neutral_01}
                                 />
                             </View>
                         </View>
@@ -181,7 +168,6 @@ const createStyles = (colors, theme) => {
             justifyContent: 'flex-end',
         },
         inputContiner: {
-            backgroundColor: 'white',
             borderColor: colors.Primary_01,
             borderRadius: 5,
             borderWidth: 1,
@@ -190,7 +176,7 @@ const createStyles = (colors, theme) => {
         input: {
             height: 50, width: "90%", color: colors.black,
             marginLeft: 7,
-            fontWeight: 'bold'
+            // fontWeight: 'bold'
         },
         forget_Password: {
             fontWeight: '400',

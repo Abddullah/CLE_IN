@@ -11,9 +11,15 @@ import { Typography } from '../../utilities/constants/constant.style';
 import { colors } from '../../utilities/constants';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 export default function Signup({ navigation }) {
     const dispatch = useDispatch()
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
 
@@ -37,7 +43,17 @@ export default function Signup({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity >
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Signin')}
@@ -53,9 +69,8 @@ export default function Signup({ navigation }) {
 
             <View style={{ flex: 8, }}>
                 <ScrollView contentContainerStyle={styles.containerC1}>
-                    <Text style={[Typography.text_subHeading, { marginTop: 10 }]}>{t('pleaseRegisterHere')}</Text>
+                    <Text style={[Typography.text_subHeading, { marginTop: 10, color: theme === 'dark' ? colors.black : colors.Primary_01 }]}>{t('pleaseRegisterHere')}</Text>
                     <View style={styles.containerc1_c2}>
-
                         <View>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('fullname')}</Text>
@@ -139,15 +154,17 @@ export default function Signup({ navigation }) {
                             </View>
                             <View style={styles.list}>
                                 <Select
-                                    bg="white"
+                                    bg={colors.white}
                                     borderWidth={0}
                                     selectedValue={role}
                                     minWidth="100%"
                                     accessibilityLabel="User"
                                     placeholder="User"
+                                    placeholderTextColor={colors.Neutral_01}
                                     _selectedItem={{
-                                        background: colors.Primary_01
+                                        background: colors.Primary_01,
                                     }}
+                                    color={colors.Neutral_01}
                                     mt={1} onValueChange={itemValue => setrole(itemValue)}
                                 >
                                     <Select.Item label="User" value="User" />
@@ -159,7 +176,7 @@ export default function Signup({ navigation }) {
                         <View style={[styles.checkboxContainer, { marginTop: 10 }]}>
                             <CheckBox
                                 tintColors={{
-                                    true: colors.Primary_01,
+                                    true: theme === 'dark' ? colors.Neutral_01 : colors.Primary_01,
                                     false: colors.Neutral_01,
                                 }}
                                 disabled={false}
@@ -193,118 +210,120 @@ export default function Signup({ navigation }) {
                             onPress={() => navigation.navigate('Signin')}
                         >
                             <Text style={[styles.socialTextC1, {}]}>{t('alreadyhaveanaccount')} </Text>
-                            <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
-                        </TouchableOpacity>
-                        <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                            <GoogleIcon />
-                            <AppleIcon marginLeft={10} />
-                        </View>
+                            <Text style={[styles.socialTextC1, { color: theme === 'dark' ? colors.black: colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
+                    </TouchableOpacity>
+                    <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                        <GoogleIcon />
+                        <AppleIcon marginLeft={10} />
                     </View>
-                </ScrollView>
             </View>
-        </View>
+        </ScrollView>
+            </View >
+        </View >
     );
 }
 
-const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        backgroundColor: colors.white,
-    },
-    containerC1: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginHorizontal: '10%',
-        paddingBottom: 50
-    },
-    text: {
-        fontWeight: '700',
-        fontSize: 24,
-        lineHeight: 32,
-        letterSpacing: -0.3,
-        color: colors.black
-    },
-    label: {
-        color: colors.black
-    },
-    textInputYourEmail: {
-        fontWeight: '700',
-        fontSize: 16,
-        lineHeight: 22,
-        letterSpacing: -0.3,
-        color: colors.black,
-        marginBottom: 50
-    },
-    containerc1_c1: {
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    containerc1_c2: {
-        width: '100%',
-    },
-    containerc1_c3: {
-        width: '100%',
-        justifyContent: 'flex-end',
-    },
-    inputContiner: {
-        paddingLeft: 10,
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginTop: 10,
-    },
-    input: {
-        height: 50, width: "90%", color: colors.black,
-        marginLeft: 7,
-        fontWeight: 'bold'
-    },
-    forget_Password: {
-        fontWeight: '400',
-        fontSize: 12,
-        lineHeight: 16,
-        letterSpacing: -0.3,
-        color: colors.Primary_01,
-        textAlign: 'right',
-    },
-    socialText: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    socialTextC1: {
-        fontSize: 16,
-        lineHeight: 38,
-        letterSpacing: -0.3,
-        color: colors.Neutral_01,
-        fontWeight: 'normal',
-        textAlign: 'center',
-    },
-    socialIcon: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginTop: 20,
-    },
-    iconSize: {
-        width: 50,
-        height: 50,
-    },
-    checkboxContainer: {
-        flexDirection: "row",
-        alignItems: 'center'
-    },
-    list: {
-        marginTop: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        borderColor: colors.Primary_01,
-        borderWidth: 1,
-        borderRadius: 7,
-        height: 50,
-        overflow: 'hidden',
-        backgroundColor: colors.white
-    },
-});
+const createStyles = (colors) => {
+    return StyleSheet.create({
+        mainContainer: {
+            flex: 1,
+            backgroundColor: colors.white,
+        },
+        containerC1: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginHorizontal: '10%',
+            paddingBottom: 50
+        },
+        text: {
+            fontWeight: '700',
+            fontSize: 24,
+            lineHeight: 32,
+            letterSpacing: -0.3,
+            color: colors.black
+        },
+        label: {
+            color: colors.black
+        },
+        textInputYourEmail: {
+            fontWeight: '700',
+            fontSize: 16,
+            lineHeight: 22,
+            letterSpacing: -0.3,
+            color: colors.black,
+            marginBottom: 50
+        },
+        containerc1_c1: {
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        containerc1_c2: {
+            width: '100%',
+        },
+        containerc1_c3: {
+            width: '100%',
+            justifyContent: 'flex-end',
+        },
+        inputContiner: {
+            paddingLeft: 10,
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderRadius: 5,
+            borderWidth: 1,
+            marginTop: 10,
+        },
+        input: {
+            height: 50, width: "90%", color: colors.black,
+            marginLeft: 7,
+            // fontWeight: 'bold'
+        },
+        forget_Password: {
+            fontWeight: '400',
+            fontSize: 12,
+            lineHeight: 16,
+            letterSpacing: -0.3,
+            color: colors.Primary_01,
+            textAlign: 'right',
+        },
+        socialText: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+        },
+        socialTextC1: {
+            fontSize: 16,
+            lineHeight: 38,
+            letterSpacing: -0.3,
+            color: colors.Neutral_01,
+            fontWeight: 'normal',
+            textAlign: 'center',
+        },
+        socialIcon: {
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            marginTop: 20,
+        },
+        iconSize: {
+            width: 50,
+            height: 50,
+        },
+        checkboxContainer: {
+            flexDirection: "row",
+            alignItems: 'center'
+        },
+        list: {
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 10,
+            borderColor: colors.Primary_01,
+            borderWidth: 1,
+            borderRadius: 7,
+            height: 50,
+            overflow: 'hidden',
+            backgroundColor: colors.white
+        },
+    });
+};
