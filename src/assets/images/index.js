@@ -5,6 +5,7 @@ export default Images = {
   splashBg: require('./splashBg.png'),
   splashBgDM: require('./splashBgDM.png'),
   popupBg: require('./popupBg.png'),
+  popupBgDM: require('./popupBgDM.png'),
   profilePic: require('./profilePic.png'),
   map: require('./map.png'),
   mapWhite: require('./mapWhite.png'),

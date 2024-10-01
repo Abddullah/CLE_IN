@@ -8,7 +8,6 @@ import { GoogleIcon, AppleIcon, BackIcon } from '../../assets/icons';
 import CheckBox from '@react-native-community/checkbox';
 import { Select } from 'native-base';
 import { Typography } from '../../utilities/constants/constant.style';
-import { colors } from '../../utilities/constants';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
@@ -43,17 +42,7 @@ export default function Signup({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity >
+            
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Signin')}
