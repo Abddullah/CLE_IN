@@ -27,7 +27,6 @@ export default function GetStarted({ navigation }) {
 
   return (
     <>
-      <Button title="Toggle Theme" onPress={toggleTheme} />
       {
         (page === 0) ? (
           <View style={styles.container}>

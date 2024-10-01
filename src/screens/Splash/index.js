@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Image, ImageBackground, View, Text } from 'react-native';
+import { StyleSheet, Image, ImageBackground, View, Button } from 'react-native';
 import { _retrieveData } from '../../services/assynsStorage';
 import Images from '../../assets/images/index'
-import { Logo, GoogleIcon } from '../../assets/icons';
 import { getCurrentUser } from '../../store/actions/action'
-import { t } from 'i18next';
+import { useTheme } from '../../../ThemeContext';
 
 export default function Splash({ navigation }) {
   const dispatch = useDispatch()
+  const { theme } = useTheme();
 
   useEffect(() => {
     dispatch(getCurrentUser(navigation))
@@ -18,15 +18,14 @@ export default function Splash({ navigation }) {
     <ImageBackground
       style={styles.background}
       resizeMode="stretch"
-      source={Images.splashBg}
+      source={theme === 'dark' ? Images.splashBgDM : Images.splashBg}
     >
       <View style={styles.overlay}>
         <Image
           resizeMode="contain"
           style={{ width: 100, height: 100 }}
-          source={Images.Logo}
+          source={theme === 'dark' ? Images.LogoDM : Images.Logo}
         />
-        {/* <GoogleIcon /> */}
       </View>
     </ImageBackground>
   );
@@ -41,10 +40,5 @@ const styles = StyleSheet.create({
   overlay: {
     padding: 20,
     borderRadius: 10,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });
