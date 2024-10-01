@@ -5,7 +5,6 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity,
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
 import { BackIcon } from '../../assets/icons';
-import CheckBox from '@react-native-community/checkbox';
 import { Typography } from '../../utilities/constants/constant.style';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
@@ -33,18 +32,7 @@ export default function ForgotPassword({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity>
-
+           
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
