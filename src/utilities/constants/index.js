@@ -1,7 +1,8 @@
 import DeviceInfo from 'react-native-device-info';
 import { Platform, StatusBar } from 'react-native';
 export const DEFAULT_LANGUAGE = 'en';
-export { default as colors } from './colors';
+// export { default as colors } from './colors';
+export { DarkThemeColors, LightThemeColors } from './colors';
 export const paginationLimit = 10;
 export const version = DeviceInfo.getVersion();
 export const systemVersion = DeviceInfo.getSystemVersion();

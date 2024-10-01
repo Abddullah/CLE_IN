@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 // local import
-import { colors } from '../utilities/constants/';
 import { Typography } from '../utilities/constants/constant.style';
+import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { useTheme } from '../../ThemeContext';
 
 const CTAButton1 = ({
     title,
@@ -10,6 +11,10 @@ const CTAButton1 = ({
     isLoader,
     icon
 }) => {
+    const { theme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     return (
         <TouchableOpacity
             onPress={submitHandler}
@@ -19,14 +24,12 @@ const CTAButton1 = ({
             {
                 !isLoader ? (
                     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                        {
-                            icon && icon
-                        }
+                        {icon && icon}
                         <Text style={[styles.CRAButton1_Text, Typography.text_CTA1]}>{title}</Text>
                     </View>
                 ) : (
                     <ActivityIndicator color={"white"} />
-                )   
+                )
             }
         </TouchableOpacity>
     );
@@ -34,17 +37,20 @@ const CTAButton1 = ({
 
 export default CTAButton1;
 
-const styles = StyleSheet.create({
-    CRAButton1: {
-        backgroundColor: colors.Primary_01,
-        borderRadius: 5,
-        height: 50,
-        width:'100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    CRAButton1_Text: {
-        textAlign: 'center',
-        color: colors.white,
-    },
-});
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        CRAButton1: {
+            backgroundColor: colors.Primary_01,
+            borderRadius: 5,
+            height: 50,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        CRAButton1_Text: {
+            textAlign: 'center',
+            color: theme === 'dark' ? colors.black : colors.white,
+        },
+    });
+};
+

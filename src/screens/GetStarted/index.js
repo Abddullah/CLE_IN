@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { Select } from 'native-base';
 import { _retrieveData } from '../../services/assynsStorage';
 import { GetstartedIcon1, GetstartedIcon2, LanguageIcon, ItalyFlag } from '../../assets/icons';
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import { Typography } from '../../utilities/constants/constant.style';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 export default function GetStarted({ navigation }) {
+  const { theme, toggleTheme } = useTheme();
+  const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+  const styles = createStyles(colors);
+
   const [page, setpage] = useState(0);
   const [language, setlanguage] = useState("");
 
@@ -22,16 +27,17 @@ export default function GetStarted({ navigation }) {
 
   return (
     <>
+      <Button title="Toggle Theme" onPress={toggleTheme} />
       {
         (page === 0) ? (
           <View style={styles.container}>
             <View style={{ flex: 8.5, paddingTop: 20, alignItems: 'center', }}>
               <GetstartedIcon1 height={280} width={280} />
               <View style={styles.text_container}>
-                <Text style={Typography.text_heading}>{t('ourservices')}</Text>
-                <Text style={Typography.text_heading}>{t('awayfromhome')}</Text>
+                <Text style={[Typography.text_heading, { color: colors.black, }]}>{t('ourservices')}</Text>
+                <Text style={[Typography.text_heading, { color: colors.black, }]}>{t('awayfromhome')}</Text>
                 <View style={{ marginTop: 40 }}>
-                  <Text style={Typography.text_paragraph}>{t('becleanisaplatform')}</Text>
+                  <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{t('becleanisaplatform')}</Text>
                 </View>
               </View>
             </View>
@@ -42,7 +48,7 @@ export default function GetStarted({ navigation }) {
         ) : (
           <View style={styles.container}>
             <View style={{ flex: 8.5, paddingTop: 20, width: '100%', justifyContent: 'center', alignItems: 'center', }}>
-              <Text style={Typography.text_heading}>{t('personalizeyourexp')}</Text>
+              <Text style={[Typography.text_heading, { color: colors.black, }]}>{t('personalizeyourexp')}</Text>
               <GetstartedIcon2 height={175} width={175} style={{ marginTop: 30 }} />
 
               <View style={{ marginTop: 30 }}>
@@ -53,8 +59,9 @@ export default function GetStarted({ navigation }) {
                     selectedValue={language}
                     minWidth="100%"
                     dropdownIcon={<LanguageIcon />}
-                    accessibilityLabel="Language"
-                    placeholder={"Language"}
+                    accessibilityLabel={t('language')}
+                    placeholder={t('language')}
+                    placeholderTextColor={colors.Neutral_01}
                     _selectedItem={{
                       background: colors.Primary_01
                     }}
@@ -68,9 +75,9 @@ export default function GetStarted({ navigation }) {
               </View>
 
               <View style={[styles.list, { justifyContent: 'space-between' }]}>
-                <Text style={{ marginLeft: 10 }}>{t('country')}</Text>
+                <Text style={{ marginLeft: 10, color: colors.Neutral_01 }}>{t('country')}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ marginRight: 10 }}>{t('italy')}</Text>
+                  <Text style={{ marginRight: 10, color: colors.Neutral_01 }}>{t('italy')}</Text>
                   <ItalyFlag />
                 </View>
               </View>
@@ -86,29 +93,62 @@ export default function GetStarted({ navigation }) {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '90%',
-    marginHorizontal: '5%',
-  },
-  text_container: {
-    marginTop: 50,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  list: {
-    marginTop: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    borderRadius: 7,
-    height: 50,
-    width: '100%',
-    overflow: 'hidden',
-    backgroundColor: colors.Neutral_03
-  },
 
-});
+const createStyles = (colors) => {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '90%',
+      marginHorizontal: '5%',
+      backgroundColor: colors.white
+    },
+    text_container: {
+      marginTop: 50,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    list: {
+      marginTop: 10,
+      flexDirection: 'row',
+      alignItems: 'center',
+      padding: 10,
+      borderRadius: 7,
+      height: 50,
+      width: '100%',
+      overflow: 'hidden',
+      backgroundColor: colors.Neutral_03
+    },
+  });
+};
+
+// import React, { useState, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { StyleSheet, View, Text, useColorScheme, Button } from 'react-native';
+// import { Select } from 'native-base';
+// import { _retrieveData } from '../../services/assynsStorage';
+// import { GetstartedIcon1, GetstartedIcon2, LanguageIcon, ItalyFlag } from '../../assets/icons';
+// // import CTAButton1 from '../../components/CTA_BUTTON1';
+// import { Typography } from '../../utilities/constants/constant.style';
+// import { t } from 'i18next';
+// import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+// import { useTheme } from '../../../ThemeContext';
+
+
+// export default function GetStarted({ navigation }) {
+//   const { theme, toggleTheme } = useTheme();
+//   const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+//   console.log(colors, theme, 'colors');
+
+//   return (
+//     <>
+//       <Button title="Toggle Theme" onPress={toggleTheme} />
+//     </>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+
+// });
+
