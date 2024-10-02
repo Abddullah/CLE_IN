@@ -18,8 +18,8 @@
 
 
 const LightThemeColors = {
-    bothWhite: '#FFFFFF',
-    bothBlack: '#000000',
+    BothWhite: '#FFFFFF',
+    BothBlack: '#000000',
     white: '#FFFFFF',
     black: '#000000',
     yellow: '#FFC107',

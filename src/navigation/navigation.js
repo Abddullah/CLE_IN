@@ -15,7 +15,7 @@ import ResetPassword from './../screens/Auth/resetPassword';
 import { AppBottomNavigator } from './BottomNavigation';
 import AdFullView from '../screens/AdFullView/index';
 import CreateBooking from '../screens/BookingCreate/index';
-// import Reviews from '../screens/Reviews/index';
+import Reviews from '../screens/Reviews/index';
 // import Chat from '../screens/Chat/index';
 // import BookingView from '../screens/Bookings/BookingView';
 // import CancelBooking from '../screens/Bookings/CancelBooking';
@@ -60,6 +60,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
         <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
         <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
+        <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -76,7 +77,7 @@ export default App;
       
        
       
-        <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
+      
         <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
         <Stack.Screen options={{ headerShown: false }} name="BookingView" component={BookingView} />
         <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />

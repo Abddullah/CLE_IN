@@ -5,8 +5,14 @@ import { colors } from '../utilities/constants';
 import { Typography } from '../utilities/constants/constant.style';
 import { t } from 'i18next';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { useTheme } from '../../ThemeContext';
 
 const HorizontalListWithStar = ({ selectedState, setselectedState, title }) => {
+    const { theme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     return (
         <TouchableOpacity
             activeOpacity={.8}
@@ -20,24 +26,24 @@ const HorizontalListWithStar = ({ selectedState, setselectedState, title }) => {
             <FontAwesome
                 name="star"
                 size={15}
-                color={selectedState !== title ? colors.yellow : colors.white}
+                color={selectedState !== title ? colors.yellow : colors.BothWhite}
             />
-            <Text style={[Typography.text_paragraph, { color: selectedState !== title ? colors.yellow : colors.white, fontSize: 16, marginLeft: 8 }]}>{title}</Text>
+            <Text style={[Typography.text_paragraph, { color: selectedState !== title ? colors.yellow : colors.BothWhite, fontSize: 16, marginLeft: 8 }]}>{title}</Text>
         </TouchableOpacity>
     );
 };
 export default HorizontalListWithStar;
 
-const styles = StyleSheet.create({
-    catBox: {
-        width: 90,
-        height: 40,
-        borderRadius: 25,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 10,
-    }
-});
-
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        catBox: {
+            width: 90,
+            height: 40,
+            borderRadius: 25,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 10,
+        }
+    });
+};

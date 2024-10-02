@@ -1,10 +1,15 @@
 
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
-import { colors } from '../utilities/constants';
 import { Typography } from '../utilities/constants/constant.style';
+import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { useTheme } from '../../ThemeContext';
 
 const VerticalStarList = ({ }) => {
+    const { theme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     return (
         <View style={{ flex: 1 }}>
             <TouchableOpacity
@@ -68,25 +73,27 @@ const VerticalStarList = ({ }) => {
 
 export default VerticalStarList;
 
-const styles = StyleSheet.create({
-    ratingLineContainer: {
-        flexDirection: 'row',
-        height: 40,
-        width: '100%',
-    },
-    ratingLineContainer_C1: {
-        flex: 2, justifyContent: 'center', alignItems: 'center',
-    },
-    ratingLineContainer_C2: {
-        flex: 8,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-    },
-    line: {
-        height: 2,
-        backgroundColor: colors.yellow,
-        width: '100%',
-    },
-});
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        ratingLineContainer: {
+            flexDirection: 'row',
+            height: 40,
+            width: '100%',
+        },
+        ratingLineContainer_C1: {
+            flex: 2, justifyContent: 'center', alignItems: 'center',
+        },
+        ratingLineContainer_C2: {
+            flex: 8,
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+        },
+        line: {
+            height: 2,
+            backgroundColor: colors.yellow,
+            width: '100%',
+        },
+    });
+};
 
 
