@@ -4,14 +4,30 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const Preferences = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
             <CustomHeader
                 title={t('preferences')}
                 isLeft={true}
@@ -52,31 +68,30 @@ const Preferences = ({ navigation }) => {
 
 export default Preferences;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    boxContainer: {
-        flex: 1,
-        width: '90%',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        marginTop: 10,
-    },
-    box: {
-        marginTop: 10,
-        height: 44,
-        width: 106,
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.Primary_03
-    },
-
-});
-
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        boxContainer: {
+            flex: 1,
+            width: '90%',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            marginTop: 10,
+        },
+        box: {
+            marginTop: 10,
+            height: 44,
+            width: 106,
+            borderRadius: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: colors.Primary_03
+        },
+    });
+};

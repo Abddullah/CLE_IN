@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
@@ -22,17 +22,6 @@ const ReferralDiscounts = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity>
             <CustomHeader
                 title={t('creditCards')}
                 isLeft={true}
