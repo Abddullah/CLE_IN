@@ -3,10 +3,8 @@ import React from 'react';
 import { Text } from 'react-native';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
-
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
-// import { colors } from '../utilities/constants';
 import { t } from 'i18next';
 // icons
 import Feather from 'react-native-vector-icons/Feather';

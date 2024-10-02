@@ -157,6 +157,7 @@ export const languageData = [
             schedulechange: 'Schedule change',
             weatherconditions: 'Weather conditions',
             Ihavealternativeoption: 'I have alternative options',
+            dob: 'Date of Birth',
             news: '',
         }
     },

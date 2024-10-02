@@ -1,20 +1,23 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Switch, Image, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
-import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images/index'
-import { Heart, Payment, Referral, Preferences, FAQ, Settings, BackIcon } from '../../assets/icons';
 import { Select } from 'native-base';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const EditProfile = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
     const [fullName, setfullName] = useState('');
     const [phone, setphone] = useState('');
@@ -29,6 +32,17 @@ const EditProfile = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
             <CustomHeader
                 title={t('editProfile')}
                 isLeft={true}
@@ -105,7 +119,7 @@ const EditProfile = ({ navigation }) => {
 
                 <View style={{ width: '100%', marginTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={styles.fieldHeading}>Date of Birth</Text>
+                        <Text style={[styles.fieldHeading, { color: colors.Neutral_01 }]}>{t('dob')}</Text>
                         {
                             isError && <Text style={{ top: 3, color: "red", top: -1 }}>*</Text>
                         }
@@ -114,7 +128,7 @@ const EditProfile = ({ navigation }) => {
                         <View style={styles.dob}>
                             <TouchableOpacity onPress={() => { setopenBs(true) }}  >
                                 {
-                                    !showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.Neutral_01 }]}>Select Date</Text>
+                                    !showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.Neutral_01 }]}>{t('selectDate')}</Text>
                                 }
                                 {
                                     showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.black }]}>{moment(date).format('DD MM YYYY')}</Text>
@@ -154,18 +168,18 @@ const EditProfile = ({ navigation }) => {
                     </View>
                     <View style={styles.list}>
                         <Select
-                            bg="white"
+                            bg={colors.white}
                             borderWidth={0}
                             selectedValue={gender}
                             minWidth="100%"
                             accessibilityLabel="Gender"
                             placeholder={t('gender')}
-                            placeholderTextColor="black"
+                            placeholderTextColor={colors.Neutral_01}
                             _selectedItem={{
-                                background: colors.Primary_01
+                                background: colors.Primary_01,
                             }}
-                            mt={1}
-                            onValueChange={itemValue => setgender(itemValue)}
+                            color={colors.Neutral_01}
+                            mt={1} onValueChange={itemValue => setgender(itemValue)}
                         >
                             <Select.Item label={t('male')} value="male" />
                             <Select.Item label={t('female')} value="female" />
@@ -203,65 +217,72 @@ const EditProfile = ({ navigation }) => {
 
 export default EditProfile;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    profilePhoto: {
-        height: 130, width: 130,
-        marginTop: 10,
-        justifyContent: 'center', alignItems: 'center',
-        borderRadius: 100,
-        borderWidth: 2,
-        borderColor: colors.Primary_01,
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-    list: {
-        marginTop: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 10,
-        width: '100%',
-        borderRadius: 5,
-        height: 50,
-        overflow: 'hidden',
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderWidth: 1,
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        profilePhoto: {
+            height: 130, width: 130,
+            marginTop: 10,
+            justifyContent: 'center', alignItems: 'center',
+            borderRadius: 100,
+            borderWidth: 2,
+            borderColor: colors.White_Primary_01,
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+        list: {
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: 10,
+            width: '100%',
+            borderRadius: 5,
+            height: 50,
+            overflow: 'hidden',
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderWidth: 1,
 
-    },
-    fieldHeading: {
-        marginLeft: '1%',
-        fontSize: 12,
-        color: 'black',
-    },
-    inputContiner: {
-        paddingLeft: 10,
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginTop: 10,
-    },
-    listIcon: {
-        fontSize: 18,
-        marginRight: 15,
-        // color: colors.Primary_01
-    },
-    dob: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%'
-    },
-});
+        },
+        fieldHeading: {
+            marginLeft: '1%',
+            // fontSize: 12,
+            color: 'black',
+        },
+        inputContiner: {
+            paddingLeft: 10,
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderRadius: 5,
+            borderWidth: 1,
+            marginTop: 10,
+        },
+        listIcon: {
+            fontSize: 18,
+            marginRight: 15,
+            color: colors.Neutral_01
+            // color: colors.Primary_01
+        },
+        dob: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%'
+        },
+        input: {
+            height: 50, width: "90%", color: colors.black,
+            marginLeft: 7,
+        }
 
+    });
+};
 

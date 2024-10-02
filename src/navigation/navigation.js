@@ -20,8 +20,8 @@ import Chat from '../screens/Chat/index';
 import BookingView from '../screens/Bookings/BookingView';
 import CancelBooking from '../screens/Bookings/CancelBooking';
 import AddReview from '../screens/Reviews/addReview';
-
-// import EditProfile from './../screens/Profile/editProfile';
+//profile
+import EditProfile from './../screens/Profile/editProfile';
 // import Favorite from './../screens/Profile/favorite';
 // import CreditCard from './../screens/CreditCard/index';
 // import AddNewCard from './../screens/CreditCard/addNewCard';
@@ -65,6 +65,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="BookingView" component={BookingView} />
         <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />
         <Stack.Screen options={{ headerShown: false }} name="AddReview" component={AddReview} />
+        <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -86,7 +87,7 @@ export default App;
         
        
        
-        <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
+       
         <Stack.Screen options={{ headerShown: false }} name="Favorite" component={Favorite} />
         <Stack.Screen options={{ headerShown: false }} name="CreditCard" component={CreditCard} />
         <Stack.Screen options={{ headerShown: false }} name="AddNewCard" component={AddNewCard} />
