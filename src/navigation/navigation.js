@@ -12,7 +12,7 @@ import Signup from './../screens/Auth/signup';
 import OtpVerify from './../screens/Auth/otp';
 import ForgotPassword from './../screens/Auth/forgotPassword';
 import ResetPassword from './../screens/Auth/resetPassword';
-// import { AppBottomNavigator } from './BottomNavigation';
+import { AppBottomNavigator } from './BottomNavigation';
 // import AdFullView from '../screens/AdFullView/index';
 // import CreateBooking from '../screens/BookingCreate/index';
 // import Reviews from '../screens/Reviews/index';
@@ -57,6 +57,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />
         <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
         <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" />
+        <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -66,7 +67,7 @@ function App() {
 export default App;
 
 
-      {/* 
+{/* 
       
        
        

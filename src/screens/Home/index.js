@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
 import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import ServiceCard from '../../components/ServiceCard';
 import Images from '../../assets/images/index'
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const Home = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
     const [search, setsearch] = useState('');
     const [data, setdata] = useState([
@@ -74,6 +79,18 @@ const Home = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
+
             <View style={styles.boxContainer}>
                 <View style={{ width: '100%', }}>
                     <View style={styles.inputContiner}>
@@ -84,7 +101,7 @@ const Home = ({ navigation }) => {
                             value={search}
                             onChangeText={(e) => { setsearch(e) }}
                             placeholder={t('search')}
-                            placeholderTextColor={colors.Neutral_01}
+                            placeholderTextColor={theme === 'dark' ? colors.white : colors.Neutral_01}
                         />
                     </View>
                 </View>
@@ -154,50 +171,50 @@ const Home = ({ navigation }) => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-    boxContainer: {
-        width: '90%',
-        height: 70,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        marginTop: 10,
-    },
-    inputContiner: {
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'row',
-        paddingLeft: 10,
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginTop: 10,
-    },
-    catContainer: {
-        marginTop: 10,
-        width: '90%',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-    },
-    catBox: {
-        width: 98,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
-
-});
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+        boxContainer: {
+            width: '90%',
+            height: 70,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            marginTop: 10,
+        },
+        inputContiner: {
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            flexDirection: 'row',
+            paddingLeft: 10,
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderRadius: 5,
+            borderWidth: 1,
+            marginTop: 10,
+            backgroundColor: colors.BothWhite
+        },
+        catContainer: {
+            marginTop: 10,
+            width: '90%',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+        },
+        catBox: {
+            width: 98,
+            justifyContent: 'center',
+            alignItems: 'center',
+        }
+    });
+};
 
