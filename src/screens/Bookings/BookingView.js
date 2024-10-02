@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const BookingView = ({ navigation }) => {
     let isError = useSelector((state) => state.reducer.isError);
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
+
             <CustomHeader
                 title={t('booking')}
                 isLeft={true}
@@ -92,64 +108,63 @@ const BookingView = ({ navigation }) => {
 
 export default BookingView;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    body: {
-        flex: 10,
-        width: '100%',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    footer: {
-        // flex: 2,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-    heading: {
-        width: '100%',
-        marginTop: 10,
-        alignItems: 'flex-start',
-    },
-    headingText: {
-        fontWeight: 'bold',
-        color: colors.black,
-        textAlign: 'left'
-    },
-    editText: {
-        fontSize: 14,
-        textAlign: 'left'
-    },
-    taxContainer: {
-        height: 185,
-        width: '100%',
-        padding: 10,
-        marginTop: 20,
-        borderRadius: 5,
-        justifyContent: 'space-around',
-        alignItems: 'flex-start',
-        backgroundColor: colors.white
-    },
-    taxContainer_C1: {
-        width: '100%',
-        marginTop: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-    },
-
-});
-
-
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        body: {
+            flex: 10,
+            width: '100%',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+        },
+        footer: {
+            // flex: 2,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: 20
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+        heading: {
+            width: '100%',
+            marginTop: 10,
+            alignItems: 'flex-start',
+        },
+        headingText: {
+            fontWeight: 'bold',
+            color: colors.black,
+            textAlign: 'left'
+        },
+        editText: {
+            fontSize: 14,
+            textAlign: 'left',
+            color: colors.black
+        },
+        taxContainer: {
+            height: 185,
+            width: '100%',
+            padding: 10,
+            marginTop: 20,
+            borderRadius: 5,
+            justifyContent: 'space-around',
+            alignItems: 'flex-start',
+            backgroundColor: colors.Neutral_02
+        },
+        taxContainer_C1: {
+            width: '100%',
+            marginTop: 10,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+        },
+    });
+};
