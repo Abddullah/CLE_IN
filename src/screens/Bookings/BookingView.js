@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
@@ -17,7 +17,7 @@ const BookingView = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-          
+
             <CustomHeader
                 title={t('booking')}
                 isLeft={true}
