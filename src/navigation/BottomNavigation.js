@@ -24,7 +24,7 @@ import Bookings from '../screens/Bookings/index';
 // map
 import Map from '../screens/Map/index';
 // notification
-// import Notification from './../screens/Notification/index';
+import Notification from './../screens/Notification/index';
 // profile
 // import Profile from './../screens/Profile/index';
 
@@ -55,13 +55,13 @@ function MapRoutes({ navigation }) {
     )
 }
 
-// function NotificationRoutes({ navigation }) {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen options={{ headerShown: false }} name="Notification" component={Notification} />
-//         </Stack.Navigator>
-//     )
-// }
+function NotificationRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Notification" component={Notification} />
+        </Stack.Navigator>
+    )
+}
 
 // function ProfileRoutes({ navigation }) {
 //     return (
@@ -113,17 +113,18 @@ export function AppBottomNavigator() {
                 name="Map"
                 component={MapRoutes}
             />
-            {/*
-        
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('notification')}</Text>) },
-                    tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? colors.Primary_01 : colors.Neutral_01 }} />) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('notification')}</Text>) },
+                    tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? colors.BothPrimary_01 : colors.Neutral_01 }} />) },
                 }}
                 name="Notification"
                 component={NotificationRoutes}
             />
+            {/*
+        
+           
             <Tab.Screen
                 options={{
                     headerShown: false,

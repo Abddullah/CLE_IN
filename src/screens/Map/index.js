@@ -19,20 +19,7 @@ export default function Map({ navigation }) {
             style={styles.background}
             resizeMode="cover"
             source={theme === 'dark' ? Images.map : Images.mapWhite}
-        >
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity>
-
-        </ImageBackground>
+        />
     );
 }
 
