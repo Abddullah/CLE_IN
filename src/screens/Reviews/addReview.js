@@ -21,17 +21,6 @@ const AddReview = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity>
             <SuccessModalBooking modalVisible={modalVisible} setModalVisible={() => { setModalVisible(false); navigation.navigate('Home') }} navigation={navigation} />
             <CustomHeader
                 title={t('addreview')}

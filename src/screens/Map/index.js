@@ -1,31 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Image, ImageBackground, View, Text } from 'react-native';
+import { StyleSheet, Image, ImageBackground, Text, TouchableOpacity } from 'react-native';
 import { _retrieveData } from '../../services/assynsStorage';
 import Images from '../../assets/images/index'
-import { Logo, GoogleIcon } from '../../assets/icons';
 import { getCurrentUser } from '../../store/actions/action'
 import { t } from 'i18next';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 export default function Map({ navigation }) {
     const dispatch = useDispatch()
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
 
     return (
         <ImageBackground
             style={styles.background}
             resizeMode="cover"
-            source={Images.mapWhite}
+            source={theme === 'dark' ? Images.map : Images.mapWhite}
         >
-        
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
+
         </ImageBackground>
     );
 }
 
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-   
-});
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        background: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+    });
+};

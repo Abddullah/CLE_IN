@@ -22,7 +22,7 @@ import Home from '../screens/Home/index';
 // booking
 import Bookings from '../screens/Bookings/index';
 // map
-// import Map from '../screens/Map/index';
+import Map from '../screens/Map/index';
 // notification
 // import Notification from './../screens/Notification/index';
 // profile
@@ -47,13 +47,13 @@ function BookingRoutes({ navigation }) {
     )
 }
 
-// function MapRoutes({ navigation }) {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
-//         </Stack.Navigator>
-//     )
-// }
+function MapRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
+        </Stack.Navigator>
+    )
+}
 
 // function NotificationRoutes({ navigation }) {
 //     return (
@@ -104,16 +104,17 @@ export function AppBottomNavigator() {
                 name="Booking"
                 component={BookingRoutes}
             />
-            {/*
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('map')}</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('map')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : <MapInactive />) },
                 }}
                 name="Map"
                 component={MapRoutes}
             />
+            {/*
+        
             <Tab.Screen
                 options={{
                     headerShown: false,
