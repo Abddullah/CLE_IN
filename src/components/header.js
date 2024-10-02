@@ -46,7 +46,9 @@ const createStyles = (colors, theme) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             height: 80,
-            backgroundColor: colors.Primary_01
+            backgroundColor: theme === 'dark' ? colors.white : colors.Primary_01,
+            borderBottomColor: colors.Neutral_01,
+            borderBottomWidth: .5
         },
         title: {
             fontSize: 18,

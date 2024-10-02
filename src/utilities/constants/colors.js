@@ -31,6 +31,7 @@ const LightThemeColors = {
     Neutral_05: '#F6F6F6',
     Neutral_06: '#',
 
+    White_Primary_01: '#00BFFF',
     BothPrimary_01: '#00BFFF',
     Primary_01: '#00BFFF',
     Primary_02: '#2A76D8',
@@ -54,6 +55,7 @@ const DarkThemeColors = {
     Neutral_05: '#1E1E1E',
     Neutral_06: '#',
 
+    White_Primary_01: '#FFFFFF',
     BothPrimary_01: '#00BFFF',
     Primary_01: '#333436',
     Primary_02: '#005A99',
