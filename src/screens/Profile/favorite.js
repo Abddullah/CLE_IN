@@ -4,12 +4,17 @@ import { StyleSheet, View, Text, TouchableOpacity, FlatList, } from 'react-nativ
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import Images from '../../assets/images/index'
 import ServiceCard from '../../components/ServiceCard';
 import ServiceCardDiscounted from '../../components/ServiceCardDiscounted';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const Favorite = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
     const [allFavorites, setallFavorites] = useState(true);
     const [data, setdata] = useState([
@@ -46,6 +51,17 @@ const Favorite = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
             <CustomHeader
                 title={t('Favorites')}
                 isLeft={true}
@@ -96,32 +112,34 @@ const Favorite = ({ navigation }) => {
 
 export default Favorite;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-    buttonContainer: {
-        marginTop: 10,
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-    },
-    button: {
-        width: '40%',
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.Primary_01
-    }
-});
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+        buttonContainer: {
+            marginTop: 10,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+        },
+        button: {
+            width: '40%',
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: colors.White_Primary_01
+        }
+    });
+};
 
 

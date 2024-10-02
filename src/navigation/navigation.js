@@ -22,7 +22,7 @@ import CancelBooking from '../screens/Bookings/CancelBooking';
 import AddReview from '../screens/Reviews/addReview';
 //profile
 import EditProfile from './../screens/Profile/editProfile';
-// import Favorite from './../screens/Profile/favorite';
+import Favorite from './../screens/Profile/favorite';
 // import CreditCard from './../screens/CreditCard/index';
 // import AddNewCard from './../screens/CreditCard/addNewCard';
 // import ReferralDiscounts from './../screens/ReferralDiscounts/index';
@@ -66,6 +66,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />
         <Stack.Screen options={{ headerShown: false }} name="AddReview" component={AddReview} />
         <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
+        <Stack.Screen options={{ headerShown: false }} name="Favorite" component={Favorite} />
 
       </Stack.Navigator>
     </NavigationContainer>

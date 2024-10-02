@@ -1,15 +1,20 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { colors } from '../utilities/constants';
 import { Typography } from '../utilities/constants/constant.style';
 import images from '../assets/images';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { PantagonShap } from '../assets/icons';
+import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { useTheme } from '../../ThemeContext';
 
 const ServiceCardDiscounted = ({
     data,
     submitHandler
 }) => {
+    const { theme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     return (
         <TouchableOpacity
             onPress={submitHandler}
@@ -30,7 +35,7 @@ const ServiceCardDiscounted = ({
             </View>
             <View style={styles.bottomContainer}>
                 <View style={styles.textContainer}>
-                    <Text style={[Typography.text_paragraph, { marginLeft: 10, color: colors.Primary_02, fontWeight: 'bold', fontSize: 16 }]}>{'$' + data.price + '/hr'}</Text>
+                    <Text style={[Typography.text_paragraph, { marginLeft: 10, color: theme === 'dark' ? colors.black : colors.Primary_02, fontWeight: 'bold', fontSize: 16 }]}>{'$' + data.price + '/hr'}</Text>
                     <Text style={[Typography.text_paragraph, { marginLeft: 10, color: colors.black, fontWeight: 'bold', fontSize: 16 }]}>{data.title}</Text>
                 </View>
                 <View style={{ marginRight: 10, justifyContent: 'center', alignItems: 'center' }}>
@@ -46,33 +51,33 @@ const ServiceCardDiscounted = ({
 
 export default ServiceCardDiscounted;
 
-const styles = StyleSheet.create({
-    wrapper: {
-        height: 300,
-        width: 360,
-        borderRadius: 5,
-        overflow: 'hidden',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        borderWidth: 0.1,
-        borderColor: 'gray',
-        margin: 5,
-    },
-    bottomContainer: {
-        height: 70,
-        width: '100%',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    textContainer: {
-        height: 70,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-    }
-
-});
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        wrapper: {
+            height: 300,
+            width: 360,
+            borderRadius: 5,
+            overflow: 'hidden',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            borderWidth: 0.1,
+            borderColor: 'gray',
+            margin: 5,
+        },
+        bottomContainer: {
+            height: 70,
+            width: '100%',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexDirection: 'row'
+        },
+        textContainer: {
+            height: 70,
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+        }
+    });
+};
 
 
 
