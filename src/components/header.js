@@ -45,7 +45,7 @@ const createStyles = (colors, theme) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            height: 70,
+            height: 80,
             backgroundColor: theme === 'dark' ? colors.white : colors.Primary_01,
             borderBottomColor: colors.Neutral_01,
             borderBottomWidth: .5

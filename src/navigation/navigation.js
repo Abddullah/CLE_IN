@@ -16,7 +16,7 @@ import { AppBottomNavigator } from './BottomNavigation';
 import AdFullView from '../screens/AdFullView/index';
 import CreateBooking from '../screens/BookingCreate/index';
 import Reviews from '../screens/Reviews/index';
-// import Chat from '../screens/Chat/index';
+import Chat from '../screens/Chat/index';
 // import BookingView from '../screens/Bookings/BookingView';
 // import CancelBooking from '../screens/Bookings/CancelBooking';
 // import AddReview from '../screens/Reviews/addReview';
@@ -61,6 +61,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
         <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
+        <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -78,7 +79,7 @@ export default App;
        
       
       
-        <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
+       
         <Stack.Screen options={{ headerShown: false }} name="BookingView" component={BookingView} />
         <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />
         <Stack.Screen options={{ headerShown: false }} name="AddReview" component={AddReview} />
