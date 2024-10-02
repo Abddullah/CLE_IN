@@ -75,7 +75,11 @@ const CreateBooking = ({ navigation }) => {
     };
 
     const stepsHandler = () => {
-        step < 4 && setstep(step + 1)
+        if (step < 4) {
+            setstep(step + 1)
+        } else {
+            navigation.navigate('Home')
+        }
     }
 
     const backHandler = () => {
