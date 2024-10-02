@@ -20,7 +20,7 @@ import {
 // bottom navigation screens
 import Home from '../screens/Home/index';
 // booking
-// import Bookings from '../screens/Bookings/index';
+import Bookings from '../screens/Bookings/index';
 // map
 // import Map from '../screens/Map/index';
 // notification
@@ -39,13 +39,13 @@ function HomeRoutes({ navigation }) {
     )
 }
 
-// function BookingRoutes({ navigation }) {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen options={{ headerShown: false }} name="Booking" component={Bookings} />
-//         </Stack.Navigator>
-//     )
-// }
+function BookingRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Booking" component={Bookings} />
+        </Stack.Navigator>
+    )
+}
 
 // function MapRoutes({ navigation }) {
 //     return (
@@ -95,15 +95,16 @@ export function AppBottomNavigator() {
                 name="Home"
                 component={HomeRoutes}
             />
-            {/* <Tab.Screen
+            <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('booking')}</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('booking')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : <BookingInactive />) },
                 }}
                 name="Booking"
                 component={BookingRoutes}
             />
+            {/*
             <Tab.Screen
                 options={{
                     headerShown: false,
