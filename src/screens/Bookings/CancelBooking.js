@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
 import CTAButton1 from '../../components/CTA_BUTTON1';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SuccessModalBooking from '../../components/Booking_Success_Popup';
 import RadioButton from '../../components/Radio_Button';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const CancelBooking = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
     const [reason, setreason] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
@@ -29,6 +33,18 @@ const CancelBooking = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
+
             <SuccessModalBooking modalVisible={modalVisible} setModalVisible={() => { setModalVisible(false); navigation.navigate('Home') }} navigation={navigation} isCancel={true} />
             <CustomHeader
                 title={t('cancelbooking')}
@@ -50,7 +66,7 @@ const CancelBooking = ({ navigation }) => {
                             <View style={styles.textAreaContainer}>
                                 <TextInput
                                     keyboardType="default"
-                                    style={{ height: '100%', width: '100%', textAlignVertical: 'top' }}
+                                    style={{ height: '100%', width: '100%', textAlignVertical: 'top', color: colors.black }}
                                     value={reason}
                                     onChangeText={(e) => { setreason(e) }}
                                     placeholder={t('enteryourreason')}
@@ -74,48 +90,49 @@ const CancelBooking = ({ navigation }) => {
 
 export default CancelBooking;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    body: {
-        flex: 10,
-        width: '100%',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    footer: {
-        // flex: 2,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
-    },
-    heading: {
-        width: '100%',
-        marginTop: 10,
-    },
-    textAreaContainer: {
-        marginTop: 10,
-        height: 185,
-        width: '100%',
-        borderRadius: 5,
-        padding: 10,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderWidth: 1
-    },
-    headingText: {
-        fontWeight: 'bold',
-        color: colors.black,
-        textAlign: 'left'
-    },
-});
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        body: {
+            flex: 10,
+            width: '100%',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+        },
+        footer: {
+            // flex: 2,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: 20
+        },
+        heading: {
+            width: '100%',
+            marginTop: 10,
+        },
+        textAreaContainer: {
+            marginTop: 10,
+            height: 185,
+            width: '100%',
+            borderRadius: 5,
+            padding: 10,
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderWidth: 1
+        },
+        headingText: {
+            fontWeight: 'bold',
+            color: colors.black,
+            textAlign: 'left'
+        },
+    });
+};
 
 

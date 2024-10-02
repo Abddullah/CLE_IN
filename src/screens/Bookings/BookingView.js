@@ -9,25 +9,15 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 
 const BookingView = ({ navigation }) => {
-    let isError = useSelector((state) => state.reducer.isError);
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
+    let isError = useSelector((state) => state.reducer.isError);
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity>
-
+          
             <CustomHeader
                 title={t('booking')}
                 isLeft={true}

@@ -12,5 +12,6 @@ export default Images = {
   cleaning: require('./cleaning.jpg'),
   noPhoto: require('./noPhoto.jpg'),
   popupBgBooking: require('./popupBgBooking.png'),
+  popupBgBookingDM: require('./popupBgBookingDM.png'),
 
 };

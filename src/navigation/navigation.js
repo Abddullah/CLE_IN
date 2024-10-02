@@ -18,7 +18,7 @@ import CreateBooking from '../screens/BookingCreate/index';
 import Reviews from '../screens/Reviews/index';
 import Chat from '../screens/Chat/index';
 import BookingView from '../screens/Bookings/BookingView';
-// import CancelBooking from '../screens/Bookings/CancelBooking';
+import CancelBooking from '../screens/Bookings/CancelBooking';
 // import AddReview from '../screens/Reviews/addReview';
 
 // import EditProfile from './../screens/Profile/editProfile';
@@ -63,6 +63,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
         <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
         <Stack.Screen options={{ headerShown: false }} name="BookingView" component={BookingView} />
+        <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -82,7 +83,7 @@ export default App;
       
        
         
-        <Stack.Screen options={{ headerShown: false }} name="CancelBooking" component={CancelBooking} />
+       
         <Stack.Screen options={{ headerShown: false }} name="AddReview" component={AddReview} />
         <Stack.Screen options={{ headerShown: false }} name="EditProfile" component={EditProfile} />
         <Stack.Screen options={{ headerShown: false }} name="Favorite" component={Favorite} />

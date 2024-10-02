@@ -3,8 +3,14 @@ import { Modal, StyleSheet, ImageBackground, Text, View, TouchableOpacity } from
 import Images from '../assets/images/index'
 import { Typography } from '../utilities/constants/constant.style';
 import { t } from 'i18next';
+import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { useTheme } from '../../ThemeContext';
 
 const SuccessModalBooking = ({ modalVisible, setModalVisible, isCancel }) => {
+    const { theme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     return (
         <Modal
             animationType="slide"
@@ -20,7 +26,7 @@ const SuccessModalBooking = ({ modalVisible, setModalVisible, isCancel }) => {
                     <ImageBackground
                         style={{ height: 300, width: 350, justifyContent: 'center', alignItems: 'center' }}
                         resizeMode="contain"
-                        source={Images.popupBgBooking}
+                        source={theme === 'dark' ? Images.popupBgBookingDM : Images.popupBgBooking}
                     >
                         {
                             (isCancel) ? (
@@ -36,29 +42,31 @@ const SuccessModalBooking = ({ modalVisible, setModalVisible, isCancel }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.5)',
-    },
-    modalView: {
-        borderRadius: 35,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        centeredView: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0,0,0,0.5)',
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    modalText: {
-        marginTop: 50,
-    },
-});
+        modalView: {
+            borderRadius: 35,
+            backgroundColor: 'white',
+            alignItems: 'center',
+            shadowColor: '#000',
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+            elevation: 5,
+        },
+        modalText: {
+            marginTop: 50,
+        },
+    });
+};
 
 export default SuccessModalBooking;
