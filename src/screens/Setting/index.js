@@ -1,23 +1,48 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Switch, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Switch, ScrollView, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { Select } from 'native-base';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
 import CTA_Setting from '../../components/CTA_SETTINGS';
-import { Select } from 'native-base';
-import { Heart, } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const Settings = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
     const [language, setLanguage] = useState('');
     const [darkMode, setdarkMode] = useState(false);
 
+    const darkModeHandler = () => {
+        if (theme === 'dark') {
+            setdarkMode(false)
+        }
+        else {
+            setdarkMode(true)
+        }
+        toggleTheme()
+    }
+
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
             <CustomHeader
                 title={t('settings')}
                 isLeft={true}
@@ -31,18 +56,18 @@ const Settings = ({ navigation }) => {
             >
                 <View style={[styles.list, { marginTop: 30 }]}>
                     <Select
-                        bg="white"
+                        bg={colors.white}
                         borderWidth={0}
                         selectedValue={language}
                         minWidth="100%"
                         accessibilityLabel="Language"
                         placeholder="Language"
-                        placeholderTextColor="black"
+                        placeholderTextColor={colors.Neutral_01}
                         _selectedItem={{
-                            background: colors.Primary_01
+                            background: colors.Primary_01,
                         }}
-                        mt={1}
-                        onValueChange={itemValue => setLanguage(itemValue)}
+                        color={colors.Neutral_01}
+                        mt={1} onValueChange={itemValue => setLanguage(itemValue)}
                     >
                         <Select.Item label="Language (ENGLISH)" value="en" />
                         <Select.Item label="Language (Czech)" value="cz" />
@@ -56,7 +81,7 @@ const Settings = ({ navigation }) => {
                         trackColor={{ false: '#3e3e3e', true: '#3e3e3e' }}
                         thumbColor={darkMode ? colors.Primary_01 : '#f4f3f4'}
                         ios_backgroundColor="#3e3e3e"
-                        onValueChange={() => { setdarkMode(!darkMode) }}
+                        onValueChange={() => { darkModeHandler() }}
                         value={darkMode}
                     />
                 </View>
@@ -75,50 +100,70 @@ const Settings = ({ navigation }) => {
 
 export default Settings;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    boxContainer: {
-        flex: 1,
-        width: '90%',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly',
-        marginTop: 10,
-    },
-    box: {
-        marginTop: 10,
-        height: 44,
-        width: 106,
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.Primary_03
-    },
-    list: {
-        marginTop: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 10,
-        width: '100%',
-        // borderColor: colors.Primary_01,
-        // borderWidth: 1,
-        borderRadius: 5,
-        height: 50,
-        overflow: 'hidden',
-        backgroundColor: colors.white
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        boxContainer: {
+            flex: 1,
+            width: '90%',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
+            marginTop: 10,
+        },
+        box: {
+            marginTop: 10,
+            height: 44,
+            width: 106,
+            borderRadius: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: colors.Primary_03
+        },
+        list: {
+            // marginTop: 10,
+            // flexDirection: 'row',
+            // alignItems: 'center',
+            // padding: 10,
+            // width: '100%',
+            // // borderColor: colors.Primary_01,
+            // // borderWidth: 1,
+            // borderRadius: 5,
+            // height: 50,
+            // overflow: 'hidden',
+            // backgroundColor: colors.white
 
-});
+            width: '98%',
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: 10,
+            borderWidth: theme === 'dark' ? 0.5 : 0,
+            borderColor: theme === 'dark' ? colors.black : null,
+            borderRadius: 7,
+            height: 50,
+            overflow: 'hidden',
+            backgroundColor: colors.white,
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
 
-
+            elevation: 5,
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+    });
+};
