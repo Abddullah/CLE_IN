@@ -1,9 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Text, View, Image, Keyboard, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
-import SMSVerifyCode from 'react-native-sms-verifycode'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
+import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell, } from 'react-native-confirmation-code-field';
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
 import { BackIcon } from '../../assets/icons';
@@ -22,9 +21,11 @@ export default function OtpVerify({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
-    const [code, setcode] = useState('');
+    const CELL_COUNT = 6;
     const [modalVisible, setModalVisible] = useState(false);
-
+    const [value, setValue] = useState('');
+    const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+    const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue, });
 
     const submit = () => {
         setModalVisible(true)
@@ -37,14 +38,12 @@ export default function OtpVerify({ navigation }) {
 
     const modalClose = () => {
         setModalVisible(false)
-        // navigation.navigate('Signin')
+        navigation.navigate('Signin')
     }
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-
             <SuccessModal modalVisible={modalVisible} setModalVisible={() => modalClose()} navigation={navigation} />
-
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
@@ -57,44 +56,53 @@ export default function OtpVerify({ navigation }) {
                     <Image resizeMode='contain' style={{ width: 250, height: 120, }} source={Images.LogoWithText} />
                 </View>
             </View>
-
             <View style={{ flex: 8, width: '90%', marginHorizontal: '5%', justifyContent: 'space-between', }}>
                 <View>
                     <Text style={[Typography.text_subHeading, { marginTop: 10, color: theme === 'dark' ? colors.black : colors.Primary_01, }]}>{t('otp')}</Text>
                     <Text style={[styles.socialTextC1, {}]}>{t('enter6digitcode')} </Text>
                     <View style={{ marginTop: 20 }}>
                         <View style={styles.inputContiner}>
-                            <SMSVerifyCode
-                                codeColor={colors.Neutral_01}
-                                containerBackgroundColor={colors.white}
-                                // codeViewBorderColor={colors.Neutral_01}
-                                focusedCodeViewBorderColor={colors.Primary_01}
-                                verifyCodeLength={6}
-                                containerPaddingHorizontal={30}
-                                onInputChangeText={(e) => { setcode(e) }}
-                                onInputCompleted={(e) => { Keyboard.dismiss() }}
+
+                            <CodeField
+                                ref={ref}
+                                {...props}
+                                // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
+                                value={value}
+                                onChangeText={setValue}
+                                cellCount={CELL_COUNT}
+                                rootStyle={styles.codeFieldRoot}
+                                keyboardType="number-pad"
+                                textContentType="oneTimeCode"
+                                autoComplete={Platform.select({ android: 'sms-otp', default: 'one-time-code' })}
+                                testID="my-code-input"
+                                renderCell={({ index, symbol, isFocused }) => (
+                                    <Text
+                                        key={index}
+                                        style={[styles.cell, isFocused && styles.focusCell]}
+                                        onLayout={getCellOnLayoutHandler(index)}>
+                                        {symbol || (isFocused ? <Cursor /> : null)}
+                                    </Text>
+                                )}
                             />
                         </View>
                     </View>
                     <Text style={[Typography.text_subHeading, { marginTop: 30, color: theme === 'dark' ? colors.black : colors.Primary_01, }]}>{'00:54'}</Text>
                     <Text style={[styles.socialTextC1, {}]}>{t('sendagain')} </Text>
                 </View>
-
                 <View style={styles.containerc1_c2}>
                     {
-                        code.length >= 6 &&
+                        value.length >= 6 &&
                         <View style={{ marginTop: 10, marginBottom: 10 }}>
                             <CTAButton1 title={t('verify')} submitHandler={() => submit()} />
                         </View>
                     }
                 </View>
-
             </View>
         </View>
     );
 }
 
-const createStyles = (colors) => {
+const createStyles = (colors, theme) => {
     return StyleSheet.create({
         mainContainer: {
             flex: 1,
@@ -177,6 +185,25 @@ const createStyles = (colors) => {
             marginTop: 5,
             flexDirection: "row",
             alignItems: 'center'
+        },
+
+        root: { flex: 1, padding: 20 },
+        title: { textAlign: 'center', fontSize: 30 },
+        codeFieldRoot: { marginTop: 0 },
+        cell: {
+            margin: 10,
+            width: 40,
+            height: 40,
+            lineHeight: 38,
+            fontSize: 24,
+            borderWidth: 2,
+            borderColor: theme === 'dark' ? colors.Primary_01 : colors.Neutral_01,
+            textAlign: 'center',
+            color: colors.black
+        },
+        focusCell: {
+            borderColor: colors.White_Primary_01,
+            color: colors.black
         },
     });
 };
