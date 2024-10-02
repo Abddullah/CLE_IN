@@ -1,18 +1,34 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images/index'
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import CTA_Profile from '../../components/CTA_PROFILE';
 import { Heart, Payment, Referral, Preferences, FAQ, Settings } from '../../assets/icons';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const Profile = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
             <CustomHeader title={t('Profile')} />
             <ScrollView
                 style={{ width: '90%' }}
@@ -28,8 +44,8 @@ const Profile = ({ navigation }) => {
                 </View>
 
                 <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                    <Text style={Typography.text_heading}>Jenny Abbas</Text>
-                    <Text style={Typography.text_paragraph_1}> +61 588 74637</Text>
+                    <Text style={[Typography.text_heading, { color: colors.black }]}>Jenny Abbas</Text>
+                    <Text style={[Typography.text_paragraph_1, { color: colors.Neutral_01 }]}> +61 588 74637</Text>
                     <View style={{ marginTop: 10, width: '60%', }}>
                         <CTAButton1 title={t('editProfile')} submitHandler={() => { navigation.navigate('EditProfile') }} />
                     </View>
@@ -48,41 +64,40 @@ const Profile = ({ navigation }) => {
 
 export default Profile;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    profilePhoto: {
-        height: 130, width: 130,
-        marginTop: 10,
-        justifyContent: 'center', alignItems: 'center',
-        borderRadius: 100,
-        borderWidth: 2,
-        borderColor: colors.Primary_01,
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-    list: {
-        marginTop: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 10,
-        width: '100%',
-        // borderColor: colors.Primary_01,
-        // borderWidth: 1,
-        borderRadius: 5,
-        height: 50,
-        overflow: 'hidden',
-        backgroundColor: colors.white
-    },
-
-});
-
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        profilePhoto: {
+            height: 130, width: 130,
+            marginTop: 10,
+            justifyContent: 'center', alignItems: 'center',
+            borderRadius: 100,
+            borderWidth: 2,
+            borderColor: colors.White_Primary_01,
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+        list: {
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: 10,
+            width: '100%',
+            // borderColor: colors.Primary_01,
+            // borderWidth: 1,
+            borderRadius: 5,
+            height: 50,
+            overflow: 'hidden',
+            backgroundColor: colors.white
+        },
+    });
+};

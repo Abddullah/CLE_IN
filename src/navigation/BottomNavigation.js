@@ -26,7 +26,7 @@ import Map from '../screens/Map/index';
 // notification
 import Notification from './../screens/Notification/index';
 // profile
-// import Profile from './../screens/Profile/index';
+import Profile from './../screens/Profile/index';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -63,13 +63,13 @@ function NotificationRoutes({ navigation }) {
     )
 }
 
-// function ProfileRoutes({ navigation }) {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
-//         </Stack.Navigator>
-//     )
-// }
+function ProfileRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
+        </Stack.Navigator>
+    )
+}
 
 export function AppBottomNavigator() {
     const { theme } = useTheme();
@@ -122,18 +122,15 @@ export function AppBottomNavigator() {
                 name="Notification"
                 component={NotificationRoutes}
             />
-            {/*
-        
-           
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.Primary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('profile')}</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('profile')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : <ProfileInactive />) },
                 }}
                 name="Profile"
                 component={ProfileRoutes}
-            /> */}
+            />
         </Tab.Navigator >
     );
 }
