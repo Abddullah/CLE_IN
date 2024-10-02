@@ -4,17 +4,19 @@ import { StyleSheet, View, Text, TouchableOpacity, Switch, Image, ScrollView, Te
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
-import { Typography } from '../../utilities/constants/constant.style';
-import Images from '../../assets/images/index'
 import { CardIcon } from '../../assets/icons';
-import { Select } from 'native-base';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const AddNewCard = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
 
     const [cardNumber, setcardNumber] = useState('');
@@ -26,7 +28,17 @@ const AddNewCard = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-
+            <TouchableOpacity
+                onPress={toggleTheme}
+                style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: 'yellow'
+                }} >
+                <Text>{'Toggle Theme'}</Text>
+            </TouchableOpacity>
             <CustomHeader
                 title={t('addanewcard')}
                 isLeft={true}
@@ -47,7 +59,7 @@ const AddNewCard = ({ navigation }) => {
                     </View>
                 </View>
 
-                <View style={{ width: '100%', }}>
+                <View style={{ width: '100%', marginTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={{ top: 3, color: colors.Neutral_01 }}>{t('cardNumber')}</Text>
                         {
@@ -77,7 +89,7 @@ const AddNewCard = ({ navigation }) => {
                         <TextInput
                             keyboardType='number-pad'
                             style={styles.input}
-                            value={cardNumber}
+                            value={cvvNumber}
                             onChangeText={(e) => { setcvvNumber(e) }}
                             placeholder={t('cvvNumber')}
                             placeholderTextColor={colors.Neutral_01}
@@ -87,7 +99,7 @@ const AddNewCard = ({ navigation }) => {
 
                 <View style={{ width: '100%', marginTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={styles.fieldHeading}>{t('expiryDate')}</Text>
+                        <Text style={[styles.fieldHeading, { color: colors.Neutral_01 }]}>{t('expiryDate')}</Text>
                         {
                             isError && <Text style={{ top: 3, color: "red", top: -1 }}>*</Text>
                         }
@@ -139,65 +151,69 @@ const AddNewCard = ({ navigation }) => {
 
 export default AddNewCard;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    profilePhoto: {
-        height: 130, width: 130,
-        marginTop: 10,
-        justifyContent: 'center', alignItems: 'center',
-        borderRadius: 100,
-        borderWidth: 2,
-        borderColor: colors.Primary_01,
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-    list: {
-        marginTop: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 10,
-        width: '100%',
-        borderRadius: 5,
-        height: 50,
-        overflow: 'hidden',
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderWidth: 1,
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        profilePhoto: {
+            height: 130, width: 130,
+            marginTop: 10,
+            justifyContent: 'center', alignItems: 'center',
+            borderRadius: 100,
+            borderWidth: 2,
+            borderColor: colors.Primary_01,
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+        list: {
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: 10,
+            width: '100%',
+            borderRadius: 5,
+            height: 50,
+            overflow: 'hidden',
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderWidth: 1,
 
-    },
-    fieldHeading: {
-        marginLeft: '1%',
-        fontSize: 12,
-        color: 'black',
-    },
-    inputContiner: {
-        paddingLeft: 10,
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginTop: 10,
-    },
-    listIcon: {
-        fontSize: 18,
-        marginRight: 15,
-        // color: colors.Primary_01
-    },
-    dob: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%'
-    },
-});
-
-
+        },
+        fieldHeading: {
+            // marginLeft: '1%',
+            // fontSize: 12,
+            color: 'black',
+        },
+        inputContiner: {
+            paddingLeft: 10,
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderRadius: 5,
+            borderWidth: 1,
+            marginTop: 10,
+        },
+        input: {
+            height: 50, width: "90%", color: colors.black,
+            marginLeft: 7,
+        },
+        listIcon: {
+            fontSize: 18,
+            marginRight: 15,
+            color: colors.Neutral_01
+        },
+        dob: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%'
+        },
+    });
+};

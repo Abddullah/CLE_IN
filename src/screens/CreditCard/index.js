@@ -1,15 +1,20 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import { colors } from '../../utilities/constants';
 import { ScrollView } from 'native-base';
 import { Nocard } from '../../assets/icons';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 const CreditCard = ({ navigation }) => {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     let isError = useSelector((state) => state.reducer.isError);
 
     return (
@@ -37,19 +42,18 @@ const CreditCard = ({ navigation }) => {
 
 export default CreditCard;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    scrollBar: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 50
-    },
-
-});
-
-
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
+        },
+    });
+};
