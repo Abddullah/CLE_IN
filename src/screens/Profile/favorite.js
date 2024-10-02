@@ -51,7 +51,6 @@ const Favorite = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-      
             <CustomHeader
                 title={t('Favorites')}
                 isLeft={true}
