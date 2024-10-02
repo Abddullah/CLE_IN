@@ -31,9 +31,9 @@ import FAQ from './../screens/FAQ/index';
 import Settings from './../screens/Setting/index';
 import PrivacyPolicy from './../screens/PrivacyPolicy/index';
 import TermsAndCondition from './../screens/TermsAndCondition/index';
-// import Feedback from './../screens/FeedBack/index';
-// import Support from './../screens/Support/index';
-// import DeleteAccount from './../screens/DeleteAccount/index';
+import Feedback from './../screens/FeedBack/index';
+import Support from './../screens/Support/index';
+import DeleteAccount from './../screens/DeleteAccount/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,13 +50,13 @@ function App() {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator>
-        {/* <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
+        <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
         <Stack.Screen options={{ headerShown: false }} component={GetStarted} name="GetStarted" />
         <Stack.Screen options={{ headerShown: false }} component={Signin} name="Signin" />
         <Stack.Screen options={{ headerShown: false }} component={Signup} name="Signup" />
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />
         <Stack.Screen options={{ headerShown: false }} component={ForgotPassword} name="ForgotPassword" />
-        <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" /> */}
+        <Stack.Screen options={{ headerShown: false }} component={ResetPassword} name="ResetPassword" />
         <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
         <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
         <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
@@ -75,7 +75,10 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Settings" component={Settings} />
         <Stack.Screen options={{ headerShown: false }} name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen options={{ headerShown: false }} name="TermsAndCondition" component={TermsAndCondition} />
-        
+        <Stack.Screen options={{ headerShown: false }} name="Feedback" component={Feedback} />
+        <Stack.Screen options={{ headerShown: false }} name="Support" component={Support} />
+        <Stack.Screen options={{ headerShown: false }} name="DeleteAccount" component={DeleteAccount} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -90,6 +93,6 @@ export default App;
         
        
         
-        <Stack.Screen options={{ headerShown: false }} name="Feedback" component={Feedback} />
-        <Stack.Screen options={{ headerShown: false }} name="Support" component={Support} />
-        <Stack.Screen options={{ headerShown: false }} name="DeleteAccount" component={DeleteAccount} /> */}
+      
+        
+       */}

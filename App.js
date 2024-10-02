@@ -9,7 +9,6 @@ import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   StatusBar,
-  View
 } from 'react-native';
 import Toast from "react-native-toast-message"
 import { Provider } from 'react-redux';
@@ -18,7 +17,7 @@ import { NativeBaseProvider } from 'native-base';
 import AppNavigator from "./src/navigation/navigation"
 import { I18nextProvider } from 'react-i18next';
 import i18n, { fetchTranslations } from './src/assets/language';
-import { ThemeProvider, useTheme } from './ThemeContext'; // Adjust the import path
+import { ThemeProvider } from './ThemeContext';
 
 function App() {
   console.disableYellowBox = true;
@@ -31,10 +30,10 @@ function App() {
       <NativeBaseProvider>
         <ThemeProvider>
           <Provider store={store}>
-            <View style={{ flex: 1, height: '100%', width: '100%', backgroundColor: 'red' }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>
               <AppNavigator />
               <Toast />
-            </View>
+            </SafeAreaView>
           </Provider>
         </ThemeProvider>
       </NativeBaseProvider>

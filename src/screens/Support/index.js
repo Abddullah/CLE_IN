@@ -6,9 +6,16 @@ import ChatBox from '../../components/chatBox';
 import CommentInput from '../../components/commentsInput';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 export default function Support({ ...props }) {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     const navigation = useNavigation();
+
     return (
         <View style={styles.mainContainer}>
             <CustomHeader
@@ -26,16 +33,18 @@ export default function Support({ ...props }) {
     );
 }
 
-const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-    },
-    body: {
-        flex: 1,
-    },
-    footer: {
-        paddingVertical: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        mainContainer: {
+            flex: 1,
+        },
+        body: {
+            flex: 1,
+        },
+        footer: {
+            paddingVertical: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+    });
+};

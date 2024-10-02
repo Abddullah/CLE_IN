@@ -32,23 +32,11 @@ const Settings = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                onPress={toggleTheme}
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 50,
-                    backgroundColor: 'yellow'
-                }} >
-                <Text>{'Toggle Theme'}</Text>
-            </TouchableOpacity>
             <CustomHeader
                 title={t('settings')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
-
             <ScrollView
                 style={{ width: '90%' }}
                 contentContainerStyle={styles.scrollBar}

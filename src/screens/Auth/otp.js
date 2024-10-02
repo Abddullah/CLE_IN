@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Text, View, Image, Keyboard, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Image, Keyboard, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import SMSVerifyCode from 'react-native-sms-verifycode'
 import { signIn, showError, } from '../../store/actions/action'
@@ -42,7 +42,7 @@ export default function OtpVerify({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-           
+
             <SuccessModal modalVisible={modalVisible} setModalVisible={() => modalClose()} navigation={navigation} />
 
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>

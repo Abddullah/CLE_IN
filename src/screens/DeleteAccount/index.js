@@ -1,18 +1,22 @@
 
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
-import { colors } from '../../utilities/constants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import CheckBox from '@react-native-community/checkbox';
-import CTA_Profile from '../../components/CTA_PROFILE';
 import CTAButton1 from '../../components/CTA_BUTTON1';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { useTheme } from '../../../ThemeContext';
 
 export default function DeleteAccount({ ...props }) {
+    const { theme, toggleTheme } = useTheme();
+    const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+    const styles = createStyles(colors, theme);
+
     const navigation = useNavigation();
     const [password, setpassword] = useState('');
     const [secureEntryState, setsecureEntryState] = useState(false);
@@ -53,10 +57,10 @@ export default function DeleteAccount({ ...props }) {
 
                 <View style={{ width: '100%', marginTop: 10, }}>
                     <View style={styles.inputContiner}>
-                        <Ionicons name="key-outline" style={{ fontSize: 20, color: colors.Primary_01, }} />
+                        <Ionicons name="key-outline" style={{ fontSize: 20, color: colors.White_Primary_01, }} />
                         <TextInput
                             keyboardType='number-pad'
-                            style={{ marginLeft: 10, width: '80%', }}
+                            style={{ marginLeft: 10, width: '80%', color: colors.black }}
                             secureTextEntry={secureEntryState}
                             value={password}
                             onChangeText={(e) => { setpassword(e) }}
@@ -67,7 +71,7 @@ export default function DeleteAccount({ ...props }) {
                             activeOpacity={.8}
                             onPress={() => { setsecureEntryState(!secureEntryState) }}
                         >
-                            <Feather name={secureEntryState ? 'eye' : 'eye-off'} style={{ fontSize: 20, color: colors.Primary_01, marginLeft: 10, }} />
+                            <Feather name={secureEntryState ? 'eye' : 'eye-off'} style={{ fontSize: 20, color: colors.White_Primary_01, marginLeft: 10, }} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -75,7 +79,7 @@ export default function DeleteAccount({ ...props }) {
                 <View style={[styles.checkboxContainer, { marginTop: 10 }]}>
                     <CheckBox
                         tintColors={{
-                            true: colors.Primary_01,
+                            true: colors.White_Primary_01,
                             false: colors.Neutral_01,
                         }}
                         disabled={false}
@@ -83,56 +87,55 @@ export default function DeleteAccount({ ...props }) {
                         onValueChange={setisSelectedTerm}
                     />
                     <View style={styles.checkboxContainer}>
-                        <Text style={styles.label}>{t('iagreeto')}</Text>
+                        <Text style={{ color: colors.black }}>{t('iagreeto') + ' '}</Text>
                         <TouchableOpacity
                         // onPress={() => navigation.navigate('TermsAndCondition')}
                         >
-                            <Text style={[styles.label, { textDecorationLine: 'underline' }]}>{t('TermsConditions')}</Text>
+                            <Text style={{ textDecorationLine: 'underline', color: colors.black }}>{t('TermsConditions') + ' '}</Text>
                         </TouchableOpacity>
-                        <Text style={styles.label}>{t('and1')} </Text>
+                        <Text style={{ color: colors.black }}>{t('and1')} </Text>
                         <TouchableOpacity
                         // onPress={() => navigation.navigate('PrivacyPolicy')}
                         >
-                            <Text style={[styles.label, { textDecorationLine: 'underline' }]}>{t('privacyPolicy')}</Text>
+                            <Text style={{ textDecorationLine: 'underline', color: colors.black }}>{t('privacyPolicy')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
-
 
                 <View style={{ width: '100%', marginTop: 20 }}>
                     <CTAButton1 title={t('delete')} submitHandler={() => { }} />
                 </View>
 
             </View>
-
         </View>
     );
 }
 
-const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    body: {
-        flex: 1,
-        width: '90%',
-        marginTop: 10
-    },
-    inputContiner: {
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'row',
-        paddingLeft: 10,
-        backgroundColor: colors.white,
-        borderColor: colors.Primary_01,
-        borderRadius: 5,
-        borderWidth: 1,
-    },
-    checkboxContainer: {
-        flexDirection: "row",
-        alignItems: 'center'
-    },
-
-});
+const createStyles = (colors, theme) => {
+    return StyleSheet.create({
+        mainContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        body: {
+            flex: 1,
+            width: '90%',
+            marginTop: 10
+        },
+        inputContiner: {
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            flexDirection: 'row',
+            paddingLeft: 10,
+            backgroundColor: colors.white,
+            borderColor: colors.Primary_01,
+            borderRadius: 5,
+            borderWidth: 1,
+        },
+        checkboxContainer: {
+            flexDirection: "row",
+            alignItems: 'center'
+        },
+    });
+};
