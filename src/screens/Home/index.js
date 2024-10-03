@@ -1,23 +1,48 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TextInput, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
-import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
+// import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import ServiceCard from '../../components/ServiceCard';
 import Images from '../../assets/images/index'
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import Categories from '../../components/Categories';
 
 const Home = ({ navigation }) => {
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
     let isError = useSelector((state) => state.reducer.isError);
     const [search, setsearch] = useState('');
+
+    const [categories, setcategories] = useState([
+        {
+            title: t('cleaningathome'),
+            image: Images.CatHome,
+        },
+        {
+            title: t('cleaningatcompany'),
+            image: Images.CatCompany,
+        },
+        {
+            title: t('cleaningathospital'),
+            image: Images.CatHospital,
+        },
+        {
+            title: t('cleaningatoffice'),
+            image: Images.CatOffice,
+        },
+        {
+            title: t('cleaningatfactory'),
+            image: Images.CatFactory,
+        },
+    ]);
+
     const [data, setdata] = useState([
         {
             title: 'Cleaning at Company',
@@ -79,7 +104,7 @@ const Home = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            
+
             <View style={styles.boxContainer}>
                 <View style={{ width: '100%', }}>
                     <View style={styles.inputContiner}>
@@ -108,41 +133,14 @@ const Home = ({ navigation }) => {
                         showsHorizontalScrollIndicator={false}
                         style={{ flexDirection: 'row', marginTop: 10 }}
                     >
-                        <TouchableOpacity
-                            activeOpacity={.8}
-                            style={styles.catBox}
-                        >
-                            <CatHome />
-                            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningathome')}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={.8}
-                            style={styles.catBox}
-                        >
-                            <CatCompany />
-                            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningatcompany')}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={.8}
-                            style={styles.catBox}
-                        >
-                            <CatHospital />
-                            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningathospital')}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={.8}
-                            style={styles.catBox}
-                        >
-                            <CatOffice />
-                            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningatoffice')}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={.8}
-                            style={styles.catBox}
-                        >
-                            <CatFactory />
-                            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningatfactory')}</Text>
-                        </TouchableOpacity>
+                        <FlatList
+                            data={categories}
+                            contentContainerStyle={{ marginTop: 10, }}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({ item }) => <Categories icon={item.image} title={item.title} />}
+                        />
                     </ScrollView>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 30 }]}>{t('specialservices')}</Text>
                 </View>
@@ -203,6 +201,7 @@ const createStyles = (colors, theme) => {
             width: 98,
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: 'red'
         }
     });
 };

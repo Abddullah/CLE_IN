@@ -44,7 +44,7 @@ function App() {
 
   const MyTheme = {
     ...DefaultTheme,
-    colors: { ...DefaultTheme.colors, background: colors.white },
+    colors: { ...DefaultTheme.colors, background: colors.white }
   };
 
   return (

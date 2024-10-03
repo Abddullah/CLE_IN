@@ -12,18 +12,22 @@ export { default as BackIcon } from './backIcon.svg';
 // footer icons
 export { default as HomeActive } from './footerIcon/HomeActive.svg';
 export { default as HomeInactive } from './footerIcon/HomeInactive.svg';
+export { default as HomeInactiveWhite } from './footerIcon/HomeInactiveWhite.svg';
 
 export { default as BookingActive } from './footerIcon/BookingActive.svg';
 export { default as BookingInactive } from './footerIcon/BookingInactive.svg';
+export { default as BookingInactiveWhite } from './footerIcon/BookingInactiveWhite.svg';
 
 export { default as MapActive } from './footerIcon/MapActive.svg';
 export { default as MapInactive } from './footerIcon/MapInactive.svg';
+export { default as MapInactiveWhite } from './footerIcon/MapInactiveWhite.svg';
 
 // export { default as NotificationActive } from './footerIcon/NotificationActive.svg';
 // export { default as NotificationInactive } from './footerIcon/NotificationInactive.svg';
 
 export { default as ProfileActive } from './footerIcon/ProfileActive.svg';
 export { default as ProfileInactive } from './footerIcon/ProfileInactive.svg';
+export { default as ProfileInactiveWhite } from './footerIcon/ProfileInactiveWhite.svg';
 
 // profile icons
 export { default as Heart } from './profileIcons/heart.svg';

@@ -9,10 +9,10 @@ import { t } from 'i18next';
 // icons
 import Feather from 'react-native-vector-icons/Feather';
 import {
-    HomeActive, HomeInactive,
-    BookingActive, BookingInactive,
-    MapActive, MapInactive,
-    ProfileActive, ProfileInactive,
+    HomeActive, HomeInactive, HomeInactiveWhite,
+    BookingActive, BookingInactive, BookingInactiveWhite,
+    MapActive, MapInactive, MapInactiveWhite,
+    ProfileActive, ProfileInactive, ProfileInactiveWhite
 } from '../assets/icons';
 
 // bottom navigation screens
@@ -88,7 +88,10 @@ export function AppBottomNavigator() {
                 options={{
                     headerShown: false,
                     tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('home')}</Text>) },
-                    tabBarIcon: ({ focused }) => { return (focused ? <HomeActive /> : <HomeInactive />) },
+                    tabBarIcon: ({ focused }) => {
+                        return (focused ? <HomeActive /> : theme === 'dark' ? <HomeInactiveWhite /> : <HomeInactive />
+                        )
+                    },
                 }}
                 name="Home"
                 component={HomeRoutes}
@@ -97,7 +100,7 @@ export function AppBottomNavigator() {
                 options={{
                     headerShown: false,
                     tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('booking')}</Text>) },
-                    tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : <BookingInactive />) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : theme === 'dark' ? <BookingInactiveWhite /> : <BookingInactive />) },
                 }}
                 name="Booking"
                 component={BookingRoutes}
@@ -106,7 +109,7 @@ export function AppBottomNavigator() {
                 options={{
                     headerShown: false,
                     tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('map')}</Text>) },
-                    tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : <MapInactive />) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : theme === 'dark' ? <MapInactiveWhite /> : <MapInactive />) },
                 }}
                 name="Map"
                 component={MapRoutes}
@@ -124,7 +127,7 @@ export function AppBottomNavigator() {
                 options={{
                     headerShown: false,
                     tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('profile')}</Text>) },
-                    tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : <ProfileInactive />) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : theme === 'dark' ? <ProfileInactiveWhite /> : <ProfileInactive />) },
                 }}
                 name="Profile"
                 component={ProfileRoutes}

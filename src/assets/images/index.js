@@ -14,4 +14,10 @@ export default Images = {
   popupBgBooking: require('./popupBgBooking.png'),
   popupBgBookingDM: require('./popupBgBookingDM.png'),
 
+  CatHome: require('./categories/Home.png'),
+  CatCompany: require('./categories/Company.png'),
+  CatHospital: require('./categories/Hospital.png'),
+  CatOffice: require('./categories/Offices.png'),
+  CatFactory: require('./categories/Factory.png'),
+
 };
