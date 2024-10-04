@@ -158,6 +158,8 @@ export const languageData = [
             weatherconditions: 'Weather conditions',
             Ihavealternativeoption: 'I have alternative options',
             dob: 'Date of Birth',
+            myads: 'My ads',
+            analytics: 'Analytics',
             news: '',
         }
     },

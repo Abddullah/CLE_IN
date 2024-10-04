@@ -16,3 +16,16 @@ export const getCurrentUser = (navigation) => async dispatch => {
     navigation.navigate('GetStarted')
   }, 2000);
 };
+
+
+export const signIn = (data, isSelectedRemember, navigation) => async dispatch => {
+  if (data.email === 'provider@gmail.com') {
+    dispatch({ type: 'SET_USER', payload: { email: data.email, role: 'provider' } });
+    navigation.navigate('Tabs')
+  }
+  else {
+    dispatch({ type: 'SET_USER', payload: { email: data.email, role: 'user' } });
+    navigation.navigate('Tabs')
+  }
+};
+

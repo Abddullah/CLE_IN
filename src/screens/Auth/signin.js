@@ -7,7 +7,6 @@ import Images from '../../assets/images'
 import { GoogleIcon, AppleIcon } from '../../assets/icons';
 import CheckBox from '@react-native-community/checkbox';
 import { Typography } from '../../utilities/constants/constant.style';
-import { colors } from '../../utilities/constants';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
@@ -21,8 +20,8 @@ export default function SignIn({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('');
+    const [email, setemail] = useState('provider@gmail.com');
+    const [password, setpassword] = useState('123456');
     const [isSelectedRemember, setisSelectedRemember] = useState(false);
 
     const submit = () => {
@@ -30,9 +29,9 @@ export default function SignIn({ navigation }) {
             email: email,
             password: password,
         }
-        navigation.navigate('Tabs')
-        // dispatch(signIn(credentials, isSelectedRemember, navigation))
-        // dispatch(showError())
+        // navigation.navigate('Tabs')
+        dispatch(signIn(credentials, isSelectedRemember, navigation))
+        dispatch(showError())
     }
 
     return (

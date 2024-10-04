@@ -22,6 +22,12 @@ export { default as MapActive } from './footerIcon/MapActive.svg';
 export { default as MapInactive } from './footerIcon/MapInactive.svg';
 export { default as MapInactiveWhite } from './footerIcon/MapInactiveWhite.svg';
 
+// footer icons provider
+export { default as AddActive } from './footerIcon/AddActive.svg';
+export { default as AnalyticsActive } from './footerIcon/AnalyticsActive.svg';
+export { default as AnalyticsInActive } from './footerIcon/AnalyticsInActive.svg';
+export { default as AnalyticsInActiveWhite } from './footerIcon/AnalyticsInActiveWhite.svg';
+
 // export { default as NotificationActive } from './footerIcon/NotificationActive.svg';
 // export { default as NotificationInactive } from './footerIcon/NotificationInactive.svg';
 
