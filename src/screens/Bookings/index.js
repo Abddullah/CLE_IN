@@ -101,7 +101,7 @@ const Bookings = ({ navigation }) => {
             {
                 user.role === 'user' &&
                 <ScrollView
-                    style={{ width: '90%', backgroundColor: 'yellow' }}
+                    style={{ width: '90%', }}
                     contentContainerStyle={styles.scrollBar}
                     showsVerticalScrollIndicator={false}
                 >

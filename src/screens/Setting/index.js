@@ -78,6 +78,7 @@ const Settings = ({ navigation }) => {
                 <CTA_Setting title={t('TermsConditions')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('TermsAndCondition') }} />
                 <CTA_Setting title={t('feedback')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('Feedback') }} />
                 <CTA_Setting title={t('supportandhelp')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('Support') }} />
+                <CTA_Setting title={t('logout')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('Signin') }} />
                 <CTA_Setting title={t('deletemyaccount')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('DeleteAccount') }} />
 
             </ScrollView>

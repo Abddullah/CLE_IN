@@ -25,6 +25,7 @@ const AdFullView = ({ navigation }) => {
 
     let data = route.params.item;
     let isBooking = route.params.isBooking;
+    let isReviewBooking = route.params.isReviewBooking;
     // console.log(data, "data");
 
     return (
@@ -32,7 +33,7 @@ const AdFullView = ({ navigation }) => {
 
             <CustomHeader
                 // title={t('serviceprovider')}
-                title={t('service')}
+                title={isReviewBooking ? t('reviewconfirm') : t('service')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
@@ -71,45 +72,63 @@ const AdFullView = ({ navigation }) => {
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'$' + data.price + '/hr'}</Text>
                 </View>
 
+
+                <View style={[styles.list2, { flexDirection: 'column' }]}>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('availability')}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Monday'}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Tuesday'}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Wednesday'}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
+                </View>
+
                 <View style={styles.list}>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('location')}</Text>
                     <MapSmall width={'100%'} marginTop={10} />
                 </View>
 
+                {
+                    !isReviewBooking &&
+                    <>
+                        <View style={[styles.list2, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('reviews')}</Text>
+                            <TouchableOpacity
+                                activeOpacity={.8}
+                                onPress={() => { navigation.navigate('Reviews') }}
+                            >
+                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{t('seeAll')}</Text>
+                            </TouchableOpacity>
+                        </View>
 
-                <View style={[styles.list2, { marginTop: 20 }]}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('reviews')}</Text>
-                    <TouchableOpacity
-                        activeOpacity={.8}
-                        onPress={() => { navigation.navigate('Reviews') }}
-                    >
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{t('seeAll')}</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={[{ flex: 1, height: 50, }, styles.list2]}>
-                    <View style={styles.reviewContiner}>
-                        <Image
-                            resizeMode="contain"
-                            style={{ borderRadius: 100, width: 48, height: 48 }}
-                            source={Images.profilePic}
-                        />
-                        <View>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'Charollette Hanlin'}</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <FontAwesome name="star" size={20} color={colors.yellow} />
-                                <FontAwesome name="star" size={20} color={colors.yellow} />
-                                <FontAwesome name="star" size={20} color={colors.yellow} />
-                                <FontAwesome name="star" size={20} color={colors.yellow} />
-                                <FontAwesome name="star" size={20} color={colors.yellow} />
+                        <View style={[{ flex: 1, height: 50, }, styles.list2]}>
+                            <View style={styles.reviewContiner}>
+                                <Image
+                                    resizeMode="contain"
+                                    style={{ borderRadius: 100, width: 48, height: 48 }}
+                                    source={Images.profilePic}
+                                />
+                                <View>
+                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'Charollette Hanlin'}</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <FontAwesome name="star" size={20} color={colors.yellow} />
+                                        <FontAwesome name="star" size={20} color={colors.yellow} />
+                                        <FontAwesome name="star" size={20} color={colors.yellow} />
+                                        <FontAwesome name="star" size={20} color={colors.yellow} />
+                                        <FontAwesome name="star" size={20} color={colors.yellow} />
+                                    </View>
+                                </View>
+                                <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{'23 May, 2023 | 02:00 PM'}</Text>
                             </View>
                         </View>
-                        <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{'23 May, 2023 | 02:00 PM'}</Text>
-                    </View>
-                </View>
-                <View style={styles.list2}>
-                    <Text style={[Typography.text_paragraph, { textAlign: 'left', color: colors.Neutral_01 }]}>{'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. '}</Text>
-                </View>
+                        <View style={styles.list2}>
+                            <Text style={[Typography.text_paragraph, { textAlign: 'left', color: colors.Neutral_01 }]}>{'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. '}</Text>
+                        </View>
+
+                    </>
+                }
+
+
             </ScrollView>
 
             <View style={{ width: '90%', marginBottom: 20 }}>
@@ -119,7 +138,7 @@ const AdFullView = ({ navigation }) => {
                 }
 
                 {
-                    (user.role === 'provider' && isBooking === true) &&
+                    (user.role === 'provider' && !isReviewBooking && isBooking === true) &&
                     <>
                         <View>
                             <CTAButton1 title={t('accept')} submitHandler={() => { }} />
@@ -131,7 +150,12 @@ const AdFullView = ({ navigation }) => {
                 }
 
                 {
-                    (user.role === 'provider' && isBooking === false) &&
+                    (user.role === 'provider' && isReviewBooking && !isBooking) &&
+                    <CTAButton1 title={t('post')} submitHandler={() => { navigation.navigate('Home') }} />
+                }
+
+                {
+                    (user.role === 'provider' && !isReviewBooking && isBooking === false) &&
                     <>
                         <View>
                             <CTAButton1 title={t('edit')} submitHandler={() => { }} />

@@ -21,6 +21,8 @@ import {
 import Home from '../screens/Home/index';
 // booking
 import Bookings from '../screens/Bookings/index';
+// create service
+import CreateService from '../screens/ServiceCreate/index';
 // map
 import Map from '../screens/Map/index';
 // notification
@@ -43,6 +45,14 @@ function BookingRoutes({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Booking" component={Bookings} />
+        </Stack.Navigator>
+    )
+}
+
+function CreateServiceRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="ServiceCreate" component={CreateService} />
         </Stack.Navigator>
     )
 }
@@ -120,8 +130,8 @@ export function AppBottomNavigator() {
                             return (<AddActive style={{ top: 5 }} />);
                         },
                     }}
-                    name="ADD"
-                    component={MapRoutes}
+                    name="ServiceCreate"
+                    component={CreateServiceRoutes}
                 />
             }
 
