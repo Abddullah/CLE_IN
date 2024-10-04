@@ -37,6 +37,7 @@ const LightThemeColors = {
     Primary_02: '#2A76D8',
     Primary_03: '#B7D9E4',
     Primary_04: '#E1EBF6',
+    Primary_05: '#BCEEFF',
 
     Error_Red: '#ED625A',
 }
@@ -61,6 +62,7 @@ const DarkThemeColors = {
     Primary_02: '#005A99',
     Primary_03: '#4C7080',
     Primary_04: '#2A3A4A',
+    Primary_05: '#3A3A3A',
 
     Error_Red: '#ED625A',
 }

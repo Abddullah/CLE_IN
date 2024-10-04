@@ -175,6 +175,11 @@ export const languageData = [
             reviewconfirm: 'Review & Confirm',
             post: 'POST',
             logout: 'Logout',
+            myStats: 'My Stats',
+            totalServices: 'Total Services ',
+            rating: 'Rating',
+            totalbookings: 'Total bookings ',
+            totalCancellations: 'Total cancellations',
             news: '',
         }
     },

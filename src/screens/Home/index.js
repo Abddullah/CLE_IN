@@ -148,11 +148,12 @@ const Home = ({ navigation }) => {
                     </View>
                 }
 
-                <View style={{ width: '90%', alignItems: 'flex-start', }}>
+                <View style={{ width: '95%', alignItems: 'flex-start', }}>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 30 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
                     <FlatList
                         data={data}
-                        contentContainerStyle={{ marginTop: 10, width: '100%', }}
+                        style={{ width: '100%', }}
+                        contentContainerStyle={{ justifyContent: 'center' }}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}

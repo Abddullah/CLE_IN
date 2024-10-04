@@ -25,7 +25,7 @@ const Notification = ({ navigation }) => {
                 leftPress={() => { navigation.goBack() }}
             />
             <ScrollView
-                style={{ width: '90%' }}
+                style={{ width: '85%' }}
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >

@@ -60,3 +60,5 @@ export { default as CallIcon } from './callIcon.svg';
 export { default as MsgIcon } from './msgIcon.svg';
 export { default as SendButton } from './sendButton.svg';
 
+export { default as ThisWeekButton } from './thisWeekButton.svg';
+

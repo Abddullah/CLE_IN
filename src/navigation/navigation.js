@@ -15,6 +15,7 @@ import ResetPassword from './../screens/Auth/resetPassword';
 import { AppBottomNavigator } from './BottomNavigation';
 import AdFullView from '../screens/AdFullView/index';
 import CreateBooking from '../screens/BookingCreate/index';
+import CustomerInfo from '../screens/CustomerInfo/index';
 import Reviews from '../screens/Reviews/index';
 import Chat from '../screens/Chat/index';
 import BookingView from '../screens/Bookings/BookingView';
@@ -50,8 +51,8 @@ function App() {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator>
-        {/* <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
-        <Stack.Screen options={{ headerShown: false }} component={GetStarted} name="GetStarted" /> */}
+        <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
+        <Stack.Screen options={{ headerShown: false }} component={GetStarted} name="GetStarted" />
         <Stack.Screen options={{ headerShown: false }} component={Signin} name="Signin" />
         <Stack.Screen options={{ headerShown: false }} component={Signup} name="Signup" />
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />
@@ -60,6 +61,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
         <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
         <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
+        <Stack.Screen options={{ headerShown: false }} name="CustomerInfo" component={CustomerInfo} />
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
         <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />
         <Stack.Screen options={{ headerShown: false }} name="BookingView" component={BookingView} />

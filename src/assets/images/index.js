@@ -21,4 +21,6 @@ export default Images = {
   CatOffice: require('./categories/Offices.png'),
   CatFactory: require('./categories/Factory.png'),
 
+  AnalyticsChart: require('./analyticsChart.png'),
+
 };

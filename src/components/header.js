@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { colors } from '../utilities/constants';
 import { BackIcon, CallIcon } from '../assets/icons';
+import Feather from 'react-native-vector-icons/Feather';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
 
@@ -13,6 +14,7 @@ const CustomHeader = ({
     rightPress = () => { },
     isLeft,
     isRight = false,
+    isNotification = false,
 }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
@@ -29,8 +31,12 @@ const CustomHeader = ({
             <TouchableOpacity style={{ flex: 2, alignItems: 'flex-end', }} activeOpacity={0.8} onPress={isRight ? rightPress : null}>
 
                 {
-                    isRight && <CallIcon style={{ fontSize: 30, color: 'white', marginRight: 15 }} />
+                    isRight && !isNotification && <CallIcon style={{ fontSize: 30, color: 'white', marginRight: 15 }} />
                 }
+                {
+                    isRight && isNotification && <Feather name="bell" style={{ fontSize: 22, color: 'white', marginRight: 15 }} />
+                }
+
             </TouchableOpacity>
         </View>
     );

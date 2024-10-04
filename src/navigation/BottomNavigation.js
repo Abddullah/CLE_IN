@@ -25,6 +25,8 @@ import Bookings from '../screens/Bookings/index';
 import CreateService from '../screens/ServiceCreate/index';
 // map
 import Map from '../screens/Map/index';
+// analytics
+import Analytics from '../screens/Analytics/index';
 // notification
 import Notification from './../screens/Notification/index';
 // profile
@@ -61,6 +63,15 @@ function MapRoutes({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
+        </Stack.Navigator>
+    )
+}
+
+function AnalyticsRoutes({ navigation }) {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen options={{ headerShown: false }} name="Analytics" component={Analytics} />
+            <Stack.Screen options={{ headerShown: false }} name="Notification" component={Notification} />
         </Stack.Navigator>
     )
 }
@@ -157,8 +168,8 @@ export function AppBottomNavigator() {
                         tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('analytics')}</Text>) },
                         tabBarIcon: ({ focused }) => { return (focused ? <AnalyticsActive /> : theme === 'dark' ? <AnalyticsInActiveWhite /> : <AnalyticsInActive />) },
                     }}
-                    name="Map"
-                    component={MapRoutes}
+                    name="Analytics"
+                    component={AnalyticsRoutes}
                 />
             }
             {
