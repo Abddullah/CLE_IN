@@ -157,7 +157,7 @@ const Home = ({ navigation }) => {
                         contentContainerStyle={{ marginTop: 10, width: '100%', }}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}
-                        renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item }) }} />}
+                        renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
                     />
                 </View>
 

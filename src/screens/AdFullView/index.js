@@ -119,7 +119,7 @@ const AdFullView = ({ navigation }) => {
                 }
 
                 {
-                    (user.role === 'provider' && isBooking) &&
+                    (user.role === 'provider' && isBooking === true) &&
                     <>
                         <View>
                             <CTAButton1 title={t('accept')} submitHandler={() => { }} />
@@ -131,7 +131,7 @@ const AdFullView = ({ navigation }) => {
                 }
 
                 {
-                    (user.role === 'provider') &&
+                    (user.role === 'provider' && isBooking === false) &&
                     <>
                         <View>
                             <CTAButton1 title={t('edit')} submitHandler={() => { }} />

@@ -28,7 +28,7 @@ const BookingCardProvider = ({
         <TouchableOpacity
             activeOpacity={.8}
             style={styles.container}
-            onPress={() => { navigation.navigate('BookingView') }}
+            onPress={() => { submitHandler() }}
         >
             <View style={styles.container_C1}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', }}>
@@ -117,10 +117,10 @@ export default BookingCardProvider;
 const createStyles = (colors, theme) => {
     return StyleSheet.create({
         container: {
-            width: '98%',
+            width: '100%',
             height: 350,
             borderRadius: 15,
-            marginTop: 7,
+            marginTop: 10,
             overflow: 'hidden',
             justifyContent: 'flex-start',
             alignItems: 'center',
