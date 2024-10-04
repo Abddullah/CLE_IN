@@ -50,8 +50,8 @@ function App() {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
-        <Stack.Screen options={{ headerShown: false }} component={GetStarted} name="GetStarted" />
+        {/* <Stack.Screen options={{ headerShown: false }} component={Splash} name="Splash" />
+        <Stack.Screen options={{ headerShown: false }} component={GetStarted} name="GetStarted" /> */}
         <Stack.Screen options={{ headerShown: false }} component={Signin} name="Signin" />
         <Stack.Screen options={{ headerShown: false }} component={Signup} name="Signup" />
         <Stack.Screen options={{ headerShown: false }} component={OtpVerify} name="OtpVerify" />

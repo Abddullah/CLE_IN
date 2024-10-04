@@ -164,6 +164,7 @@ export const languageData = [
             edit: 'EDIT',
             accept: 'ACCEPT',
             cancel: 'CANCEL',
+            customerInfo: 'Customer Info',
             news: '',
         }
     },

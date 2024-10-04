@@ -7,6 +7,7 @@ export default Images = {
   popupBg: require('./popupBg.png'),
   popupBgDM: require('./popupBgDM.png'),
   profilePic: require('./profilePic.png'),
+  profilePic1: require('./profilePic1.png'),
   map: require('./map.png'),
   mapWhite: require('./mapWhite.png'),
   cleaning: require('./cleaning.jpg'),

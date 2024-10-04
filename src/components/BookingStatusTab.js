@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, } from 'react-native';
-import { colors } from '../utilities/constants';
 import { Typography } from '../utilities/constants/constant.style';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';

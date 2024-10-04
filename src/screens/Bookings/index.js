@@ -7,13 +7,15 @@ import BookingStatusTab from '../../components/BookingStatusTab';
 import BookingCard from '../../components/BookingCard';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import BookingCardProvider from '../../components/BookingCardProvider';
 
 const Bookings = ({ navigation }) => {
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
-
+    let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+
     const [selectedTab, setselectedTab] = useState('');
 
     return (
@@ -26,7 +28,7 @@ const Bookings = ({ navigation }) => {
             <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                style={{ flexDirection: 'row', marginTop: 10, height: 48 }}
+                style={{ flexDirection: 'row', marginTop: 10, height: 48, }}
             >
                 <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('pending')} />
                 <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('upcoming')} />
@@ -35,13 +37,26 @@ const Bookings = ({ navigation }) => {
             </ScrollView>
 
             <ScrollView
-                style={{ width: '90%', marginTop: 10 }}
+                style={{ width: '90%', }}
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-                <BookingCard />
-                <BookingCard />
-                <BookingCard />
+                {
+                    user.role === 'user' &&
+                    <>
+                        <BookingCard />
+                        <BookingCard />
+                        <BookingCard />
+                    </>
+                }
+                {
+                    user.role === 'provider' &&
+                    <>
+                        <BookingCardProvider />
+                    </>
+                }
+
+
             </ScrollView>
         </View>
     );
@@ -52,13 +67,11 @@ export default Bookings;
 const createStyles = (colors, theme) => {
     return StyleSheet.create({
         container: {
-            flex: 1,
-            width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
         },
         scrollBar: {
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center',
             paddingBottom: 50
         },
