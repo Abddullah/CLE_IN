@@ -59,7 +59,7 @@ const createStyles = (colors, theme) => {
             alignItems: 'center',
             borderWidth: 0.3,
             borderColor: 'gray',
-            margin: 10,
+            margin: 5,
         },
         textContainer: {
             height: 70,

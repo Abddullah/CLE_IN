@@ -16,8 +16,9 @@ const Home = ({ navigation }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
-
+    let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+
     const [search, setsearch] = useState('');
 
     const [categories, setcategories] = useState([
@@ -126,32 +127,40 @@ const Home = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.catContainer}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
-                    <ScrollView
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        style={{ flexDirection: 'row', marginTop: 10 }}
-                    >
-                        <FlatList
-                            data={categories}
-                            contentContainerStyle={{ marginTop: 10, }}
+
+                {
+                    user.role === 'user' &&
+                    <View style={styles.catContainer}>
+                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
+                        <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
-                            showsVerticalScrollIndicator={false}
-                            renderItem={({ item }) => <Categories icon={item.image} title={item.title} />}
-                        />
-                    </ScrollView>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 30 }]}>{t('specialservices')}</Text>
+                            style={{ flexDirection: 'row', marginTop: 10 }}
+                        >
+                            <FlatList
+                                data={categories}
+                                contentContainerStyle={{ marginTop: 10, }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) => <Categories icon={item.image} title={item.title} />}
+                            />
+                        </ScrollView>
+
+                    </View>
+                }
+
+                <View style={{ width: '90%', alignItems: 'flex-start', }}>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 30 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
+                    <FlatList
+                        data={data}
+                        contentContainerStyle={{ marginTop: 10, width: '100%', }}
+                        numColumns={2}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item }) }} />}
+                    />
                 </View>
 
-                <FlatList
-                    data={data}
-                    contentContainerStyle={{ marginTop: 10, width: '100%', }}
-                    numColumns={2}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item }) }} />}
-                />
             </ScrollView>
         </View>
     );

@@ -109,6 +109,7 @@ export const languageData = [
             enterpassword: 'Enter password',
             delete: 'DELETE',
             specialservices: 'Special Services',
+            featureforyou: 'Featured For You',
             cleaningathome: 'Cleaning at Home',
             cleaningatcompany: 'Cleaning at Company',
             cleaningathospital: 'Cleaning at Hospital',
