@@ -21,7 +21,7 @@ const Notification = ({ navigation }) => {
         <View style={styles.container}>
             <CustomHeader
                 title={t('notification')}
-                isLeft={false}
+                isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
             <ScrollView

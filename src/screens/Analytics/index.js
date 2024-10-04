@@ -6,6 +6,7 @@ import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images/index'
 import { ThisWeekButton } from '../../assets/icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import { ScrollView } from 'native-base';
@@ -26,6 +27,7 @@ const Analytics = ({ navigation }) => {
                 isRight={true}
                 isNotification={true}
                 leftPress={() => { navigation.goBack() }}
+                rightPress={() => { navigation.navigate('Notification') }}
             />
 
             <ScrollView contentContainerStyle={styles.scrollBar} style={{ width: '100%', }}>
@@ -41,11 +43,14 @@ const Analytics = ({ navigation }) => {
 
                     <View style={{ flexDirection: 'row', marginTop: 10, flexWrap: 'wrap' }}>
                         <View style={styles.statsContiner}>
-                            <Text style={[Typography.text_CTA1, { color: colors.black, fontSize: 24 }]}>{'25'}</Text>
+                            <Text style={[Typography.text_CTA1, { color: colors.black, fontSize: 24, }]}>{'25'}</Text>
                             <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('totalServices')}</Text>
                         </View>
                         <View style={styles.statsContiner}>
-                            <Text style={[Typography.text_CTA1, { color: colors.black, fontSize: 24 }]}>{'4.4'}</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                <FontAwesome name="star" size={20} color={colors.yellow} />
+                                <Text style={[Typography.text_CTA1, { color: colors.black, fontSize: 24, marginLeft: 5 }]}>{'4.4'}</Text>
+                            </View>
                             <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('rating')}</Text>
                         </View>
                         <View style={styles.statsContiner}>

@@ -18,7 +18,11 @@ const Profile = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <CustomHeader title={t('Profile')} />
+            <CustomHeader
+                title={t('Profile')}
+                isLeft={true}
+                leftPress={() => { navigation.goBack() }}
+            />
             <ScrollView
                 style={{ width: '90%' }}
                 contentContainerStyle={styles.scrollBar}
