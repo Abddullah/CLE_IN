@@ -161,6 +161,9 @@ export const languageData = [
             dob: 'Date of Birth',
             myads: 'My ads',
             analytics: 'Analytics',
+            edit: 'EDIT',
+            accept: 'ACCEPT',
+            cancel: 'CANCEL',
             news: '',
         }
     },

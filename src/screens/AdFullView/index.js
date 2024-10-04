@@ -13,22 +13,26 @@ import Images from '../../assets/images/index'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import CTAButton2 from '../../components/CTA_BUTTON2';
 
 const AdFullView = ({ navigation }) => {
     const route = useRoute();
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
-
+    let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+
     let data = route.params.item;
+    let isBooking = route.params.isBooking;
     // console.log(data, "data");
 
     return (
         <View style={styles.container}>
-       
+
             <CustomHeader
-                title={t('serviceprovider')}
+                // title={t('serviceprovider')}
+                title={t('service')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
@@ -109,7 +113,35 @@ const AdFullView = ({ navigation }) => {
             </ScrollView>
 
             <View style={{ width: '90%', marginBottom: 20 }}>
-                <CTAButton1 title={t('book')} submitHandler={() => { navigation.navigate('CreateBooking') }} />
+                {
+                    user.role === 'user' &&
+                    <CTAButton1 title={t('book')} submitHandler={() => { navigation.navigate('CreateBooking') }} />
+                }
+
+                {
+                    (user.role === 'provider' && isBooking) &&
+                    <>
+                        <View>
+                            <CTAButton1 title={t('accept')} submitHandler={() => { }} />
+                        </View>
+                        <View style={{ marginTop: 10 }}>
+                            <CTAButton2 title={t('cancel')} submitHandler={() => { }} />
+                        </View>
+                    </>
+                }
+
+                {
+                    (user.role === 'provider') &&
+                    <>
+                        <View>
+                            <CTAButton1 title={t('edit')} submitHandler={() => { }} />
+                        </View>
+                        <View style={{ marginTop: 10 }}>
+                            <CTAButton2 title={t('delete')} submitHandler={() => { }} />
+                        </View>
+                    </>
+                }
+
             </View>
 
         </View>
