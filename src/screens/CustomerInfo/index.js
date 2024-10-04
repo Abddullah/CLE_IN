@@ -8,7 +8,7 @@ import CTAButton1 from '../../components/CTA_BUTTON1';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 
-const BookingView = ({ navigation }) => {
+const CustomerInfo = ({ navigation }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
@@ -19,7 +19,7 @@ const BookingView = ({ navigation }) => {
         <View style={styles.container}>
 
             <CustomHeader
-                title={t('booking')}
+                title={t('customerInfo')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
@@ -30,42 +30,41 @@ const BookingView = ({ navigation }) => {
             <ScrollView contentContainerStyle={styles.scrollBar} style={{ width: '100%', }}>
                 <View style={{ width: '90%', }}>
 
+
+
                     <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('status')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText, { color: 'green' }]}>{'Completed'}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('fullname')}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Kam David'}</Text>
                     </View>
 
                     <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('price')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'$30/hr'}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('phoneNo')}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText,]}>{'0987654321'}</Text>
                     </View>
 
                     <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectDate')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText,]}>{'8 Jan, 2024'}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('emailAddress')}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'kamdavid@gmail.com'}</Text>
                     </View>
 
                     <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectTime')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'10:00 AM - 12:00 AM'}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('dob')}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'11/07/2024'}</Text>
+                    </View>
+                    
+                    <View style={[styles.heading, { marginTop: 20 }]}>
+                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('gender')}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Male'}</Text>
                     </View>
 
                     <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('location')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Jameria Residence'}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('address')}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'3 W. Peachtree St.Schererville, IN 46375'}</Text>
                     </View>
 
-                    <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('service')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Cleaning at Home'}</Text>
-                    </View>
 
-                    <View style={[styles.heading, { marginTop: 20 }]}>
-                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('description')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.'}</Text>
-                    </View>
 
-                    <View style={styles.taxContainer}>
+                    {/* <View style={styles.taxContainer}>
                         <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('pay') + ':'}</Text>
                         <View style={styles.taxContainer_C1}>
                             <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('amount')}</Text>
@@ -79,24 +78,25 @@ const BookingView = ({ navigation }) => {
                             <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('total')}</Text>
                             <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$500'}</Text>
                         </View>
-                    </View>
+                    </View> */}
+
                 </View>
             </ScrollView>
 
-            <View style={styles.footer}>
+            {/* <View style={styles.footer}>
                 <View style={{ width: '90%', }}>
                     <CTAButton1 title={t('addreview')} submitHandler={() => { navigation.navigate('AddReview') }} />
                 </View>
                 <View style={{ width: '90%', marginTop: 10 }}>
                     <CTAButton1 title={t('cancel')} submitHandler={() => { navigation.navigate('CancelBooking') }} />
                 </View>
-            </View>
+            </View> */}
         </View>
     );
 };
 
 
-export default BookingView;
+export default CustomerInfo;
 
 const createStyles = (colors, theme) => {
     return StyleSheet.create({

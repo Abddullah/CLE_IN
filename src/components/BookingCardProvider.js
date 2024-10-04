@@ -10,7 +10,6 @@ import { useTheme } from '../../ThemeContext';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { Center } from 'native-base';
 import CTAButton1 from './CTA_BUTTON1';
 import { t } from 'i18next';
 import CTAButton2 from './CTA_BUTTON2';
@@ -84,13 +83,14 @@ const BookingCardProvider = ({
                     </View>
 
                     <View style={[styles.centerStyle, { marginTop: 10, }]}>
-                        <FontAwesome5 name="map-marker-alt" style={{ fontSize: 20, color: colors.White_Primary_01, marginLeft: 10 }} />
+                        <FontAwesome5 name="map-marker-alt" style={{ fontSize: 20, color: colors.Error_Red, marginLeft: 10 }} />
                         <Text style={[Typography.text_CTA1, styles.dateTime]}>{'3 W. Peachtree St.Schererville, IN 46375'}</Text>
                     </View>
 
                     <TouchableOpacity
                         activeOpacity={.8}
                         style={[styles.centerStyle, { marginTop: 10 }]}
+                        onPress={() => { navigation.navigate('CustomerInfo') }}
                     >
                         <FontAwesome5 name="info-circle" style={{ fontSize: 18, color: colors.White_Primary_01, marginLeft: 10 }} />
                         <Text style={[Typography.text_CTA1, styles.dateTime]}>{t('customerInfo')}</Text>

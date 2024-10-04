@@ -127,7 +127,6 @@ const Home = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-
                 {
                     user.role === 'user' &&
                     <View style={styles.catContainer}>
@@ -146,7 +145,6 @@ const Home = ({ navigation }) => {
                                 renderItem={({ item }) => <Categories icon={item.image} title={item.title} />}
                             />
                         </ScrollView>
-
                     </View>
                 }
 
