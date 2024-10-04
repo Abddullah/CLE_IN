@@ -51,7 +51,7 @@ const CustomerInfo = ({ navigation }) => {
                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('dob')}</Text>
                         <Text style={[Typography.text_paragraph_1, styles.editText]}>{'11/07/2024'}</Text>
                     </View>
-                    
+
                     <View style={[styles.heading, { marginTop: 20 }]}>
                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('gender')}</Text>
                         <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Male'}</Text>
@@ -61,8 +61,6 @@ const CustomerInfo = ({ navigation }) => {
                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('address')}</Text>
                         <Text style={[Typography.text_paragraph_1, styles.editText]}>{'3 W. Peachtree St.Schererville, IN 46375'}</Text>
                     </View>
-
-
 
                     {/* <View style={styles.taxContainer}>
                         <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('pay') + ':'}</Text>
