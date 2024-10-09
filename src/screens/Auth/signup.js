@@ -42,7 +42,7 @@ export default function Signup({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-            
+
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Signin')}
@@ -172,15 +172,15 @@ export default function Signup({ navigation }) {
                                 value={isSelectedTerm}
                                 onValueChange={setisSelectedTerm}
                             />
-                            <View style={[styles.checkboxContainer, {}]}>
+                            <View style={[styles.checkboxContainer, { flexWrap: 'wrap' }]}>
                                 {/* <Text style={styles.label}>{t('')}</Text> */}
                                 <Text style={styles.label}>{t('iagreeto')}</Text>
                                 <TouchableOpacity
                                 // onPress={() => navigation.navigate('TermsAndCondition')}
                                 >
-                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>{t('TermsConditions')}</Text>
+                                    <Text style={[styles.label, { textDecorationLine: 'underline' }]}>{t('TermsConditions') + ' '}</Text>
                                 </TouchableOpacity>
-                                <Text style={styles.label}>{t('and1')} </Text>
+                                <Text style={styles.label}>{t('and1') } </Text>
                                 <TouchableOpacity
                                 // onPress={() => navigation.navigate('PrivacyPolicy')}
                                 >
@@ -199,15 +199,15 @@ export default function Signup({ navigation }) {
                             onPress={() => navigation.navigate('Signin')}
                         >
                             <Text style={[styles.socialTextC1, {}]}>{t('alreadyhaveanaccount')} </Text>
-                            <Text style={[styles.socialTextC1, { color: theme === 'dark' ? colors.black: colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
-                    </TouchableOpacity>
-                    <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                        <GoogleIcon />
-                        <AppleIcon marginLeft={10} />
+                            <Text style={[styles.socialTextC1, { color: theme === 'dark' ? colors.black : colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
+                        </TouchableOpacity>
+                        <Text style={[styles.socialTextC1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                            <GoogleIcon />
+                            <AppleIcon marginLeft={10} />
+                        </View>
                     </View>
-            </View>
-        </ScrollView>
+                </ScrollView>
             </View >
         </View >
     );

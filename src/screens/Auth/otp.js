@@ -30,7 +30,7 @@ export default function OtpVerify({ navigation }) {
     const submit = () => {
         setModalVisible(true)
         let credentials = {
-            token: code,
+            token: value,
         }
         // dispatch(signIn(credentials, isSelectedRemember, navigation))
         // dispatch(showError())
@@ -147,6 +147,7 @@ const createStyles = (colors, theme) => {
         inputContiner: {
             justifyContent: 'center',
             alignItems: 'center',
+            // backgroundColor: 'red'
         },
         input: {
             height: 50, width: "90%", color: colors.black,
@@ -191,7 +192,7 @@ const createStyles = (colors, theme) => {
         title: { textAlign: 'center', fontSize: 30 },
         codeFieldRoot: { marginTop: 0 },
         cell: {
-            margin: 10,
+            margin: '1.5%',
             width: 40,
             height: 40,
             lineHeight: 38,

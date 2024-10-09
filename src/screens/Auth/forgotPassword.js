@@ -32,7 +32,7 @@ export default function ForgotPassword({ navigation }) {
 
     return (
         <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
-           
+
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
@@ -49,7 +49,7 @@ export default function ForgotPassword({ navigation }) {
             <View style={{ flex: 8, }}>
                 <ScrollView contentContainerStyle={styles.containerC1}>
                     <Text style={[Typography.text_subHeading, { marginTop: 10, color: theme === 'dark' ? colors.black : colors.Primary_01, }]}>{t('resetyourpassword')}</Text>
-                    <Text style={[styles.socialTextC1, {}]}>{t('enteryouremail')} </Text>
+                    <Text style={[styles.socialTextC1, { width: '100%', justifyContent: 'center', alignItems: 'center' }]}>{t('enteryouremail')} </Text>
                     <View style={styles.containerc1_c2}>
                         <View>
                             <View style={{ flexDirection: 'row' }}>
@@ -125,6 +125,7 @@ const createStyles = (colors) => {
             alignItems: 'center',
         },
         containerc1_c2: {
+            marginTop: 10,
             width: '100%',
         },
         containerc1_c3: {
@@ -155,8 +156,7 @@ const createStyles = (colors) => {
             flexDirection: 'row',
         },
         socialTextC1: {
-            fontSize: 16,
-            lineHeight: 38,
+            fontSize: 14,
             letterSpacing: -0.3,
             color: colors.Neutral_01,
             fontWeight: 'normal',

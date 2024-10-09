@@ -37,8 +37,10 @@ const createStyles = (colors, theme) => {
     return StyleSheet.create({
         catBox: {
             width: 98,
+            marginHorizontal: 10,
             justifyContent: 'center',
             alignItems: 'center',
+            // backgroundColor: 'red'
         }
     });
 };

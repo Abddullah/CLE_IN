@@ -8,6 +8,8 @@ import images from '../assets/images';
 import { useNavigation } from '@react-navigation/native';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
+import screenResolution from '../utilities/constants/screenResolution';
+const deviceWidth = screenResolution.screenWidth;
 
 const BookingCard = ({
     data,
@@ -34,7 +36,7 @@ const BookingCard = ({
                 <View style={styles.container_C2_C1}>
                     <Image
                         resizeMode="cover"
-                        style={{ width: 88, height: 88, borderRadius: 10 }}
+                        style={{ width: deviceWidth < 360 ? 60 : 88, height: deviceWidth < 360 ? 60 : 88, borderRadius: 10 }}
                         source={images.cleaning}
                     />
                 </View>

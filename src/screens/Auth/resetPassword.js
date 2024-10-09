@@ -51,7 +51,7 @@ export default function ResetPassword({ navigation }) {
             <View style={{ flex: 8, }}>
                 <ScrollView contentContainerStyle={styles.containerC1}>
                     <Text style={[Typography.text_subHeading, { marginTop: 10, color: theme === 'dark' ? colors.black : colors.Primary_01, }]}>{t('changePassword')}</Text>
-                    <Text style={[styles.socialTextC1, {}]}>{t('enteryournewpassword')} </Text>
+                    <Text style={[styles.socialTextC1, { width: '100%', justifyContent: 'center', alignItems: 'center' }]}>{t('enteryournewpassword')} </Text>
                     <View style={styles.containerc1_c2}>
 
                         <View>

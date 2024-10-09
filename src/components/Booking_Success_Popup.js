@@ -24,8 +24,8 @@ const SuccessModalBooking = ({ modalVisible, setModalVisible, isCancel }) => {
             >
                 <View style={styles.modalView}>
                     <ImageBackground
-                        style={{ height: 300, width: 350, justifyContent: 'center', alignItems: 'center' }}
-                        resizeMode="contain"
+                        style={{ height: 250, width: 300, justifyContent: 'center', alignItems: 'center' }}
+                        resizeMode="cover"
                         source={theme === 'dark' ? Images.popupBgBookingDM : Images.popupBgBooking}
                     >
                         {
@@ -51,6 +51,7 @@ const createStyles = (colors, theme) => {
             backgroundColor: 'rgba(0,0,0,0.5)',
         },
         modalView: {
+            overflow:'hidden',
             borderRadius: 35,
             backgroundColor: 'white',
             alignItems: 'center',

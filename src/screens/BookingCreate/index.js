@@ -12,11 +12,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import moment from 'moment';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import screenResolution from '../../utilities/constants/screenResolution';
+const deviceWidth = screenResolution.screenWidth;
 
 const CreateBooking = ({ navigation }) => {
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
-    const styles = createStyles(colors, theme);
+    const styles = createStyles(colors, theme, deviceWidth);
 
     let isError = useSelector((state) => state.reducer.isError);
     const [selectedHour, setselectedHour] = useState('');
@@ -161,7 +163,7 @@ const CreateBooking = ({ navigation }) => {
                 </View>
             }
 
-            {
+            {/* {
                 step === 2 &&
                 <View style={styles.body}>
                     <View style={{ width: '90%', }}>
@@ -226,6 +228,86 @@ const CreateBooking = ({ navigation }) => {
                                     <Text style={[styles.listText, { color: colors.black }]}>{timeSlots[0].endTime}</Text>
                                 </TouchableOpacity>
                             }
+                        />
+                    </View>
+                </View>
+            } */}
+
+
+            {
+                step === 2 &&
+                <View style={styles.body}>
+                    <View style={{ width: '90%' }}>
+                        {/* Heading */}
+                        <View style={styles.heading}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('whenwouldyoulike')}</Text>
+                        </View>
+
+                        {/* Date Section */}
+                        <View style={{ width: '100%', marginTop: 10 }}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={[styles.fieldHeading, { color: colors.Neutral_01 }]}>{t('selectDate')}</Text>
+                                {isError && <Text style={{ top: 3, color: "red", top: -1 }}>*</Text>}
+                            </View>
+
+                            <View style={styles.list}>
+                                <View style={styles.dob}>
+                                    {/* Date Picker */}
+                                    <TouchableOpacity onPress={() => { setopenBs(true) }}  >
+                                        {!showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.Neutral_01 }]}>{t('selectDate')}</Text>}
+                                        {showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.black }]}>{moment(date).format('DD MM YYYY')}</Text>}
+                                    </TouchableOpacity>
+
+                                    <DatePicker
+                                        minimumDate={new Date()}
+                                        mode='date'
+                                        modal
+                                        open={openBs}
+                                        date={date}
+                                        onConfirm={(date) => {
+                                            setopenBs(false);
+                                            setDate(date);
+                                            setshowBs(true);
+                                        }}
+                                        onCancel={() => {
+                                            setopenBs(false);
+                                            setshowBs(false);
+                                        }}
+                                    />
+
+                                    {/* Date Icon */}
+                                    <TouchableOpacity onPress={() => { setopenBs(true) }}>
+                                        <Fontisto name="date" style={styles.listIcon} />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+
+                        {/* Time Section */}
+                        <View style={styles.heading}>
+                            <Text style={[styles.listText, { color: colors.Neutral_01 }]}>{t('selectTime')}</Text>
+                        </View>
+
+                        {/* Time Slots */}
+                        <FlatList
+                            data={timeSlots}
+                            contentContainerStyle={[styles.timeFlatList, { paddingBottom: 200 }]}
+                            numColumns={deviceWidth < 360 ? 2 : 3}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({ item, index }) => (
+                                <TouchableOpacity
+                                    activeOpacity={.8}
+                                    style={[
+                                        styles.timeContainer,
+                                        { borderColor: item.isSelected ? colors.White_Primary_01 : colors.Neutral_02 },
+                                    ]}
+                                    onPress={() => timeSlotHandler(index)}
+                                >
+                                    <Text style={[styles.listText, { color: colors.black }]}>{item.startTime}</Text>
+                                    <Text style={[styles.listText, { color: colors.black }]}>{t('to')}</Text>
+                                    <Text style={[styles.listText, { color: colors.black }]}>{item.endTime}</Text>
+                                </TouchableOpacity>
+                            )}
                         />
                     </View>
                 </View>
@@ -329,7 +411,7 @@ const CreateBooking = ({ navigation }) => {
 };
 
 export default CreateBooking;
-const createStyles = (colors, theme) => {
+const createStyles = (colors, theme, deviceWidth) => {
     return StyleSheet.create({
         container: {
             flex: 1,
@@ -416,6 +498,8 @@ const createStyles = (colors, theme) => {
             marginTop: 10,
             width: '90%',
             marginHorizontal: '5%',
+            // justifyContent:'center',
+            alignItems: deviceWidth < 360 ? 'center' : 'flex-start',
         },
         inputContiner: {
             alignItems: 'center',

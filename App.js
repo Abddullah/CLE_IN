@@ -30,7 +30,7 @@ function App() {
       <NativeBaseProvider>
         <ThemeProvider>
           <Provider store={store}>
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#000000', }}>
               <AppNavigator />
               <Toast />
             </SafeAreaView>

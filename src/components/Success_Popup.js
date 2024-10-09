@@ -21,8 +21,8 @@ const SuccessModal = ({ modalVisible, setModalVisible, }) => {
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <ImageBackground
-                        style={{ height: 193, width: 318, justifyContent: 'center', alignItems: 'center' }}
-                        resizeMode="contain"
+                        style={{ height: 193, width: 300, justifyContent: 'center', alignItems: 'center' }}
+                        resizeMode="cover"
                         source={theme === 'dark' ? Images.popupBgDM : Images.popupBg}
                     >
                         <Text style={[Typography.text_subHeading, { marginTop: 60 }]}>{t('success')}</Text>
@@ -47,6 +47,7 @@ const createStyles = (colors, theme) => {
             backgroundColor: 'rgba(0,0,0,0.5)',
         },
         modalView: {
+            overflow:'hidden',
             borderRadius: 10,
             backgroundColor: 'white',
             alignItems: 'center',

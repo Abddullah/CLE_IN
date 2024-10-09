@@ -31,11 +31,11 @@ export default function GetStarted({ navigation }) {
         (page === 0) ? (
           <View style={styles.container}>
             <View style={{ flex: 8.5, paddingTop: 20, alignItems: 'center', }}>
-              <GetstartedIcon1 height={280} width={280} />
+              <GetstartedIcon1 height={250} width={250} marginTop={'10%'} />
               <View style={styles.text_container}>
                 <Text style={[Typography.text_heading, { color: colors.black, }]}>{t('ourservices')}</Text>
                 <Text style={[Typography.text_heading, { color: colors.black, }]}>{t('awayfromhome')}</Text>
-                <View style={{ marginTop: 40 }}>
+                <View style={{ marginTop: '5%' }}>
                   <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{t('becleanisaplatform')}</Text>
                 </View>
               </View>
@@ -104,7 +104,7 @@ const createStyles = (colors) => {
       backgroundColor: colors.white
     },
     text_container: {
-      marginTop: 50,
+      marginTop: '5%',
       justifyContent: 'center',
       alignItems: 'center'
     },

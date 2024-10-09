@@ -16,11 +16,14 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import WeekTimeSelector from '../../components/WeekTimeSelector';
 import Images from '../../assets/images/index'
+import screenResolution from '../../utilities/constants/screenResolution';
+
+const deviceWidth = screenResolution.screenWidth;
 
 const CreateService = ({ navigation, route }) => {
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
-    const styles = createStyles(colors, theme);
+    const styles = createStyles(colors, theme, deviceWidth);
 
     let isError = useSelector((state) => state.reducer.isError);
     const [step, setstep] = useState(0);
@@ -237,20 +240,19 @@ const CreateService = ({ navigation, route }) => {
 
             {
                 step === 0 &&
-                <View style={styles.body}>
+                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', paddingBottom: 50 }} style={{ width: '100%', }}>
                     <View style={{ width: '90%' }}>
                         <View style={styles.heading}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectCategory')}</Text>
                         </View>
                         <RadioButtonCat options={options} onSelect={handleSelect} />
                     </View>
-                </View>
+                </ScrollView>
             }
 
             {
                 step === 1 &&
                 <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', paddingBottom: 50 }} style={{ width: '100%', }}>
-
                     <View style={{ width: '90%' }}>
                         <View style={styles.heading}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('adfixedrate')}</Text>
@@ -367,7 +369,7 @@ const CreateService = ({ navigation, route }) => {
 
 export default CreateService;
 
-const createStyles = (colors, theme) => {
+const createStyles = (colors, theme, deviceWidth) => {
     return StyleSheet.create({
         container: {
             flex: 1,
@@ -386,7 +388,8 @@ const createStyles = (colors, theme) => {
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 20
+            paddingBottom: 20,
+            backgroundColor: colors.white
         },
         heading: {
             width: '100%',
@@ -503,7 +506,7 @@ const createStyles = (colors, theme) => {
         },
         imageContainer: {
             flex: 1,
-            height: 120,
+            height: deviceWidth < 360 ? 100 : 120,
             borderRadius: 8,
             overflow: 'hidden',
             backgroundColor: colors.Neutral_02,

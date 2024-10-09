@@ -11,6 +11,9 @@ import Images from '../../assets/images/index'
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import Categories from '../../components/Categories';
+import screenResolution from '../../utilities/constants/screenResolution';
+
+const deviceWidth = screenResolution.screenWidth;
 
 const Home = ({ navigation }) => {
     const { theme } = useTheme();
@@ -18,6 +21,7 @@ const Home = ({ navigation }) => {
     const styles = createStyles(colors, theme);
     let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+    const numColumns = deviceWidth < 360 ? 1 : 2;
 
     const [search, setsearch] = useState('');
 
@@ -138,7 +142,7 @@ const Home = ({ navigation }) => {
                         >
                             <FlatList
                                 data={categories}
-                                contentContainerStyle={{ marginTop: 10, }}
+                                contentContainerStyle={{}}
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
@@ -149,12 +153,12 @@ const Home = ({ navigation }) => {
                 }
 
                 <View style={{ width: '95%', alignItems: 'flex-start', }}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 30 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
                     <FlatList
                         data={data}
-                        style={{ width: '100%', }}
-                        contentContainerStyle={{ justifyContent: 'center' }}
-                        numColumns={2}
+                        style={{ width: '100%', marginTop: 10 }}
+                        contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns == 1 ? 'center' : 'flex-start', }}
+                        numColumns={numColumns}
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
                     />

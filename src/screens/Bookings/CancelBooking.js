@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
@@ -39,7 +39,7 @@ const CancelBooking = ({ navigation }) => {
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
-            <View style={styles.body}>
+            <ScrollView contentContainerStyle={styles.scrollBar} style={{ width: '100%', }}>
 
 
                 <View style={{ width: '90%', marginTop: 20 }}>
@@ -65,13 +65,14 @@ const CancelBooking = ({ navigation }) => {
                         </>
                     }
                 </View>
-            </View>
+            </ScrollView >
             <View style={styles.footer}>
                 <View style={{ width: '90%', }}>
                     <CTAButton1 title={t('cancelbooking')} submitHandler={() => { setModalVisible(true); }} />
                 </View>
+
             </View>
-        </View>
+        </View >
     );
 };
 
@@ -91,6 +92,11 @@ const createStyles = (colors, theme) => {
             width: '100%',
             justifyContent: 'flex-start',
             alignItems: 'center',
+        },
+        scrollBar: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 50
         },
         footer: {
             // flex: 2,

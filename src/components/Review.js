@@ -7,6 +7,9 @@ import { t } from 'i18next';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
+import screenResolution from '../utilities/constants/screenResolution';
+
+const deviceWidth = screenResolution.screenWidth;
 
 const ReviewsList = ({ selectedState, setselectedState, title }) => {
     const { theme } = useTheme();
@@ -32,7 +35,15 @@ const ReviewsList = ({ selectedState, setselectedState, title }) => {
                             <FontAwesome name="star" size={20} color={colors.yellow} />
                         </View>
                     </View>
-                    <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{'23 May, 2023 | 02:00 PM'}</Text>
+
+                    {
+                        deviceWidth < 360 ?
+                            <View>
+                                <Text style={[Typography.text_paragraph, { color: colors.Neutral_01, textAlign: 'right' }]}>{'23 May, 2023 '}</Text>
+                                <Text style={[Typography.text_paragraph, { color: colors.Neutral_01, textAlign: 'right' }]}>{'02:00 PM'}</Text>
+                            </View> :
+                            <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{'23 May, 2023 | 02:00 PM'}</Text>
+                    }
                 </View>
             </View>
             <View style={styles.list2}>

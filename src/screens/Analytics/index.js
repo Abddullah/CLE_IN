@@ -10,6 +10,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import { ScrollView } from 'native-base';
+import screenResolution from '../../utilities/constants/screenResolution';
+
+const deviceWidth = screenResolution.screenWidth;
 
 const Analytics = ({ navigation }) => {
     const { theme } = useTheme();
@@ -41,7 +44,7 @@ const Analytics = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{ flexDirection: 'row', marginTop: 10, flexWrap: 'wrap' }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', }}>
                         <View style={styles.statsContiner}>
                             <Text style={[Typography.text_CTA1, { color: colors.black, fontSize: 24, }]}>{'25'}</Text>
                             <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('totalServices')}</Text>
@@ -63,7 +66,7 @@ const Analytics = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <View style={{ height: 280, width: '100%', marginTop: 10, backgroundColor: 'red' }}>
+                    <View style={{ height: 280, width: '100%', marginTop: 10, }}>
                         <Image
                             resizeMode="stretch"
                             style={{ width: '100%', height: '100%' }}
@@ -72,7 +75,7 @@ const Analytics = ({ navigation }) => {
                     </View>
                 </View>
             </ScrollView>
-        </View >
+        </View>
     );
 };
 
@@ -107,7 +110,10 @@ const createStyles = (colors, theme) => {
         },
         statsContiner: {
             height: 100,
-            width: 175,
+            width: '45%',
+            padding:5,
+            // height: 100,
+            // width: 175,
             margin: '1%',
             borderRadius: 15,
             justifyContent: 'center',

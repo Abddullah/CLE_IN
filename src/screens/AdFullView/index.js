@@ -14,6 +14,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import CTAButton2 from '../../components/CTA_BUTTON2';
+import screenResolution from '../../utilities/constants/screenResolution';
+
+const deviceWidth = screenResolution.screenWidth;
+
 
 const AdFullView = ({ navigation }) => {
     const route = useRoute();
@@ -101,24 +105,34 @@ const AdFullView = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={[{ flex: 1, height: 50, }, styles.list2]}>
+                        <View style={[{ flex: 1, height: 50 }, styles.list2]}>
                             <View style={styles.reviewContiner}>
-                                <Image
-                                    resizeMode="contain"
-                                    style={{ borderRadius: 100, width: 48, height: 48 }}
-                                    source={Images.profilePic}
-                                />
-                                <View>
-                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'Charollette Hanlin'}</Text>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <FontAwesome name="star" size={20} color={colors.yellow} />
-                                        <FontAwesome name="star" size={20} color={colors.yellow} />
-                                        <FontAwesome name="star" size={20} color={colors.yellow} />
-                                        <FontAwesome name="star" size={20} color={colors.yellow} />
-                                        <FontAwesome name="star" size={20} color={colors.yellow} />
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Image
+                                        resizeMode="contain"
+                                        style={{ borderRadius: 100, width: 48, height: 48 }}
+                                        source={Images.profilePic}
+                                    />
+                                    <View style={{ marginLeft: 5 }}>
+                                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'Charollette Hanlin'}</Text>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <FontAwesome name="star" size={20} color={colors.yellow} />
+                                            <FontAwesome name="star" size={20} color={colors.yellow} />
+                                            <FontAwesome name="star" size={20} color={colors.yellow} />
+                                            <FontAwesome name="star" size={20} color={colors.yellow} />
+                                            <FontAwesome name="star" size={20} color={colors.yellow} />
+                                        </View>
                                     </View>
                                 </View>
-                                <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{'23 May, 2023 | 02:00 PM'}</Text>
+
+                                {
+                                    deviceWidth < 360 ?
+                                        <View>
+                                            <Text style={[Typography.text_paragraph, { color: colors.Neutral_01, textAlign: 'right' }]}>{'23 May, 2023 '}</Text>
+                                            <Text style={[Typography.text_paragraph, { color: colors.Neutral_01, textAlign: 'right' }]}>{'02:00 PM'}</Text>
+                                        </View> :
+                                        <Text style={[Typography.text_paragraph, { color: colors.Neutral_01, textAlign: 'right' }]}>{'23 May, 2023 | 02:00 PM'}</Text>
+                                }
                             </View>
                         </View>
                         <View style={styles.list2}>
