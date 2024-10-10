@@ -10,9 +10,9 @@ import { getItem, setItem } from '../../services/assynsStorage'
 const setLanguageAsync = async (lang) => {
   await setItem('languagecode', lang);
 };
+
 export const onLanguageSelect = async (langId, setflag, flag) => {
   let lang = appLanguages.find((item) => item.code === langId);
-  // console.log(appLanguages, 'appLanguages', langId)
   if (lang) {
     await i18n.changeLanguage(lang.code);
     await setLanguageAsync(lang.code);

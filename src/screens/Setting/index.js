@@ -10,6 +10,7 @@ import CTA_Setting from '../../components/CTA_SETTINGS';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import { onLanguageSelect } from '../../assets/language';
 
 const Settings = ({ navigation }) => {
     const { theme, toggleTheme } = useTheme();
@@ -17,7 +18,9 @@ const Settings = ({ navigation }) => {
     const styles = createStyles(colors, theme);
 
     let isError = useSelector((state) => state.reducer.isError);
-    const [language, setLanguage] = useState('');
+    const [language, setlanguage] = useState("");
+    const [isEnabled, setIsEnabled] = useState(false);
+
     const [darkMode, setdarkMode] = useState(false);
 
     const darkModeHandler = () => {
@@ -28,6 +31,12 @@ const Settings = ({ navigation }) => {
             setdarkMode(true)
         }
         toggleTheme()
+    }
+
+    const toggleSwitch = (value) => {
+        setlanguage(value)
+        onLanguageSelect(value, setIsEnabled, isEnabled)
+        setIsEnabled(previousState => !previousState);
     }
 
     return (
@@ -48,23 +57,32 @@ const Settings = ({ navigation }) => {
                         borderWidth={0}
                         selectedValue={language}
                         minWidth="100%"
-                        accessibilityLabel="Language"
-                        placeholder="Language"
+                        // dropdownIcon={<LanguageIcon />}
+                        accessibilityLabel={t('language')}
+                        placeholder={t('language')}
                         placeholderTextColor={colors.Neutral_01}
                         _selectedItem={{
-                            background: colors.Primary_01,
+                            background: colors.Primary_01
                         }}
-                        color={colors.Neutral_01}
-                        mt={1} onValueChange={itemValue => setLanguage(itemValue)}
+                        mt={1} onValueChange={itemValue => toggleSwitch(itemValue)}
                     >
-                        <Select.Item label="Language (ENGLISH)" value="en" />
-                        <Select.Item label="Language (Czech)" value="cz" />
-                        <Select.Item label="Language (Urdu)" value="ur" />
+                        <Select.Item label="English" value="en" />
+                        <Select.Item label="Italian" value="it" />
+                        <Select.Item label="Spanish" value="sp" />
+                        <Select.Item label="German" value="gr" />
+                        <Select.Item label="French" value="fr" />
                     </Select>
                 </View>
 
                 <View style={styles.list}>
-                    <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize: 13 }]}>{darkMode ? 'Theme (Dark Mode)' : 'Theme (Normal)'}</Text>
+                    {
+                        darkMode &&
+                        <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize: 13 }]}>{t('themeModeD')}</Text>
+                    }
+                    {
+                        !darkMode &&
+                        <Text style={[Typography.text_paragraph_1, { marginLeft: 10, color: colors.black, fontSize: 13 }]}>{t('themeModeNormal')}</Text>
+                    }
                     <Switch
                         trackColor={{ false: '#3e3e3e', true: '#3e3e3e' }}
                         thumbColor={darkMode ? colors.Primary_01 : '#f4f3f4'}

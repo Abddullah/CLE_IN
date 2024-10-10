@@ -9,6 +9,7 @@ import { Typography } from '../../utilities/constants/constant.style';
 import { t } from 'i18next';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import { onLanguageSelect } from '../../assets/language';
 
 export default function GetStarted({ navigation }) {
   const { theme, toggleTheme } = useTheme();
@@ -17,6 +18,14 @@ export default function GetStarted({ navigation }) {
 
   const [page, setpage] = useState(0);
   const [language, setlanguage] = useState("");
+
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const toggleSwitch = (value) => {
+    setlanguage(value)
+    onLanguageSelect(value, setIsEnabled, isEnabled)
+    setIsEnabled(previousState => !previousState);
+  }
 
   const submit = () => {
     page === 0 && setpage(1)
@@ -64,11 +73,13 @@ export default function GetStarted({ navigation }) {
                     _selectedItem={{
                       background: colors.Primary_01
                     }}
-                    mt={1} onValueChange={itemValue => setlanguage(itemValue)}
+                    mt={1} onValueChange={itemValue => toggleSwitch(itemValue)}
                   >
                     <Select.Item label="English" value="en" />
-                    <Select.Item label="Czech" value="cz" />
-                    <Select.Item label="Urdu" value="ur" />
+                    <Select.Item label="Italian" value="it" />
+                    <Select.Item label="Spanish" value="sp" />
+                    <Select.Item label="German" value="gr" />
+                    <Select.Item label="French" value="fr" />
                   </Select>
                 </View>
               </View>
