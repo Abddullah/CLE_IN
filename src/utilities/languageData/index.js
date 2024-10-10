@@ -182,6 +182,10 @@ export const languageData = [
             totalCancellations: 'Total cancellations',
             themeModeD: 'Theme (Dark Mode)',
             themeModeNormal: 'Theme (Normal)',
+            cleaningandhygiene: 'Cleaning and Hygiene Services',
+            HomeMaintenanceServices: 'Home Maintenance Services',
+            InstallationServices: 'Installation Services',
+            RenovationServices: 'Renovation Services',
         }
     },
     {
@@ -366,6 +370,10 @@ export const languageData = [
             totalCancellations: 'Cancellazioni totali',
             themeModeD: 'Tema (Modalità Scura)',
             themeModeNormal: 'Tema (Normale)',
+            cleaningandhygiene: 'Servizi di Pulizia e Igiene',
+            HomeMaintenanceServices: 'Servizi di Manutenzione Domestica',
+            InstallationServices: 'Servizi di Installazione',
+            RenovationServices: 'Servizi di Ristrutturazione',
         }
 
     },
@@ -551,6 +559,11 @@ export const languageData = [
             totalCancellations: 'Cancelaciones Totales',
             themeModeD: 'Tema (Modo Oscuro)',
             themeModeNormal: 'Tema (Normal)',
+            cleaningandhygiene: 'Servicios de Limpieza e Higiene',
+            HomeMaintenanceServices: 'Servicios de Mantenimiento del Hogar',
+            InstallationServices: 'Servicios de Instalación',
+            RenovationServices: 'Servicios de Renovación',
+
         }
 
     },
@@ -736,6 +749,11 @@ export const languageData = [
             totalCancellations: 'Gesamtanzahl der Stornierungen',
             themeModeD: 'Thema (Dunkelmodus)',
             themeModeNormal: 'Thema (Normal)',
+            cleaningandhygiene: 'Reinigungs- und Hygienedienste',
+            HomeMaintenanceServices: 'Haushaltswartungsdienste',
+            InstallationServices: 'Installationsdienste',
+            RenovationServices: 'Renovierungsdienste',
+
         }
 
     },
@@ -921,6 +939,11 @@ export const languageData = [
             totalCancellations: 'Total des annulations',
             themeModeD: 'Thème (Mode Sombre)',
             themeModeNormal: 'Thème (Normal)',
+            cleaningandhygiene: 'Services de Nettoyage et Hygiène',
+            HomeMaintenanceServices: 'Services de Maintenance Domestique',
+            InstallationServices: 'Services d\'Installation',
+            RenovationServices: 'Services de Rénovation',
+
         }
 
     },

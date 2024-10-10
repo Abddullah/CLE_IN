@@ -23,4 +23,9 @@ export default Images = {
 
   AnalyticsChart: require('./analyticsChart.png'),
 
+  HomeMaintenanceServices: require('./categories/new4/HomeMaintenanceServices.png'),
+  RenovationServices: require('./categories/new4/RenovationServices.png'),
+  CleaningandHygieneServices: require('./categories/new4/CleaningandHygieneServices.png'),
+  InstallationServices: require('./categories/new4/InstallationServices.png'),
+
 };

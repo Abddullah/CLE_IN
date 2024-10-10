@@ -29,25 +29,22 @@ const Home = ({ navigation }) => {
 
     const [categories, setcategories] = useState([
         {
-            title: t('cleaningathome'),
-            image: Images.CatHome,
+            title: t('cleaningandhygiene'),
+            image: Images.CleaningandHygieneServices,
         },
         {
-            title: t('cleaningatcompany'),
-            image: Images.CatCompany,
+            title: t('RenovationServices'),
+            image: Images.RenovationServices,
         },
         {
-            title: t('cleaningathospital'),
-            image: Images.CatHospital,
+            title: t('InstallationServices'),
+            image: Images.InstallationServices,
         },
         {
-            title: t('cleaningatoffice'),
-            image: Images.CatOffice,
+            title: t('HomeMaintenanceServices'),
+            image: Images.HomeMaintenanceServices,
         },
-        {
-            title: t('cleaningatfactory'),
-            image: Images.CatFactory,
-        },
+
     ]);
 
     const [data, setdata] = useState([
@@ -133,8 +130,6 @@ const Home = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-
-
                 {
                     user.role === 'user' &&
                     <View style={styles.catContainer}>
@@ -172,7 +167,7 @@ const Home = ({ navigation }) => {
                     </View>
                 }
 
-                <View style={{ width: '95%', alignItems: 'flex-start', }}>
+                {/* <View style={{ width: '95%', alignItems: 'flex-start', }}>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
                     <FlatList
                         data={data}
@@ -182,7 +177,131 @@ const Home = ({ navigation }) => {
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
                     />
-                </View>
+                </View> */}
+
+                {
+                    user.role !== 'user' &&
+                    <View style={{ width: '95%', alignItems: 'flex-start', }}>
+                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
+                        <FlatList
+                            data={data}
+                            style={{ width: '100%', marginTop: 10 }}
+                            contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns == 1 ? 'center' : 'flex-start', }}
+                            numColumns={numColumns}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
+                        />
+                    </View>
+                }
+
+                {
+                    user.role === 'user' &&
+                    <>
+                        <View style={{ width: '95%', alignItems: 'flex-start' }}>
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                {'Office Cleaning'}
+                            </Text>
+                            <FlatList
+                                data={data}
+                                contentContainerStyle={{ marginTop: 10, }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) =>
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => {
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                        }}
+                                    />}
+                            />
+                        </View>
+                        <View style={{ width: '95%', alignItems: 'flex-start' }}>
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                {'Room Cleaning'}
+                            </Text>
+                            <FlatList
+                                data={data}
+                                contentContainerStyle={{ marginTop: 10, }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) =>
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => {
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                        }}
+                                    />}
+                            />
+                        </View>
+                        <View style={{ width: '95%', alignItems: 'flex-start' }}>
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                {'Pest control service'}
+                            </Text>
+                            <FlatList
+                                data={data}
+                                contentContainerStyle={{ marginTop: 10, }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) =>
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => {
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                        }}
+                                    />}
+                            />
+                        </View>
+                        <View style={{ width: '95%', alignItems: 'flex-start' }}>
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                {'Laundry Service'}
+                            </Text>
+                            <FlatList
+                                data={data}
+                                contentContainerStyle={{ marginTop: 10, }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) =>
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => {
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                        }}
+                                    />}
+                            />
+                        </View>
+                        <View style={{ width: '95%', alignItems: 'flex-start' }}>
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                {'Etc.'}
+                            </Text>
+                            <FlatList
+                                data={data}
+                                contentContainerStyle={{ marginTop: 10, }}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) =>
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => {
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                        }}
+                                    />}
+                            />
+                        </View>
+                    </>
+                }
+
+
+
 
             </ScrollView>
         </View>

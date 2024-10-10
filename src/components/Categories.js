@@ -26,7 +26,7 @@ const Categories = ({
                 style={{ width: 75, height: 75 }}
                 source={icon}
             />
-            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{t('cleaningathome')}</Text>
+            <Text style={[Typography.text_paragraph, { color: colors.black }]}>{title}</Text>
         </TouchableOpacity>
     );
 };
@@ -38,7 +38,7 @@ const createStyles = (colors, theme) => {
         catBox: {
             width: 98,
             marginHorizontal: 10,
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center',
             // backgroundColor: 'red'
         }
