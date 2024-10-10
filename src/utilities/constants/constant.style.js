@@ -45,8 +45,6 @@ import { LightThemeColors, DarkThemeColors } from './colors';
 const colorScheme = Appearance.getColorScheme();
 const colors = colorScheme === 'dark' ? DarkThemeColors : LightThemeColors;
 
-console.log(colors, 'colorsaaaaaaa');
-
 
 export const Typography = StyleSheet.create({
   text_heading: {

@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, ScrollView, TextInput, FlatList } from 'react-n
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
+import FastImage from 'react-native-fast-image'
+import { SliderBox } from "react-native-image-slider-box";
 // import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
@@ -131,9 +133,27 @@ const Home = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
+
+
                 {
                     user.role === 'user' &&
                     <View style={styles.catContainer}>
+                        <View style={styles.headerSection}>
+                            <SliderBox
+                                autoplay={true}
+                                ImageComponent={FastImage}
+                                images={[Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning]}
+                                sliderBoxHeight={230}
+                                onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+                                dotColor={colors.Primary_01}
+                                inactiveDotColor="#90A4AE"
+                                resizeMethod={'resize'}
+                                resizeMode={'cover'}
+                                circleLoop
+                                dotStyle={{ width: 8, height: 8, borderRadius: 4, }}
+                            />
+                        </View>
+
                         <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
                         <ScrollView
                             horizontal={true}
@@ -208,6 +228,14 @@ const createStyles = (colors, theme) => {
             width: '90%',
             justifyContent: 'center',
             alignItems: 'flex-start',
+        },
+        headerSection: {
+            height: 100,
+            width: '100%',
+            overflow: 'hidden',
+            borderRadius: 10,
+            backgroundColor: 'white',
+            marginBottom: 10
         },
         catBox: {
             width: 98,
