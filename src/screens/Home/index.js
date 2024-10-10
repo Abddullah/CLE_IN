@@ -26,6 +26,7 @@ const Home = ({ navigation }) => {
     const numColumns = deviceWidth < 360 ? 1 : 2;
 
     const [search, setsearch] = useState('');
+    const [selectedCat, setselectedCat] = useState('');
 
     const [categories, setcategories] = useState([
         {
@@ -106,6 +107,12 @@ const Home = ({ navigation }) => {
 
     ]);
 
+    const selectedCatHandler = (title) => {
+        console.log(title, 'title');
+
+        setselectedCat(title)
+    }
+
     return (
         <View style={styles.container}>
 
@@ -114,7 +121,7 @@ const Home = ({ navigation }) => {
                     <View style={styles.inputContiner}>
                         <AntDesign name="search1" style={{ fontSize: 20, color: colors.Primary_01, }} />
                         <TextInput
-                            keyboardType='number-pad'
+                            // keyboardType='number-pad'
                             style={styles.input}
                             value={search}
                             onChangeText={(e) => { setsearch(e) }}
@@ -161,7 +168,7 @@ const Home = ({ navigation }) => {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) => <Categories icon={item.image} title={item.title} />}
+                                renderItem={({ item }) => <Categories icon={item.image} title={item.title} submitHandler={(title) => { selectedCatHandler(title) }} selectedCat={selectedCat} />}
                             />
                         </ScrollView>
                     </View>
@@ -185,14 +192,17 @@ const Home = ({ navigation }) => {
                         <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
                         <FlatList
                             data={data}
-                            style={{ width: '100%', marginTop: 10 }}
-                            contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns == 1 ? 'center' : 'flex-start', }}
+                            style={{ width: '100%', marginTop: 10, }}
+                            // contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', backgroundColor: "red" }}
+                            contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', paddingHorizontal: '5%', }}
                             numColumns={numColumns}
                             showsVerticalScrollIndicator={false}
                             renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
                         />
                     </View>
                 }
+
+
 
                 {
                     user.role === 'user' &&

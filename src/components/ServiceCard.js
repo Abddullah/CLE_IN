@@ -97,7 +97,7 @@ const ServiceCard = ({
             style={styles.wrapper}
             activeOpacity={.8}
         >
-            <View style={{ width: 170, height: 110, borderRadius: 10, overflow: 'hidden' }}>
+            <View style={{ width: 140, height: 100, overflow: 'hidden' }}>
                 <Image
                     resizeMode="cover"
                     style={{
@@ -131,13 +131,13 @@ export default ServiceCard;
 const createStyles = (colors, theme) => {
     return StyleSheet.create({
         wrapper: {
-            height: 110,
-            width: '46%',
+            height: 100,
+            width: 140,
             borderRadius: 5,
             overflow: 'hidden',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            borderWidth: 0.3,
+            borderWidth: .5,
             borderColor: 'gray',
             margin: 10,
         },

@@ -10,6 +10,7 @@ const Categories = ({
     icon,
     title,
     submitHandler,
+    selectedCat
 }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
@@ -17,13 +18,13 @@ const Categories = ({
 
     return (
         <TouchableOpacity
-            onPress={submitHandler}
+            onPress={() => { submitHandler(title) }}
             activeOpacity={.8}
             style={styles.catBox}
         >
             <Image
                 resizeMode="contain"
-                style={{ width: 75, height: 75 }}
+                style={{ width: 75, height: 75, borderRadius: 50, borderWidth: selectedCat === title ? 1 : 0, borderColor: colors.White_Primary_01 }}
                 source={icon}
             />
             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{title}</Text>
