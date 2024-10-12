@@ -107,7 +107,8 @@ export function AppBottomNavigator() {
                     <BottomTabBar {...props} />);
             }}
             screenOptions={{
-                tabBarStyle: { backgroundColor: theme === 'dark' ? colors.Primary_01 : colors.white }
+                tabBarStyle: { backgroundColor: theme === 'dark' ? colors.Primary_01 : colors.white, },
+                tabBarHideOnKeyboard: true,
             }}
         >
             <Tab.Screen
@@ -198,3 +199,5 @@ export function AppBottomNavigator() {
         </Tab.Navigator >
     );
 }
+
+

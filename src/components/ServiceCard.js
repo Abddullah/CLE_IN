@@ -73,23 +73,108 @@
 
 
 
+// import React from 'react';
+// import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+// import { colors } from '../utilities/constants';
+// import { Typography } from '../utilities/constants/constant.style';
+// import images from '../assets/images';
+// import AntDesign from 'react-native-vector-icons/AntDesign';
+// import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+// import { useTheme } from '../../ThemeContext';
+
+// const ServiceCard = ({
+//     data,
+//     submitHandler,
+//     isFav
+// }) => {
+//     const { theme } = useTheme();
+//     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
+//     const styles = createStyles(colors, theme);
+
+//     return (
+//         <TouchableOpacity
+//             onPress={submitHandler}
+//             style={styles.wrapper}
+//             activeOpacity={.8}
+//         >
+//             <View style={{ width: 140, height: 100, overflow: 'hidden' }}>
+//                 <Image
+//                     resizeMode="cover"
+//                     style={{
+//                         width: '100%', height: 110,
+//                     }}
+//                     source={images.cleaning}
+
+//                 />
+//                 {
+//                     isFav === true &&
+//                     <TouchableOpacity activeOpacity={.8} style={{ position: 'absolute', right: 10, top: 10 }}>
+//                         <AntDesign name="heart" style={{ fontSize: 20, color: colors.Primary_01, }} />
+//                     </TouchableOpacity>
+//                 }
+//                 <View style={{ width: '100%', height: 20, justifyContent: 'center', backgroundColor: colors.Neutral_02, position: 'absolute', bottom: 0, }}>
+//                     <Text style={[Typography.text_paragraph, { marginLeft: 10, textAlign: 'left', color: colors.black, fontWeight: 'bold', }]}>{data.title}</Text>
+//                 </View>
+//             </View>
+
+//             {/* <View style={styles.textContainer}>
+//                 <Text style={[Typography.text_paragraph, { marginLeft: 10, color: theme === 'dark' ? colors.black : colors.Primary_02, fontWeight: 'bold' }]}>{'$' + data.price + '/hr'}</Text>
+//                 <Text style={[Typography.text_paragraph, { marginLeft: 10, color: colors.black, fontWeight: 'bold' }]}>{data.title}</Text>
+//             </View> */}
+
+//         </TouchableOpacity>
+//     );
+// };
+
+// export default ServiceCard;
+
+// const createStyles = (colors, theme) => {
+//     return StyleSheet.create({
+//         wrapper: {
+//             height: 100,
+//             width: 140,
+//             borderRadius: 5,
+//             overflow: 'hidden',
+//             justifyContent: 'flex-start',
+//             alignItems: 'center',
+//             borderWidth: .5,
+//             borderColor: 'gray',
+//             margin: 10,
+//         },
+//         textContainer: {
+//             height: 70,
+//             width: '100%',
+//             alignItems: 'flex-start',
+//             justifyContent: 'center',
+//         }
+//     });
+// };
+
+
+
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { colors } from '../utilities/constants';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '../utilities/constants/constant.style';
 import images from '../assets/images';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
 
+const { width } = Dimensions.get('window'); // Get the screen width
+
 const ServiceCard = ({
     data,
     submitHandler,
-    isFav
+    isFav,
+    index
+
 }) => {
+    console.log(index, 'indexindexindex');
+    let user = useSelector((state) => state.reducer.user);
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
-    const styles = createStyles(colors, theme);
+    const styles = createStyles(colors, theme, user, index);
 
     return (
         <TouchableOpacity
@@ -97,58 +182,83 @@ const ServiceCard = ({
             style={styles.wrapper}
             activeOpacity={.8}
         >
-            <View style={{ width: 140, height: 100, overflow: 'hidden' }}>
+            <View style={styles.imageContainer}>
                 <Image
                     resizeMode="cover"
-                    style={{
-                        width: '100%', height: 110,
-                    }}
+                    style={styles.image}
                     source={images.cleaning}
-
                 />
                 {
                     isFav === true &&
-                    <TouchableOpacity activeOpacity={.8} style={{ position: 'absolute', right: 10, top: 10 }}>
-                        <AntDesign name="heart" style={{ fontSize: 20, color: colors.Primary_01, }} />
+                    <TouchableOpacity activeOpacity={.8} style={styles.favIcon}>
+                        <AntDesign name="heart" style={styles.favIconHeart} />
                     </TouchableOpacity>
                 }
-                <View style={{ width: '100%', height: 20, justifyContent: 'center', backgroundColor: colors.Neutral_02, position: 'absolute', bottom: 0, }}>
-                    <Text style={[Typography.text_paragraph, { marginLeft: 10, textAlign: 'left', color: colors.black, fontWeight: 'bold', }]}>{data.title}</Text>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{data.title}</Text>
                 </View>
             </View>
-
-            {/* <View style={styles.textContainer}>
-                <Text style={[Typography.text_paragraph, { marginLeft: 10, color: theme === 'dark' ? colors.black : colors.Primary_02, fontWeight: 'bold' }]}>{'$' + data.price + '/hr'}</Text>
-                <Text style={[Typography.text_paragraph, { marginLeft: 10, color: colors.black, fontWeight: 'bold' }]}>{data.title}</Text>
-            </View> */}
-
         </TouchableOpacity>
     );
 };
 
 export default ServiceCard;
 
-const createStyles = (colors, theme) => {
+const createStyles = (colors, theme, user, index) => {
+    const cardWidth = (width / 2) - 30; // Adjusted to account for padding
+    const marginHorizontal = width * 0.02; // Set marginHorizontal to 2% of screen width (you can adjust this value)
+
     return StyleSheet.create({
         wrapper: {
-            height: 100,
-            width: 140,
+            // width: user.role === 'user' ? cardWidth * .98 : cardWidth, // Dynamically set width
+            width: cardWidth, // Dynamically set width
+            height: cardWidth * 0.7, // Maintain a 7:5 aspect ratio
             borderRadius: 5,
             overflow: 'hidden',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            borderWidth: .5,
+            borderWidth: 0.5,
             borderColor: 'gray',
-            margin: 10,
+            marginHorizontal: user.role === 'user' ? null : marginHorizontal,
+            marginLeft: user.role === 'user' ? index != 0 ? 10 : 0 : null,
         },
-        textContainer: {
-            height: 70,
+        imageContainer: {
             width: '100%',
-            alignItems: 'flex-start',
+            height: '100%',
+            overflow: 'hidden',
+        },
+        image: {
+            width: '100%',
+            height: '100%',
+        },
+        favIcon: {
+            position: 'absolute',
+            right: 10,
+            top: 10,
+        },
+        favIconHeart: {
+            fontSize: 20,
+            color: colors.Primary_01,
+        },
+        titleContainer: {
+            width: '100%',
+            height: 20,
             justifyContent: 'center',
-        }
+            alignItems: 'flex-start',
+            backgroundColor: colors.Neutral_02,
+            position: 'absolute',
+            bottom: 0,
+        },
+        titleText: {
+            marginLeft: 10,
+            textAlign: 'left',
+            color: colors.black,
+            fontWeight: 'bold',
+            ...Typography.text_paragraph,
+        },
     });
 };
+
 
 
 

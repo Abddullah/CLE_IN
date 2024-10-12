@@ -188,18 +188,39 @@ const Home = ({ navigation }) => {
 
                 {
                     user.role !== 'user' &&
-                    <View style={{ width: '95%', alignItems: 'flex-start', }}>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
-                        <FlatList
-                            data={data}
-                            style={{ width: '100%', marginTop: 10, }}
-                            // contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', backgroundColor: "red" }}
-                            contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', paddingHorizontal: '5%', }}
-                            numColumns={numColumns}
-                            showsVerticalScrollIndicator={false}
-                            renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
-                        />
-                    </View>
+                    // <View style={{ width: '95%', alignItems: 'flex-start', backgroundColor: 'red' }}>
+                    //     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
+                    //     <FlatList
+                    //         data={data}
+                    //         style={{ width: '100%', marginTop: 10, }}
+                    //         // contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', backgroundColor: "red" }}
+                    //         contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', }}
+                    //         numColumns={numColumns}
+                    //         showsVerticalScrollIndicator={false}
+                    //         renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
+                    //     />
+                    // </View>
+                    <>
+                        <Text style={[Typography.text_paragraph_1, { width: '95%', fontWeight: 'bold', color: colors.black, textAlign: 'left' }]}>{t('myads')}</Text>
+                        <View style={{ width: '100%', alignItems: 'center', }}>
+                            <FlatList
+                                data={data}
+                                style={{ marginTop: 10, }}
+                                contentContainerStyle={{ justifyContent: 'center', }} // Add padding for even spacing on the sides
+                                numColumns={2}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) => (
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
+                                    />
+                                )}
+                                ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
+                            />
+
+                        </View>
+                    </>
                 }
 
 
@@ -207,7 +228,7 @@ const Home = ({ navigation }) => {
                 {
                     user.role === 'user' &&
                     <>
-                        <View style={{ width: '95%', alignItems: 'flex-start' }}>
+                        <View style={{ width: '95%', alignItems: 'flex-start', }}>
                             <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                 {'Office Cleaning'}
                             </Text>
@@ -217,14 +238,16 @@ const Home = ({ navigation }) => {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) =>
+                                renderItem={({ item, index }) =>
                                     <ServiceCard
+                                        index={index}
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
                                         }}
-                                    />}
+                                    />
+                                }
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
@@ -237,14 +260,16 @@ const Home = ({ navigation }) => {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) =>
+                                renderItem={({ item, index }) =>
                                     <ServiceCard
+                                        index={index}
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
                                         }}
-                                    />}
+                                    />
+                                }
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
@@ -257,14 +282,16 @@ const Home = ({ navigation }) => {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) =>
+                                renderItem={({ item, index }) =>
                                     <ServiceCard
+                                        index={index}
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
                                         }}
-                                    />}
+                                    />
+                                }
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
@@ -277,14 +304,16 @@ const Home = ({ navigation }) => {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) =>
+                                renderItem={({ item, index }) =>
                                     <ServiceCard
+                                        index={index}
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
                                         }}
-                                    />}
+                                    />
+                                }
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
@@ -297,14 +326,16 @@ const Home = ({ navigation }) => {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) =>
+                                renderItem={({ item, index }) =>
                                     <ServiceCard
+                                        index={index}
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
                                         }}
-                                    />}
+                                    />
+                                }
                             />
                         </View>
                     </>
@@ -354,7 +385,7 @@ const createStyles = (colors, theme) => {
         },
         catContainer: {
             marginTop: 10,
-            width: '90%',
+            width: '95%',
             justifyContent: 'center',
             alignItems: 'flex-start',
         },
