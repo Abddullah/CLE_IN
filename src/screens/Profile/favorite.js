@@ -59,14 +59,14 @@ const Favorite = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     activeOpacity={.8}
-                    style={styles.button}
+                    style={[styles.button, { backgroundColor: allFavorites ? colors.White_Primary_01 : colors.Neutral_01 }]}
                     onPress={() => { setallFavorites(true) }}
                 >
                     <Text style={{ color: colors.white, fontWeight: 'bold' }}>{t('allFavorites')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     activeOpacity={.8}
-                    style={styles.button}
+                    style={[styles.button, { backgroundColor: !allFavorites ? colors.White_Primary_01 : colors.Neutral_01 }]}
                     onPress={() => { setallFavorites(false) }}
                 >
                     <Text style={{ color: colors.white, fontWeight: 'bold' }}>{t('discountinFavorites')}</Text>
@@ -77,24 +77,31 @@ const Favorite = ({ navigation }) => {
                 allFavorites &&
                 <FlatList
                     data={data}
-                    contentContainerStyle={{ marginTop: 10, width: '95%' }}
+                    style={{ marginTop: 10, }}
+                    contentContainerStyle={{ justifyContent: 'center', }} // Add padding for even spacing on the sides
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) => <ServiceCard data={item} isFav={true} />}
+                    renderItem={({ item }) => (
+                        <ServiceCard
+                            data={item}
+                            isFav={true}
+                        // submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
+                        />
+                    )}
+                    ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
                 />
             }
             {
                 !allFavorites &&
                 <FlatList
                     data={data}
-                    contentContainerStyle={{ marginTop: 10, marginLeft: 20 }}
+                    contentContainerStyle={{ marginTop: 10, marginLeft: 20, paddingRight: 35 }}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => <ServiceCardDiscounted data={item} />}
                 />
             }
-
         </View>
     );
 };
