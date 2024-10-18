@@ -187,6 +187,7 @@ export const languageData = [
             InstallationServices: 'Installation Services',
             JobRequest: 'Job Request',
             Subscription: 'Subscription',
+            ServiceProviderInfo: 'Service Provider Info',
         }
     },
     {
@@ -377,9 +378,8 @@ export const languageData = [
             RenovationServices: 'Servizi di Ristrutturazione',
             JobRequest: 'Richiesta di lavoro',
             Subscription: 'Abbonamento',
-            
+            ServiceProviderInfo: 'Informazioni sul fornitore di servizi', 
         }
-
     },
     {
         locale: 'sp',
@@ -569,7 +569,7 @@ export const languageData = [
             RenovationServices: 'Servicios de Renovación',
             JobRequest: 'Solicitud de empleo',
             Subscription: 'Suscripción',
-
+            ServiceProviderInfo: 'Información del proveedor de servicios', 
         }
 
     },
@@ -761,7 +761,7 @@ export const languageData = [
             RenovationServices: 'Renovierungsdienste',
             JobRequest: 'Stellenanfrage',
             Subscription: 'Abonnement',
-
+            ServiceProviderInfo: 'Informationen zum Dienstanbieter', 
         }
 
     },
@@ -953,6 +953,7 @@ export const languageData = [
             RenovationServices: 'Services de Rénovation',
             JobRequest: 'Richiesta di lavoro',
             Subscription: 'Abbonamento',
+            ServiceProviderInfo: 'Informations sur le fournisseur de services', // French
 
         }
 

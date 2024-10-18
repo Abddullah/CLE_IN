@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
@@ -12,6 +13,7 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 
 const Profile = ({ navigation }) => {
+    let user = useSelector((state) => state.reducer.user);
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
@@ -45,7 +47,10 @@ const Profile = ({ navigation }) => {
                 </View>
 
                 <CTA_Profile title={t('Favorites')} icon={<Heart />} submitHandler={() => { navigation.navigate('Favorite') }} />
-                <CTA_Profile title={t('JobRequest')} icon={<JobRequest />} submitHandler={() => { navigation.navigate('CreditCard') }} />
+                {
+                    user.role === 'user' &&
+                    <CTA_Profile title={t('JobRequest')} icon={<JobRequest />} submitHandler={() => { navigation.navigate('JobsRequest') }} />
+                }
                 <CTA_Profile title={t('Subscription')} icon={<Subscription />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />

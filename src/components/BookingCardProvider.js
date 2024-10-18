@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Linking } from 'react-native';
 import { CallIcon, MsgIcon } from '../assets/icons';
 import { Typography } from '../utilities/constants/constant.style';
@@ -24,6 +25,7 @@ const BookingCardProvider = ({
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme, deviceWidth);
+    let user = useSelector((state) => state.reducer.user);
 
     return (
         <TouchableOpacity
@@ -41,10 +43,12 @@ const BookingCardProvider = ({
                     <Text style={[Typography.text_CTA1, { color: colors.black, fontWeight: 'normal', marginLeft: 10 }]}>{'Kim David'}</Text>
 
                 </View>
-
-                <View style={styles.statusButton}>
-                    <Text style={[Typography.text_CTA1, { color: colors.White_Primary_01, fontWeight: 'normal' }]}>{'Completed'}</Text>
-                </View>
+                {
+                    user.role === 'provider' &&
+                    <View style={styles.statusButton}>
+                        <Text style={[Typography.text_CTA1, { color: colors.White_Primary_01, fontWeight: 'normal' }]}>{'Completed'}</Text>
+                    </View>
+                }
             </View>
             <View style={styles.container_C2}>
                 <View style={styles.container_C2_C1}>
@@ -96,16 +100,6 @@ const BookingCardProvider = ({
                 justifyContent: 'center',
             }]}>
                 <View style={[styles.container_C2_C2, { justifyContent: 'flex-start', }]}>
-                    {/* <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10, width: '100%', }}>
-                        <View style={styles.centerStyle}>
-                            <Fontisto name="date" style={{ fontSize: 18, color: colors.White_Primary_01, marginLeft: 10, }} />
-                            <Text style={[Typography.text_CTA1, styles.dateTime]}>{'12 Jan, 2024'}</Text>
-                        </View>
-                        <View style={[styles.centerStyle, { marginLeft: 20 }]}>
-                            <Entypo name="back-in-time" style={{ fontSize: 18, color: colors.White_Primary_01, marginLeft: 10, }} />
-                            <Text style={[Typography.text_CTA1, styles.dateTime]}>{'08:00 AM - 10:00 AM'}</Text>
-                        </View>
-                    </View> */}
                     {
                         deviceWidth < 360 ?
                             <View style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', marginTop: 10, width: '100%', }}>
@@ -141,7 +135,14 @@ const BookingCardProvider = ({
                         onPress={() => { navigation.navigate('CustomerInfo') }}
                     >
                         <FontAwesome5 name="info-circle" style={{ fontSize: 18, color: colors.White_Primary_01, marginLeft: 10 }} />
-                        <Text style={[Typography.text_CTA1, styles.dateTime]}>{t('customerInfo')}</Text>
+                        {
+                            user.role === 'user' &&
+                            <Text style={[Typography.text_CTA1, styles.dateTime]}>{t('ServiceProviderInfo')}</Text>
+                        }
+                        {
+                            user.role === 'provider' &&
+                            <Text style={[Typography.text_CTA1, styles.dateTime]}>{t('customerInfo')}</Text>
+                        }
                     </TouchableOpacity>
                 </View>
             </View>

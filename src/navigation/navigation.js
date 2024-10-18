@@ -35,6 +35,7 @@ import TermsAndCondition from './../screens/TermsAndCondition/index';
 import Feedback from './../screens/FeedBack/index';
 import Support from './../screens/Support/index';
 import DeleteAccount from './../screens/DeleteAccount/index';
+import JobsRequest from './../screens/JobsRequest/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -80,6 +81,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Feedback" component={Feedback} />
         <Stack.Screen options={{ headerShown: false }} name="Support" component={Support} />
         <Stack.Screen options={{ headerShown: false }} name="DeleteAccount" component={DeleteAccount} />
+        <Stack.Screen options={{ headerShown: false }} name="JobsRequest" component={JobsRequest} />
 
       </Stack.Navigator>
     </NavigationContainer>

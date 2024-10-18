@@ -315,7 +315,6 @@ const Home = ({ navigation }) => {
                         </View>
                     </>
                 }
-
             </ScrollView>
 
             <TouchableOpacity
@@ -323,7 +322,7 @@ const Home = ({ navigation }) => {
                 style={styles.febbutton}
                 onPress={() => { navigation.navigate('ServiceCreate') }}
             >
-                <Ionicons name="add-outline" style={{ fontSize: 50, color: colors.white, }} />
+                <Ionicons name="add-outline" style={{ fontSize: 40, color: colors.white, }} />
             </TouchableOpacity>
 
         </View>
@@ -387,7 +386,9 @@ const createStyles = (colors, theme) => {
             position: 'absolute', bottom: 25, right: 25,
             borderRadius: 50, height: 50, width: 50,
             backgroundColor: colors.White_Primary_01,
-            justifyContent: 'center', alignItems: 'center'
+            justifyContent: 'center', alignItems: 'center',
+            borderColor: colors.white,
+            borderWidth: 2
         }
     });
 };
