@@ -7,7 +7,7 @@ import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images/index'
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import CTA_Profile from '../../components/CTA_PROFILE';
-import { Heart, Payment, Referral, Preferences, FAQ, Settings } from '../../assets/icons';
+import { Heart, Payment, Referral, Preferences, FAQ, Settings, JobRequest, Subscription } from '../../assets/icons';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 
@@ -45,6 +45,8 @@ const Profile = ({ navigation }) => {
                 </View>
 
                 <CTA_Profile title={t('Favorites')} icon={<Heart />} submitHandler={() => { navigation.navigate('Favorite') }} />
+                <CTA_Profile title={t('JobRequest')} icon={<JobRequest />} submitHandler={() => { navigation.navigate('CreditCard') }} />
+                <CTA_Profile title={t('Subscription')} icon={<Subscription />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />
                 <CTA_Profile title={t('preferences')} icon={<Preferences />} submitHandler={() => { navigation.navigate('Preferences') }} />

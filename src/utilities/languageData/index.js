@@ -185,7 +185,8 @@ export const languageData = [
             cleaningandhygiene: 'Cleaning and Hygiene Services',
             HomeMaintenanceServices: 'Home Maintenance Services',
             InstallationServices: 'Installation Services',
-            RenovationServices: 'Renovation Services',
+            JobRequest: 'Job Request',
+            Subscription: 'Subscription',
         }
     },
     {
@@ -374,6 +375,9 @@ export const languageData = [
             HomeMaintenanceServices: 'Servizi di Manutenzione Domestica',
             InstallationServices: 'Servizi di Installazione',
             RenovationServices: 'Servizi di Ristrutturazione',
+            JobRequest: 'Richiesta di lavoro',
+            Subscription: 'Abbonamento',
+            
         }
 
     },
@@ -563,6 +567,8 @@ export const languageData = [
             HomeMaintenanceServices: 'Servicios de Mantenimiento del Hogar',
             InstallationServices: 'Servicios de Instalación',
             RenovationServices: 'Servicios de Renovación',
+            JobRequest: 'Solicitud de empleo',
+            Subscription: 'Suscripción',
 
         }
 
@@ -753,6 +759,8 @@ export const languageData = [
             HomeMaintenanceServices: 'Haushaltswartungsdienste',
             InstallationServices: 'Installationsdienste',
             RenovationServices: 'Renovierungsdienste',
+            JobRequest: 'Stellenanfrage',
+            Subscription: 'Abonnement',
 
         }
 
@@ -943,6 +951,8 @@ export const languageData = [
             HomeMaintenanceServices: 'Services de Maintenance Domestique',
             InstallationServices: 'Services d\'Installation',
             RenovationServices: 'Services de Rénovation',
+            JobRequest: 'Richiesta di lavoro',
+            Subscription: 'Abbonamento',
 
         }
 

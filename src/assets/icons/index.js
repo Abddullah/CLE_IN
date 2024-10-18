@@ -42,6 +42,8 @@ export { default as Referral } from './profileIcons/referral.svg';
 export { default as Preferences } from './profileIcons/Preferences.svg';
 export { default as FAQ } from './profileIcons/FAQ.svg';
 export { default as Settings } from './profileIcons/settings.svg';
+export { default as Subscription } from './profileIcons/subscription.svg';
+export { default as JobRequest } from './profileIcons/jobRequest.svg';
 // setting icons
 export { default as NotificationIcon } from './notification.svg';
 export { default as PantagonShap } from './pantagonShap.svg';
