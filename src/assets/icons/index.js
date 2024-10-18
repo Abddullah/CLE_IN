@@ -63,4 +63,5 @@ export { default as MsgIcon } from './msgIcon.svg';
 export { default as SendButton } from './sendButton.svg';
 
 export { default as ThisWeekButton } from './thisWeekButton.svg';
+export { default as SubscriptionIcon } from './subscription.svg';
 

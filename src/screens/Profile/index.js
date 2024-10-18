@@ -51,7 +51,7 @@ const Profile = ({ navigation }) => {
                     user.role === 'user' &&
                     <CTA_Profile title={t('JobRequest')} icon={<JobRequest />} submitHandler={() => { navigation.navigate('JobsRequest') }} />
                 }
-                <CTA_Profile title={t('Subscription')} icon={<Subscription />} submitHandler={() => { navigation.navigate('CreditCard') }} />
+                <CTA_Profile title={t('Subscription')} icon={<Subscription />} submitHandler={() => { navigation.navigate('Subscription') }} />
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />
                 <CTA_Profile title={t('preferences')} icon={<Preferences />} submitHandler={() => { navigation.navigate('Preferences') }} />

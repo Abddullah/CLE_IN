@@ -188,6 +188,12 @@ export const languageData = [
             JobRequest: 'Job Request',
             Subscription: 'Subscription',
             ServiceProviderInfo: 'Service Provider Info',
+            UpgradeToPremium: 'Upgrade to Premium',
+            UnlimitedPostJobs: 'Unlimited Post Jobs, Services, and so more',
+            MonthsString: 'months',
+            Subscribe: 'Subscribe',
+            WhenwillIbebilled: 'When will I be billed?',
+            YourItunesAccount: 'Your iTunes Account will be billed at the end of your trial period (if applicable) or on confirmation of your subscription.',
         }
     },
     {
@@ -378,7 +384,14 @@ export const languageData = [
             RenovationServices: 'Servizi di Ristrutturazione',
             JobRequest: 'Richiesta di lavoro',
             Subscription: 'Abbonamento',
-            ServiceProviderInfo: 'Informazioni sul fornitore di servizi', 
+            ServiceProviderInfo: 'Informazioni sul fornitore di servizi',
+            UpgradeToPremium: 'Passa a Premium',
+            UnlimitedPostJobs: 'Pubblica lavori, servizi e altro senza limiti',
+            MonthsString: 'mesi',
+            Subscribe: 'Iscriviti',
+            WhenwillIbebilled: 'Quando sarò addebitato?',
+            YourItunesAccount: 'Il tuo account iTunes sarà addebitato al termine del periodo di prova (se applicabile) o al momento della conferma dell\'abbonamento.', // Italian
+
         }
     },
     {
@@ -569,7 +582,14 @@ export const languageData = [
             RenovationServices: 'Servicios de Renovación',
             JobRequest: 'Solicitud de empleo',
             Subscription: 'Suscripción',
-            ServiceProviderInfo: 'Información del proveedor de servicios', 
+            ServiceProviderInfo: 'Información del proveedor de servicios',
+            UpgradeToPremium: 'Actualizar a Premium',
+            UnlimitedPostJobs: 'Publicar trabajos, servicios y más sin límite',
+            MonthsString: 'meses',
+            Subscribe: 'Suscribirse',
+            WhenwillIbebilled: '¿Cuándo se me cobrará?',
+            YourItunesAccount: 'Tu cuenta de iTunes será facturada al final de tu periodo de prueba (si corresponde) o al confirmar tu suscripción.',
+
         }
 
     },
@@ -761,7 +781,14 @@ export const languageData = [
             RenovationServices: 'Renovierungsdienste',
             JobRequest: 'Stellenanfrage',
             Subscription: 'Abonnement',
-            ServiceProviderInfo: 'Informationen zum Dienstanbieter', 
+            ServiceProviderInfo: 'Informationen zum Dienstanbieter',
+            UpgradeToPremium: 'Auf Premium upgraden',
+            UnlimitedPostJobs: 'Unbegrenzte Stellenanzeigen, Dienstleistungen und mehr',
+            MonthsString: 'Monate',
+            Subscribe: 'Abonnieren',
+            WhenwillIbebilled: 'Wann werde ich abgerechnet?',
+            YourItunesAccount: 'Ihr iTunes-Konto wird am Ende Ihres Testzeitraums (falls zutreffend) oder bei Bestätigung Ihres Abonnements belastet.',
+
         }
 
     },
@@ -953,7 +980,14 @@ export const languageData = [
             RenovationServices: 'Services de Rénovation',
             JobRequest: 'Richiesta di lavoro',
             Subscription: 'Abbonamento',
-            ServiceProviderInfo: 'Informations sur le fournisseur de services', // French
+            ServiceProviderInfo: 'Informations sur le fournisseur de services',
+            UpgradeToPremium: 'Passer à Premium',
+            UnlimitedPostJobs: 'Publications illimitées de travaux, services, et plus encore',
+            MonthsString: 'mois',
+            Subscribe: 'S’abonner',
+            WhenwillIbebilled: 'Quand vais-je être facturé ?',
+            YourItunesAccount: 'Votre compte iTunes sera facturé à la fin de votre période d\'essai (le cas échéant) ou lors de la confirmation de votre abonnement.', // French
+
 
         }
 
