@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, FlatList } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image'
 import { SliderBox } from "react-native-image-slider-box";
 // import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import ServiceCard from '../../components/ServiceCard';
 import Images from '../../assets/images/index'
@@ -174,32 +175,8 @@ const Home = ({ navigation }) => {
                     </View>
                 }
 
-                {/* <View style={{ width: '95%', alignItems: 'flex-start', }}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
-                    <FlatList
-                        data={data}
-                        style={{ width: '100%', marginTop: 10 }}
-                        contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns == 1 ? 'center' : 'flex-start', }}
-                        numColumns={numColumns}
-                        showsVerticalScrollIndicator={false}
-                        renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
-                    />
-                </View> */}
-
                 {
                     user.role !== 'user' &&
-                    // <View style={{ width: '95%', alignItems: 'flex-start', backgroundColor: 'red' }}>
-                    //     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>{user.role === 'user' ? t('featureforyou') : t('myads')}</Text>
-                    //     <FlatList
-                    //         data={data}
-                    //         style={{ width: '100%', marginTop: 10, }}
-                    //         // contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', backgroundColor: "red" }}
-                    //         contentContainerStyle={{ justifyContent: 'center', alignItems: numColumns === 1 ? 'center' : 'flex-start', }}
-                    //         numColumns={numColumns}
-                    //         showsVerticalScrollIndicator={false}
-                    //         renderItem={({ item }) => <ServiceCard data={item} isFav={true} submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }} />}
-                    //     />
-                    // </View>
                     <>
                         <Text style={[Typography.text_paragraph_1, { width: '95%', fontWeight: 'bold', color: colors.black, textAlign: 'left' }]}>{t('myads')}</Text>
                         <View style={{ width: '100%', alignItems: 'center', }}>
@@ -222,8 +199,6 @@ const Home = ({ navigation }) => {
                         </View>
                     </>
                 }
-
-
 
                 {
                     user.role === 'user' &&
@@ -341,10 +316,16 @@ const Home = ({ navigation }) => {
                     </>
                 }
 
-
-
-
             </ScrollView>
+
+            <TouchableOpacity
+                activeOpacity={.8}
+                style={styles.febbutton}
+                onPress={() => { navigation.navigate('ServiceCreate') }}
+            >
+                <Ionicons name="add-outline" style={{ fontSize: 50, color: colors.white, }} />
+            </TouchableOpacity>
+
         </View>
     );
 };
@@ -401,7 +382,12 @@ const createStyles = (colors, theme) => {
             width: 98,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'red'
+        },
+        febbutton: {
+            position: 'absolute', bottom: 25, right: 25,
+            borderRadius: 50, height: 50, width: 50,
+            backgroundColor: colors.White_Primary_01,
+            justifyContent: 'center', alignItems: 'center'
         }
     });
 };

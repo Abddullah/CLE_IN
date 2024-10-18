@@ -39,6 +39,8 @@ function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+            <Stack.Screen options={{ headerShown: false }} name="ServiceCreate" component={CreateService} />
+
         </Stack.Navigator>
     )
 }
@@ -51,13 +53,6 @@ function BookingRoutes({ navigation }) {
     )
 }
 
-function CreateServiceRoutes({ navigation }) {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="ServiceCreate" component={CreateService} />
-        </Stack.Navigator>
-    )
-}
 
 function MapRoutes({ navigation }) {
     return (
@@ -132,7 +127,7 @@ export function AppBottomNavigator() {
                 name="Booking"
                 component={BookingRoutes}
             />
-            {
+            {/* {
                 user.role === 'provider' &&
                 <Tab.Screen
                     options={{
@@ -145,20 +140,17 @@ export function AppBottomNavigator() {
                     name="ServiceCreate"
                     component={CreateServiceRoutes}
                 />
-            }
+            } */}
 
-            {
-                user.role === 'user' &&
-                <Tab.Screen
-                    options={{
-                        headerShown: false,
-                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('map')}</Text>) },
-                        tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : theme === 'dark' ? <MapInactiveWhite /> : <MapInactive />) },
-                    }}
-                    name="Map"
-                    component={MapRoutes}
-                />
-            }
+            <Tab.Screen
+                options={{
+                    headerShown: false,
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: 12, top: -5 }}>{t('map')}</Text>) },
+                    tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : theme === 'dark' ? <MapInactiveWhite /> : <MapInactive />) },
+                }}
+                name="Map"
+                component={MapRoutes}
+            />
 
 
             {
