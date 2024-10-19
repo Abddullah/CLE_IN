@@ -218,8 +218,10 @@ const createStyles = (colors, theme, user, index) => {
             alignItems: 'center',
             borderWidth: 0.5,
             borderColor: 'gray',
-            marginHorizontal: user.role === 'user' ? null : marginHorizontal,
-            marginLeft: user.role === 'user' ? index != 0 ? 10 : 0 : null,
+            marginHorizontal: marginHorizontal,
+            marginLeft: index != 0 ? null : 0
+            // marginHorizontal: user.role === 'user' ? null : marginHorizontal,
+            // marginLeft: user.role === 'user' ? index != 0 ? 10 : 0 : null,
         },
         imageContainer: {
             width: '100%',

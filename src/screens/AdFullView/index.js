@@ -30,6 +30,7 @@ const AdFullView = ({ navigation }) => {
     let data = route.params.item;
     let isBooking = route.params.isBooking;
     let isReviewBooking = route.params.isReviewBooking;
+    let isJob = route.params.isJob;
     // console.log(data, "data");
 
     return (

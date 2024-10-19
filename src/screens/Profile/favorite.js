@@ -9,6 +9,7 @@ import ServiceCard from '../../components/ServiceCard';
 import ServiceCardDiscounted from '../../components/ServiceCardDiscounted';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import CustomTabs from '../../components/CustomTabs';
 
 const Favorite = ({ navigation }) => {
     const { theme, toggleTheme } = useTheme();
@@ -16,7 +17,7 @@ const Favorite = ({ navigation }) => {
     const styles = createStyles(colors, theme);
 
     let isError = useSelector((state) => state.reducer.isError);
-    const [allFavorites, setallFavorites] = useState(true);
+    const [selectedTab, setselectedTab] = useState(t('allFavorites'));
     const [data, setdata] = useState([
         {
             title: 'Cleaning at Company',
@@ -57,28 +58,16 @@ const Favorite = ({ navigation }) => {
                 leftPress={() => { navigation.goBack() }}
             />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    activeOpacity={.8}
-                    style={[styles.button, { backgroundColor: allFavorites ? colors.White_Primary_01 : colors.Neutral_01 }]}
-                    onPress={() => { setallFavorites(true) }}
-                >
-                    <Text style={{ color: colors.white, fontWeight: 'bold' }}>{t('allFavorites')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={.8}
-                    style={[styles.button, { backgroundColor: !allFavorites ? colors.White_Primary_01 : colors.Neutral_01 }]}
-                    onPress={() => { setallFavorites(false) }}
-                >
-                    <Text style={{ color: colors.white, fontWeight: 'bold' }}>{t('discountinFavorites')}</Text>
-                </TouchableOpacity>
+                <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('allFavorites')} />
+                <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('discountinFavorites')} />
             </View>
 
             {
-                allFavorites &&
+                selectedTab === t('allFavorites') &&
                 <FlatList
                     data={data}
                     style={{ marginTop: 10, }}
-                    contentContainerStyle={{ justifyContent: 'center', }} // Add padding for even spacing on the sides
+                    contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }} // Add padding for even spacing on the sides
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => (
@@ -90,9 +79,10 @@ const Favorite = ({ navigation }) => {
                     )}
                     ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
                 />
+
             }
             {
-                !allFavorites &&
+                selectedTab === t('discountinFavorites') &&
                 <FlatList
                     data={data}
                     contentContainerStyle={{ marginTop: 10, marginLeft: 20, paddingRight: 35 }}
@@ -123,13 +113,13 @@ const createStyles = (colors, theme) => {
         },
         buttonContainer: {
             marginTop: 10,
-            width: '100%',
+            width: '95%',
             flexDirection: 'row',
             justifyContent: 'space-evenly',
             alignItems: 'center',
         },
         button: {
-            borderRadius:5,
+            borderRadius: 5,
             width: '40%',
             height: 40,
             justifyContent: 'center',

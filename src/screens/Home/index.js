@@ -290,7 +290,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
                                         }}
                                     />
                                 }
@@ -319,7 +319,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
                                         }}
                                     />
                                 }
@@ -348,7 +348,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
                                         }}
                                     />
                                 }
@@ -377,7 +377,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
                                         }}
                                     />
                                 }
@@ -406,7 +406,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, });
+                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
                                         }}
                                     />
                                 }
