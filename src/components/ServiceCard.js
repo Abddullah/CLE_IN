@@ -170,7 +170,6 @@ const ServiceCard = ({
     index
 
 }) => {
-    console.log(index, 'indexindexindex');
     let user = useSelector((state) => state.reducer.user);
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;

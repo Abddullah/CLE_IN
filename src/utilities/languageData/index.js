@@ -159,7 +159,7 @@ export const languageData = [
             weatherconditions: 'Weather conditions',
             Ihavealternativeoption: 'I have alternative options',
             dob: 'Date of Birth',
-            myads: 'My ads',
+            myads: 'My Ads',
             analytics: 'Analytics',
             edit: 'EDIT',
             accept: 'ACCEPT',
@@ -194,6 +194,10 @@ export const languageData = [
             Subscribe: 'Subscribe',
             WhenwillIbebilled: 'When will I be billed?',
             YourItunesAccount: 'Your iTunes Account will be billed at the end of your trial period (if applicable) or on confirmation of your subscription.',
+            jobs: 'Jobs',
+            myjobs: 'My Jobs',
+            viewAll: 'View All',
+            services: 'Services',
         }
     },
     {
@@ -391,7 +395,9 @@ export const languageData = [
             Subscribe: 'Iscriviti',
             WhenwillIbebilled: 'Quando sarò addebitato?',
             YourItunesAccount: 'Il tuo account iTunes sarà addebitato al termine del periodo di prova (se applicabile) o al momento della conferma dell\'abbonamento.', // Italian
-
+            jobs: 'Lavori',
+            myjobs: 'I miei lavori',
+            services: 'Servizi',
         }
     },
     {
@@ -589,7 +595,9 @@ export const languageData = [
             Subscribe: 'Suscribirse',
             WhenwillIbebilled: '¿Cuándo se me cobrará?',
             YourItunesAccount: 'Tu cuenta de iTunes será facturada al final de tu periodo de prueba (si corresponde) o al confirmar tu suscripción.',
-
+            jobs: 'Trabajos',
+            myjobs: 'Mis trabajos',
+            services: 'Servicios',
         }
 
     },
@@ -788,7 +796,9 @@ export const languageData = [
             Subscribe: 'Abonnieren',
             WhenwillIbebilled: 'Wann werde ich abgerechnet?',
             YourItunesAccount: 'Ihr iTunes-Konto wird am Ende Ihres Testzeitraums (falls zutreffend) oder bei Bestätigung Ihres Abonnements belastet.',
-
+            jobs: 'Jobs',
+            myjobs: 'Meine Jobs',
+            services: 'Dienstleistungen',
         }
 
     },
@@ -987,8 +997,9 @@ export const languageData = [
             Subscribe: 'S’abonner',
             WhenwillIbebilled: 'Quand vais-je être facturé ?',
             YourItunesAccount: 'Votre compte iTunes sera facturé à la fin de votre période d\'essai (le cas échéant) ou lors de la confirmation de votre abonnement.', // French
-
-
+            jobs: 'Emplois',
+            myjobs: 'Mes emplois',
+            services: 'Services',
         }
 
     },

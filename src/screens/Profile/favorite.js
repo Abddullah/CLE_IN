@@ -129,6 +129,7 @@ const createStyles = (colors, theme) => {
             alignItems: 'center',
         },
         button: {
+            borderRadius:5,
             width: '40%',
             height: 40,
             justifyContent: 'center',

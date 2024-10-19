@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
@@ -15,6 +15,7 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import Categories from '../../components/Categories';
 import screenResolution from '../../utilities/constants/screenResolution';
+import CustomTabs from '../../components/CustomTabs';
 
 const deviceWidth = screenResolution.screenWidth;
 
@@ -25,9 +26,11 @@ const Home = ({ navigation }) => {
     let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
     const numColumns = deviceWidth < 360 ? 1 : 2;
+    const [selectedTab, setselectedTab] = useState();
+    const [isJobsTab, setisJobsTab] = useState(false);
 
     const [search, setsearch] = useState('');
-    const [selectedCat, setselectedCat] = useState('');
+    const [selectedCat, setselectedCat] = useState(t('cleaningandhygiene'));
 
     const [categories, setcategories] = useState([
         {
@@ -108,9 +111,13 @@ const Home = ({ navigation }) => {
 
     ]);
 
+    useEffect(() => {
+        user.role === 'user' && setselectedTab('')
+        user.role !== 'user' && setselectedTab(t('myads'))
+    }, [user])
+
     const selectedCatHandler = (title) => {
         console.log(title, 'title');
-
         setselectedCat(title)
     }
 
@@ -138,6 +145,87 @@ const Home = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
+
+                {/* /Provider/ */}
+
+                {
+                    user.role !== 'user' &&
+                    <View style={styles.buttonContainer}>
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myads')} />
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('jobs')} />
+                    </View>
+                }
+
+
+                {
+                    (user.role !== 'user' && selectedTab === t('myads')) &&
+                    <>
+                        <View style={{ width: '100%', alignItems: 'center', marginTop: 10 }}>
+                            <FlatList
+                                data={data}
+                                style={{ marginTop: 10, }}
+                                contentContainerStyle={{ justifyContent: 'center', }} // Add padding for even spacing on the sides
+                                numColumns={2}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) => (
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
+                                    />
+                                )}
+                                ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
+                            />
+                        </View>
+                    </>
+                }
+                {
+                    (user.role !== 'user' && selectedTab !== t('myads')) &&
+                    < View style={styles.catContainer}>
+                        <View style={styles.headerSection}>
+                            <SliderBox
+                                autoplay={true}
+                                ImageComponent={FastImage}
+                                images={[Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning]}
+                                sliderBoxHeight={230}
+                                onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+                                dotColor={colors.Primary_01}
+                                inactiveDotColor="#90A4AE"
+                                resizeMethod={'resize'}
+                                resizeMode={'cover'}
+                                circleLoop
+                                dotStyle={{ width: 8, height: 8, borderRadius: 4, }}
+                            />
+                        </View>
+
+                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
+                        <ScrollView
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            style={{ flexDirection: 'row', marginTop: 10 }}
+                        >
+                            <FlatList
+                                data={categories}
+                                contentContainerStyle={{}}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) => <Categories icon={item.image} title={item.title} submitHandler={(title) => { selectedCatHandler(title) }} selectedCat={selectedCat} />}
+                            />
+                        </ScrollView>
+                    </View>
+                }
+
+                {/* /User/ */}
+
+                {
+                    user.role === 'user' &&
+                    <View style={styles.buttonContainer}>
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('services')} />
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myjobs')} />
+                    </View>
+                }
+
                 {
                     user.role === 'user' &&
                     <View style={styles.catContainer}>
@@ -176,37 +264,20 @@ const Home = ({ navigation }) => {
                 }
 
                 {
-                    user.role !== 'user' &&
-                    <>
-                        <Text style={[Typography.text_paragraph_1, { width: '95%', fontWeight: 'bold', color: colors.black, textAlign: 'left' }]}>{t('myads')}</Text>
-                        <View style={{ width: '100%', alignItems: 'center', }}>
-                            <FlatList
-                                data={data}
-                                style={{ marginTop: 10, }}
-                                contentContainerStyle={{ justifyContent: 'center', }} // Add padding for even spacing on the sides
-                                numColumns={2}
-                                showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) => (
-                                    <ServiceCard
-                                        data={item}
-                                        isFav={true}
-                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
-                                    />
-                                )}
-                                ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
-                            />
-
-                        </View>
-                    </>
-                }
-
-                {
-                    user.role === 'user' &&
+                    // user.role === 'user' &&
+                    selectedTab !== t('myads') &&
                     <>
                         <View style={{ width: '95%', alignItems: 'flex-start', }}>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                {'Office Cleaning'}
-                            </Text>
+                            <View style={styles.subCatTextContainer}>
+                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                    {'Office Cleaning'}
+                                </Text>
+                                <TouchableOpacity activeOpacity={.8}>
+                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                        {t('viewAll')}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                             <FlatList
                                 data={data}
                                 contentContainerStyle={{ marginTop: 10, }}
@@ -226,9 +297,16 @@ const Home = ({ navigation }) => {
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                {'Room Cleaning'}
-                            </Text>
+                            <View style={styles.subCatTextContainer}>
+                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                    {'Room Cleaning'}
+                                </Text>
+                                <TouchableOpacity activeOpacity={.8}>
+                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                        {t('viewAll')}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                             <FlatList
                                 data={data}
                                 contentContainerStyle={{ marginTop: 10, }}
@@ -248,9 +326,16 @@ const Home = ({ navigation }) => {
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                {'Pest control service'}
-                            </Text>
+                            <View style={styles.subCatTextContainer}>
+                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                    {'Pest control service'}
+                                </Text>
+                                <TouchableOpacity activeOpacity={.8}>
+                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                        {t('viewAll')}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                             <FlatList
                                 data={data}
                                 contentContainerStyle={{ marginTop: 10, }}
@@ -270,9 +355,16 @@ const Home = ({ navigation }) => {
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                {'Laundry Service'}
-                            </Text>
+                            <View style={styles.subCatTextContainer}>
+                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                    {'Laundry Service'}
+                                </Text>
+                                <TouchableOpacity activeOpacity={.8}>
+                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                        {t('viewAll')}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                             <FlatList
                                 data={data}
                                 contentContainerStyle={{ marginTop: 10, }}
@@ -292,9 +384,16 @@ const Home = ({ navigation }) => {
                             />
                         </View>
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                {'Etc.'}
-                            </Text>
+                            <View style={styles.subCatTextContainer}>
+                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                    {'Etc.'}
+                                </Text>
+                                <TouchableOpacity activeOpacity={.8}>
+                                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
+                                        {t('viewAll')}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                             <FlatList
                                 data={data}
                                 contentContainerStyle={{ marginTop: 10, }}
@@ -315,7 +414,7 @@ const Home = ({ navigation }) => {
                         </View>
                     </>
                 }
-            </ScrollView>
+            </ScrollView >
 
             <TouchableOpacity
                 activeOpacity={.8}
@@ -325,7 +424,7 @@ const Home = ({ navigation }) => {
                 <Ionicons name="add-outline" style={{ fontSize: 40, color: colors.white, }} />
             </TouchableOpacity>
 
-        </View>
+        </View >
     );
 };
 
@@ -389,6 +488,18 @@ const createStyles = (colors, theme) => {
             justifyContent: 'center', alignItems: 'center',
             borderColor: colors.white,
             borderWidth: 2
+        },
+        buttonContainer: {
+            marginTop: 10,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+        },
+        subCatTextContainer: {
+            flexDirection: 'row',
+            width: '97%',
+            justifyContent: 'space-between'
         }
     });
 };
