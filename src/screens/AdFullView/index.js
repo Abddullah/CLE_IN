@@ -27,9 +27,9 @@ const AdFullView = ({ navigation }) => {
     let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
 
-    let data = route.params.item;
-    let isBooking = route.params.isBooking;
-    let isReviewBooking = route.params.isReviewBooking;
+    let data = route.params?.item;
+    let isBooking = route.params?.isBooking;
+    let isReviewBooking = route.params?.isReviewBooking;
     let isJob = route.params.isJob;
     // console.log(data, "data");
 
@@ -37,8 +37,7 @@ const AdFullView = ({ navigation }) => {
         <View style={styles.container}>
 
             <CustomHeader
-                // title={t('serviceprovider')}
-                title={isReviewBooking ? t('reviewconfirm') : t('service')}
+                title={t('serviceprovider')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />

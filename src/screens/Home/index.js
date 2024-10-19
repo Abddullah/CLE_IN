@@ -146,7 +146,7 @@ const Home = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
             >
 
-                {/* /Provider/ */}
+                {/* //////////////////////////////////////////////////////////////Provider////////////////////////////////////////////////////////////// */}
 
                 {
                     user.role !== 'user' &&
@@ -155,7 +155,6 @@ const Home = ({ navigation }) => {
                         <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('jobs')} />
                     </View>
                 }
-
 
                 {
                     (user.role !== 'user' && selectedTab === t('myads')) &&
@@ -216,7 +215,7 @@ const Home = ({ navigation }) => {
                     </View>
                 }
 
-                {/* /User/ */}
+                {/* //////////////////////////////////////////////////////////////User////////////////////////////////////////////////////////////// */}
 
                 {
                     user.role === 'user' &&
@@ -272,7 +271,7 @@ const Home = ({ navigation }) => {
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                     {'Office Cleaning'}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -301,7 +300,7 @@ const Home = ({ navigation }) => {
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                     {'Room Cleaning'}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -330,7 +329,7 @@ const Home = ({ navigation }) => {
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                     {'Pest control service'}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -359,7 +358,7 @@ const Home = ({ navigation }) => {
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                     {'Laundry Service'}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -388,7 +387,7 @@ const Home = ({ navigation }) => {
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                     {'Etc.'}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>

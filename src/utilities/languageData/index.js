@@ -198,6 +198,7 @@ export const languageData = [
             myjobs: 'My Jobs',
             viewAll: 'View All',
             services: 'Services',
+            subCategories: 'Sub Categories',
         }
     },
     {
@@ -398,6 +399,7 @@ export const languageData = [
             jobs: 'Lavori',
             myjobs: 'I miei lavori',
             services: 'Servizi',
+            subCategories: 'Sottocategorie',
         }
     },
     {
@@ -598,6 +600,7 @@ export const languageData = [
             jobs: 'Trabajos',
             myjobs: 'Mis trabajos',
             services: 'Servicios',
+            subCategories: 'Subcategorías',
         }
 
     },
@@ -799,6 +802,7 @@ export const languageData = [
             jobs: 'Jobs',
             myjobs: 'Meine Jobs',
             services: 'Dienstleistungen',
+            subCategories: 'Unterkategorien',
         }
 
     },
@@ -1000,6 +1004,7 @@ export const languageData = [
             jobs: 'Emplois',
             myjobs: 'Mes emplois',
             services: 'Services',
+            subCategories: 'Sous-catégories',
         }
 
     },
