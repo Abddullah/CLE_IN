@@ -27,7 +27,6 @@ const Home = ({ navigation }) => {
     let isError = useSelector((state) => state.reducer.isError);
     const numColumns = deviceWidth < 360 ? 1 : 2;
     const [selectedTab, setselectedTab] = useState();
-    const [isJobsTab, setisJobsTab] = useState(false);
 
     const [search, setsearch] = useState('');
     const [selectedCat, setselectedCat] = useState(t('cleaningandhygiene'));
@@ -401,7 +400,7 @@ const Home = ({ navigation }) => {
             <TouchableOpacity
                 activeOpacity={.8}
                 style={styles.febbutton}
-                onPress={() => { navigation.navigate('ServiceCreate') }}
+                onPress={() => { navigation.navigate('ServiceCreate', { isJobCreate: user.role !== 'user' ? false : true }) }}
             >
                 <Ionicons name="add-outline" style={{ fontSize: 40, color: colors.white, }} />
             </TouchableOpacity>

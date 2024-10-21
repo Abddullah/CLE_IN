@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRoute } from '@react-navigation/native';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
@@ -17,13 +18,19 @@ import { useTheme } from '../../../ThemeContext';
 import WeekTimeSelector from '../../components/WeekTimeSelector';
 import Images from '../../assets/images/index'
 import screenResolution from '../../utilities/constants/screenResolution';
+import { Select } from 'native-base';
 
 const deviceWidth = screenResolution.screenWidth;
 
-const CreateService = ({ navigation, route }) => {
+const CreateService = ({ navigation }) => {
+    const route = useRoute();
+    let isJobCreate = route.params.isJobCreate;
+    console.log(isJobCreate, 'isJobCreate');
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme, deviceWidth);
+    const [categories, setcategories] = useState('');
+    const [subcategories, setsubcategories] = useState('');
 
     let isError = useSelector((state) => state.reducer.isError);
     const [step, setstep] = useState(0);
@@ -200,10 +207,9 @@ const CreateService = ({ navigation, route }) => {
     };
 
     const stepsHandler = () => {
-        if (step < 2) {
+        if (isJobCreate ? step < 1 : step < 2) {
             setstep(step + 1)
         } else {
-
             const data = ([
                 {
                     title: 'Cleaning at Company',
@@ -245,7 +251,60 @@ const CreateService = ({ navigation, route }) => {
                         <View style={styles.heading}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectCategory')}</Text>
                         </View>
-                        <RadioButtonCat options={options} onSelect={handleSelect} />
+                        {/* <RadioButtonCat options={options} onSelect={handleSelect} /> */}
+                        <View style={styles.listDropDown}>
+                            <Select
+                                bg={colors.white}
+                                borderWidth={0}
+                                selectedValue={categories}
+                                minWidth="100%"
+                                accessibilityLabel={t('selectCategory')}
+                                placeholder={t('selectCategory')}
+                                placeholderTextColor={colors.Neutral_01}
+                                _selectedItem={{
+                                    background: colors.Primary_01,
+                                }}
+                                color={colors.Neutral_01}
+                                mt={1} onValueChange={itemValue => setcategories(itemValue)}
+                            >
+                                <Select.Item label="Cleaning and Hygiene Services" value="Cleaning and Hygiene Services" />
+                                <Select.Item label="Home Maintenance Services" value="Home Maintenance Services" />
+                                <Select.Item label="Installation Services" value="Installation Services" />
+                                <Select.Item label="Renovation Services" value="Renovation Services" />
+                            </Select>
+                        </View>
+
+
+                        {
+                            categories != '' &&
+                            <>
+                                <View style={styles.heading}>
+                                    <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('subCategories')}</Text>
+                                </View>
+                                <View style={styles.listDropDown}>
+                                    <Select
+                                        bg={colors.white}
+                                        borderWidth={0}
+                                        selectedValue={subcategories}
+                                        minWidth="100%"
+                                        accessibilityLabel={t('subCategories')}
+                                        placeholder={t('subCategories')}
+                                        placeholderTextColor={colors.Neutral_01}
+                                        _selectedItem={{
+                                            background: colors.Primary_01,
+                                        }}
+                                        color={colors.Neutral_01}
+                                        mt={1} onValueChange={itemValue => setsubcategories(itemValue)}
+                                    >
+                                        <Select.Item label="Office cleaning" value="Office cleaning" />
+                                        <Select.Item label="Room cleaning" value="Room cleaning" />
+                                        <Select.Item label="Pest control service" value="Pest control service" />
+                                        <Select.Item label="Laundry Service" value="Laundry Service" />
+                                        <Select.Item label="Etc" value="Etc" />
+                                    </Select>
+                                </View>
+                            </>
+                        }
                     </View>
                 </ScrollView>
             }
@@ -512,6 +571,18 @@ const createStyles = (colors, theme, deviceWidth) => {
             backgroundColor: colors.Neutral_02,
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        listDropDown: {
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 10,
+            borderColor: colors.Primary_01,
+            borderWidth: 1,
+            borderRadius: 7,
+            height: 50,
+            overflow: 'hidden',
+            backgroundColor: colors.white
         },
 
     });

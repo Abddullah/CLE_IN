@@ -40,7 +40,6 @@ function HomeRoutes({ navigation }) {
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
             <Stack.Screen options={{ headerShown: false }} name="ServiceCreate" component={CreateService} />
-
         </Stack.Navigator>
     )
 }
@@ -90,9 +89,7 @@ function ProfileRoutes({ navigation }) {
 export function AppBottomNavigator() {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
-
     let user = useSelector((state) => state.reducer.user);
-    console.log(user.role === 'provider', 'user');
 
     return (
         <Tab.Navigator

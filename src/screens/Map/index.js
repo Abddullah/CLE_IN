@@ -17,6 +17,7 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { isLocationSet } from '../../store/actions/action'
 import { checkLocationPermission, } from '../../services/locationServiceCheck';
 import PlacesModal from '../../components/PlacesModal';
+import { Bubble } from '../../assets/icons';
 
 Mapbox.setWellKnownTileServer(Platform.OS === 'ios' ? 'mapbox' : 'Mapbox');
 Mapbox.setAccessToken('pk.eyJ1Ijoicm9sbiIsImEiOiJjbHUydnB1Y3EwYnFzMmlxZWc2NWFscDJvIn0.9TwHwnZcT6qB2OO6Q4OnFQ');
@@ -164,7 +165,7 @@ export default function Map({ navigation }) {
                                 />
 
                                 {/* services marker */}
-                                {/* {
+                                {
                                     data.map((key, index) => {
                                         const latitude = key.coordinates[0];
                                         const longitude = key.coordinates[1];
@@ -184,7 +185,7 @@ export default function Map({ navigation }) {
                                             </Mapbox.MarkerView>
                                         );
                                     })
-                                } */}
+                                }
 
                                 {/* current location marker */}
                                 <Mapbox.MarkerView coordinate={[savedCords[1], savedCords[0]]}>
