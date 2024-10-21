@@ -65,3 +65,8 @@ export { default as SendButton } from './sendButton.svg';
 export { default as ThisWeekButton } from './thisWeekButton.svg';
 export { default as SubscriptionIcon } from './subscription.svg';
 
+export { default as Bubble } from './Bubble.svg';
+export { default as LocateMeButton } from './LocateMeButton.svg';
+export { default as SearchIcon } from './SearchIcon.svg';
+export { default as Pinbox } from './Pinbox.svg';
+

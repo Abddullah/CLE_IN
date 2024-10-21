@@ -78,8 +78,6 @@ const Bookings = ({ navigation }) => {
 
     ]);
 
-
-
     return (
         <View style={styles.container}>
             <CustomHeader
