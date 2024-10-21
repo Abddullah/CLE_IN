@@ -1,19 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Image, ImageBackground, Text, View, TouchableOpacity, Platform } from 'react-native';
-import { _retrieveData } from '../../services/assynsStorage';
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    Platform
+} from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import Mapbox, { MapView, Camera } from '@rnmapbox/maps';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+// local imports
 import Images from '../../assets/images/index'
-import { t } from 'i18next';
 import { useTheme } from '../../../ThemeContext';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { isLocationSet } from '../../store/actions/action'
 import { checkLocationPermission, } from '../../services/locationServiceCheck';
-import { SearchIcon, LocateMeButton, Bubble, } from '../../assets/icons';
-import Mapbox, { MarkerView, MapView, Camera } from '@rnmapbox/maps';
-import * as Animatable from 'react-native-animatable';
 import PlacesModal from '../../components/PlacesModal';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
 Mapbox.setWellKnownTileServer(Platform.OS === 'ios' ? 'mapbox' : 'Mapbox');
 Mapbox.setAccessToken('pk.eyJ1Ijoicm9sbiIsImEiOiJjbHUydnB1Y3EwYnFzMmlxZWc2NWFscDJvIn0.9TwHwnZcT6qB2OO6Q4OnFQ');

@@ -8,14 +8,14 @@ import { SliderBox } from "react-native-image-slider-box";
 // import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import moment from 'moment';
-import ServiceCard from '../../components/ServiceCard';
+// local imports
 import Images from '../../assets/images/index'
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import Categories from '../../components/Categories';
 import screenResolution from '../../utilities/constants/screenResolution';
 import CustomTabs from '../../components/CustomTabs';
+import ServiceCard from '../../components/ServiceCard';
 
 const deviceWidth = screenResolution.screenWidth;
 
@@ -112,8 +112,8 @@ const Home = ({ navigation }) => {
     ]);
 
     useEffect(() => {
-        user.role === 'user' && setselectedTab('')
-        user.role !== 'user' && setselectedTab(t('myads'))
+        user.role === 'user' && setselectedTab(t('services'))
+        user.role !== 'user' && setselectedTab(t('jobs'))
     }, [user])
 
     const selectedCatHandler = (title) => {
@@ -145,17 +145,25 @@ const Home = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-
-                {/* //////////////////////////////////////////////////////////////Provider////////////////////////////////////////////////////////////// */}
-
+                {/* //////////////////////////////////////////////////////////////Provider////////////////////////////////////////////////////////// */}
                 {
                     user.role !== 'user' &&
                     <View style={styles.buttonContainer}>
-                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myads')} />
                         <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('jobs')} />
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myads')} />
                     </View>
                 }
 
+                {/* //////////////////////////////////////////////////////////////User////////////////////////////////////////////////////////////// */}
+                {
+                    user.role === 'user' &&
+                    <View style={styles.buttonContainer}>
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('services')} />
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myjobs')} />
+                    </View>
+                }
+
+                {/* My Ads */}
                 {
                     (user.role !== 'user' && selectedTab === t('myads')) &&
                     <>
@@ -178,94 +186,69 @@ const Home = ({ navigation }) => {
                         </View>
                     </>
                 }
+
+                {/* My Jobs */}
                 {
-                    (user.role !== 'user' && selectedTab !== t('myads')) &&
-                    < View style={styles.catContainer}>
-                        <View style={styles.headerSection}>
-                            <SliderBox
-                                autoplay={true}
-                                ImageComponent={FastImage}
-                                images={[Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning]}
-                                sliderBoxHeight={230}
-                                onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
-                                dotColor={colors.Primary_01}
-                                inactiveDotColor="#90A4AE"
-                                resizeMethod={'resize'}
-                                resizeMode={'cover'}
-                                circleLoop
-                                dotStyle={{ width: 8, height: 8, borderRadius: 4, }}
-                            />
-                        </View>
-
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
-                        <ScrollView
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            style={{ flexDirection: 'row', marginTop: 10 }}
-                        >
-                            <FlatList
-                                data={categories}
-                                contentContainerStyle={{}}
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) => <Categories icon={item.image} title={item.title} submitHandler={(title) => { selectedCatHandler(title) }} selectedCat={selectedCat} />}
-                            />
-                        </ScrollView>
-                    </View>
-                }
-
-                {/* //////////////////////////////////////////////////////////////User////////////////////////////////////////////////////////////// */}
-
-                {
-                    user.role === 'user' &&
-                    <View style={styles.buttonContainer}>
-                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('services')} />
-                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myjobs')} />
-                    </View>
-                }
-
-                {
-                    user.role === 'user' &&
-                    <View style={styles.catContainer}>
-                        <View style={styles.headerSection}>
-                            <SliderBox
-                                autoplay={true}
-                                ImageComponent={FastImage}
-                                images={[Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning]}
-                                sliderBoxHeight={230}
-                                onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
-                                dotColor={colors.Primary_01}
-                                inactiveDotColor="#90A4AE"
-                                resizeMethod={'resize'}
-                                resizeMode={'cover'}
-                                circleLoop
-                                dotStyle={{ width: 8, height: 8, borderRadius: 4, }}
-                            />
-                        </View>
-
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
-                        <ScrollView
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            style={{ flexDirection: 'row', marginTop: 10 }}
-                        >
-                            <FlatList
-                                data={categories}
-                                contentContainerStyle={{}}
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) => <Categories icon={item.image} title={item.title} submitHandler={(title) => { selectedCatHandler(title) }} selectedCat={selectedCat} />}
-                            />
-                        </ScrollView>
-                    </View>
-                }
-
-                {
-                    // user.role === 'user' &&
-                    selectedTab !== t('myads') &&
+                    (user.role === 'user' && selectedTab === t('myjobs')) &&
                     <>
+                        <View style={{ width: '100%', alignItems: 'center', marginTop: 10 }}>
+                            <FlatList
+                                data={data}
+                                style={{ marginTop: 10, }}
+                                contentContainerStyle={{ justifyContent: 'center', }} // Add padding for even spacing on the sides
+                                numColumns={2}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item }) => (
+                                    <ServiceCard
+                                        data={item}
+                                        isFav={true}
+                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
+                                    />
+                                )}
+                                ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
+                            />
+                        </View>
+                    </>
+                }
+
+
+                {/* Jobs and services Tab */}
+                {
+                    (selectedTab === t('services') || selectedTab === t('jobs')) &&
+                    <>
+                        <View style={styles.catContainer}>
+                            <View style={styles.headerSection}>
+                                <SliderBox
+                                    autoplay={true}
+                                    ImageComponent={FastImage}
+                                    images={[Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning, Images.cleaning]}
+                                    sliderBoxHeight={230}
+                                    onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+                                    dotColor={colors.Primary_01}
+                                    inactiveDotColor="#90A4AE"
+                                    resizeMethod={'resize'}
+                                    resizeMode={'cover'}
+                                    circleLoop
+                                    dotStyle={{ width: 8, height: 8, borderRadius: 4, }}
+                                />
+                            </View>
+
+                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('specialservices')}</Text>
+                            <ScrollView
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                style={{ flexDirection: 'row', marginTop: 10 }}
+                            >
+                                <FlatList
+                                    data={categories}
+                                    contentContainerStyle={{}}
+                                    horizontal={true}
+                                    showsHorizontalScrollIndicator={false}
+                                    showsVerticalScrollIndicator={false}
+                                    renderItem={({ item }) => <Categories icon={item.image} title={item.title} submitHandler={(title) => { selectedCatHandler(title) }} selectedCat={selectedCat} />}
+                                />
+                            </ScrollView>
+                        </View>
                         <View style={{ width: '95%', alignItems: 'flex-start', }}>
                             <View style={styles.subCatTextContainer}>
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
@@ -413,7 +396,7 @@ const Home = ({ navigation }) => {
                         </View>
                     </>
                 }
-            </ScrollView >
+            </ScrollView>
 
             <TouchableOpacity
                 activeOpacity={.8}
