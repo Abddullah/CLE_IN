@@ -49,7 +49,6 @@ function BookingRoutes({ navigation }) {
     )
 }
 
-
 function MapRoutes({ navigation }) {
     return (
         <Stack.Navigator>

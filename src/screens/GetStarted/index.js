@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, } from 'react-native';
 import { Select } from 'native-base';
 import { _retrieveData } from '../../services/assynsStorage';
 import { GetstartedIcon1, GetstartedIcon2, LanguageIcon, ItalyFlag } from '../../assets/icons';

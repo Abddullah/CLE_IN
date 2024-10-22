@@ -200,6 +200,8 @@ export const languageData = [
             services: 'Services',
             subCategories: 'Sub Categories',
             apply: 'Apply',
+            turnOnGps: 'Turn on GPS',
+            locationNotAvailable: 'Location services are unavailable.',
         }
     },
     {
@@ -402,6 +404,8 @@ export const languageData = [
             services: 'Servizi',
             subCategories: 'Sottocategorie',
             apply: 'Applica',
+            turnOnGps: 'Attiva il GPS',
+            locationNotAvailable: 'Servizi di localizzazione non disponibili.',
         }
     },
     {
@@ -604,6 +608,8 @@ export const languageData = [
             services: 'Servicios',
             subCategories: 'Subcategorías',
             apply: 'Aplicar',
+            turnOnGps: 'Activar el GPS',
+            locationNotAvailable: 'Los servicios de localización no están disponibles.',
         }
 
     },
@@ -807,8 +813,9 @@ export const languageData = [
             services: 'Dienstleistungen',
             subCategories: 'Unterkategorien',
             apply: 'Bewerben',
+            turnOnGps: 'GPS einschalten',
+            locationNotAvailable: 'Ortungsdienste sind nicht verfügbar.',
         }
-
     },
     {
         locale: 'fr',
@@ -1010,6 +1017,8 @@ export const languageData = [
             services: 'Services',
             subCategories: 'Sous-catégories',
             apply: 'Postuler',
+            turnOnGps: 'Activer le GPS',
+            locationNotAvailable: 'Les services de localisation ne sont pas disponibles.',
         }
 
     },

@@ -4,12 +4,14 @@ import {
     StyleSheet,
     View,
     TouchableOpacity,
-    Platform
+    Platform,
+    Text
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Mapbox, { MapView, Camera } from '@rnmapbox/maps';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import { t } from 'i18next';
 // local imports
 import Images from '../../assets/images/index'
 import { useTheme } from '../../../ThemeContext';
@@ -18,6 +20,8 @@ import { isLocationSet } from '../../store/actions/action'
 import { checkLocationPermission, } from '../../services/locationServiceCheck';
 import PlacesModal from '../../components/PlacesModal';
 import { Bubble } from '../../assets/icons';
+import { Typography } from '../../utilities/constants/constant.style';
+import CTAButton1 from '../../components/CTA_BUTTON1';
 
 Mapbox.setWellKnownTileServer(Platform.OS === 'ios' ? 'mapbox' : 'Mapbox');
 Mapbox.setAccessToken('pk.eyJ1Ijoicm9sbiIsImEiOiJjbHUydnB1Y3EwYnFzMmlxZWc2NWFscDJvIn0.9TwHwnZcT6qB2OO6Q4OnFQ');
@@ -28,6 +32,7 @@ export default function Map({ navigation }) {
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
     const savedCords = useSelector((state) => state.reducer.savedCords);
+    const isLocation = useSelector((state) => state.reducer.isLocation);
 
     const [isLocationErr, setisLocationErr] = useState(false);
     const [isPlacesVisible, setisPlacesVisible] = useState(false);
@@ -98,18 +103,25 @@ export default function Map({ navigation }) {
     ]);
 
     useEffect(() => {
+        gpsenable()
+    }, []);
+
+    useEffect(() => {
+        setisLocationErr(isLocation)
+    }, [isLocation]);
+
+    const gpsenable = () => {
         checkLocationPermission()
             .then(async (position) => {
                 let loc = [position.coords.latitude, position.coords.longitude]
                 let loc1 = [24.9107, 67.0311]
-                setisLocationErr(false)
                 dispatch(isLocationSet(true, loc1));
             })
             .catch((error) => {
+                console.log(error, "error");
                 dispatch(isLocationSet(false, []));
             });
-    }, []);
-
+    }
 
     const cameraRef = useRef(null);
     const recenterMap = (loc) => {
@@ -126,99 +138,115 @@ export default function Map({ navigation }) {
 
     return (
         <View style={{ height: '100%', width: '100%', position: 'absolute', }}>
-            <View style={{ flex: 1 }}>
-                <TouchableOpacity
-                    style={styles.searchLocationContainer}
-                    onPress={() => setisPlacesVisible(true)}
-                    activeOpacity={0.8}
-                >
-                    <AntDesign name="search1" style={{ fontSize: 25, color: colors.white, }} />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.locateMeContainer}
-                    onPress={recenterMap}
-                    activeOpacity={0.8}
-                >
-                    <FontAwesome6 name="location-arrow" style={{ fontSize: 25, color: colors.white, }} />
-                </TouchableOpacity>
-
-                <View style={{ height: '100%', width: '100%' }}>
-                    {
-                        (savedCords?.length > 0) && (
-                            <MapView
-                                styleJSON={'mapbox://styles/mapbox/streets-v8'}
-                                style={{ flex: 1 }}
-                                scaleBarEnabled={false}
-                                attributionPosition={{ bottom: 8, left: Platform.OS === 'ios' ? 90 : 130 }}
-                                rotateEnabled={false}
-                                pitchEnabled={false}
-                                localizeLabels={true}
-                            // onRegionDidChange={handleRegionDidChange}
-                            >
-                                <Camera
-                                    ref={cameraRef}
-                                    defaultSettings={{
-                                        zoomLevel: 11,
-                                        centerCoordinate: savedCords?.length > 0 && [savedCords[1], savedCords[0]]
-                                    }}
-                                />
-
-                                {/* services marker */}
-                                {
-                                    data.map((key, index) => {
-                                        const latitude = key.coordinates[0];
-                                        const longitude = key.coordinates[1];
-                                        const isSameLocation = longitude === savedCords[1] && latitude === savedCords[0];
-                                        const offset = isSameLocation ? 0.00001 * (index + 1) : 0; // Apply offset to avoid exact overlap
-                                        return (
-                                            <Mapbox.MarkerView
-                                                key={index}
-                                                coordinate={[longitude + offset, latitude + offset]}
-                                            >
-                                                <TouchableOpacity
-                                                    activeOpacity={0.9}
-                                                    onPress={() => {
-                                                        navigation.navigate('AdFullView', { item: key, })
-                                                    }}
-                                                >
-                                                    <Bubble />
-                                                </TouchableOpacity>
-                                            </Mapbox.MarkerView>
-                                        );
-                                    })
-                                }
-
-                                {/* current location marker */}
-                                <Mapbox.MarkerView coordinate={[savedCords[1], savedCords[0]]}>
-                                    <View style={styles.locationMarke}>
-                                        <Animatable.View
-                                            iterationCount={200000}
-                                            useNativeDriver
-                                            animation={'zoomIn'}
-                                            duration={3000}
-                                            style={{
-                                                alignSelf: 'center',
-                                                borderRadius: 15,
-                                                height: 19,
-                                                width: 19,
-                                                backgroundColor: colors.BothPrimary_01
-                                            }}
-                                        />
-                                    </View>
-                                </Mapbox.MarkerView>
-
-                            </MapView>
-                        )}
+            {
+                !isLocationErr &&
+                <View style={styles.locationError}>
+                    <Text style={[Typography.text_paragraph, { color: colors.black, marginBottom: 20 }]}>{t('locationNotAvailable')}</Text>
+                    <CTAButton1
+                        title={t('turnOnGps')}
+                        submitHandler={async () => { gpsenable() }
+                        }
+                    />
                 </View>
+            }
 
-                <PlacesModal
-                    isVisible={isPlacesVisible}
-                    cameraRef={cameraRef}
-                    onClose={() => setisPlacesVisible(false)}
-                />
+            {
+                isLocationErr &&
+                <View style={{ flex: 1 }}>
+                    <TouchableOpacity
+                        style={styles.searchLocationContainer}
+                        onPress={() => setisPlacesVisible(true)}
+                        activeOpacity={0.8}
+                    >
+                        <AntDesign name="search1" style={{ fontSize: 25, color: colors.white, }} />
+                    </TouchableOpacity>
 
-            </View>
+                    <TouchableOpacity
+                        style={styles.locateMeContainer}
+                        onPress={recenterMap}
+                        activeOpacity={0.8}
+                    >
+                        <FontAwesome6 name="location-arrow" style={{ fontSize: 25, color: colors.white, }} />
+                    </TouchableOpacity>
+
+                    <View style={{ height: '100%', width: '100%' }}>
+                        {
+                            (savedCords?.length > 0) && (
+                                <MapView
+                                    styleJSON={'mapbox://styles/mapbox/streets-v8'}
+                                    style={{ flex: 1 }}
+                                    scaleBarEnabled={false}
+                                    attributionPosition={{ bottom: 8, left: Platform.OS === 'ios' ? 90 : 130 }}
+                                    rotateEnabled={false}
+                                    pitchEnabled={false}
+                                    localizeLabels={true}
+                                // onRegionDidChange={handleRegionDidChange}
+                                >
+                                    <Camera
+                                        ref={cameraRef}
+                                        defaultSettings={{
+                                            zoomLevel: 11,
+                                            centerCoordinate: savedCords?.length > 0 && [savedCords[1], savedCords[0]]
+                                        }}
+                                    />
+
+                                    {/* services marker */}
+                                    {
+                                        data.map((key, index) => {
+                                            const latitude = key.coordinates[0];
+                                            const longitude = key.coordinates[1];
+                                            const isSameLocation = longitude === savedCords[1] && latitude === savedCords[0];
+                                            const offset = isSameLocation ? 0.00001 * (index + 1) : 0; // Apply offset to avoid exact overlap
+                                            return (
+                                                <Mapbox.MarkerView
+                                                    key={index}
+                                                    coordinate={[longitude + offset, latitude + offset]}
+                                                >
+                                                    <TouchableOpacity
+                                                        activeOpacity={0.9}
+                                                        onPress={() => {
+                                                            navigation.navigate('AdFullView', { item: key, })
+                                                        }}
+                                                    >
+                                                        <Bubble />
+                                                    </TouchableOpacity>
+                                                </Mapbox.MarkerView>
+                                            );
+                                        })
+                                    }
+
+                                    {/* current location marker */}
+                                    <Mapbox.MarkerView coordinate={[savedCords[1], savedCords[0]]}>
+                                        <View style={styles.locationMarke}>
+                                            <Animatable.View
+                                                iterationCount={200000}
+                                                useNativeDriver
+                                                animation={'zoomIn'}
+                                                duration={3000}
+                                                style={{
+                                                    alignSelf: 'center',
+                                                    borderRadius: 15,
+                                                    height: 19,
+                                                    width: 19,
+                                                    backgroundColor: colors.BothPrimary_01
+                                                }}
+                                            />
+                                        </View>
+                                    </Mapbox.MarkerView>
+
+                                </MapView>
+                            )
+                        }
+                    </View>
+
+                    <PlacesModal
+                        isVisible={isPlacesVisible}
+                        cameraRef={cameraRef}
+                        onClose={() => setisPlacesVisible(false)}
+                    />
+
+                </View>
+            }
         </View>
     );
 }
@@ -267,6 +295,13 @@ const createStyles = (colors, theme) => {
             height: 24, width: 24,
             backgroundColor: colors.BothWhite,
             zIndex: 10,
+        },
+        locationError: {
+            flex: 1,
+            width: '50%',
+            marginHorizontal: '25%',
+            justifyContent: 'center',
+            alignItems: 'center'
         }
     });
 };

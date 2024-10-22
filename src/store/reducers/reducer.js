@@ -7,7 +7,7 @@ const initState = {
   // savedCords: [24.8854, 67.0159], // Golimar location
   // savedCords: [24.979781, 67.067024], // saleem center
   savedCords: [],
-  isLocation: true,
+  isLocation: false,
 };
 
 const reducer = (state = initState, action) => {
