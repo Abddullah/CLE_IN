@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';

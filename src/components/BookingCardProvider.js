@@ -54,7 +54,7 @@ const BookingCardProvider = ({
                 <View style={styles.container_C2_C1}>
                     <Image
                         resizeMode="cover"
-                        style={{ width: 88, height: 88, borderRadius: 10, marginTop: deviceWidth < 360 ? 20 : 0 }}
+                        style={{ width: deviceWidth < 360 ? 50 : 88, height: deviceWidth < 360 ? 50 : 88, borderRadius: 10, marginTop: deviceWidth < 360 ? 20 : 0 }}
                         source={images.cleaning}
                     />
                 </View>

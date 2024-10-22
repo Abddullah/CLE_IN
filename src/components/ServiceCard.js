@@ -215,7 +215,7 @@ const createStyles = (colors, theme, user, index) => {
             overflow: 'hidden',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            borderWidth: 0.5,
+            borderWidth: 1,
             borderColor: 'gray',
             marginHorizontal: marginHorizontal,
             marginLeft: index != 0 ? null : 0

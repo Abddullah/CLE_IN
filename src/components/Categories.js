@@ -24,7 +24,7 @@ const Categories = ({
         >
             <Image
                 resizeMode="contain"
-                style={{ width: 75, height: 75, borderRadius: 50, borderWidth: selectedCat === title ? 1 : 0, borderColor: colors.White_Primary_01 }}
+                style={{ width: 75, height: 75, borderRadius: 50, borderWidth: selectedCat === title ? 2 : 0, borderColor: colors.BothPrimary_01 }}
                 source={icon}
             />
             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{title}</Text>
