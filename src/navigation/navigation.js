@@ -15,6 +15,7 @@ import ResetPassword from './../screens/Auth/resetPassword';
 import { AppBottomNavigator } from './BottomNavigation';
 import AdFullView from '../screens/AdFullView/index';
 import CreateBooking from '../screens/BookingCreate/index';
+import CreateService from '../screens/ServiceCreate';
 import CustomerInfo from '../screens/CustomerInfo/index';
 import Reviews from '../screens/Reviews/index';
 import Chat from '../screens/Chat/index';
@@ -64,6 +65,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Tabs" component={AppBottomNavigator} />
         <Stack.Screen options={{ headerShown: false }} name="AdFullView" component={AdFullView} />
         <Stack.Screen options={{ headerShown: false }} name="CreateBooking" component={CreateBooking} />
+        <Stack.Screen options={{ headerShown: false }} name="ServiceCreate" component={CreateService} />
         <Stack.Screen options={{ headerShown: false }} name="CustomerInfo" component={CustomerInfo} />
         <Stack.Screen options={{ headerShown: false }} name="Reviews" component={Reviews} />
         <Stack.Screen options={{ headerShown: false }} name="Chat" component={Chat} />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { CommonActions } from '@react-navigation/native';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
 import CTAButton1 from '../../components/CTA_BUTTON1';
@@ -29,6 +30,8 @@ const AdFullView = ({ navigation }) => {
 
     let data = route.params?.item;
     let isBooking = route.params?.isBooking;
+    let isMyAd = route.params?.isMyAd;
+    let isService = route.params?.isService;
     let isReviewBooking = route.params?.isReviewBooking;
     // console.log(data, "data");
 
@@ -123,7 +126,6 @@ const AdFullView = ({ navigation }) => {
                                         </View>
                                     </View>
                                 </View>
-
                                 {
                                     deviceWidth < 360 ?
                                         <View>
@@ -137,21 +139,21 @@ const AdFullView = ({ navigation }) => {
                         <View style={styles.list2}>
                             <Text style={[Typography.text_paragraph, { textAlign: 'left', color: colors.Neutral_01 }]}>{'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. '}</Text>
                         </View>
-
                     </>
                 }
-
-
             </ScrollView>
 
             <View style={{ width: '90%', marginBottom: 20 }}>
                 {
-                    user.role === 'user' &&
-                    <CTAButton1 title={t('book')} submitHandler={() => { navigation.navigate('CreateBooking') }} />
+                    (isReviewBooking && !isBooking) &&
+                    <CTAButton1
+                        title={t('post')}
+                        submitHandler={() => { navigation.navigate('Home') }}
+                    />
                 }
 
                 {
-                    (user.role === 'provider' && !isReviewBooking && isBooking === true) &&
+                    (!isReviewBooking && isBooking === true) &&
                     <>
                         <View>
                             <CTAButton1 title={t('accept')} submitHandler={() => { }} />
@@ -163,12 +165,17 @@ const AdFullView = ({ navigation }) => {
                 }
 
                 {
-                    (user.role === 'provider' && isReviewBooking && !isBooking) &&
-                    <CTAButton1 title={t('post')} submitHandler={() => { navigation.navigate('Home') }} />
+                    (isService === true) &&
+                    <CTAButton1 title={t('book')} submitHandler={() => { navigation.navigate('CreateBooking') }} />
                 }
 
                 {
-                    (user.role === 'provider' && !isReviewBooking && isBooking === false) &&
+                    (isService === false) &&
+                    <CTAButton1 title={t('apply')} submitHandler={() => { }} />
+                }
+
+                {
+                    (isMyAd === true) &&
                     <>
                         <View>
                             <CTAButton1 title={t('edit')} submitHandler={() => { }} />
@@ -178,10 +185,6 @@ const AdFullView = ({ navigation }) => {
                         </View>
                     </>
                 }
-
-
-
-
             </View>
 
         </View>

@@ -223,8 +223,8 @@ const CreateService = ({ navigation }) => {
                     reviews: [{ img: Images.profilePic, name: 'Charollette Hanlin', date: '23 May, 2023 | 02:00 PM', star: '5', review: 'Lorem ipsum dolor sit amet consectetur. Purus massa tristique arcu tempus ut ac porttitor. Lorem ipsum dolor sit amet consectetur. ' },]
                 },
             ])
-            navigation.navigate('AdFullView', { item: data[0], isBooking: false, isReviewBooking: true })
             setstep(0)
+            navigation.navigate('AdFullView', { item: data[0], isBooking: false, isReviewBooking: true })
         }
     }
 
@@ -413,9 +413,6 @@ const CreateService = ({ navigation }) => {
                     </View>
                 </View>
             }
-
-
-
 
             <View style={styles.footer}>
                 <View style={{ width: '90%', }}>

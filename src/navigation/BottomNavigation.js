@@ -39,7 +39,6 @@ function HomeRoutes({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-            <Stack.Screen options={{ headerShown: false }} name="ServiceCreate" component={CreateService} />
         </Stack.Navigator>
     )
 }

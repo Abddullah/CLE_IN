@@ -168,7 +168,6 @@ const ServiceCard = ({
     submitHandler,
     isFav,
     index
-
 }) => {
     let user = useSelector((state) => state.reducer.user);
     const { theme } = useTheme();

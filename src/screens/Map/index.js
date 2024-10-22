@@ -101,7 +101,7 @@ export default function Map({ navigation }) {
         checkLocationPermission()
             .then(async (position) => {
                 let loc = [position.coords.latitude, position.coords.longitude]
-                let loc1 = [24.963673, 67.06837]
+                let loc1 = [24.9107, 67.0311]
                 setisLocationErr(false)
                 dispatch(isLocationSet(true, loc1));
             })
@@ -117,7 +117,7 @@ export default function Map({ navigation }) {
             // dispatch(fetchPosts(savedCords?.length > 0 ? savedCords : ipLocation));
             cameraRef.current.setCamera({
                 centerCoordinate: [savedCords[1], savedCords[0]],
-                zoomLevel: 17,
+                zoomLevel: 11,
                 animationDuration: 500,
             });
             setisFlag(!isFlag)
@@ -159,7 +159,7 @@ export default function Map({ navigation }) {
                                 <Camera
                                     ref={cameraRef}
                                     defaultSettings={{
-                                        zoomLevel: 17,
+                                        zoomLevel: 11,
                                         centerCoordinate: savedCords?.length > 0 && [savedCords[1], savedCords[0]]
                                     }}
                                 />
@@ -178,7 +178,9 @@ export default function Map({ navigation }) {
                                             >
                                                 <TouchableOpacity
                                                     activeOpacity={0.9}
-                                                // onPress={() => popupHandlerPost(point)}
+                                                    onPress={() => {
+                                                        navigation.navigate('AdFullView', { item: key, })
+                                                    }}
                                                 >
                                                     <Bubble />
                                                 </TouchableOpacity>

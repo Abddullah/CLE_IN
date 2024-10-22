@@ -177,7 +177,7 @@ const Home = ({ navigation }) => {
                                     <ServiceCard
                                         data={item}
                                         isFav={true}
-                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
+                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isMyAd: true }) }}
                                     />
                                 )}
                                 ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
@@ -201,7 +201,7 @@ const Home = ({ navigation }) => {
                                     <ServiceCard
                                         data={item}
                                         isFav={true}
-                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isBooking: false }) }}
+                                        submitHandler={() => { navigation.navigate('AdFullView', { item: item, isMyAd: true }) }}
                                     />
                                 )}
                                 ItemSeparatorComponent={() => <View style={{ height: 10 }} />} // Add vertical space between rows
@@ -271,7 +271,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, });
                                         }}
                                     />
                                 }
@@ -300,7 +300,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, });
                                         }}
                                     />
                                 }
@@ -329,7 +329,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, });
                                         }}
                                     />
                                 }
@@ -358,7 +358,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, });
                                         }}
                                     />
                                 }
@@ -387,7 +387,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isBooking: false, isJob: true });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, });
                                         }}
                                     />
                                 }
