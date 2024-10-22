@@ -21,8 +21,6 @@ import {
 import Home from '../screens/Home/index';
 // booking
 import Bookings from '../screens/Bookings/index';
-// create service
-import CreateService from '../screens/ServiceCreate/index';
 // map
 import Map from '../screens/Map/index';
 // analytics
@@ -137,7 +135,6 @@ export function AppBottomNavigator() {
                     component={CreateServiceRoutes}
                 />
             } */}
-
             <Tab.Screen
                 options={{
                     headerShown: false,
@@ -147,8 +144,6 @@ export function AppBottomNavigator() {
                 name="Map"
                 component={MapRoutes}
             />
-
-
             {
                 user.role === 'provider' &&
                 <Tab.Screen
@@ -173,8 +168,6 @@ export function AppBottomNavigator() {
                     component={NotificationRoutes}
                 />
             }
-
-
             <Tab.Screen
                 options={{
                     headerShown: false,

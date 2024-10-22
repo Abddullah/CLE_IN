@@ -88,21 +88,9 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="DeleteAccount" component={DeleteAccount} />
         <Stack.Screen options={{ headerShown: false }} name="JobsRequest" component={JobsRequest} />
         <Stack.Screen options={{ headerShown: false }} name="Subscription" component={Subscription} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-
-
-{/* 
-      
-      
-        
-       
-        
-      
-        
-       */}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRoute } from '@react-navigation/native';
 import { Typography } from '../../utilities/constants/constant.style';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
@@ -13,6 +14,8 @@ const CategoriesList = ({ navigation }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme, user,);
+    const route = useRoute();
+    let subCatTitle = route.params?.subCatTitle;
 
     const [data, setdata] = useState([
         {
@@ -83,7 +86,7 @@ const CategoriesList = ({ navigation }) => {
                 />
                 <View style={styles.subCatTextContainer}>
                     <Text style={[Typography.text_heading, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                        {'Office Cleaning'}
+                        {subCatTitle}
                     </Text>
                 </View>
                 <FlatList

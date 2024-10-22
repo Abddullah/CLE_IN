@@ -31,6 +31,14 @@ const Home = ({ navigation }) => {
     const [search, setsearch] = useState('');
     const [selectedCat, setselectedCat] = useState(t('cleaningandhygiene'));
 
+    const [subCat, setsubCat] = useState([
+        "Office Cleaning",
+        "Room Cleaning",
+        "Door Cleaning",
+        "Kitchen Cleaning",
+        "Window Cleaning"
+    ]);
+
     const [categories, setcategories] = useState([
         {
             title: t('cleaningandhygiene'),
@@ -118,6 +126,42 @@ const Home = ({ navigation }) => {
     const selectedCatHandler = (title) => {
         console.log(title, 'title');
         setselectedCat(title)
+        if (title === t('cleaningandhygiene')) {
+            setsubCat([
+                "Office Cleaning",
+                "Room Cleaning",
+                "Door Cleaning",
+                "Kitchen Cleaning",
+                "Window Cleaning"
+            ])
+        }
+        else if (title === t('RenovationServices')) {
+            setsubCat([
+                "Wall Painting",
+                "Floor Tiling",
+                "Roof Repair",
+                "Bathroom Renovation",
+                "Kitchen Renovation"
+            ])
+        }
+        else if (title === t('InstallationServices')) {
+            setsubCat([
+                "AC Installation",
+                "Lighting Installation",
+                "Plumbing Installation",
+                "Furniture Assembly",
+                "Appliance Installation"
+            ])
+        }
+        else if (title === t('HomeMaintenanceServices')) {
+            setsubCat([
+                "Electrical Repairs",
+                "Plumbing Repairs",
+                "Pest Control",
+                "Garden Maintenance",
+                "Roof Maintenance"
+            ])
+        }
     }
 
     return (
@@ -251,9 +295,9 @@ const Home = ({ navigation }) => {
                         <View style={{ width: '95%', alignItems: 'flex-start', }}>
                             <View style={styles.subCatTextContainer}>
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                    {'Office Cleaning'}
+                                    {subCat[0]}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList', { subCatTitle: subCat[0] }) }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -280,9 +324,9 @@ const Home = ({ navigation }) => {
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
                             <View style={styles.subCatTextContainer}>
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                    {'Room Cleaning'}
+                                    {subCat[1]}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList', { subCatTitle: subCat[1] }) }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -309,9 +353,9 @@ const Home = ({ navigation }) => {
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
                             <View style={styles.subCatTextContainer}>
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                    {'Pest control service'}
+                                    {subCat[2]}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList', { subCatTitle: subCat[2] }) }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -338,9 +382,9 @@ const Home = ({ navigation }) => {
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
                             <View style={styles.subCatTextContainer}>
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                    {'Laundry Service'}
+                                    {subCat[3]}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList', { subCatTitle: subCat[3] }) }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
@@ -367,9 +411,9 @@ const Home = ({ navigation }) => {
                         <View style={{ width: '95%', alignItems: 'flex-start' }}>
                             <View style={styles.subCatTextContainer}>
                                 <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
-                                    {'Etc.'}
+                                    {subCat[4]}
                                 </Text>
-                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList') }}>
+                                <TouchableOpacity activeOpacity={.8} onPress={() => { navigation.navigate('CategoriesList', { subCatTitle: subCat[4] }) }}>
                                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 20 }]}>
                                         {t('viewAll')}
                                     </Text>
