@@ -80,7 +80,8 @@ const CreateBooking = ({ navigation }) => {
         if (step < 4) {
             setstep(step + 1)
         } else {
-            navigation.navigate('Home')
+            // navigation.navigate('Home')
+            navigation.navigate('SignatureScreen')
         }
     }
 

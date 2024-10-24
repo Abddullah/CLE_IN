@@ -202,6 +202,16 @@ export const languageData = [
             apply: 'Apply',
             turnOnGps: 'Turn on GPS',
             locationNotAvailable: 'Location services are unavailable.',
+            Sign: 'Sign',
+            Clear: 'Clear',
+            jobCreatorName: 'Job Creator Name:',
+            jobCreatorSignature: 'Job Creator Signature:',
+            taphereforsignature: 'Tap here for signature:',
+            serviceproviderName: 'Service Provider Name:',
+            serviceproviderSignature: 'Service Provider Signature:',
+            NonDisclosure: 'Non-Disclosure Agreement (NDA)',
+            NDA: 'NDA',
+
         }
     },
     {
@@ -406,6 +416,15 @@ export const languageData = [
             apply: 'Applica',
             turnOnGps: 'Attiva il GPS',
             locationNotAvailable: 'Servizi di localizzazione non disponibili.',
+            Sign: 'Firma',
+            Clear: 'Cancella',
+            jobCreatorName: 'Nome del creatore del lavoro:',
+            jobCreatorSignature: 'Firma del creatore del lavoro:',
+            taphereforsignature: 'Tocca qui per firmare:',
+            serviceproviderName: 'Nome del fornitore di servizi:',
+            serviceproviderSignature: 'Firma del fornitore di servizi:',
+            NonDisclosure: 'Accordo di non divulgazione (NDA)',
+            NDA: 'NDA',
         }
     },
     {
@@ -610,6 +629,16 @@ export const languageData = [
             apply: 'Aplicar',
             turnOnGps: 'Activar el GPS',
             locationNotAvailable: 'Los servicios de localización no están disponibles.',
+            Sign: 'Firmar',
+            Clear: 'Borrar',
+            jobCreatorName: 'Nombre del creador del trabajo:',
+            jobCreatorSignature: 'Firma del creador del trabajo:',
+            taphereforsignature: 'Toca aquí para firmar:',
+            serviceproviderName: 'Nombre del proveedor de servicios:',
+            serviceproviderSignature: 'Firma del proveedor de servicios:',
+            NonDisclosure: 'Acuerdo de confidencialidad (NDA)',
+            NDA: 'NDA',
+
         }
 
     },
@@ -815,6 +844,15 @@ export const languageData = [
             apply: 'Bewerben',
             turnOnGps: 'GPS einschalten',
             locationNotAvailable: 'Ortungsdienste sind nicht verfügbar.',
+            Sign: 'Unterschreiben',
+            Clear: 'Löschen',
+            jobCreatorName: 'Name des Joberstellers:',
+            jobCreatorSignature: 'Unterschrift des Joberstellers:',
+            taphereforsignature: 'Hier tippen zum Unterschreiben:',
+            serviceproviderName: 'Name des Dienstanbieters:',
+            serviceproviderSignature: 'Unterschrift des Dienstanbieters:',
+            NonDisclosure: 'Geheimhaltungsvereinbarung (NDA)',
+            NDA: 'NDA',
         }
     },
     {
@@ -1019,6 +1057,15 @@ export const languageData = [
             apply: 'Postuler',
             turnOnGps: 'Activer le GPS',
             locationNotAvailable: 'Les services de localisation ne sont pas disponibles.',
+            Sign: 'Signer',
+            Clear: 'Effacer',
+            jobCreatorName: 'Nom du créateur de l\'emploi:',
+            jobCreatorSignature: 'Signature du créateur de l\'emploi:',
+            taphereforsignature: 'Appuyez ici pour signer:',
+            serviceproviderName: 'Nom du prestataire de services:',
+            serviceproviderSignature: 'Signature du prestataire de services:',
+            NonDisclosure: 'Accord de non-divulgation (NDA)',
+            NDA: 'NDA',
         }
 
     },

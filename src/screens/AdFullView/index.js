@@ -171,7 +171,7 @@ const AdFullView = ({ navigation }) => {
 
                 {
                     (isService === false) &&
-                    <CTAButton1 title={t('apply')} submitHandler={() => { }} />
+                    <CTAButton1 title={t('apply')} submitHandler={() => { navigation.navigate('SignatureScreen') }} />
                 }
 
                 {
