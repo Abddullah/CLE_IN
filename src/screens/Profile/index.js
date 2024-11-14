@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Image, ScrollView, ImageBackground } from 'reac
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
+import Feather from 'react-native-vector-icons/Feather';
 import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images/index'
 import CTAButton1 from '../../components/CTA_BUTTON1';
@@ -60,9 +61,18 @@ const Profile = ({ navigation }) => {
                     user.role === 'user' &&
                     <CTA_Profile title={t('booking')} icon={<JobRequest />} submitHandler={() => { navigation.navigate('JobsRequest') }} />
                 }
+
+                {
+                    user.role !== 'user' &&
+                    <CTA_Profile title={t('booking')} icon={<JobRequest />} submitHandler={() => { navigation.navigate('Booking') }} />
+                }
                 {
                     user.role === 'user' &&
                     <CTA_Profile title={t('Subscription')} icon={<Subscription />} submitHandler={() => { navigation.navigate('Subscription') }} />
+                }
+                {
+                    user.role === 'user' &&
+                    <CTA_Profile title={t('notification')} icon={<Feather name="bell" style={{ fontSize: 20, color: colors.BothPrimary_01 }} />} submitHandler={() => { navigation.navigate('Notification') }} />
                 }
                 <CTA_Profile title={t('paymentMethod')} icon={<Payment />} submitHandler={() => { navigation.navigate('CreditCard') }} />
                 <CTA_Profile title={t('referralDiscounts')} icon={<Referral />} submitHandler={() => { navigation.navigate('ReferralDiscounts') }} />

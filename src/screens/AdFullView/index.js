@@ -114,6 +114,14 @@ const AdFullView = ({ navigation }) => {
                     </View>
                 }
 
+                {
+                    isJobCreate &&
+                    <View style={styles.list2}>
+                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('needCleaningMaterials')}</Text>
+                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Yes Please'}</Text>
+                    </View>
+                }
+
 
                 <View style={[styles.list2, { flexDirection: 'column' }]}>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('availability')}</Text>
@@ -134,7 +142,7 @@ const AdFullView = ({ navigation }) => {
                 <TouchableOpacity
                     activeOpacity={.8}
                     style={styles.centerStyle}
-                    onPress={() => { navigation.navigate('CustomerInfo') }}
+                    onPress={() => { navigation.navigate('CustomerInfo', { isJobCreate: isJobCreate }) }}
                 >
                     <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 10 }} />
                     {

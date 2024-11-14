@@ -67,7 +67,7 @@ const BookingCardProvider = ({
 
                 <View style={styles.container_C2_C1}>
                     <View>
-                        <Text style={[Typography.text_CTA1, { color: colors.White_Primary_01, fontWeight: 'bold' }]}>{'$450'}</Text>
+                        <Text style={[Typography.text_CTA1, { color: colors.White_Primary_01, fontWeight: 'bold' }]}>{'€450'}</Text>
                         <View style={styles.callMsgButtons}>
                             <TouchableOpacity activeOpacity={.8} onPress={() => Linking.openURL(`tel:${+923450558623}`)}>
                                 <CallIcon />

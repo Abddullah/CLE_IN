@@ -45,7 +45,7 @@ const BookingCard = ({
                     <Text style={[Typography.text_paragraph, { marginLeft: 10, marginTop: 5, textAlign: 'left', color: colors.black, }]}>{"We specialize in delivering top-quality house cleaning services, ensuring every corner is spotless. Our team is committed to using 100% effort and care in every task, from dusting and vacuuming to deep cleaning kitchens and bathrooms.".substring(0, 70) + '...'}</Text>
                 </View>
                 <View style={styles.container_C2_C1}>
-                    <Text style={[Typography.text_CTA1, { color: colors.White_Primary_01, fontWeight: 'bold' }]}>{'$450'}</Text>
+                    <Text style={[Typography.text_CTA1, { color: colors.White_Primary_01, fontWeight: 'bold' }]}>{'€450'}</Text>
                     <View style={styles.callMsgButtons}>
                         <TouchableOpacity activeOpacity={.8} onPress={() => Linking.openURL(`tel:${+923450558623}`)}>
                             <CallIcon />

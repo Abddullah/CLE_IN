@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator, Alert } from 'react-native';
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
 import { GoogleIcon, AppleIcon, BackIcon } from '../../assets/icons';
@@ -135,6 +135,11 @@ export default function Signup({ navigation }) {
                                 />
                             </View>
                         </View>
+                        <TouchableOpacity
+                            activeOpacity={.8}
+                            style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end', marginTop: 20 }}>
+                            <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => Alert.alert('Under Development')}>{t('registerasacleaner')}</Text>
+                        </TouchableOpacity>
 
                         {/* <View style={{ marginTop: 10 }}>
                             < View style={{ flexDirection: 'row' }}>

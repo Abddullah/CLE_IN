@@ -86,24 +86,27 @@ export default function SignIn({ navigation }) {
                         </View>
 
                         <View style={styles.checkboxContainer}>
-                            <CheckBox
-                                tintColors={{
-                                    true: colors.Primary_01,
-                                    false: colors.Neutral_01,
-                                }}
-                                disabled={false}
-                                value={isSelectedRemember}
-                                onValueChange={setisSelectedRemember}
-                            />
-                            <Text style={[styles.label, Typography.text_paragraph,]}>{t('rememberme')}</Text>
+                            <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
+                                <CheckBox
+                                    tintColors={{
+                                        true: colors.Primary_01,
+                                        false: colors.Neutral_01,
+                                    }}
+                                    disabled={false}
+                                    value={isSelectedRemember}
+                                    onValueChange={setisSelectedRemember}
+                                />
+                                <Text style={[styles.label, Typography.text_paragraph, { textAlign: 'left' }]}>{t('rememberme')}</Text>
+                            </View>
+                            <TouchableOpacity
+                                activeOpacity={.8}
+                                style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end', marginTop: 10 }}>
+                                <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => navigation.navigate('ForgotPassword')}>{t('forgotPassword')}</Text>
+                                {/* <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => Alert.alert('Under Development')}>{t('registerasacleaner')}</Text> */}
+                            </TouchableOpacity>
                         </View>
 
-                        <TouchableOpacity
-                            activeOpacity={.8}
-                            style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: 10 }}>
-                            <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => navigation.navigate('ForgotPassword')}>{t('forgotPassword')}</Text>
-                            <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => Alert.alert('Under Development')}>{t('registerasacleaner')}</Text>
-                        </TouchableOpacity>
+
 
                         <View style={{ marginTop: 10 }}>
                             <CTAButton1 title={t('signIn')} submitHandler={() => submit()} />
@@ -213,8 +216,10 @@ const createStyles = (colors, theme) => {
         },
         checkboxContainer: {
             marginTop: 5,
+            flex: 1,
             flexDirection: "row",
-            alignItems: 'center'
+            alignItems: 'center',
+            // justifyContent: 'space-between'
         },
     });
 };

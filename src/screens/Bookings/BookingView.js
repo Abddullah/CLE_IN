@@ -39,7 +39,7 @@ const BookingView = ({ navigation }) => {
 
                     <View style={[styles.heading, { marginTop: 20 }]}>
                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('price')}</Text>
-                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'$30/hr'}</Text>
+                        <Text style={[Typography.text_paragraph_1, styles.editText]}>{'€30/hr'}</Text>
                     </View>
 
                     <View style={[styles.heading, { marginTop: 20 }]}>
@@ -71,15 +71,15 @@ const BookingView = ({ navigation }) => {
                         <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{t('pay') + ':'}</Text>
                         <View style={styles.taxContainer_C1}>
                             <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('amount')}</Text>
-                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$450'}</Text>
+                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€450'}</Text>
                         </View>
                         <View style={styles.taxContainer_C1}>
                             <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('vat')}</Text>
-                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$50'}</Text>
+                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€50'}</Text>
                         </View>
                         <View style={styles.taxContainer_C1}>
                             <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('total')}</Text>
-                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$500'}</Text>
+                            <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€500'}</Text>
                         </View>
                     </View>
                 </View>

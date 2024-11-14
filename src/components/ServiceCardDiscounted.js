@@ -37,7 +37,7 @@ const ServiceCardDiscounted = ({
             </View>
             <View style={styles.bottomContainer}>
                 <View style={styles.textContainer}>
-                    <Text style={[Typography.text_subHeading_1, { marginLeft: 10, color: theme === 'dark' ? colors.black : colors.Primary_02, fontWeight: 'bold', }]}>{'$' + data.price + '/hr'}</Text>
+                    <Text style={[Typography.text_subHeading_1, { marginLeft: 10, color: theme === 'dark' ? colors.black : colors.Primary_02, fontWeight: 'bold', }]}>{'€' + data.price + '/hr'}</Text>
                     <Text style={[Typography.text_subHeading_1, { marginLeft: 10, color: colors.black, fontWeight: 'bold', }]}>{data.title}</Text>
                 </View>
                 <View style={{ marginRight: 10, justifyContent: 'center', alignItems: 'center' }}>

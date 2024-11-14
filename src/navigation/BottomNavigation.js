@@ -114,15 +114,20 @@ export function AppBottomNavigator() {
                 name="Home"
                 component={HomeRoutes}
             />
-            <Tab.Screen
-                options={{
-                    headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{user.role === 'user' ? t('JobRequest') : t('booking')}</Text>) },
-                    tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : theme === 'dark' ? <BookingInactiveWhite /> : <BookingInactive />) },
-                }}
-                name="Booking"
-                component={BookingRoutes}
-            />
+
+            {
+                user.role === 'user' &&
+                <Tab.Screen
+                    options={{
+                        headerShown: false,
+                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{user.role === 'user' ? t('JobRequest') : t('booking')}</Text>) },
+                        tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : theme === 'dark' ? <BookingInactiveWhite /> : <BookingInactive />) },
+                    }}
+                    name="Booking"
+                    component={BookingRoutes}
+                />
+            }
+
             {/* {
                 user.role === 'provider' &&
                 <Tab.Screen
@@ -137,6 +142,7 @@ export function AppBottomNavigator() {
                     component={CreateServiceRoutes}
                 />
             } */}
+
             <Tab.Screen
                 options={{
                     headerShown: false,
@@ -158,7 +164,7 @@ export function AppBottomNavigator() {
                     component={AnalyticsRoutes}
                 />
             }
-            {
+            {/* {
                 user.role === 'user' &&
                 <Tab.Screen
                     options={{
@@ -169,7 +175,7 @@ export function AppBottomNavigator() {
                     name="Notification"
                     component={NotificationRoutes}
                 />
-            }
+            } */}
             <Tab.Screen
                 options={{
                     headerShown: false,

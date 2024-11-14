@@ -81,7 +81,7 @@ const Bookings = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <CustomHeader
-                title={user.role === 'user' ? t('JobRequest') : ('booking')}
+                title={user.role === 'user' ? t('JobRequest') : t('booking')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />

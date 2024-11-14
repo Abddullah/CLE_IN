@@ -143,15 +143,15 @@ const CreateBooking = ({ navigation }) => {
                             </View> */}
 
                             <View style={styles.heading}>
-                                    <TouchableOpacity
-                                        onPress={() => { setinformationPopup(!informationPopup) }}
-                                        activeOpacity={.8}
-                                        style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 10, }}
-                                    >
-                                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('howmanyhoursdoyou')}</Text>
-                                        <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 0 }} />
-                                    </TouchableOpacity>
-                                </View>
+                                <TouchableOpacity
+                                    onPress={() => { setinformationPopup(!informationPopup) }}
+                                    activeOpacity={.8}
+                                    style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 10, }}
+                                >
+                                    <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('howmanyhoursdoyou')}</Text>
+                                    <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 5 }} />
+                                </TouchableOpacity>
+                            </View>
                             <ScrollView
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
@@ -418,8 +418,13 @@ const CreateBooking = ({ navigation }) => {
                         </View>
 
                         <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('needCleaningMaterials')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Yes Please'}</Text>
+                        </View>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('price')}</Text>
-                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'$30/hr'}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'€30/hr'}</Text>
                         </View>
 
                         <View style={[styles.heading, { marginTop: 20 }]}>
@@ -442,17 +447,17 @@ const CreateBooking = ({ navigation }) => {
 
                             <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('amount')}</Text>
-                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$450'}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€450'}</Text>
                             </View>
 
                             <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('vat')}</Text>
-                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$50'}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€50'}</Text>
                             </View>
 
                             <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('total')}</Text>
-                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$500'}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€500'}</Text>
                             </View>
                         </View>
                     </View>
@@ -467,7 +472,7 @@ const CreateBooking = ({ navigation }) => {
                                 <View style={{ width: '45%', justifyContent: 'center', }}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('total')}</Text>
                                     <View style={{ flexDirection: 'row' }}>
-                                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('Euro') + ' '}</Text>
+                                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{'€' + ' '}</Text>
 
                                         {
                                             selectedTab === t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice + 5}</Text>

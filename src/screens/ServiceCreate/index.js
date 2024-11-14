@@ -59,8 +59,9 @@ const CreateService = ({ navigation }) => {
         { label: t('cleaningatfactory'), value: 'Cleaning at Factory' },
     ];
     const [selectedCategories, setselectedCategories] = useState('');
-    const [roomsQty, setroomsQty] = useState('');
+    const [roomsQty, setroomsQty] = useState('1');
     const [roomsize, setroomsize] = useState('');
+    const [totalPrice, settotalPrice] = useState('5');
     const [selectedTab, setselectedTab] = useState('');
 
     const [rates, setrates] = useState('');
@@ -312,6 +313,14 @@ const CreateService = ({ navigation }) => {
         settimeSlots(updatedTimeSlots);
     };
 
+    const roomHandler = (itemValue) => {
+        setroomsQty(itemValue)
+        const roomCount = parseInt(itemValue.split('-')[0], 10);
+        const pricePerRoom = 5;
+        const totalPrice = roomCount * pricePerRoom;
+        settotalPrice(totalPrice);
+    }
+
     return (
         <View style={styles.container}>
             <CustomHeader
@@ -340,7 +349,7 @@ const CreateService = ({ navigation }) => {
                                         style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 10, }}
                                     >
                                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('howmanyhoursdoyou')}</Text>
-                                        <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 0 }} />
+                                        <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 5 }} />
                                     </TouchableOpacity>
                                 </View>
 
@@ -481,7 +490,9 @@ const CreateService = ({ navigation }) => {
                                             background: colors.Primary_01,
                                         }}
                                         color={colors.Neutral_01}
-                                        mt={1} onValueChange={itemValue => setroomsQty(itemValue)}
+                                        // mt={1} onValueChange={itemValue => setroomsQty(itemValue)}
+                                        mt={1} onValueChange={itemValue => roomHandler(itemValue)}
+
                                     >
                                         <Select.Item label="Studio" value="Studio" />
                                         <Select.Item label="1 Room" value="1 Room" />
@@ -494,20 +505,24 @@ const CreateService = ({ navigation }) => {
                             </>
                         }
 
-                        <TouchableOpacity
-                            onPress={() => { setinformationPopup1(!informationPopup1) }}
-                            activeOpacity={.8}
-                            style={{ flexDirection: 'row', marginTop: 30, }}
-                        >
-                            <Text style={[Typography.text_paragraph_1, styles.headingText, {}]}>{t('needCleaningMaterials')}</Text>
-                            <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 5 }} />
-                        </TouchableOpacity>
+                        {
+                            isJobCreate &&
+                            <>
+                                <TouchableOpacity
+                                    onPress={() => { setinformationPopup1(!informationPopup1) }}
+                                    activeOpacity={.8}
+                                    style={{ flexDirection: 'row', marginTop: 30, }}
+                                >
+                                    <Text style={[Typography.text_paragraph_1, styles.headingText, {}]}>{t('needCleaningMaterials')}</Text>
+                                    <FontAwesome5 name="info-circle" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: 5 }} />
+                                </TouchableOpacity>
 
-                        <View style={{ width: '100%', flexDirection: 'row', marginTop: 20 }}>
-                            <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('noIhavethem')} />
-                            <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('yesPlease')} />
-                        </View>
-
+                                <View style={{ width: '100%', flexDirection: 'row', marginTop: 20 }}>
+                                    <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('noIhavethem')} />
+                                    <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('yesPlease')} />
+                                </View>
+                            </>
+                        }
 
                         {
                             isJobCreate &&
@@ -702,7 +717,7 @@ const CreateService = ({ navigation }) => {
                             {/* Time Slots */}
                             <FlatList
                                 data={timeSlots}
-                                contentContainerStyle={[styles.timeFlatList, { paddingBottom: 200 }]}
+                                contentContainerStyle={[styles.timeFlatList,]}
                                 numColumns={3}
                                 columnWrapperStyle={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}
                                 showsVerticalScrollIndicator={false}
@@ -799,8 +814,13 @@ const CreateService = ({ navigation }) => {
                         </View>
 
                         <View style={[styles.heading, { marginTop: 20 }]}>
+                            <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('needCleaningMaterials')}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'Yes Please'}</Text>
+                        </View>
+
+                        <View style={[styles.heading, { marginTop: 20 }]}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('price')}</Text>
-                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'$30/hr'}</Text>
+                            <Text style={[Typography.text_paragraph_1, styles.editText]}>{'€30/hr'}</Text>
                         </View>
 
                         <View style={[styles.heading, { marginTop: 20 }]}>
@@ -823,26 +843,57 @@ const CreateService = ({ navigation }) => {
 
                             <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('amount')}</Text>
-                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$450'}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€450'}</Text>
                             </View>
 
                             <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('vat')}</Text>
-                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$50'}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€50'}</Text>
                             </View>
 
                             <View style={styles.taxContainer_C1}>
                                 <Text style={[Typography.text_CTA1, { color: colors.Neutral_01, }]}>{t('total')}</Text>
-                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'$500'}</Text>
+                                <Text style={[Typography.text_CTA1, { color: colors.black, }]}>{'€500'}</Text>
                             </View>
                         </View>
                     </View>
                 </ScrollView>
             }
 
-            <View style={styles.footer}>
+
+            {/* <View style={styles.footer}>
                 <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', }}>
                     <CTAButton1 title={t('next')} submitHandler={() => { stepsHandler() }} />
+                </View>
+            </View> */}
+
+            <View style={styles.footer}>
+                <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', }}>
+
+                    {
+                        (roomsQty != '') ? (
+                            <>
+                                <View style={{ width: '45%', justifyContent: 'center', }}>
+                                    <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('total')}</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{'€' + ' '}</Text>
+
+                                        {
+                                            selectedTab === t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice + 5}</Text>
+                                        }
+                                        {
+                                            selectedTab !== t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice}</Text>
+                                        }
+                                    </View>
+                                </View>
+                                <View style={{ width: '45%', }}>
+                                    <CTAButton1 title={step < 4 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} />
+                                </View>
+                            </>
+
+                        ) : (<CTAButton1 title={step < 4 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} />)
+                    }
+                    {/* <CTAButton1 title={step < 3 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} /> */}
                 </View>
             </View>
         </View>
@@ -961,8 +1012,11 @@ const createStyles = (colors, theme, deviceWidth) => {
         },
         timeFlatList: {
             marginTop: 10,
-            width: '90%',
-            marginHorizontal: '5%',
+            width: '100%',
+            justifyContent: 'center',
+            paddingHorizontal: '5%',
+            // alignItems:'center',
+            // marginHorizontal: '5%',
         },
         inputContiner: {
             alignItems: 'center',

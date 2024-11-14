@@ -123,7 +123,7 @@ const Home = ({ navigation }) => {
 
     useEffect(() => {
         user.role === 'user' && setselectedTab(t('services'))
-        user.role !== 'user' && setselectedTab(t('jobs'))
+        user.role !== 'user' && setselectedTab(t('myjobs'))
     }, [user])
 
     const selectedCatHandler = (title) => {
@@ -179,7 +179,7 @@ const Home = ({ navigation }) => {
 
                 <View style={{ flexDirection: 'row', width: '100%', }}>
                     <FontAwesome5 name="map-marker-alt" style={{ fontSize: RFValue(18, screenResolution.screenHeight), color: colors.BothPrimary_01, left: 3 }} />
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginLeft: 13 }]}>{'Itely, Termano'}</Text>
+                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginLeft: 13 }]}>{'Italy, Teramo city'}</Text>
                 </View>
 
 
@@ -207,7 +207,7 @@ const Home = ({ navigation }) => {
                 {
                     user.role !== 'user' &&
                     <View style={styles.buttonContainer}>
-                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('jobs')} />
+                        <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myjobs')} />
                         <CustomTabs selectedState={selectedTab} setselectedState={setselectedTab} title={t('myads')} />
                     </View>
                 }
@@ -272,7 +272,7 @@ const Home = ({ navigation }) => {
 
                 {/* Jobs and services Tab */}
                 {
-                    (selectedTab === t('services') || selectedTab === t('jobs')) &&
+                    (selectedTab === t('services') || (user.role === 'provider' ? selectedTab === t('myjobs') : selectedTab !== t('myjobs'))) &&
                     <>
                         <View style={styles.catContainer}>
                             <View style={styles.headerSection}>
@@ -330,7 +330,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('jobs') ? true : false });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('myjobs') ? true : false });
                                         }}
                                     />
                                 }
@@ -359,7 +359,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('jobs') ? true : false });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('myjobs') ? true : false });
                                         }}
                                     />
                                 }
@@ -388,7 +388,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('jobs') ? true : false });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('myjobs') ? true : false });
                                         }}
                                     />
                                 }
@@ -417,7 +417,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('jobs') ? true : false });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('myjobs') ? true : false });
                                         }}
                                     />
                                 }
@@ -446,7 +446,7 @@ const Home = ({ navigation }) => {
                                         data={item}
                                         isFav={true}
                                         submitHandler={() => {
-                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('jobs') ? true : false });
+                                            navigation.navigate('AdFullView', { item: item, isService: selectedTab === t('services') ? true : false, isJobCreate: selectedTab === t('myjobs') ? true : false });
                                         }}
                                     />
                                 }
@@ -488,7 +488,7 @@ const createStyles = (colors, theme) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             marginTop: 20,
-            paddingBottom:10,
+            paddingBottom: 10,
             // backgroundColor: 'red'
         },
         inputContiner: {
