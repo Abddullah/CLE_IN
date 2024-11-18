@@ -502,6 +502,11 @@ const createStyles = (colors, theme) => {
             borderWidth: 1,
             backgroundColor: colors.BothWhite
         },
+        input: {
+            width: "90%", color: colors.black,
+            marginLeft: 7,
+            fontSize: RFValue(7, screenResolution.screenWidth),
+        },
         catContainer: {
             marginTop: 10,
             width: '95%',

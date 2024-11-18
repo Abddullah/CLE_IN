@@ -104,7 +104,7 @@ export function AppBottomNavigator() {
                 options={{
                     headerShown: false,
                     tabBarLabel: ({ focused }) => {
-                        return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{user.role === 'provider' ? t('myads') : t('home')}</Text>)
+                        return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(6, screenResolution.screenWidth), top: -5 }}>{user.role === 'provider' ? t('myads') : t('home')}</Text>)
                     },
                     tabBarIcon: ({ focused }) => {
                         return (focused ? <HomeActive /> : theme === 'dark' ? <HomeInactiveWhite /> : <HomeInactive />
@@ -120,7 +120,7 @@ export function AppBottomNavigator() {
                 <Tab.Screen
                     options={{
                         headerShown: false,
-                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{user.role === 'user' ? t('JobRequest') : t('booking')}</Text>) },
+                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(6, screenResolution.screenWidth), top: -5 }}>{user.role === 'user' ? t('JobRequest') : t('booking')}</Text>) },
                         tabBarIcon: ({ focused }) => { return (focused ? <BookingActive /> : theme === 'dark' ? <BookingInactiveWhite /> : <BookingInactive />) },
                     }}
                     name="Booking"
@@ -146,7 +146,7 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{t('map')}</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(6, screenResolution.screenWidth), top: -5 }}>{t('map')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <MapActive /> : theme === 'dark' ? <MapInactiveWhite /> : <MapInactive />) },
                 }}
                 name="Map"
@@ -157,7 +157,7 @@ export function AppBottomNavigator() {
                 <Tab.Screen
                     options={{
                         headerShown: false,
-                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{t('analytics')}</Text>) },
+                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(6, screenResolution.screenWidth), top: -5 }}>{t('analytics')}</Text>) },
                         tabBarIcon: ({ focused }) => { return (focused ? <AnalyticsActive /> : theme === 'dark' ? <AnalyticsInActiveWhite /> : <AnalyticsInActive />) },
                     }}
                     name="Analytics"
@@ -179,7 +179,7 @@ export function AppBottomNavigator() {
             <Tab.Screen
                 options={{
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{t('profile')}</Text>) },
+                    tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(6, screenResolution.screenWidth), top: -5 }}>{t('profile')}</Text>) },
                     tabBarIcon: ({ focused }) => { return (focused ? <ProfileActive /> : theme === 'dark' ? <ProfileInactiveWhite /> : <ProfileInactive />) },
                 }}
                 name="Profile"

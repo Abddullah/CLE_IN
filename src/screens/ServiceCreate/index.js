@@ -715,11 +715,33 @@ const CreateService = ({ navigation }) => {
                             </View>
 
                             {/* Time Slots */}
-                            <FlatList
+                            {/* <FlatList
                                 data={timeSlots}
                                 contentContainerStyle={[styles.timeFlatList,]}
                                 numColumns={3}
                                 columnWrapperStyle={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}
+                                showsVerticalScrollIndicator={false}
+                                renderItem={({ item, index }) => (
+                                    <TouchableOpacity
+                                        activeOpacity={.8}
+                                        style={[
+                                            styles.timeContainer,
+                                            { borderColor: item.isSelected ? colors.White_Primary_01 : colors.Neutral_02 },
+                                        ]}
+                                        onPress={() => timeSlotHandler(index)}
+                                    >
+                                        <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.startTime}</Text>
+                                        <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{t('to')}</Text>
+                                        <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.endTime}</Text>
+                                    </TouchableOpacity>
+                                )}
+                            /> */}
+
+                            <FlatList
+                                data={timeSlots}
+                                contentContainerStyle={[styles.timeFlatList,]}
+                                numColumns={3}
+                                columnWrapperStyle={{ justifyContent: 'space-between', paddingHorizontal: '5%', alignItems: 'flex-start' }}
                                 showsVerticalScrollIndicator={false}
                                 renderItem={({ item, index }) => (
                                     <TouchableOpacity
@@ -874,8 +896,8 @@ const CreateService = ({ navigation }) => {
                         (roomsQty != '') ? (
                             <>
                                 <View style={{ width: '45%', justifyContent: 'center', }}>
-                                    <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('total')}</Text>
                                     <View style={{ flexDirection: 'row' }}>
+                                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('total') + ': '}</Text>
                                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{'€' + ' '}</Text>
 
                                         {
@@ -1011,10 +1033,9 @@ const createStyles = (colors, theme, deviceWidth) => {
             backgroundColor: colors.Neutral_02
         },
         timeFlatList: {
-            marginTop: 10,
             width: '100%',
-            justifyContent: 'center',
-            paddingHorizontal: '5%',
+            marginTop: 10,
+            alignSelf: 'center',
             // alignItems:'center',
             // marginHorizontal: '5%',
         },

@@ -325,7 +325,7 @@ const CreateBooking = ({ navigation }) => {
                             data={timeSlots}
                             contentContainerStyle={[styles.timeFlatList, { paddingBottom: 200 }]}
                             numColumns={3}
-                            columnWrapperStyle={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}
+                            columnWrapperStyle={{ justifyContent: 'space-between', paddingHorizontal: '5%', alignItems: 'flex-start' }}
                             showsVerticalScrollIndicator={false}
                             renderItem={({ item, index }) => (
                                 <TouchableOpacity
@@ -470,10 +470,9 @@ const CreateBooking = ({ navigation }) => {
                         (roomsQty != '') ? (
                             <>
                                 <View style={{ width: '45%', justifyContent: 'center', }}>
-                                    <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('total')}</Text>
                                     <View style={{ flexDirection: 'row' }}>
+                                        <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('total') + ': '}</Text>
                                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{'€' + ' '}</Text>
-
                                         {
                                             selectedTab === t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice + 5}</Text>
                                         }
@@ -591,6 +590,7 @@ const createStyles = (colors, theme, deviceWidth) => {
             backgroundColor: colors.Neutral_02,
         },
         timeFlatList: {
+            width: '100%',
             marginTop: 10,
             alignSelf: 'center',
             // justifyContent:'center',

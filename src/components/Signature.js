@@ -5,6 +5,8 @@ import { useTheme } from '../../ThemeContext';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Signature from "react-native-signature-canvas";
 import { t } from 'i18next';
+import screenResolution from '../utilities/constants/screenResolution';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const SignatureComponent = ({ modalVisible, setModalVisible, setSign }) => {
     const { theme } = useTheme();
@@ -26,6 +28,7 @@ const SignatureComponent = ({ modalVisible, setModalVisible, setSign }) => {
     .button {
       background-color: #00BFFF;
       color: #FFF;
+      font-size: ${RFValue(5, screenResolution.screenWidth)}px; /* Adjust RFValue as needed */
     }`;
 
     return (

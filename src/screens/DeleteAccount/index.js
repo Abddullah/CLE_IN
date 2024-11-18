@@ -81,11 +81,9 @@ export default function DeleteAccount({ ...props }) {
                                 activeOpacity={.8}
                                 onPress={() => { setsecureEntryState(!secureEntryState) }}
                             >
-                                <Feather name={secureEntryState ? 'eye' : 'eye-off'}
-                                    style={{
-                                        fontSize: RFValue(20, screenResolution.screenHeight),
-                                        color: colors.White_Primary_01, marginLeft: deviceWidth < 360 ? 0 : 10,
-                                    }}
+                                <Feather
+                                    name={secureEntryState ? 'eye' : 'eye-off'}
+                                    style={{ fontSize: RFValue(20, screenResolution.screenHeight), color: colors.White_Primary_01, marginLeft: deviceWidth < 360 ? 0 : 10, }}
                                 />
                             </TouchableOpacity>
                         </View>

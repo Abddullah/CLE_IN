@@ -10,6 +10,8 @@ import { t } from 'i18next';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import { onLanguageSelect } from '../../assets/language';
+import screenResolution from '../../utilities/constants/screenResolution';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export default function GetStarted({ navigation }) {
   const { theme, toggleTheme } = useTheme();
@@ -69,20 +71,22 @@ export default function GetStarted({ navigation }) {
                     dropdownIcon={<LanguageIcon />}
                     accessibilityLabel={t('language')}
                     placeholder={t('language')}
-                    placeholderTextColor={colors.Neutral_01}
+                    fontSize={RFValue(6, screenResolution.screenWidth)}
+                    placeholderTextColor={
+                      colors.Neutral_01
+                    }
                     _selectedItem={{
-                      background: colors.Primary_01
+                      background: colors.Primary_01,
                     }}
                     mt={1} onValueChange={itemValue => toggleSwitch(itemValue)}
                   >
-                    <Select.Item label="English" value="en" />
-                    <Select.Item label="Italian" value="it" />
-                    {/* <Select.Item label="Spanish" value="sp" />
-                    <Select.Item label="German" value="gr" />
-                    <Select.Item label="French" value="fr" /> */}
+                    <Select.Item label="English" value="en" _text={{ fontSize: RFValue(6, screenResolution.screenWidth) }} />
+                    <Select.Item label="Italian" value="it" _text={{ fontSize: RFValue(6, screenResolution.screenWidth) }} />
                   </Select>
                 </View>
               </View>
+
+
 
               <View style={[styles.list, { justifyContent: 'space-between' }]}>
                 <Text style={{ marginLeft: 10, color: colors.Neutral_01 }}>{t('country')}</Text>

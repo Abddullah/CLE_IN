@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
+import Feather from 'react-native-vector-icons/Feather';
 import { BackIcon } from '../../assets/icons';
 import { Typography } from '../../utilities/constants/constant.style';
 import { t } from 'i18next';
@@ -25,6 +26,8 @@ export default function ResetPassword({ navigation }) {
     const [password, setpassword] = useState('');
     const [rePassword, setrePassword] = useState('');
     const [isSelectedRemember, setisSelectedRemember] = useState(false);
+    const [secureEntryState, setsecureEntryState] = useState(true);
+    const [secureEntryState1, setsecureEntryState1] = useState(true);
 
     const submit = () => {
         let credentials = {
@@ -53,7 +56,7 @@ export default function ResetPassword({ navigation }) {
             <View style={{ flex: 8, }}>
                 <ScrollView contentContainerStyle={styles.containerC1}>
                     <Text style={[Typography.text_subHeading, { marginTop: 20, color: theme === 'dark' ? colors.black : colors.Primary_01, }]}>{t('changePassword')}</Text>
-                    <Text style={[styles.socialTextC1, Typography.text_subHeading_1, { fontWeight: 'normal', marginTop:10, width: '100%', justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>{t('enteryournewpassword')} </Text>
+                    <Text style={[styles.socialTextC1, Typography.text_subHeading_1, { fontWeight: 'normal', marginTop: 10, width: '100%', justifyContent: 'center', alignItems: 'center', marginBottom: 10 }]}>{t('enteryournewpassword')} </Text>
 
                     <View style={styles.containerc1_c2}>
 
@@ -73,6 +76,15 @@ export default function ResetPassword({ navigation }) {
                                     placeholder={t('password')}
                                     placeholderTextColor={colors.Neutral_01}
                                 />
+                                <TouchableOpacity
+                                    activeOpacity={.8}
+                                    onPress={() => { setsecureEntryState(!secureEntryState) }}
+                                >
+                                    <Feather
+                                        name={secureEntryState ? 'eye' : 'eye-off'}
+                                        style={{ fontSize: RFValue(20, screenResolution.screenHeight), color: colors.White_Primary_01, }}
+                                    />
+                                </TouchableOpacity>
                             </View>
                         </View>
 
@@ -92,6 +104,15 @@ export default function ResetPassword({ navigation }) {
                                     placeholder={t('confirmpassword')}
                                     placeholderTextColor={colors.Neutral_01}
                                 />
+                                <TouchableOpacity
+                                    activeOpacity={.8}
+                                    onPress={() => { setsecureEntryState1(!secureEntryState1) }}
+                                >
+                                    <Feather
+                                        name={secureEntryState1 ? 'eye' : 'eye-off'}
+                                        style={{ fontSize: RFValue(20, screenResolution.screenHeight), color: colors.White_Primary_01, }}
+                                    />
+                                </TouchableOpacity>
                             </View>
                         </View>
 
@@ -152,6 +173,8 @@ const createStyles = (colors, theme) => {
             borderRadius: 5,
             borderWidth: 1,
             marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
         },
         input: {
             height: 50, width: "90%", color: colors.black,

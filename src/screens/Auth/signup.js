@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity,
 import { signIn, showError, } from '../../store/actions/action'
 import Images from '../../assets/images'
 import { GoogleIcon, AppleIcon, BackIcon } from '../../assets/icons';
+import Feather from 'react-native-vector-icons/Feather';
 import CheckBox from '@react-native-community/checkbox';
 import { Select } from 'native-base';
 import { Typography } from '../../utilities/constants/constant.style';
@@ -30,6 +31,8 @@ export default function Signup({ navigation }) {
     const [rePassword, setrePassword] = useState('');
     const [role, setrole] = useState('');
     const [isSelectedTerm, setisSelectedTerm] = useState(false);
+    const [secureEntryState, setsecureEntryState] = useState(true);
+    const [secureEntryState1, setsecureEntryState1] = useState(true);
 
 
     const submit = () => {
@@ -107,13 +110,22 @@ export default function Signup({ navigation }) {
                             </View>
                             <View style={styles.inputContiner}>
                                 <TextInput
-                                    secureTextEntry
+                                    secureTextEntry={secureEntryState}
                                     style={styles.input}
                                     value={password}
                                     onChangeText={(e) => { setpassword(e) }}
                                     placeholder={t('password')}
                                     placeholderTextColor={colors.Neutral_01}
                                 />
+                                <TouchableOpacity
+                                    activeOpacity={.8}
+                                    onPress={() => { setsecureEntryState(!secureEntryState) }}
+                                >
+                                    <Feather
+                                        name={secureEntryState ? 'eye' : 'eye-off'}
+                                        style={{ fontSize: RFValue(20, screenResolution.screenHeight), color: colors.White_Primary_01, }}
+                                    />
+                                </TouchableOpacity>
                             </View>
                         </View>
 
@@ -126,13 +138,22 @@ export default function Signup({ navigation }) {
                             </View>
                             <View style={styles.inputContiner}>
                                 <TextInput
-                                    secureTextEntry
+                                    secureTextEntry={secureEntryState1}
                                     style={styles.input}
                                     value={rePassword}
                                     onChangeText={(e) => { setrePassword(e) }}
                                     placeholder={t('confirmpassword')}
                                     placeholderTextColor={colors.Neutral_01}
                                 />
+                                <TouchableOpacity
+                                    activeOpacity={.8}
+                                    onPress={() => { setsecureEntryState1(!secureEntryState1) }}
+                                >
+                                    <Feather
+                                        name={secureEntryState1 ? 'eye' : 'eye-off'}
+                                        style={{ fontSize: RFValue(20, screenResolution.screenHeight), color: colors.White_Primary_01, }}
+                                    />
+                                </TouchableOpacity>
                             </View>
                         </View>
                         <TouchableOpacity
@@ -265,6 +286,8 @@ const createStyles = (colors) => {
             borderRadius: 5,
             borderWidth: 1,
             marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
         },
         input: {
             height: 50, width: "90%", color: colors.black,

@@ -7,6 +7,8 @@ import CustomHeader from "../../components/Header";
 import SignatureComponent from "../../components/Signature";
 import { t } from 'i18next';
 import CTAButton1 from "../../components/CTA_BUTTON1";
+import { RFValue } from "react-native-responsive-fontsize";
+import screenResolution from "../../utilities/constants/screenResolution";
 
 const SignatureScreen = ({ navigation }) => {
     const { theme, toggleTheme } = useTheme();
@@ -53,7 +55,7 @@ const SignatureScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.inputContiner}>
                         <TextInput
-                            style={styles.input}
+                            style={[styles.input, Typography.text_paragraph, { textAlign: 'left' }]}
                             value={fullName}
                             onChangeText={(e) => { setfullName(e) }}
                             placeholder={'Name'}
@@ -95,7 +97,7 @@ const SignatureScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.inputContiner}>
                         <TextInput
-                            style={styles.input}
+                            style={[styles.input, Typography.text_paragraph, { textAlign: 'left' }]}
                             value={fullName1}
                             onChangeText={(e) => { setfullName1(e) }}
                             placeholder={'Name'}
@@ -176,6 +178,7 @@ const createStyles = (colors, theme) => {
             backgroundColor: colors.white,
         },
         input: {
+            // fontSize: RFValue(7, screenResolution.screenWidth),
             height: 50,
             width: "100%",
             color: colors.black,
