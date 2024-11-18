@@ -461,7 +461,7 @@ const Home = ({ navigation }) => {
                 style={styles.febbutton}
                 onPress={() => { navigation.navigate('ServiceCreate', { isJobCreate: user.role === 'user' ? true : false }) }}
             >
-                <Ionicons name="add-outline" style={{ fontSize: RFValue(40, screenResolution.screenHeight), color: colors.white, }} />
+                <Ionicons name="add-outline" style={{ fontSize: RFValue(12, screenResolution.screenWidth), color: colors.white, }} />
             </TouchableOpacity>
 
         </View >

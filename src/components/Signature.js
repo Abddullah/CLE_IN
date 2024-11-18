@@ -28,8 +28,13 @@ const SignatureComponent = ({ modalVisible, setModalVisible, setSign }) => {
     .button {
       background-color: #00BFFF;
       color: #FFF;
-      font-size: ${RFValue(5, screenResolution.screenWidth)}px; /* Adjust RFValue as needed */
+      font-size: ${RFValue(6, screenResolution.screenWidth)}px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }`;
+
 
     return (
         <Modal

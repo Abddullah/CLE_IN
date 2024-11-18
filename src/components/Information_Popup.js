@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import Images from '../assets/images/index'
 import { Typography } from '../utilities/constants/constant.style';
 import { t } from 'i18next';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
@@ -45,7 +44,7 @@ const InformationPopup = ({ modalVisible, setModalVisible, info }) => {
                             <View style={styles.card1}>
                                 <Text style={styles.title}>{t('recommendedDuration')}</Text>
                                 <View style={styles.topSection}>
-                                    <View style={[styles.leftCard, { backgroundColor: '#BDD9E4' }]}>
+                                    <View style={[styles.leftCard, { backgroundColor: '#0070FF' }]}>
                                         <Text style={styles.cardHeading}>{t('cleaningDuration')}</Text>
                                         <View style={styles.placesContainer}>
                                             {[
@@ -68,7 +67,7 @@ const InformationPopup = ({ modalVisible, setModalVisible, info }) => {
                                             { title: t('ExpressCleaning'), description: t('Hourforquickcleanup') },
                                             { title: t('VillasResident'), description: t('Extrahourrecommendedforvillas') },
                                         ].map((item, index) => (
-                                            <View key={index} style={[styles.rightCard, { marginTop: index === 0 ? 0 : 5, backgroundColor: '#BDD9E4' }]}>
+                                            <View key={index} style={[styles.rightCard, { marginTop: index === 0 ? 0 : 5, backgroundColor: '#0070FF' }]}>
                                                 <Text style={styles.cardText}>{item.title}</Text>
                                                 <Text style={styles.cardDescription}>{item.description}</Text>
                                             </View>
@@ -212,9 +211,11 @@ const createStyles = (colors, theme) => {
             justifyContent: "center",
         },
         badge: {
-            backgroundColor: "#BDD9E4",
-            color: colors.black,
-            fontWeight: 'bold',
+            // backgroundColor: "#BDD9E4",
+            backgroundColor: "#0070FF",
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold',
             paddingVertical: 5,
             paddingHorizontal: 15,
             borderRadius: 20,
@@ -262,8 +263,9 @@ const createStyles = (colors, theme) => {
         cardHeading: {
             // fontSize: 16,
             fontSize: RFValue(14, screenResolution.screenHeight),
-            color: colors.black,
-            fontWeight: 'bold'
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold'
         },
         placesContainer: {
             marginTop: 5,
@@ -276,14 +278,15 @@ const createStyles = (colors, theme) => {
         place: {
             // fontSize: 14,
             fontSize: RFValue(12, screenResolution.screenHeight),
-            color: colors.black,
-            fontWeight: 'bold'
+            color: colors.white,
+            // fontWeight: 'bold'
         },
         duration: {
             // fontSize: 14,
             fontSize: RFValue(12, screenResolution.screenHeight),
-            color: colors.black,
-            fontWeight: 'bold'
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold'
         },
         rightSection: {
             flex: 1,
@@ -293,6 +296,7 @@ const createStyles = (colors, theme) => {
         },
         rightCard: {
             flex: 1,
+            width:'95%',
             padding: 16,
             borderRadius: 8,
             justifyContent: 'center',
@@ -302,16 +306,18 @@ const createStyles = (colors, theme) => {
         cardText: {
             // fontSize: 15,
             fontSize: RFValue(12, screenResolution.screenHeight),
-            color: colors.black,
-            fontWeight: 'bold',
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold',
             textAlign: 'center',
         },
         cardDescription: {
             marginTop: 6,
             // fontSize: 13,
             fontSize: RFValue(12, screenResolution.screenHeight),
-            color: colors.black,
-            fontWeight: 'bold',
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold',
             textAlign: 'center',
         },
         bottomSection: {
@@ -334,7 +340,8 @@ const createStyles = (colors, theme) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: '#BDD9E4',
+            // backgroundColor: '#BDD9E4',
+            backgroundColor: '#0070FF',
             paddingVertical: 2,
             paddingHorizontal: 12,
             borderRadius: 8,
@@ -343,16 +350,18 @@ const createStyles = (colors, theme) => {
             alignSelf: 'center',
         },
         barLabel: {
-            color: colors.black,
-            fontWeight: 'bold',
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold',
             // fontSize: 14,
             fontSize: RFValue(12, screenResolution.screenHeight),
 
             flex: 1,
         },
         barTime: {
-            color: colors.black,
-            fontWeight: 'bold',
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold',
             // fontSize: 12,
             fontSize: RFValue(12, screenResolution.screenHeight),
 
@@ -371,7 +380,8 @@ const createStyles = (colors, theme) => {
             flexWrap: 'wrap',
         },
         badge1: {
-            backgroundColor: '#BDD9E4',
+            // backgroundColor: '#BDD9E4',
+            backgroundColor: '#0070FF',
             // padding: 8,
             paddingVertical: 2,
             paddingHorizontal: 12,
@@ -380,8 +390,9 @@ const createStyles = (colors, theme) => {
             // marginHorizontal: 5
         },
         badgeText: {
-            color: colors.black,
-            fontWeight: 'bold',
+            color: colors.white,
+            // color: colors.black,
+            // fontWeight: 'bold',
             // fontSize: 13,
             fontSize: RFValue(12, screenResolution.screenHeight),
 

@@ -292,7 +292,7 @@ const CreateService = ({ navigation }) => {
                     },
                 ])
                 setstep(0)
-                navigation.navigate('AdFullView', { item: data[0], isBooking: false, isReviewBooking: true, isJobCreate: isJobCreate === true ? true : true, })
+                navigation.navigate('AdFullView', { item: data[0], isBooking: false, isReviewBooking: true, isJobCreate: isJobCreate, })
             }
         }
     }
@@ -715,7 +715,7 @@ const CreateService = ({ navigation }) => {
                             </View>
 
                             {/* Time Slots */}
-                            {/* <FlatList
+                            <FlatList
                                 data={timeSlots}
                                 contentContainerStyle={[styles.timeFlatList,]}
                                 numColumns={3}
@@ -735,9 +735,9 @@ const CreateService = ({ navigation }) => {
                                         <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.endTime}</Text>
                                     </TouchableOpacity>
                                 )}
-                            /> */}
+                            />
 
-                            <FlatList
+                            {/* <FlatList
                                 data={timeSlots}
                                 contentContainerStyle={[styles.timeFlatList,]}
                                 numColumns={3}
@@ -757,7 +757,8 @@ const CreateService = ({ navigation }) => {
                                         <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.endTime}</Text>
                                     </TouchableOpacity>
                                 )}
-                            />
+                            /> */}
+
                         </View>
                     }
 
@@ -1033,9 +1034,10 @@ const createStyles = (colors, theme, deviceWidth) => {
             backgroundColor: colors.Neutral_02
         },
         timeFlatList: {
-            width: '100%',
+            // width: '100%',
             marginTop: 10,
             alignSelf: 'center',
+            // backgroundColor: 'red'
             // alignItems:'center',
             // marginHorizontal: '5%',
         },

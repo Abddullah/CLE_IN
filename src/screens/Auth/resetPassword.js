@@ -77,6 +77,7 @@ export default function ResetPassword({ navigation }) {
                                     placeholderTextColor={colors.Neutral_01}
                                 />
                                 <TouchableOpacity
+                                    style={{ justifyContent: 'center', alignItems: 'center', width: '10%' }}
                                     activeOpacity={.8}
                                     onPress={() => { setsecureEntryState(!secureEntryState) }}
                                 >
@@ -105,6 +106,7 @@ export default function ResetPassword({ navigation }) {
                                     placeholderTextColor={colors.Neutral_01}
                                 />
                                 <TouchableOpacity
+                                    style={{ justifyContent: 'center', alignItems: 'center', width: '10%' }}
                                     activeOpacity={.8}
                                     onPress={() => { setsecureEntryState1(!secureEntryState1) }}
                                 >
@@ -169,6 +171,8 @@ const createStyles = (colors, theme) => {
             justifyContent: 'flex-end',
         },
         inputContiner: {
+            paddingHorizontal: 10,
+            backgroundColor: colors.white,
             borderColor: colors.Primary_01,
             borderRadius: 5,
             borderWidth: 1,
@@ -177,18 +181,10 @@ const createStyles = (colors, theme) => {
             alignItems: 'center',
         },
         input: {
-            height: 50, width: "90%", color: colors.black,
-            marginLeft: 7,
-            // fontSize: RFValue(12, screenResolution.screenHeight),
-            fontSize: RFValue(7, screenResolution.screenWidth),
-        },
-        forget_Password: {
-            fontWeight: '400',
-            fontSize: RFValue(12, screenResolution.screenHeight),
-            lineHeight: 16,
-            letterSpacing: -0.3,
-            color: colors.Primary_01,
-            textAlign: 'right',
+            height: 50,
+            color: colors.black,
+            fontSize: RFValue(14, screenResolution.screenHeight),
+            width: '90%'
         },
         socialText: {
             justifyContent: 'center',

@@ -71,7 +71,7 @@ export default function GetStarted({ navigation }) {
                     dropdownIcon={<LanguageIcon />}
                     accessibilityLabel={t('language')}
                     placeholder={t('language')}
-                    fontSize={RFValue(6, screenResolution.screenWidth)}
+                    fontSize={RFValue(14, screenResolution.screenHeight)}
                     placeholderTextColor={
                       colors.Neutral_01
                     }
@@ -80,8 +80,8 @@ export default function GetStarted({ navigation }) {
                     }}
                     mt={1} onValueChange={itemValue => toggleSwitch(itemValue)}
                   >
-                    <Select.Item label="English" value="en" _text={{ fontSize: RFValue(6, screenResolution.screenWidth) }} />
-                    <Select.Item label="Italian" value="it" _text={{ fontSize: RFValue(6, screenResolution.screenWidth) }} />
+                    <Select.Item label="English" value="en" _text={{ fontSize: RFValue(14, screenResolution.screenHeight) }} />
+                    <Select.Item label="Italian" value="it" _text={{ fontSize: RFValue(14, screenResolution.screenHeight) }} />
                   </Select>
                 </View>
               </View>
@@ -89,7 +89,7 @@ export default function GetStarted({ navigation }) {
 
 
               <View style={[styles.list, { justifyContent: 'space-between' }]}>
-                <Text style={{ marginLeft: 10, color: colors.Neutral_01 }}>{t('country')}</Text>
+                <Text style={{ marginLeft: 10, color: colors.Neutral_01, fontSize: RFValue(14, screenResolution.screenHeight) }}>{t('country')}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                   <Text style={{ marginRight: 10, color: colors.Neutral_01 }}>{t('italy')}</Text>
                   <ItalyFlag />

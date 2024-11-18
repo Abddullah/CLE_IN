@@ -50,7 +50,7 @@ const SignatureScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.nameContainer}>
-                    <View style={{ width: '50%' }}>
+                    <View style={{ width: '50%', height: 48, justifyContent: 'center' }}>
                         <Text style={[Typography.text_paragraph, { textAlign: 'left', fontWeight: 'bold', color: colors.black, }]}>{t('jobCreatorName')}</Text>
                     </View>
                     <View style={styles.inputContiner}>
@@ -65,7 +65,7 @@ const SignatureScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.nameContainer}>
-                    <View style={{ width: '50%' }}>
+                    <View style={{ width: '50%', height: 48, justifyContent: 'center' }}>
                         <Text style={[Typography.text_paragraph, { textAlign: 'left', fontWeight: 'bold', color: colors.black, }]}>{t('jobCreatorSignature')}</Text>
                     </View>
                     {
@@ -92,10 +92,10 @@ const SignatureScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.nameContainer}>
-                    <View style={{ width: '50%' }}>
+                    <View style={{ width: '50%', height: 48, justifyContent: 'center' }}>
                         <Text style={[Typography.text_paragraph, { textAlign: 'left', fontWeight: 'bold', color: colors.black, }]}>{t('serviceproviderName')}</Text>
                     </View>
-                    <View style={styles.inputContiner}>
+                    <View style={[styles.inputContiner]}>
                         <TextInput
                             style={[styles.input, Typography.text_paragraph, { textAlign: 'left' }]}
                             value={fullName1}
@@ -107,7 +107,7 @@ const SignatureScreen = ({ navigation }) => {
                 </View>
 
                 <View style={styles.nameContainer}>
-                    <View style={{ width: '50%' }}>
+                    <View style={{ width: '50%', height: 48, justifyContent: 'center' }}>
                         <Text style={[Typography.text_paragraph, { textAlign: 'left', fontWeight: 'bold', color: colors.black, }]}>{t('serviceproviderSignature')}</Text>
                     </View>
                     {
@@ -176,12 +176,15 @@ const createStyles = (colors, theme) => {
             height: 48,
             width: '50%',
             backgroundColor: colors.white,
+            justifyContent: 'center',
         },
         input: {
             // fontSize: RFValue(7, screenResolution.screenWidth),
-            height: 50,
             width: "100%",
             color: colors.black,
+            padding: 0,
+            margin: 0,
+            lineHeight: RFValue(14, screenResolution.screenWidth),
         },
     });
 };

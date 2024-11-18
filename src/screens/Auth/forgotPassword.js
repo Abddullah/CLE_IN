@@ -146,8 +146,7 @@ const createStyles = (colors) => {
         input: {
             height: 50, width: "90%", color: colors.black,
             marginLeft: 7,
-            // fontSize: RFValue(12, screenResolution.screenHeight),
-            fontSize: RFValue(7, screenResolution.screenWidth),
+            fontSize: RFValue(14, screenResolution.screenHeight),
         },
         forget_Password: {
             fontWeight: '400',

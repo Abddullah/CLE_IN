@@ -141,4 +141,6 @@ export const Typography = StyleSheet.create({
     fontFamily: 'Lato-Regular',
     textAlign: 'center',
   },
+
+  
 });

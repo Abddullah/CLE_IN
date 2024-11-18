@@ -26,7 +26,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                 <View style={styles.modalView}>
 
                     <TouchableOpacity style={styles.choosContainer}>
-                        <Text style={[Typography.text_heading,]}>{t('chooseyourfreq')}</Text>
+                        <Text style={[Typography.text_heading, { fontWeight: '900' }]}>{t('chooseyourfreq')}</Text>
                     </TouchableOpacity>
 
                     <View style={{ flex: 1, width: '100%', marginTop: 20, justifyContent: 'flex-start', alignItems: 'center', }}>
