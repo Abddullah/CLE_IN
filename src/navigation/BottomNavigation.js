@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { LightThemeColors, DarkThemeColors, platform } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
@@ -96,7 +96,9 @@ export function AppBottomNavigator() {
                     <BottomTabBar {...props} />);
             }}
             screenOptions={{
-                tabBarStyle: { backgroundColor: theme === 'dark' ? colors.Primary_01 : colors.white, },
+                tabBarStyle: [{ backgroundColor: theme === 'dark' ? colors.Primary_01 : colors.white, },
+                platform == 'ios' && { paddingBottom: 10 }
+                ],
                 tabBarHideOnKeyboard: true,
             }}
         >
