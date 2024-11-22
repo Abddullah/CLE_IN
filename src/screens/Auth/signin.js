@@ -39,7 +39,7 @@ export default function SignIn({ navigation }) {
     }
 
     return (
-        <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
+        <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 0 : 0, }]}>
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <View style={styles.containerc1_c1}>
                     <Image resizeMode='contain' style={{ width: 250, height: 120, }} source={Images.LogoWithText} />
@@ -101,6 +101,7 @@ export default function SignIn({ navigation }) {
                         <View style={styles.checkboxContainer}>
                             <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
                                 <CheckBox
+                                    style={Platform.OS == 'ios' && styles.checkbox}
                                     tintColors={{
                                         true: colors.Primary_01,
                                         false: colors.Neutral_01,
@@ -237,6 +238,12 @@ const createStyles = (colors, theme) => {
             alignItems: 'center',
             // justifyContent: 'space-between'
         },
+        checkbox: {
+            height: 20,
+            width: 20,
+            marginRight: 10
+        },
+
     });
 };
 

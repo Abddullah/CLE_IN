@@ -39,7 +39,7 @@ export default function ResetPassword({ navigation }) {
     }
 
     return (
-        <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 50 : 0, }]}>
+        <View style={[styles.mainContainer, { marginTop: Platform.OS === 'ios' ? 0 : 0, }]}>
             <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.Primary_01 }}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
