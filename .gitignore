@@ -22,6 +22,30 @@ DerivedData
 *.xcuserstate
 ios/.xcode.env.local
 
+
+# Node modules folder
+node_modules/
+
+# Yarn lock file (Optional)
+yarn.lock
+
+# Optional: You can also ignore other generated files
+.idea/
+.vscode/
+.env
+
+
+
+# Yarn cache
+.yarn/cache/
+
+# Node modules
+node_modules/
+
+# Yarn lock file (optional)
+yarn.lock
+
+
 # Android/IntelliJ
 #
 build/
