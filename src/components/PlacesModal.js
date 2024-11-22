@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 import { Pinbox } from '../assets/icons';
 import { Typography } from '../utilities/constants/constant.style';
-import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { LightThemeColors, DarkThemeColors, platform } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
 
 const PlaceItem = ({ item, handleResultPress }) => {
@@ -96,7 +96,7 @@ const PlacesModal = ({ onClose, isVisible, cameraRef }) => {
           <View style={[styles.container_C1, { gap: 16 }]}>
             <View style={{ flex: 1, height: 80, justifyContent: 'center', alignItems: 'center', }}>
               <TextInput
-                style={styles.searchInput}
+                style={[styles.searchInput, platform == 'ios' && { padding: 10 }]}
                 value={locationSearch}
                 onChangeText={(e) => {
                   handleSearch(e)
