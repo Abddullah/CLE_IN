@@ -12,7 +12,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 // local imports
 import Images from '../../assets/images/index'
-import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { LightThemeColors, DarkThemeColors, platform } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import Categories from '../../components/Categories';
 import screenResolution from '../../utilities/constants/screenResolution';
@@ -184,7 +184,7 @@ const Home = ({ navigation }) => {
 
 
                 <View style={{ width: '100%', }}>
-                    <View style={styles.inputContiner}>
+                    <View style={[styles.inputContiner, platform == 'ios' && { padding: 10 }]}>
                         <AntDesign name="search1" style={{ fontSize: RFValue(20, screenResolution.screenHeight), color: colors.Primary_01, }} />
                         <TextInput
                             // keyboardType='number-pad'

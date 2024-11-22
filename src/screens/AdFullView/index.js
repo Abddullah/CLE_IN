@@ -13,7 +13,7 @@ import FastImage from 'react-native-fast-image'
 import Images from '../../assets/images/index'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { LightThemeColors, DarkThemeColors, platform } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import CTAButton2 from '../../components/CTA_BUTTON2';
 import screenResolution from '../../utilities/constants/screenResolution';
@@ -67,33 +67,33 @@ const AdFullView = ({ navigation }) => {
                 </View>
 
                 <View style={styles.list}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('title')}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('title')}</Text>
                     <Text style={[Typography.text_paragraph, { color: colors.Neutral_01 }]}>{data.title}</Text>
                 </View>
 
                 <View style={styles.list}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('description')}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('description')}</Text>
                     <Text style={[Typography.text_paragraph, { textAlign: 'left', color: colors.Neutral_01 }]}>{data.description}</Text>
                 </View>
 
                 <View style={styles.list2}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('price')}</Text>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'€' + data.price + '/hr'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('price')}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'€' + data.price + '/hr'}</Text>
                 </View>
 
                 {
                     isJobCreate &&
                     <View style={styles.list2}>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('cleaners')}</Text>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'3'}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('cleaners')}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'3'}</Text>
                     </View>
                 }
 
                 {
                     isJobCreate &&
                     <View style={styles.list2}>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('workFrequency')}</Text>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Weekly'}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('workFrequency')}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'Weekly'}</Text>
                     </View>
                 }
 
@@ -101,40 +101,40 @@ const AdFullView = ({ navigation }) => {
                 {
                     isJobCreate &&
                     <View style={styles.list2}>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('areaSize')}</Text>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'51 - 100 m2'}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('areaSize')}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'51 - 100 m2'}</Text>
                     </View>
                 }
 
                 {
                     isJobCreate &&
                     <View style={styles.list2}>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('roomsNumber')}</Text>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'1 Room'}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('roomsNumber')}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'1 Room'}</Text>
                     </View>
                 }
 
                 {
                     isJobCreate &&
                     <View style={styles.list2}>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('needCleaningMaterials')}</Text>
-                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Yes Please'}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('needCleaningMaterials')}</Text>
+                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'Yes Please'}</Text>
                     </View>
                 }
 
 
                 <View style={[styles.list2, { flexDirection: 'column' }]}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('availability')}</Text>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 5 }]}>{'Monday'}</Text>
-                    <Text style={[Typography.text_paragraph_1, { color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Tuesday'}</Text>
-                    <Text style={[Typography.text_paragraph_1, { color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{'Wednesday'}</Text>
-                    <Text style={[Typography.text_paragraph_1, { color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('availability')}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, marginTop: 5 }]}>{'Monday'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'Tuesday'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{'Wednesday'}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { color: colors.White_Primary_01, }]}>{'08:00 AM to 22:00 PM'}</Text>
                 </View>
 
                 <View style={styles.list}>
-                    <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('location')}</Text>
+                    <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('location')}</Text>
                     <MapSmall width={'100%'} marginTop={10} />
                 </View>
 
@@ -159,12 +159,12 @@ const AdFullView = ({ navigation }) => {
                     !isReviewBooking &&
                     <>
                         <View style={[styles.list2, { marginTop: 20 }]}>
-                            <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('reviews')}</Text>
+                            <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.black, }]}>{t('reviews')}</Text>
                             <TouchableOpacity
                                 activeOpacity={.8}
                                 onPress={() => { navigation.navigate('Reviews') }}
                             >
-                                <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{t('seeAll')}</Text>
+                                <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{t('seeAll')}</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -177,7 +177,7 @@ const AdFullView = ({ navigation }) => {
                                         source={Images.profilePic}
                                     />
                                     <View style={{ marginLeft: 5 }}>
-                                        <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'Charollette Hanlin'}</Text>
+                                        <Text style={[Typography.text_paragraph_1, platform == "ios" && { marginVertical: 5 }, { fontWeight: 'bold', color: colors.White_Primary_01, }]}>{'Charollette Hanlin'}</Text>
                                         <View style={{ flexDirection: 'row' }}>
                                             <FontAwesome name="star" size={20} color={colors.yellow} />
                                             <FontAwesome name="star" size={20} color={colors.yellow} />

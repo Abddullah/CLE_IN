@@ -11,6 +11,8 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import CTAButton1 from '../../components/CTA_BUTTON1';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
+import { RFValue } from 'react-native-responsive-fontsize';
+import screenResolution from '../../utilities/constants/screenResolution';
 
 const AddNewCard = ({ navigation }) => {
     const { theme, toggleTheme } = useTheme();

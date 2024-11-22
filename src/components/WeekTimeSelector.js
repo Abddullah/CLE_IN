@@ -229,6 +229,7 @@ const WeekdayTimeSelector = ({ theme, colors }) => {
                         false: colors.Neutral_01,
                     }}
                     disabled={false}
+                    style={Platform.OS == 'ios' && styles.checkbox}
                     value={days[day].enabled}
                     onValueChange={() => handleDayToggle(day)}
                 />
@@ -356,6 +357,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         minWidth: 90,
         // backgroundColor: 'gray'
+    },
+    checkbox: {
+        height: 20,
+        width: 20,
+        marginVertical: 5,
+        marginBottom: 10
     },
 });
 
