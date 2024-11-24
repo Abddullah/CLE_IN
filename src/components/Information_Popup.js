@@ -54,6 +54,7 @@ const InformationPopup = ({ modalVisible, setModalVisible, info }) => {
                                                 { place: t('Bedroom3'), duration: t('Hour3to4') },
                                                 { place: t('Bedroom4'), duration: t('Hour4to5') },
                                                 { place: t('Bedroom5'), duration: t('Hour5to6') },
+                                                { place: t('Bedroom6'), duration: t('Hour6to7') },
                                             ].map((item, index) => (
                                                 <View key={index} style={styles.placeRow}>
                                                     <Text style={styles.place}>{item.place}</Text>
