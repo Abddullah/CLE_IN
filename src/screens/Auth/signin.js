@@ -1,23 +1,23 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator, Alert } from 'react-native';
-import { signIn, showError, } from '../../store/actions/action'
-import Feather from 'react-native-vector-icons/Feather';
-import Images from '../../assets/images'
-import { GoogleIcon, AppleIcon } from '../../assets/icons';
-import CheckBox from '@react-native-community/checkbox';
-import { Typography } from '../../utilities/constants/constant.style';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator, } from 'react-native';
 import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
+import { RFValue } from 'react-native-responsive-fontsize';
+import CheckBox from '@react-native-community/checkbox';
+import Feather from 'react-native-vector-icons/Feather';
+// local imports
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { Typography } from '../../utilities/constants/constant.style';
+import Images from '../../assets/images'
 import screenResolution from '../../utilities/constants/screenResolution';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import { signIn, showError, } from '../../store/actions/action'
 
 export default function SignIn({ navigation }) {
     const dispatch = useDispatch()
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
@@ -115,11 +115,8 @@ export default function SignIn({ navigation }) {
                                 activeOpacity={.8}
                                 style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end', marginTop: 10 }}>
                                 <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => navigation.navigate('ForgotPassword')}>{t('forgotPassword')}</Text>
-                                {/* <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => Alert.alert('Under Development')}>{t('registerasacleaner')}</Text> */}
                             </TouchableOpacity>
                         </View>
-
-
 
                         <View style={{ marginTop: 10 }}>
                             <CTAButton1 title={t('signIn')} submitHandler={() => submit()} />
@@ -133,11 +130,6 @@ export default function SignIn({ navigation }) {
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1,]}>{t('donthaveaccount')} </Text>
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1, { color: theme === 'dark' ? colors.black : colors.Primary_01, fontWeight: 'bold' }]}> {t('signup')}</Text>
                         </TouchableOpacity>
-                        {/* <Text style={[styles.socialTextC1, Typography.text_paragraph_1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text> */}
-                        {/* <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                            <GoogleIcon />
-                            <AppleIcon marginLeft={10} />
-                        </View> */}
                     </View>
                 </ScrollView>
             </View>

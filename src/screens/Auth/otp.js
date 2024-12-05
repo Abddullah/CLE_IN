@@ -3,22 +3,23 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell, } from 'react-native-confirmation-code-field';
-import { signIn, showError, } from '../../store/actions/action'
+import { RFValue } from "react-native-responsive-fontsize";
+import { t } from 'i18next';
+// local imports
 import Images from '../../assets/images'
 import { BackIcon } from '../../assets/icons';
 import { Typography } from '../../utilities/constants/constant.style';
-import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
-import SuccessModal from '../../components/Success_Popup';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import screenResolution from '../../utilities/constants/screenResolution';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import SuccessModal from '../../components/Success_Popup';
+import { signIn, showError, } from '../../store/actions/action'
 
 
 export default function OtpVerify({ navigation }) {
     const dispatch = useDispatch()
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
@@ -65,7 +66,6 @@ export default function OtpVerify({ navigation }) {
                     <Text style={[styles.socialTextC1, Typography.text_subHeading_1, { fontWeight: 'normal', marginTop: 20 }]}>{t('enter6digitcode')} </Text>
                     <View style={{ marginTop: 20 }}>
                         <View style={styles.inputContiner}>
-
                             <CodeField
                                 ref={ref}
                                 {...props}

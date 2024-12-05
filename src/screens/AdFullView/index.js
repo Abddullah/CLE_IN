@@ -1,30 +1,27 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { CommonActions } from '@react-navigation/native';
-import CustomHeader from '../../components/Header';
 import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
-import { Typography } from '../../utilities/constants/constant.style';
-import { MapSmall } from '../../assets/icons';
 import { useRoute } from '@react-navigation/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { SliderBox } from "react-native-image-slider-box";
 import FastImage from 'react-native-fast-image'
+// local imports
+import { Typography } from '../../utilities/constants/constant.style';
+import { MapSmall } from '../../assets/icons';
 import Images from '../../assets/images/index'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
-import CTAButton2 from '../../components/CTA_BUTTON2';
 import screenResolution from '../../utilities/constants/screenResolution';
-import { RFValue } from 'react-native-responsive-fontsize';
-
-const deviceWidth = screenResolution.screenWidth;
-
+import CustomHeader from '../../components/Header';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import CTAButton2 from '../../components/CTA_BUTTON2';
 
 const AdFullView = ({ navigation }) => {
     const route = useRoute();
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
     let user = useSelector((state) => state.reducer.user);
@@ -40,13 +37,11 @@ const AdFullView = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-
             <CustomHeader
                 title={isJobCreate ? t('myads') : t('serviceprovider')}
                 isLeft={true}
                 leftPress={() => { navigation.goBack() }}
             />
-
             <ScrollView
                 style={{ width: '90%', marginTop: 10 }}
                 contentContainerStyle={styles.scrollBar}
@@ -122,7 +117,6 @@ const AdFullView = ({ navigation }) => {
                     </View>
                 }
 
-
                 <View style={[styles.list2, { flexDirection: 'column' }]}>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('availability')}</Text>
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, marginTop: 5 }]}>{'Monday'}</Text>
@@ -137,7 +131,6 @@ const AdFullView = ({ navigation }) => {
                     <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('location')}</Text>
                     <MapSmall width={'100%'} marginTop={10} />
                 </View>
-
 
                 <TouchableOpacity
                     activeOpacity={.8}
@@ -247,7 +240,7 @@ const AdFullView = ({ navigation }) => {
 
 export default AdFullView;
 
-const createStyles = (colors, theme) => {
+const createStyles = (colors) => {
     return StyleSheet.create({
         container: {
             flex: 1,

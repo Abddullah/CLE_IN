@@ -2,20 +2,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
-import { signIn, showError, } from '../../store/actions/action'
+import { RFValue } from "react-native-responsive-fontsize";
+import { t } from 'i18next';
+// local imports
 import Images from '../../assets/images'
 import { BackIcon } from '../../assets/icons';
 import { Typography } from '../../utilities/constants/constant.style';
-import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import screenResolution from '../../utilities/constants/screenResolution';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import { signIn, showError, } from '../../store/actions/action'
 
 export default function ForgotPassword({ navigation }) {
     const dispatch = useDispatch()
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
@@ -51,7 +52,7 @@ export default function ForgotPassword({ navigation }) {
             <View style={{ flex: 8, }}>
                 <ScrollView contentContainerStyle={styles.containerC1}>
                     <Text style={[Typography.text_subHeading, { marginTop: 20, color: theme === 'dark' ? colors.black : colors.Primary_01, }]}>{t('resetyourpassword')}</Text>
-                    <Text style={[styles.socialTextC1, Typography.text_subHeading_1, { fontWeight: 'normal',  width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 20 }]}>{t('enteryouremail')} </Text>
+                    <Text style={[styles.socialTextC1, Typography.text_subHeading_1, { fontWeight: 'normal', width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 20 }]}>{t('enteryouremail')} </Text>
 
                     <View style={styles.containerc1_c2}>
                         <View>
@@ -84,7 +85,6 @@ export default function ForgotPassword({ navigation }) {
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1, {}]}>{t('rememberyourpassword')} </Text>
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1, { color: theme === 'dark' ? colors.black : colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
                         </TouchableOpacity>
-
                     </View>
                 </ScrollView>
             </View>
@@ -126,7 +126,6 @@ const createStyles = (colors) => {
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            // marginTop:20
         },
         containerc1_c2: {
             marginTop: 20,

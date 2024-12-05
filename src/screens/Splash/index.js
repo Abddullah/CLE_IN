@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyleSheet, Image, ImageBackground, View, Button } from 'react-native';
+import { StyleSheet, Image, ImageBackground, View, } from 'react-native';
 import { _retrieveData } from '../../services/assynsStorage';
 import Images from '../../assets/images/index'
 import { getCurrentUser } from '../../store/actions/action'

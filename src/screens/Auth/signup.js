@@ -2,23 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator, Alert } from 'react-native';
-import { signIn, showError, } from '../../store/actions/action'
-import Images from '../../assets/images'
-import { GoogleIcon, AppleIcon, BackIcon } from '../../assets/icons';
-import Feather from 'react-native-vector-icons/Feather';
-import CheckBox from '@react-native-community/checkbox';
-import { Select } from 'native-base';
-import { Typography } from '../../utilities/constants/constant.style';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
+// local imports
+import Images from '../../assets/images'
+import { BackIcon } from '../../assets/icons';
+import Feather from 'react-native-vector-icons/Feather';
+import { Typography } from '../../utilities/constants/constant.style';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
-import { RFValue } from 'react-native-responsive-fontsize';
 import screenResolution from '../../utilities/constants/screenResolution';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import { signIn, showError, } from '../../store/actions/action'
 
 export default function Signup({ navigation }) {
     const dispatch = useDispatch()
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
@@ -29,11 +28,8 @@ export default function Signup({ navigation }) {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [rePassword, setrePassword] = useState('');
-    const [role, setrole] = useState('');
-    const [isSelectedTerm, setisSelectedTerm] = useState(false);
     const [secureEntryState, setsecureEntryState] = useState(true);
     const [secureEntryState1, setsecureEntryState1] = useState(true);
-
 
     const submit = () => {
         let credentials = {
@@ -164,56 +160,6 @@ export default function Signup({ navigation }) {
                             <Text style={[Typography.text_paragraph, { textAlign: 'right', color: theme === 'dark' ? colors.black : colors.Primary_01, }]} onPress={() => Alert.alert('Under Development')}>{t('registerasacleaner')}</Text>
                         </TouchableOpacity>
 
-                        {/* <View style={{ marginTop: 10 }}>
-                            < View style={{ flexDirection: 'row' }}>
-                                <Text style={[{ top: 3, color: colors.Neutral_01 }, Typography.text_paragraph_1,]}>{t('role')}</Text>
-                                {
-                                    isError && password == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
-                                }
-                            </View>
-                            <View style={styles.list}>
-                                <Select
-                                    bg={colors.white}
-                                    borderWidth={0}
-                                    selectedValue={role}
-                                    minWidth="100%"
-                                    accessibilityLabel="User"
-                                    placeholder="User"
-                                    placeholderTextColor={colors.Neutral_01}
-                                    _selectedItem={{
-                                        background: colors.Primary_01,
-                                    }}
-                                    color={colors.Neutral_01}
-                                    mt={1} onValueChange={itemValue => setrole(itemValue)}
-                                >
-                                    <Select.Item label="User" value="User" />
-                                    <Select.Item label="Provider" value="Provider" />
-                                </Select>
-                            </View>
-                        </View> */}
-
-                        {/* <View style={[styles.checkboxContainer, { marginTop: 10 }]}>
-                            <CheckBox
-                                tintColors={{
-                                    true: theme === 'dark' ? colors.Neutral_01 : colors.Primary_01,
-                                    false: colors.Neutral_01,
-                                }}
-                                disabled={false}
-                                value={isSelectedTerm}
-                                onValueChange={setisSelectedTerm}
-                            />
-                            <View style={[styles.checkboxContainer, { flexWrap: 'wrap' }]}>
-                                <Text style={[styles.label, Typography.text_paragraph,]}>{t('iagreeto')}</Text>
-                                <TouchableOpacity>
-                                    <Text style={[styles.label, Typography.text_paragraph, , { textDecorationLine: 'underline' }]}>{t('TermsConditions') + ' '}</Text>
-                                </TouchableOpacity>
-                                <Text style={styles.label}>{t('and1')} </Text>
-                                <TouchableOpacity>
-                                    <Text style={[styles.label, Typography.text_paragraph, { textDecorationLine: 'underline' }]}>{t('privacyPolicy')}</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View> */}
-
                         <View style={{ marginTop: 20 }}>
                             <CTAButton1 title={t('signup')} submitHandler={() => submit()} />
                         </View>
@@ -226,15 +172,11 @@ export default function Signup({ navigation }) {
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1,]}>{t('alreadyhaveanaccount')} </Text>
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1, { color: theme === 'dark' ? colors.black : colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
                         </TouchableOpacity>
-                        {/* <Text style={[styles.socialTextC1, Typography.text_paragraph_1, { color: colors.Primary_01, fontWeight: 'bold' }]}>{t('or')}</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                            <GoogleIcon />
-                            <AppleIcon marginLeft={10} />
-                        </View> */}
+
                     </View>
                 </ScrollView>
-            </View >
-        </View >
+            </View>
+        </View>
     );
 }
 

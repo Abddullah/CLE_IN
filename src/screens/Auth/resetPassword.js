@@ -2,21 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
-import { signIn, showError, } from '../../store/actions/action'
+import { RFValue } from 'react-native-responsive-fontsize';
+import { t } from 'i18next';
+// local imports
 import Images from '../../assets/images'
 import Feather from 'react-native-vector-icons/Feather';
 import { BackIcon } from '../../assets/icons';
 import { Typography } from '../../utilities/constants/constant.style';
-import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
-import { RFValue } from 'react-native-responsive-fontsize';
 import screenResolution from '../../utilities/constants/screenResolution';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import { signIn, showError, } from '../../store/actions/action'
 
 export default function ResetPassword({ navigation }) {
     const dispatch = useDispatch()
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 

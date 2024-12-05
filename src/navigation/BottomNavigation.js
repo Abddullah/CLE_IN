@@ -7,13 +7,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { t } from 'i18next';
 // icons
-import Feather from 'react-native-vector-icons/Feather';
 import {
     HomeActive, HomeInactive, HomeInactiveWhite,
     BookingActive, BookingInactive, BookingInactiveWhite,
     MapActive, MapInactive, MapInactiveWhite,
     ProfileActive, ProfileInactive, ProfileInactiveWhite,
-    AddActive, AnalyticsActive, AnalyticsInActive, AnalyticsInActiveWhite
+    AnalyticsActive, AnalyticsInActive, AnalyticsInActiveWhite
 } from '../assets/icons';
 
 // bottom navigation screens
@@ -128,21 +127,6 @@ export function AppBottomNavigator() {
                 />
             }
 
-            {/* {
-                user.role === 'provider' &&
-                <Tab.Screen
-                    options={{
-                        headerShown: false,
-                        tabBarLabel: '', // explicitly set label to an empty string
-                        tabBarIcon: ({ focused }) => {
-                            return (<AddActive style={{ top: 5 }} />);
-                        },
-                    }}
-                    name="ServiceCreate"
-                    component={CreateServiceRoutes}
-                />
-            } */}
-
             <Tab.Screen
                 options={{
                     headerShown: false,
@@ -164,18 +148,6 @@ export function AppBottomNavigator() {
                     component={AnalyticsRoutes}
                 />
             }
-            {/* {
-                user.role === 'user' &&
-                <Tab.Screen
-                    options={{
-                        headerShown: false,
-                        tabBarLabel: ({ focused }) => { return (<Text style={{ color: focused ? colors.BothPrimary_01 : colors.Neutral_01, fontSize: RFValue(12, screenResolution.screenHeight), top: -5 }}>{t('notification')}</Text>) },
-                        tabBarIcon: ({ focused }) => { return (<Feather name="bell" style={{ fontSize: 20, color: focused ? colors.BothPrimary_01 : colors.Neutral_01 }} />) },
-                    }}
-                    name="Notification"
-                    component={NotificationRoutes}
-                />
-            } */}
             <Tab.Screen
                 options={{
                     headerShown: false,
@@ -188,5 +160,3 @@ export function AppBottomNavigator() {
         </Tab.Navigator >
     );
 }
-
-
