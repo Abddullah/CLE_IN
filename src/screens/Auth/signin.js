@@ -13,7 +13,7 @@ import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images'
 import screenResolution from '../../utilities/constants/screenResolution';
 import CTAButton1 from '../../components/CTA_BUTTON1';
-import { signIn, showError, } from '../../store/actions/action'
+import { signIn, loginUser, showError, } from '../../store/actions/action'
 
 export default function SignIn({ navigation }) {
     const dispatch = useDispatch()
@@ -23,7 +23,9 @@ export default function SignIn({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
-    const [email, setemail] = useState('provider@gmail.com');
+    // const [email, setemail] = useState('provider@gmail.com');
+    // const [password, setpassword] = useState('123456');
+    const [email, setemail] = useState('abdullah@gmail.com');
     const [password, setpassword] = useState('123456');
     const [isSelectedRemember, setisSelectedRemember] = useState(false);
     const [secureEntryState, setsecureEntryState] = useState(true);
@@ -34,7 +36,7 @@ export default function SignIn({ navigation }) {
             password: password,
         }
         // navigation.navigate('Tabs')
-        dispatch(signIn(credentials, isSelectedRemember, navigation))
+        dispatch(loginUser(credentials, isSelectedRemember, navigation))
         dispatch(showError())
     }
 

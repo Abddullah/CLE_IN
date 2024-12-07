@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, Platform, ActivityIndicator, Alert } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { t } from 'i18next';
+import Toast from 'react-native-toast-message';
 // local imports
 import Images from '../../assets/images'
 import { BackIcon } from '../../assets/icons';
@@ -23,8 +24,8 @@ export default function Signup({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
 
-    const [fullName, setfullName] = useState('Abdullah');
-    const [email, setemail] = useState('abddullah@gmail.com');
+    const [fullName, setfullName] = useState('abdullah');
+    const [email, setemail] = useState('abdullah@gmail.com');
     const [password, setpassword] = useState('123456');
     const [rePassword, setrePassword] = useState('123456');
     const [secureEntryState, setsecureEntryState] = useState(true);
@@ -44,7 +45,9 @@ export default function Signup({ navigation }) {
             profilePhoto: '',
         }
         // navigation.navigate('OtpVerify')
-        dispatch(registerUser(credentials, navigation))
+        // dispatch(registerUser(credentials, navigation))
+        // dispatch(showError())
+        password !== '' && email != '' && dispatch(registerUser(credentials, navigation))
         dispatch(showError())
     }
 
@@ -72,7 +75,7 @@ export default function Signup({ navigation }) {
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={[{ top: 3, color: colors.Neutral_01 }, Typography.text_paragraph_1,]}>{t('fullname')}</Text>
                                 {
-                                    isError && email == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                    isError && fullName == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
                                 }
                             </View>
                             <View style={styles.inputContiner}>
