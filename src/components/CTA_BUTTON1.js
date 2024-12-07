@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, ActivityIndicator, View } from 'react-native';
+import { useSelector } from 'react-redux';
 // local import
 import { Typography } from '../utilities/constants/constant.style';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
@@ -8,12 +9,12 @@ import { useTheme } from '../../ThemeContext';
 const CTAButton1 = ({
     title,
     submitHandler,
-    isLoader,
     icon
 }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
+    let isLoader = useSelector((state) => state.reducer.isLoader);
 
     return (
         <TouchableOpacity

@@ -13,7 +13,7 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import screenResolution from '../../utilities/constants/screenResolution';
 import CTAButton1 from '../../components/CTA_BUTTON1';
-import { signIn, showError, } from '../../store/actions/action'
+import { registerUser, showError, } from '../../store/actions/action'
 
 export default function Signup({ navigation }) {
     const dispatch = useDispatch()
@@ -22,23 +22,30 @@ export default function Signup({ navigation }) {
     const styles = createStyles(colors, theme);
 
     let isError = useSelector((state) => state.reducer.isError);
-    let isLoader = useSelector((state) => state.reducer.isLoader);
 
-    const [fullName, setfullName] = useState('');
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('');
-    const [rePassword, setrePassword] = useState('');
+    const [fullName, setfullName] = useState('Abdullah');
+    const [email, setemail] = useState('abddullah@gmail.com');
+    const [password, setpassword] = useState('123456');
+    const [rePassword, setrePassword] = useState('123456');
     const [secureEntryState, setsecureEntryState] = useState(true);
     const [secureEntryState1, setsecureEntryState1] = useState(true);
 
     const submit = () => {
         let credentials = {
-            email: email,
-            password: password,
+            fullName,
+            email,
+            password,
+            rePassword,
+            role: 'user',
+            dob: '',
+            phone: '',
+            gender: '',
+            address: '',
+            profilePhoto: '',
         }
-        navigation.navigate('OtpVerify')
-        // dispatch(signIn(credentials, isSelectedRemember, navigation))
-        // dispatch(showError())
+        // navigation.navigate('OtpVerify')
+        dispatch(registerUser(credentials, navigation))
+        dispatch(showError())
     }
 
     return (
@@ -172,8 +179,8 @@ export default function Signup({ navigation }) {
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1,]}>{t('alreadyhaveanaccount')} </Text>
                             <Text style={[styles.socialTextC1, Typography.text_paragraph_1, { color: theme === 'dark' ? colors.black : colors.Primary_01, fontWeight: 'bold' }]}> {t('signIn')}</Text>
                         </TouchableOpacity>
-
                     </View>
+
                 </ScrollView>
             </View>
         </View>
