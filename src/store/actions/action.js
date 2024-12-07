@@ -14,28 +14,19 @@ export const showError = (errMsg) => async dispatch => {
 
 export const getCurrentUser = (navigation) => async dispatch => {
   const user = await getItem('user')
-  console.log(user, "getCurrentUser");
+  const launchApp = await getItem('launchApp')
   if (user) {
     dispatch({ type: 'SET_USER', payload: user });
     navigation.navigate('Tabs')
   }
   else {
-    navigation.navigate('GetStarted')
+    if (launchApp === undefined) {
+      setItem('launchApp', true)
+      navigation.navigate('GetStarted')
+    } else {
+      navigation.navigate('Signin')
+    }
   }
-  // setTimeout(() => {
-  //   navigation.navigate('GetStarted')
-  // }, 2000);
-};
-
-export const signIn = (data, isSelectedRemember, navigation) => async dispatch => {
-  // if (data.email === 'provider@gmail.com') {
-  //   dispatch({ type: 'SET_USER', payload: { email: data.email, role: 'provider' } });
-  //   navigation.navigate('Tabs')
-  // }
-  // else {
-  //   dispatch({ type: 'SET_USER', payload: { email: data.email, role: 'user' } });
-  //   navigation.navigate('Tabs')
-  // }
 };
 
 export const loginUser = (credentials, isSelectedRemember, navigation) => async (dispatch) => {
@@ -83,9 +74,23 @@ export const registerUser = (credentials, navigation) => async (dispatch) => {
     });
     dispatch({ type: 'IS_LOADER', payload: false });
     Toast.show({ type: 'success', text1: 'User registered successfully!', position: 'bottom' });
-    navigation.replace('Signin')
+    navigation.navigate('Signin')
   } catch (error) {
     console.log(error, 'registerUser_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
+  }
+};
+
+export const forgotPassword = (email, navigation, setemail) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    await auth().sendPasswordResetEmail(email);
+    Toast.show({ type: 'success', text1: 'Password reset email sent successfully.', position: 'bottom' });
+    setemail('')
+    dispatch({ type: 'IS_LOADER', payload: false });
+    navigation.navigate('Signin')
+  } catch (error) {
     dispatch({ type: 'IS_LOADER', payload: false });
     Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
   }

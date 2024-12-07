@@ -62,7 +62,7 @@ i18n.use(initReactI18next).init(
   {
     debug: true,
     lng: DEFAULT_LANGUAGE,
-    fallbackLng: 'it',
+    fallbackLng: DEFAULT_LANGUAGE,
     resources: {
     },
   },

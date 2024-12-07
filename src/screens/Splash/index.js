@@ -13,11 +13,8 @@ export default function Splash({ navigation }) {
 
   useFocusEffect(
     useCallback(() => {
-      console.log('Screen is focused');
       dispatch(getCurrentUser(navigation))
-      return () => {
-        console.log('Screen is unfocused');
-      };
+      return () => { };
     }, [])
   );
 

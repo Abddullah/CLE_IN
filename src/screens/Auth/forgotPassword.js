@@ -12,7 +12,7 @@ import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import screenResolution from '../../utilities/constants/screenResolution';
 import CTAButton1 from '../../components/CTA_BUTTON1';
-import { signIn, showError, } from '../../store/actions/action'
+import { forgotPassword, showError, } from '../../store/actions/action'
 
 export default function ForgotPassword({ navigation }) {
     const dispatch = useDispatch()
@@ -22,15 +22,12 @@ export default function ForgotPassword({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
-    const [email, setemail] = useState('');
+    const [email, setemail] = useState('abddullahshah@gmail.com');
 
     const submit = () => {
-        let credentials = {
-            email: email,
-        }
-        navigation.navigate('ResetPassword')
-        // dispatch(signIn(credentials, isSelectedRemember, navigation))
-        // dispatch(showError())
+        // navigation.navigate('ResetPassword')
+        email != '' && dispatch(forgotPassword(email, navigation, setemail))
+        dispatch(showError())
     }
 
     return (
