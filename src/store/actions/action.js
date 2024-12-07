@@ -1,7 +1,7 @@
 import Toast from 'react-native-toast-message';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { _storeData, _retrieveData } from '../../services/assynsStorage';
+import { setItem, deleteItem, getItem } from '../../services/assynsStorage';
 
 export const showError = (errMsg) => async dispatch => {
   dispatch({ type: 'IS_ERROR', payload: true });
@@ -13,9 +13,18 @@ export const showError = (errMsg) => async dispatch => {
 };
 
 export const getCurrentUser = (navigation) => async dispatch => {
-  setTimeout(() => {
+  const user = await getItem('user')
+  console.log(user, "getCurrentUser");
+  if (user) {
+    dispatch({ type: 'SET_USER', payload: user });
+    navigation.navigate('Tabs')
+  }
+  else {
     navigation.navigate('GetStarted')
-  }, 2000);
+  }
+  // setTimeout(() => {
+  //   navigation.navigate('GetStarted')
+  // }, 2000);
 };
 
 export const signIn = (data, isSelectedRemember, navigation) => async dispatch => {
@@ -38,8 +47,11 @@ export const loginUser = (credentials, isSelectedRemember, navigation) => async 
     const userDoc = await firestore().collection('users').doc(user.uid).get();
     const userData = userDoc.data();
     console.log(userData, 'Current_user');
+    isSelectedRemember && setItem('user', userData)
+    !isSelectedRemember && deleteItem('user')
     dispatch({ type: 'SET_USER', payload: userData });
     dispatch({ type: 'IS_LOADER', payload: false });
+    navigation.navigate('Tabs')
     Toast.show({ type: 'success', text1: 'Login successful!', position: 'bottom' });
   } catch (error) {
     console.log(error, 'loginUser_error');

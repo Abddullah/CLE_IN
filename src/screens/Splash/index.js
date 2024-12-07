@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, Image, ImageBackground, View, } from 'react-native';
 import { _retrieveData } from '../../services/assynsStorage';
 import Images from '../../assets/images/index'
 import { getCurrentUser } from '../../store/actions/action'
 import { useTheme } from '../../../ThemeContext';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Splash({ navigation }) {
   const dispatch = useDispatch()
   const { theme } = useTheme();
 
-  useEffect(() => {
-    dispatch(getCurrentUser(navigation))
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      console.log('Screen is focused');
+      dispatch(getCurrentUser(navigation))
+      return () => {
+        console.log('Screen is unfocused');
+      };
+    }, [])
+  );
 
   return (
     <ImageBackground
