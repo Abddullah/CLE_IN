@@ -24,10 +24,10 @@ export default function Signup({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
 
-    const [fullName, setfullName] = useState('abdullah');
-    const [email, setemail] = useState('abdullah@gmail.com');
-    const [password, setpassword] = useState('123456');
-    const [rePassword, setrePassword] = useState('123456');
+    const [fullName, setfullName] = useState('');
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+    const [rePassword, setrePassword] = useState('');
     const [secureEntryState, setsecureEntryState] = useState(true);
     const [secureEntryState1, setsecureEntryState1] = useState(true);
 

@@ -37,7 +37,7 @@ export const loginUser = (credentials, isSelectedRemember, navigation) => async 
     const user = userCredential.user._user;
     const userDoc = await firestore().collection('users').doc(user.uid).get();
     const userData = userDoc.data();
-    console.log(userData, 'Current_user');
+    // console.log(userData, 'Current_user');
     isSelectedRemember && setItem('user', userData)
     !isSelectedRemember && deleteItem('user')
     dispatch({ type: 'SET_USER', payload: userData });
@@ -91,6 +91,24 @@ export const forgotPassword = (email, navigation, setemail) => async (dispatch) 
     dispatch({ type: 'IS_LOADER', payload: false });
     navigation.navigate('Signin')
   } catch (error) {
+    dispatch({ type: 'IS_LOADER', payload: false });
+    Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
+  }
+};
+
+export const updateUser = (credentials, userId, navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    await firestore().collection('users').doc(userId).update(credentials);
+    const userDoc = await firestore().collection('users').doc(userId).get();
+    const userData = userDoc.data();
+    setItem('user', userData)
+    dispatch({ type: 'SET_USER', payload: userData });
+    dispatch({ type: 'IS_LOADER', payload: false });
+    Toast.show({ type: 'success', text1: 'User update successfully!', position: 'bottom' });
+    navigation.goBack()
+  } catch (error) {
+    console.log(error, 'updateUser_error');
     dispatch({ type: 'IS_LOADER', payload: false });
     Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
   }

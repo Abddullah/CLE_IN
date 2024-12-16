@@ -19,6 +19,8 @@ const Profile = ({ navigation }) => {
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
+    console.log(user, 'useruser');
+
     return (
         <View style={styles.container}>
             <CustomHeader
@@ -49,8 +51,8 @@ const Profile = ({ navigation }) => {
                 </View>
 
                 <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                    <Text style={[Typography.text_heading, { color: colors.black }]}>Jenny Abbas</Text>
-                    <Text style={[Typography.text_paragraph_1, { color: colors.Neutral_01 }]}> +61 588 74637</Text>
+                    <Text style={[Typography.text_heading, { color: colors.black }]}>{user.fullName}</Text>
+                    <Text style={[Typography.text_paragraph_1, { color: colors.Neutral_01 }]}>{user.phone ? user.phone : 'N/A'}</Text>
                     <View style={{ marginTop: 10, width: '60%', }}>
                         <CTAButton1 title={t('editProfile')} submitHandler={() => { navigation.navigate('EditProfile') }} />
                     </View>

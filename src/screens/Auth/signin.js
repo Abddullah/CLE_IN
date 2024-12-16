@@ -26,7 +26,7 @@ export default function SignIn({ navigation }) {
     // const [email, setemail] = useState('provider@gmail.com');
     // const [password, setpassword] = useState('123456');
     const [email, setemail] = useState('abddullahshah@gmail.com');
-    const [password, setpassword] = useState('123456');
+    const [password, setpassword] = useState('12345678');
     const [isSelectedRemember, setisSelectedRemember] = useState(false);
     const [secureEntryState, setsecureEntryState] = useState(true);
 

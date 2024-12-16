@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomHeader from '../../components/Header';
@@ -16,12 +16,15 @@ import { Typography } from '../../utilities/constants/constant.style';
 import { launchImageLibrary } from 'react-native-image-picker';
 import screenResolution from '../../utilities/constants/screenResolution';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { updateUser, showError, } from '../../store/actions/action'
 
 const EditProfile = ({ navigation }) => {
+    const dispatch = useDispatch()
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
+    let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
     const [fullName, setfullName] = useState('');
     const [phone, setphone] = useState('');
@@ -32,7 +35,18 @@ const EditProfile = ({ navigation }) => {
     const [showBs, setshowBs] = useState(false)
     const [gender, setgender] = useState('');
     const [address, setaddress] = useState('');
-    const [profileImage, setProfileImage] = useState(Images.profilePic);  // State for profile image
+    const [profileImage, setProfileImage] = useState(Images.profilePic);
+
+    useEffect(() => {
+        setemail(user.email)
+        setfullName(user.fullName)
+        setphone(user.phone)
+        // user.dob != '' && setDate(moment(user.dob).format('DD MM YYYY'))
+        // user.dob != '' && setDate(new Date(user.dob).toString())
+        setgender(user.gender)
+        setaddress(user.address)
+    }, [user]);
+
 
     const selectImage = () => {
         launchImageLibrary(
@@ -44,6 +58,21 @@ const EditProfile = ({ navigation }) => {
             }
         );
     };
+
+
+    const submit = () => {
+        let credentials = {
+            fullName,
+            phone,
+            dob: date,
+            gender,
+            address,
+            profilePhoto: '',
+        }
+        console.log(credentials, "credentials");
+        dispatch(updateUser(credentials, user.userId, navigation,))
+        dispatch(showError())
+    }
 
     return (
         <View style={styles.container}>
@@ -57,13 +86,6 @@ const EditProfile = ({ navigation }) => {
                 contentContainerStyle={styles.scrollBar}
                 showsVerticalScrollIndicator={false}
             >
-                {/* <View style={styles.profilePhoto}>
-                    <Image
-                        resizeMode="contain"
-                        style={{ borderRadius: 100, width: 100, height: 100 }}
-                        source={Images.profilePic}
-                    />
-                </View> */}
 
                 <View style={styles.profilePhotoContainer}>
                     <Image
@@ -130,7 +152,7 @@ const EditProfile = ({ navigation }) => {
                             keyboardType='number-pad'
                             style={styles.input}
                             value={email}
-                            onChangeText={(e) => { setemail(e) }}
+                            // onChangeText={(e) => { setemail(e) }}
                             placeholder={t('email')}
                             placeholderTextColor={colors.Neutral_01}
                         />
@@ -190,6 +212,7 @@ const EditProfile = ({ navigation }) => {
                         <Select
                             bg={colors.white}
                             borderWidth={0}
+                            value={gender}
                             selectedValue={gender}
                             minWidth="100%"
                             accessibilityLabel="Gender"
@@ -228,7 +251,7 @@ const EditProfile = ({ navigation }) => {
                 </View>
 
                 <View style={{ width: '100%', marginTop: 50 }}>
-                    <CTAButton1 title={t('SAVE')} />
+                    <CTAButton1 title={t('SAVE')} submitHandler={() => submit()} />
                 </View>
             </ScrollView >
 

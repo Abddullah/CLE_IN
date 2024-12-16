@@ -22,7 +22,7 @@ export default function ForgotPassword({ navigation }) {
 
     let isError = useSelector((state) => state.reducer.isError);
     let isLoader = useSelector((state) => state.reducer.isLoader);
-    const [email, setemail] = useState('abddullahshah@gmail.com');
+    const [email, setemail] = useState('');
 
     const submit = () => {
         // navigation.navigate('ResetPassword')
