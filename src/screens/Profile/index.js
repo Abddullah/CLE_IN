@@ -19,8 +19,6 @@ const Profile = ({ navigation }) => {
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
 
-    console.log(user, 'useruser');
-
     return (
         <View style={styles.container}>
             <CustomHeader

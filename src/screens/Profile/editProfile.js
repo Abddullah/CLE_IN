@@ -41,8 +41,8 @@ const EditProfile = ({ navigation }) => {
         setemail(user.email)
         setfullName(user.fullName)
         setphone(user.phone)
-        // user.dob != '' && setDate(moment(user.dob).format('DD MM YYYY'))
-        // user.dob != '' && setDate(new Date(user.dob).toString())
+        user.dob != '' && setDate(new Date(user.dob))
+        user.dob != '' && setshowBs(true)
         setgender(user.gender)
         setaddress(user.address)
     }, [user]);
@@ -59,16 +59,16 @@ const EditProfile = ({ navigation }) => {
         );
     };
 
-
     const submit = () => {
         let credentials = {
             fullName,
             phone,
-            dob: date,
+            dob: new Date(date).getTime(),
             gender,
             address,
             profilePhoto: '',
         }
+
         console.log(credentials, "credentials");
         dispatch(updateUser(credentials, user.userId, navigation,))
         dispatch(showError())
@@ -201,7 +201,7 @@ const EditProfile = ({ navigation }) => {
                 </View>
 
 
-                <View style={{ marginTop: 10 }}>
+                {/* <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={[{ top: 3, color: colors.Neutral_01 }, Typography.text_paragraph_1,]}>{t('gender')}</Text>
                         {
@@ -223,6 +223,37 @@ const EditProfile = ({ navigation }) => {
                             }}
                             color={colors.Neutral_01}
                             mt={1} onValueChange={itemValue => setgender(itemValue)}
+                        >
+                            <Select.Item label={t('male')} value="male" />
+                            <Select.Item label={t('female')} value="female" />
+                            <Select.Item label={t('rathernotsay')} value="rathernotsay" />
+                        </Select>
+                    </View>
+                </View> */}
+                
+                <View style={{ marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={[{ top: 3, color: colors.Neutral_01 }, Typography.text_paragraph_1]}>
+                            {t('gender')}
+                        </Text>
+                        {isError && gender == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>}
+                    </View>
+                    <View style={styles.list}>
+                        <Select
+                            bg={colors.white}
+                            borderWidth={0}
+                            value={gender}
+                            selectedValue={gender}
+                            minWidth="100%"
+                            accessibilityLabel="Gender"
+                            placeholder={t('gender')}
+                            placeholderTextColor={colors.Neutral_01}
+                            _selectedItem={{
+                                background: colors.Primary_01,
+                            }}
+                            color={gender ? 'black' : colors.Neutral_01}  // Set default color to black
+                            mt={1}
+                            onValueChange={itemValue => setgender(itemValue)}
                         >
                             <Select.Item label={t('male')} value="male" />
                             <Select.Item label={t('female')} value="female" />
