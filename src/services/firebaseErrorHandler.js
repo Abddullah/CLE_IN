@@ -1,3 +1,5 @@
+import { getItem } from '../services/assynsStorage'
+
 const translations = {
     en: {
         "auth/invalid-email": "The email address is invalid.",
@@ -55,19 +57,19 @@ const translations = {
         "auth/account-exists-with-different-credential": "Esiste già un account con la stessa email ma con credenziali diverse.",
         "auth/popup-closed-by-user": "Il popup è stato chiuso prima del completamento dell'accesso.",
         "auth/internal-error": "Si è verificato un errore interno. Riprova più tardi.",
-        // custom tost
-        "Login successful!": "Login successful!",
-        "Passwords do not match.": "Passwords do not match.",
-        "User registered successfully!": "User registered successfully!",
-        "Password reset email sent successfully.": "Password reset email sent successfully.",
-        "User update successfully!": "User update successfully!",
+        // custom toast
+        "Login successful!": "Accesso effettuato con successo!",
+        "Passwords do not match.": "Le password non corrispondono.",
+        "User registered successfully!": "Utente registrato con successo!",
+        "Password reset email sent successfully.": "Email di reimpostazione della password inviata con successo.",
+        "User update successfully!": "Utente aggiornato con successo!",
         "": "",
-
     }
 };
 
 // Function to get translated error message
-const getFirebaseErrorMessage = (errorCode, language = 'en') => {
+const getFirebaseErrorMessage = async (errorCode) => {
+    const language = await getItem('languagecode', 'en');
     const errorMessage = translations[language]?.[errorCode];
     return errorMessage || translations['en']['auth/internal-error'];
 };

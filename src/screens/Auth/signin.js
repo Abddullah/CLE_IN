@@ -13,7 +13,7 @@ import { Typography } from '../../utilities/constants/constant.style';
 import Images from '../../assets/images'
 import screenResolution from '../../utilities/constants/screenResolution';
 import CTAButton1 from '../../components/CTA_BUTTON1';
-import { signIn, loginUser, showError, } from '../../store/actions/action'
+import { loginUser, showError, } from '../../store/actions/action'
 
 export default function SignIn({ navigation }) {
     const dispatch = useDispatch()
@@ -29,6 +29,12 @@ export default function SignIn({ navigation }) {
     const [password, setpassword] = useState('12345678');
     const [isSelectedRemember, setisSelectedRemember] = useState(false);
     const [secureEntryState, setsecureEntryState] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setisSelectedRemember(!isSelectedRemember)
+        }, 1000);
+    }, [])
 
     const submit = () => {
         let credentials = {

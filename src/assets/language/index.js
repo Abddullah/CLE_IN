@@ -38,7 +38,7 @@ export const fetchTranslations = async () => {
       try {
         lang = await getItem('languagecode', DEFAULT_LANGUAGE)
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
 
       selectedLocale = locales.find((locale) => locale === lang)

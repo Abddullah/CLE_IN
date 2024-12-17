@@ -22,6 +22,7 @@ export const getCurrentUser = (navigation) => async dispatch => {
   }
   else {
     if (launchApp === undefined) {
+      dispatch({ type: 'SET_USER', payload: {} });
       setItem('launchApp', true)
       navigation.navigate('GetStarted')
     } else {
@@ -44,19 +45,19 @@ export const loginUser = (credentials, isSelectedRemember, navigation) => async 
     dispatch({ type: 'SET_USER', payload: userData });
     dispatch({ type: 'IS_LOADER', payload: false });
     navigation.navigate('Tabs')
-    const customMessage = getFirebaseErrorMessage('Login successful!');
+    const customMessage = await getFirebaseErrorMessage('Login successful!');
     Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
   } catch (error) {
     console.log(error, 'loginUser_error');
     dispatch({ type: 'IS_LOADER', payload: false });
-    const errorMessage = getFirebaseErrorMessage(error.code,);
+    const errorMessage = await getFirebaseErrorMessage(error.code,);
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
 
 export const registerUser = (credentials, navigation) => async (dispatch) => {
   if (credentials.password !== credentials.rePassword) {
-    const customMessage = getFirebaseErrorMessage('Passwords do not match.');
+    const customMessage = await getFirebaseErrorMessage('Passwords do not match.');
     Toast.show({ type: 'error', text1: customMessage, position: 'bottom' });
     return;
   }
@@ -77,13 +78,13 @@ export const registerUser = (credentials, navigation) => async (dispatch) => {
       createdAt: firestore.FieldValue.serverTimestamp(),
     });
     dispatch({ type: 'IS_LOADER', payload: false });
-    const customMessage = getFirebaseErrorMessage('User registered successfully!');
+    const customMessage = await getFirebaseErrorMessage('User registered successfully!');
     Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
     navigation.navigate('Signin')
   } catch (error) {
     console.log(error, 'registerUser_error');
     dispatch({ type: 'IS_LOADER', payload: false });
-    const errorMessage = getFirebaseErrorMessage(error.code,);
+    const errorMessage = await getFirebaseErrorMessage(error.code,);
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
@@ -92,14 +93,14 @@ export const forgotPassword = (email, navigation, setemail) => async (dispatch) 
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
     await auth().sendPasswordResetEmail(email);
-    const customMessage = getFirebaseErrorMessage('Password reset email sent successfully.');
+    const customMessage = await getFirebaseErrorMessage('Password reset email sent successfully.');
     Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
     setemail('')
     dispatch({ type: 'IS_LOADER', payload: false });
     navigation.navigate('Signin')
   } catch (error) {
     dispatch({ type: 'IS_LOADER', payload: false });
-    const errorMessage = getFirebaseErrorMessage(error.code,);
+    const errorMessage = await getFirebaseErrorMessage(error.code,);
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
@@ -113,12 +114,12 @@ export const updateUser = (credentials, userId, navigation) => async (dispatch) 
     setItem('user', userData)
     dispatch({ type: 'SET_USER', payload: userData });
     dispatch({ type: 'IS_LOADER', payload: false });
-    const customMessage = getFirebaseErrorMessage('User update successfully!');
+    const customMessage = await getFirebaseErrorMessage('User update successfully!');
     Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
     navigation.goBack()
   } catch (error) {
     console.log(error, 'updateUser_error');
-    const errorMessage = getFirebaseErrorMessage(error.code,);
+    const errorMessage = await getFirebaseErrorMessage(error.code,);
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
