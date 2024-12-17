@@ -2,30 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
-import CustomHeader from '../../components/Header';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { Select } from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { t } from 'i18next';
-import CTAButton1 from '../../components/CTA_BUTTON1';
-import { Typography } from '../../utilities/constants/constant.style';
+// icons
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
-import RadioButtonCat from '../../components/Radio_Button_Cat';
 import Entypo from 'react-native-vector-icons/Entypo'
-import { MapSmall } from '../../assets/icons';
-import { launchImageLibrary } from 'react-native-image-picker';
 import DatePicker from 'react-native-date-picker';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
-import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+// local imports
 import { useTheme } from '../../../ThemeContext';
+import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
+import { Typography } from '../../utilities/constants/constant.style';
+import { MapSmall } from '../../assets/icons';
+import CTAButton1 from '../../components/CTA_BUTTON1';
+import CustomHeader from '../../components/Header';
 import WeekTimeSelector from '../../components/WeekTimeSelector';
 import Images from '../../assets/images/index'
 import screenResolution from '../../utilities/constants/screenResolution';
-import { Select } from 'native-base';
 import RepeatService from '../../components/RepeatService_Popup';
 import InformationPopup from '../../components/Information_Popup';
-import { RFValue } from 'react-native-responsive-fontsize';
 import BookingStatusTab from '../../components/BookingStatusTab';
 import HorizontalList from '../../components/horizontalList';
 import AdditionalServices from '../../components/AdditionalServices';
@@ -43,6 +44,7 @@ const CreateService = ({ navigation }) => {
     const [informationPopup, setinformationPopup] = useState(false);
     const [informationPopup1, setinformationPopup1] = useState(false);
     const [modalVisible, setModalVisible] = useState(true);
+
     const [selectedHour, setselectedHour] = useState('');
     const [selectedProfessional, setselectedProfessional] = useState('');
 
@@ -328,6 +330,7 @@ const CreateService = ({ navigation }) => {
                 isLeft={true}
                 leftPress={() => { backHandler() }}
             />
+
             {
                 user.role !== 'provider' && <RepeatService modalVisible={modalVisible} setModalVisible={() => setModalVisible(false)} />
             }
