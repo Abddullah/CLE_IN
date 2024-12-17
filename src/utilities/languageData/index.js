@@ -2,6 +2,24 @@ export const languageData = [
     {
         locale: 'en',
         translation: {
+            "auth": {
+                "invalid_email": "The email address is invalid.",
+                "user_disabled": "The user account has been disabled.",
+                "user_not_found": "No user found with this email.",
+                "wrong_password": "The password is incorrect.",
+                "email_already_in_use": "The email address is already in use.",
+                "weak_password": "The password is too weak.",
+                "operation_not_allowed": "This operation is not allowed.",
+                "network_error": "Network error, please try again later.",
+                "too_many_requests": "Too many requests. Try again later.",
+                "invalid_verification_code": "The verification code is invalid.",
+                "session_expired": "The verification session has expired.",
+                "provider_already_linked": "This provider is already linked to the account.",
+                "credential_already_in_use": "This credential is already associated with another user.",
+                "requires_recent_login": "This operation requires recent authentication. Please log in again.",
+                "missing_email": "An email address is required.",
+                "internal_error": "An internal error occurred. Please try again later."
+            },
             ourservices: 'Our services are just a click',
             awayfromhome: 'away from your home',
             becleanisaplatform: 'Be Clean is a platform that offers you all personal and home care and car cleaning services by approved service providers at the best prices and offers.',
@@ -304,6 +322,24 @@ export const languageData = [
     {
         locale: 'it',
         translation: {
+            "auth": {
+                "invalid_email": "L'indirizzo email non è valido.",
+                "user_disabled": "L'account utente è stato disabilitato.",
+                "user_not_found": "Nessun utente trovato con questa email.",
+                "wrong_password": "La password non è corretta.",
+                "email_already_in_use": "L'indirizzo email è già in uso.",
+                "weak_password": "La password è troppo debole.",
+                "operation_not_allowed": "Questa operazione non è consentita.",
+                "network_error": "Errore di rete, riprova più tardi.",
+                "too_many_requests": "Troppe richieste. Riprova più tardi.",
+                "invalid_verification_code": "Il codice di verifica non è valido.",
+                "session_expired": "La sessione di verifica è scaduta.",
+                "provider_already_linked": "Questo provider è già collegato all'account.",
+                "credential_already_in_use": "Questa credenziale è già associata a un altro utente.",
+                "requires_recent_login": "Questa operazione richiede un'autenticazione recente. Effettua nuovamente l'accesso.",
+                "missing_email": "È richiesto un indirizzo email.",
+                "internal_error": "Si è verificato un errore interno. Riprova più tardi."
+            },
             ourservices: 'I nostri servizi sono solo a un clic',
             awayfromhome: 'di distanza da casa tua',
             becleanisaplatform: 'Be Clean è una piattaforma che ti offre tutti i servizi di cura personale, pulizia domestica e pulizia auto forniti da professionisti approvati ai migliori prezzi e offerte.',

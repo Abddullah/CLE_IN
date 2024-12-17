@@ -2,6 +2,7 @@ import Toast from 'react-native-toast-message';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { setItem, deleteItem, getItem } from '../../services/assynsStorage';
+import getFirebaseErrorMessage from '../../services/firebaseErrorHandler';
 
 export const showError = (errMsg) => async dispatch => {
   dispatch({ type: 'IS_ERROR', payload: true });
@@ -43,17 +44,20 @@ export const loginUser = (credentials, isSelectedRemember, navigation) => async 
     dispatch({ type: 'SET_USER', payload: userData });
     dispatch({ type: 'IS_LOADER', payload: false });
     navigation.navigate('Tabs')
-    Toast.show({ type: 'success', text1: 'Login successful!', position: 'bottom' });
+    const customMessage = getFirebaseErrorMessage('Login successful!');
+    Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
   } catch (error) {
     console.log(error, 'loginUser_error');
     dispatch({ type: 'IS_LOADER', payload: false });
-    Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
+    const errorMessage = getFirebaseErrorMessage(error.code,);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
 
 export const registerUser = (credentials, navigation) => async (dispatch) => {
   if (credentials.password !== credentials.rePassword) {
-    Toast.show({ type: 'error', text1: 'Passwords do not match.', position: 'bottom' });
+    const customMessage = getFirebaseErrorMessage('Passwords do not match.');
+    Toast.show({ type: 'error', text1: customMessage, position: 'bottom' });
     return;
   }
   try {
@@ -73,12 +77,14 @@ export const registerUser = (credentials, navigation) => async (dispatch) => {
       createdAt: firestore.FieldValue.serverTimestamp(),
     });
     dispatch({ type: 'IS_LOADER', payload: false });
-    Toast.show({ type: 'success', text1: 'User registered successfully!', position: 'bottom' });
+    const customMessage = getFirebaseErrorMessage('User registered successfully!');
+    Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
     navigation.navigate('Signin')
   } catch (error) {
     console.log(error, 'registerUser_error');
     dispatch({ type: 'IS_LOADER', payload: false });
-    Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
+    const errorMessage = getFirebaseErrorMessage(error.code,);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
 
@@ -86,13 +92,15 @@ export const forgotPassword = (email, navigation, setemail) => async (dispatch) 
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
     await auth().sendPasswordResetEmail(email);
-    Toast.show({ type: 'success', text1: 'Password reset email sent successfully.', position: 'bottom' });
+    const customMessage = getFirebaseErrorMessage('Password reset email sent successfully.');
+    Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
     setemail('')
     dispatch({ type: 'IS_LOADER', payload: false });
     navigation.navigate('Signin')
   } catch (error) {
     dispatch({ type: 'IS_LOADER', payload: false });
-    Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
+    const errorMessage = getFirebaseErrorMessage(error.code,);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
 
@@ -105,11 +113,12 @@ export const updateUser = (credentials, userId, navigation) => async (dispatch) 
     setItem('user', userData)
     dispatch({ type: 'SET_USER', payload: userData });
     dispatch({ type: 'IS_LOADER', payload: false });
-    Toast.show({ type: 'success', text1: 'User update successfully!', position: 'bottom' });
+    const customMessage = getFirebaseErrorMessage('User update successfully!');
+    Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
     navigation.goBack()
   } catch (error) {
     console.log(error, 'updateUser_error');
-    dispatch({ type: 'IS_LOADER', payload: false });
-    Toast.show({ type: 'error', text1: error.code, position: 'bottom' });
+    const errorMessage = getFirebaseErrorMessage(error.code,);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
