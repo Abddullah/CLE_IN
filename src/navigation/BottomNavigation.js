@@ -44,7 +44,7 @@ function HomeRoutes({ navigation }) {
 function BookingRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Booking" component={Bookings} />
+            <Stack.Screen options={{ headerShown: false }} name="Booking1" component={Bookings} />
         </Stack.Navigator>
     )
 }
@@ -52,7 +52,7 @@ function BookingRoutes({ navigation }) {
 function MapRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Map" component={Map} />
+            <Stack.Screen options={{ headerShown: false }} name="Map1" component={Map} />
         </Stack.Navigator>
     )
 }
@@ -60,7 +60,7 @@ function MapRoutes({ navigation }) {
 function AnalyticsRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Analytics" component={Analytics} />
+            <Stack.Screen options={{ headerShown: false }} name="Analytics1" component={Analytics} />
             <Stack.Screen options={{ headerShown: false }} name="Notification" component={Notification} />
         </Stack.Navigator>
     )
@@ -77,7 +77,7 @@ function NotificationRoutes({ navigation }) {
 function ProfileRoutes({ navigation }) {
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
+            <Stack.Screen options={{ headerShown: false }} name="Profile1" component={Profile} />
         </Stack.Navigator>
     )
 }
@@ -160,3 +160,4 @@ export function AppBottomNavigator() {
         </Tab.Navigator >
     );
 }
+

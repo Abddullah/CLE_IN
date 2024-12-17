@@ -69,8 +69,8 @@ const translations = {
 
 // Function to get translated error message
 const getFirebaseErrorMessage = async (errorCode) => {
-    const language = await getItem('languagecode', 'en');
-    const errorMessage = translations[language]?.[errorCode];
+    const languageCode = await getItem('languagecode', 'en');
+    const errorMessage = translations[languageCode]?.[errorCode];
     return errorMessage || translations['en']['auth/internal-error'];
 };
 

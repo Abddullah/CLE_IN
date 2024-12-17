@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Switch, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Switch, ScrollView, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select } from 'native-base';
 import CustomHeader from '../../components/Header';
@@ -11,8 +11,10 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { LightThemeColors, DarkThemeColors } from '../../utilities/constants';
 import { useTheme } from '../../../ThemeContext';
 import { onLanguageSelect } from '../../assets/language';
+import { logoutUser, showError, } from '../../store/actions/action'
 
 const Settings = ({ navigation }) => {
+    const dispatch = useDispatch()
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
@@ -23,21 +25,22 @@ const Settings = ({ navigation }) => {
 
     const [darkMode, setdarkMode] = useState(false);
 
-    const darkModeHandler = () => {
-        if (theme === 'dark') {
-            setdarkMode(false)
-        }
-        else {
-            setdarkMode(true)
-        }
-        toggleTheme()
-    }
 
     const toggleSwitch = (value) => {
         setlanguage(value)
         onLanguageSelect(value, setIsEnabled, isEnabled)
         setIsEnabled(previousState => !previousState);
     }
+
+    // const darkModeHandler = () => {
+    //     if (theme === 'dark') {
+    //         setdarkMode(false)
+    //     }
+    //     else {
+    //         setdarkMode(true)
+    //     }
+    //     toggleTheme()
+    // }
 
     return (
         <View style={styles.container}>
@@ -67,9 +70,6 @@ const Settings = ({ navigation }) => {
                     >
                         <Select.Item label="English" value="en" />
                         <Select.Item label="Italian" value="it" />
-                        {/* <Select.Item label="Spanish" value="sp" />
-                        <Select.Item label="German" value="gr" />
-                        <Select.Item label="French" value="fr" /> */}
                     </Select>
                 </View>
 
@@ -95,7 +95,13 @@ const Settings = ({ navigation }) => {
                 <CTA_Setting title={t('TermsConditions')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('TermsAndCondition') }} />
                 <CTA_Setting title={t('feedback')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('Feedback') }} />
                 <CTA_Setting title={t('supportandhelp')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('Support') }} />
-                <CTA_Setting title={t('logout')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('Signin') }} />
+                <CTA_Setting
+                    title={t('logout')}
+                    icon={<AntDesign name="caretright" color={colors.Neutral_01} />}
+                    submitHandler={() => {
+                        dispatch(logoutUser(navigation))
+                    }}
+                />
                 <CTA_Setting title={t('deletemyaccount')} icon={<AntDesign name="caretright" color={colors.Neutral_01} />} submitHandler={() => { navigation.navigate('DeleteAccount') }} />
 
             </ScrollView>

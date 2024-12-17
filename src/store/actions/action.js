@@ -1,8 +1,9 @@
 import Toast from 'react-native-toast-message';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { setItem, deleteItem, getItem } from '../../services/assynsStorage';
 import getFirebaseErrorMessage from '../../services/firebaseErrorHandler';
+import { CommonActions } from '@react-navigation/native';
+import { setItem, deleteItem, getItem } from '../../services/assynsStorage';
 
 export const showError = (errMsg) => async dispatch => {
   dispatch({ type: 'IS_ERROR', payload: true });
@@ -34,17 +35,15 @@ export const getCurrentUser = (navigation) => async dispatch => {
 export const loginUser = (credentials, isSelectedRemember, navigation) => async (dispatch) => {
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
-    // Attempt to sign in the user with Firebase Auth
     const userCredential = await auth().signInWithEmailAndPassword(credentials.email, credentials.password);
     const user = userCredential.user._user;
     const userDoc = await firestore().collection('users').doc(user.uid).get();
     const userData = userDoc.data();
-    // console.log(userData, 'Current_user');
     isSelectedRemember && setItem('user', userData)
     !isSelectedRemember && deleteItem('user')
     dispatch({ type: 'SET_USER', payload: userData });
     dispatch({ type: 'IS_LOADER', payload: false });
-    navigation.navigate('Tabs')
+    navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'Tabs' }], }));
     const customMessage = await getFirebaseErrorMessage('Login successful!');
     Toast.show({ type: 'success', text1: customMessage, position: 'bottom' });
   } catch (error) {
@@ -120,6 +119,23 @@ export const updateUser = (credentials, userId, navigation) => async (dispatch) 
   } catch (error) {
     console.log(error, 'updateUser_error');
     const errorMessage = await getFirebaseErrorMessage(error.code,);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
+  }
+};
+
+export const logoutUser = (navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    await auth().signOut();
+    deleteItem('user')
+    dispatch({ type: 'SET_USER', payload: {} });
+    dispatch({ type: 'IS_LOADER', payload: false });
+    navigation.navigate('Signin')
+  } catch (error) {
+    navigation.navigate('Signin')
+    console.log(error, 'logoutUser_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    const errorMessage = await getFirebaseErrorMessage(error.code);
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
