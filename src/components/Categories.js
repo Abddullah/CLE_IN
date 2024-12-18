@@ -9,8 +9,10 @@ import { t } from 'i18next';
 const Categories = ({
     icon,
     title,
+    subCategories,
     submitHandler,
-    selectedCat
+    selectedCat,
+
 }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
@@ -18,14 +20,14 @@ const Categories = ({
 
     return (
         <TouchableOpacity
-            onPress={() => { submitHandler(title) }}
+            onPress={() => { submitHandler(title, subCategories) }}
             activeOpacity={.8}
             style={styles.catBox}
         >
             <Image
                 resizeMode="contain"
                 style={{ width: 65, height: 65, borderRadius: 50, borderWidth: selectedCat === title ? 2 : 0, borderColor: colors.BothPrimary_01 }}
-                source={icon}
+                source={{ uri: icon }}
             />
             <Text style={[Typography.text_paragraph, { color: colors.black }]}>{title}</Text>
         </TouchableOpacity>

@@ -25,10 +25,11 @@ const Home = ({ navigation }) => {
     const styles = createStyles(colors, theme);
     let user = useSelector((state) => state.reducer.user);
     let allcategories = useSelector((state) => state.reducer.categories);
+    console.log(allcategories, 'allcategories');
 
     const [search, setsearch] = useState('');
     const [selectedTab, setselectedTab] = useState();
-    const [selectedCat, setselectedCat] = useState(t('cleaningandhygiene'));
+    const [selectedCat, setselectedCat] = useState('');
 
     const [subCat, setsubCat] = useState([
         "Office Cleaning",
@@ -36,26 +37,6 @@ const Home = ({ navigation }) => {
         "Door Cleaning",
         "Kitchen Cleaning",
         "Window Cleaning"
-    ]);
-
-    const [categories, setcategories] = useState([
-        {
-            title: t('cleaningandhygiene'),
-            image: Images.CleaningandHygieneServices,
-        },
-        {
-            title: t('RenovationServices'),
-            image: Images.RenovationServices,
-        },
-        {
-            title: t('InstallationServices'),
-            image: Images.InstallationServices,
-        },
-        {
-            title: t('HomeMaintenanceServices'),
-            image: Images.HomeMaintenanceServices,
-        },
-
     ]);
 
     const [data, setdata] = useState([
@@ -118,49 +99,19 @@ const Home = ({ navigation }) => {
     ]);
 
     useEffect(() => {
+        setselectedCat(allcategories[0]?.categoryName)
+        setsubCat(allcategories[0]?.subCategories)
+    }, [allcategories])
+
+
+    useEffect(() => {
         user.role === 'user' && setselectedTab(t('services'))
         user.role !== 'user' && setselectedTab(t('myjobs'))
     }, [user])
 
-    const selectedCatHandler = (title) => {
-        console.log(title, 'title');
+    const selectedCatHandler = (title, subCategories) => {
         setselectedCat(title)
-        if (title === t('cleaningandhygiene')) {
-            setsubCat([
-                "Office Cleaning",
-                "Room Cleaning",
-                "Door Cleaning",
-                "Kitchen Cleaning",
-                "Window Cleaning"
-            ])
-        }
-        else if (title === t('RenovationServices')) {
-            setsubCat([
-                "Wall Painting",
-                "Floor Tiling",
-                "Roof Repair",
-                "Bathroom Renovation",
-                "Kitchen Renovation"
-            ])
-        }
-        else if (title === t('InstallationServices')) {
-            setsubCat([
-                "AC Installation",
-                "Lighting Installation",
-                "Plumbing Installation",
-                "Furniture Assembly",
-                "Appliance Installation"
-            ])
-        }
-        else if (title === t('HomeMaintenanceServices')) {
-            setsubCat([
-                "Electrical Repairs",
-                "Plumbing Repairs",
-                "Pest Control",
-                "Garden Maintenance",
-                "Roof Maintenance"
-            ])
-        }
+        setsubCat(subCategories)
     }
 
     return (
@@ -294,12 +245,12 @@ const Home = ({ navigation }) => {
                                 style={{ flexDirection: 'row', marginTop: 10 }}
                             >
                                 <FlatList
-                                    data={categories}
+                                    data={allcategories}
                                     contentContainerStyle={{}}
                                     horizontal={true}
                                     showsHorizontalScrollIndicator={false}
                                     showsVerticalScrollIndicator={false}
-                                    renderItem={({ item }) => <Categories icon={item.image} title={item.title} submitHandler={(title) => { selectedCatHandler(title) }} selectedCat={selectedCat} />}
+                                    renderItem={({ item }) => <Categories icon={item.image} title={item.categoryName} subCategories={item.subCategories} submitHandler={(title, subCategories) => { selectedCatHandler(title, subCategories) }} selectedCat={selectedCat} />}
                                 />
                             </ScrollView>
                         </View>

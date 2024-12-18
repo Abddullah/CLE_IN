@@ -16,6 +16,7 @@ export const showError = (errMsg) => async dispatch => {
 
 export const getCurrentUser = (navigation) => async dispatch => {
   const user = await getItem('user')
+  console.log(user, "Current_user");
   const launchApp = await getItem('launchApp')
   if (user) {
     dispatch({ type: 'SET_USER', payload: user });
