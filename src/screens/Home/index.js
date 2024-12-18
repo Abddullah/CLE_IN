@@ -5,7 +5,6 @@ import { t } from 'i18next';
 import { Typography } from '../../utilities/constants/constant.style';
 import FastImage from 'react-native-fast-image'
 import { SliderBox } from "react-native-image-slider-box";
-// import { CatHome, CatCompany, CatHospital, CatOffice, CatFactory } from '../../assets/icons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -20,18 +19,15 @@ import CustomTabs from '../../components/CustomTabs';
 import ServiceCard from '../../components/ServiceCard';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-const deviceWidth = screenResolution.screenWidth;
-
 const Home = ({ navigation }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
     let user = useSelector((state) => state.reducer.user);
-    let isError = useSelector((state) => state.reducer.isError);
-    const numColumns = deviceWidth < 360 ? 1 : 2;
-    const [selectedTab, setselectedTab] = useState();
+    let allcategories = useSelector((state) => state.reducer.categories);
 
     const [search, setsearch] = useState('');
+    const [selectedTab, setselectedTab] = useState();
     const [selectedCat, setselectedCat] = useState(t('cleaningandhygiene'));
 
     const [subCat, setsubCat] = useState([

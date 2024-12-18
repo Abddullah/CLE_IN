@@ -30,6 +30,9 @@ export const getCurrentUser = (navigation) => async dispatch => {
       navigation.navigate('Signin')
     }
   }
+  dispatch(fetchCategories());
+
+
 };
 
 export const loginUser = (credentials, isSelectedRemember, navigation) => async (dispatch) => {
@@ -139,3 +142,19 @@ export const logoutUser = (navigation) => async (dispatch) => {
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
   }
 };
+
+export const fetchCategories = (navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    const snapshot = await firestore().collection('categories').get();
+    const categories = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    dispatch({ type: 'SET_CATEGORIES', payload: categories });
+    dispatch({ type: 'IS_LOADER', payload: false });
+  } catch (error) {
+    console.log(error, 'fetchCategories_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    const errorMessage = await getFirebaseErrorMessage(error.code);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
+  }
+};
+

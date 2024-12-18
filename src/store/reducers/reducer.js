@@ -8,6 +8,7 @@ const initState = {
   // savedCords: [24.979781, 67.067024], // saleem center
   savedCords: [],
   isLocation: false,
+  categories: [],
 };
 
 const reducer = (state = initState, action) => {
@@ -41,6 +42,11 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         savedCords: action.payload,
+      }
+    case 'SET_CATEGORIES':
+      return {
+        ...state,
+        categories: action.payload,
       }
     default:
       return state;
