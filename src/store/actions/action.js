@@ -32,8 +32,7 @@ export const getCurrentUser = (navigation) => async dispatch => {
     }
   }
   dispatch(fetchCategories());
-
-
+  dispatch(fetchAditionalService());
 };
 
 export const loginUser = (credentials, isSelectedRemember, navigation) => async (dispatch) => {
@@ -153,6 +152,24 @@ export const fetchCategories = (navigation) => async (dispatch) => {
     dispatch({ type: 'IS_LOADER', payload: false });
   } catch (error) {
     console.log(error, 'fetchCategories_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    const errorMessage = await getFirebaseErrorMessage(error.code);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
+  }
+};
+
+export const fetchAditionalService = (navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    const snapshot = await firestore().collection('additionalServices').get();
+    const additionalServices = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    console.log(additionalServices, 'additionalServices')
+
+
+    // dispatch({ type: 'SET_ADITIONALSERVICE', payload: additionalServices });
+    dispatch({ type: 'IS_LOADER', payload: false });
+  } catch (error) {
+    console.log(error, 'fetchAditionalService_error');
     dispatch({ type: 'IS_LOADER', payload: false });
     const errorMessage = await getFirebaseErrorMessage(error.code);
     Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
