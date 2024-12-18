@@ -34,16 +34,24 @@ import AdditionalServices from '../../components/AdditionalServices';
 const deviceWidth = screenResolution.screenWidth;
 
 const CreateService = ({ navigation }) => {
-    const route = useRoute();
-    let isJobCreate = route.params.isJobCreate;
-    console.log(isJobCreate, 'isJobCreate');
-    let user = useSelector((state) => state.reducer.user);
+    // styling themes state
     const { theme, toggleTheme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme, deviceWidth);
+
+    const route = useRoute();
+    const dispatch = useDispatch();
+    let isJobCreate = route.params.isJobCreate;
+    let user = useSelector((state) => state.reducer.user);
+    let isError = useSelector((state) => state.reducer.isError);
+
+    const [step, setstep] = useState(0);
+    // repeate service modal state
+    const [modalVisible, setModalVisible] = useState(true);
+    const [repeateService, setrepeateService] = useState('One Time');
+    // informationPopups state 
     const [informationPopup, setinformationPopup] = useState(false);
     const [informationPopup1, setinformationPopup1] = useState(false);
-    const [modalVisible, setModalVisible] = useState(true);
 
     const [selectedHour, setselectedHour] = useState('');
     const [selectedProfessional, setselectedProfessional] = useState('');
@@ -51,20 +59,12 @@ const CreateService = ({ navigation }) => {
     const [categories, setcategories] = useState('');
     const [subcategories, setsubcategories] = useState('');
 
-    let isError = useSelector((state) => state.reducer.isError);
-    const [step, setstep] = useState(0);
-    const options = [
-        { label: t('cleaningathome'), value: 'Cleaning at Home' },
-        { label: t('cleaningatcompany'), value: 'Cleaning at Company' },
-        { label: t('cleaningatoffice'), value: 'Cleaning at Office' },
-        { label: t('cleaningathospital'), value: 'Cleaning at Hospital' },
-        { label: t('cleaningatfactory'), value: 'Cleaning at Factory' },
-    ];
-    const [selectedCategories, setselectedCategories] = useState('');
     const [roomsQty, setroomsQty] = useState('1');
     const [roomsize, setroomsize] = useState('');
+
+    const [needCleaningMaterials, setneedCleaningMaterials] = useState('');
+
     const [totalPrice, settotalPrice] = useState('5');
-    const [selectedTab, setselectedTab] = useState('');
 
     const [rates, setrates] = useState('');
     const [description, setdescription] = useState('');
@@ -268,9 +268,6 @@ const CreateService = ({ navigation }) => {
         }
     };
 
-    const handleSelect = (value) => {
-        setselectedCategories(value)
-    };
 
     const stepsHandler = () => {
         if (isJobCreate ? step < 4 : step < 2) {
@@ -332,7 +329,7 @@ const CreateService = ({ navigation }) => {
             />
 
             {
-                user.role !== 'provider' && <RepeatService modalVisible={modalVisible} setModalVisible={() => setModalVisible(false)} />
+                user.role !== 'provider' && <RepeatService modalVisible={modalVisible} setModalVisible={(selected) => { setModalVisible(false); setrepeateService(selected) }} />
             }
 
             <InformationPopup modalVisible={informationPopup} setModalVisible={() => setinformationPopup(false)} info={1} />
@@ -385,7 +382,6 @@ const CreateService = ({ navigation }) => {
                                 </ScrollView>
                             </>
                         }
-                        {/* <RadioButtonCat options={options} onSelect={handleSelect} /> */}
                         <View style={[styles.heading, { marginTop: 30 }]}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectCategory')}</Text>
                         </View>
@@ -493,9 +489,7 @@ const CreateService = ({ navigation }) => {
                                             background: colors.Primary_01,
                                         }}
                                         color={colors.Neutral_01}
-                                        // mt={1} onValueChange={itemValue => setroomsQty(itemValue)}
                                         mt={1} onValueChange={itemValue => roomHandler(itemValue)}
-
                                     >
                                         <Select.Item label="Studio" value="Studio" />
                                         <Select.Item label="1 Room" value="1 Room" />
@@ -521,8 +515,8 @@ const CreateService = ({ navigation }) => {
                                 </TouchableOpacity>
 
                                 <View style={{ width: '100%', flexDirection: 'row', marginTop: 20 }}>
-                                    <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('noIhavethem')} />
-                                    <BookingStatusTab selectedState={selectedTab} setselectedState={setselectedTab} title={t('yesPlease')} />
+                                    <BookingStatusTab selectedState={needCleaningMaterials} setselectedState={setneedCleaningMaterials} title={t('noIhavethem')} />
+                                    <BookingStatusTab selectedState={needCleaningMaterials} setselectedState={setneedCleaningMaterials} title={t('yesPlease')} />
                                 </View>
                             </>
                         }
@@ -905,10 +899,10 @@ const CreateService = ({ navigation }) => {
                                         <Text style={[Typography.text_paragraph_1, styles.headingText]}>{'€' + ' '}</Text>
 
                                         {
-                                            selectedTab === t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice + 5}</Text>
+                                            needCleaningMaterials === t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice + 5}</Text>
                                         }
                                         {
-                                            selectedTab !== t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice}</Text>
+                                            needCleaningMaterials !== t('yesPlease') && <Text style={[Typography.text_paragraph_1, styles.headingText]}>{totalPrice}</Text>
                                         }
                                     </View>
                                 </View>

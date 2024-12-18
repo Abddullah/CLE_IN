@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import { Modal, StyleSheet, ImageBackground, Text, View, TouchableOpacity } from 'react-native';
-import Images from '../assets/images/index'
-import CTAButton1 from './CTA_BUTTON1';
-import { Typography } from '../utilities/constants/constant.style';
+import { Modal, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { t } from 'i18next';
-import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
-import RadioButtonCat from './Radio_Button_Cat';
-import { CatCompany } from '../assets/icons';
+import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
+import { Typography } from '../utilities/constants/constant.style';
 import screenResolution from '../utilities/constants/screenResolution';
+import CTAButton1 from './CTA_BUTTON1';
 
 const RepeatService = ({ modalVisible, setModalVisible, }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
     const styles = createStyles(colors, theme);
-    const [selected, setSelected] = useState(t('weekly'));
+    const [selected, setSelected] = useState(t('oneTime'));
+    const [selected2, setSelected2] = useState('One Time');
 
     return (
         <Modal
             animationType="slide"
             transparent={true}
             visible={modalVisible}
-            onRequestClose={() => { setModalVisible() }}>
+            onRequestClose={() => { setModalVisible(selected2) }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
 
@@ -32,7 +30,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                     <View style={{ flex: 1, width: '100%', marginTop: 20, justifyContent: 'flex-start', alignItems: 'center', }}>
 
                         <TouchableOpacity
-                            onPress={() => setSelected(t('weekly'))}
+                            onPress={() => { setSelected(t('weekly')); setSelected2('Weekly') }}
                             activeOpacity={.8}
                             style={[styles.cardContainer, {
 
@@ -49,7 +47,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                                 <TouchableOpacity
                                     activeOpacity={.8}
                                     style={styles.radioButtonContainer}
-                                    onPress={() => setSelected(t('weekly'))}
+                                    onPress={() => { setSelected(t('weekly')); setSelected2('Weekly') }}
                                 >
                                     <View style={styles.radioButton}>
                                         {selected === t('weekly') && <View style={styles.radioButtonSelected} />}
@@ -77,7 +75,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
 
 
                         <TouchableOpacity
-                            onPress={() => setSelected(t('every2weeks'))}
+                            onPress={() => { setSelected(t('every2weeks')); setSelected2('Every 2 weeks') }}
                             activeOpacity={.8}
                             style={[styles.cardContainer, {
                                 borderWidth: 1,
@@ -89,7 +87,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                                 <TouchableOpacity
                                     activeOpacity={.8}
                                     style={styles.radioButtonContainer}
-                                    onPress={() => setSelected(t('every2weeks'))}
+                                    onPress={() => { setSelected(t('every2weeks')); setSelected2('Every 2 weeks') }}
                                 >
                                     <View style={styles.radioButton}>
                                         {selected === t('every2weeks') && <View style={styles.radioButtonSelected} />}
@@ -116,7 +114,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={() => setSelected(t('oneTime'))}
+                            onPress={() => { setSelected(t('oneTime')); setSelected2('One Time') }}
                             activeOpacity={.8}
                             style={[styles.cardContainer, {
                                 paddingVertical: '3%',
@@ -131,7 +129,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                                 <TouchableOpacity
                                     activeOpacity={.8}
                                     style={styles.radioButtonContainer}
-                                    onPress={() => setSelected(t('oneTime'))}
+                                    onPress={() => { setSelected(t('oneTime')); setSelected2('One Time') }}
                                 >
                                     <View style={styles.radioButton}>
                                         {selected === t('oneTime') && <View style={styles.radioButtonSelected} />}
@@ -148,7 +146,7 @@ const RepeatService = ({ modalVisible, setModalVisible, }) => {
                         </TouchableOpacity>
 
                         <View style={{ width: '90%', marginTop: 20 }}>
-                            <CTAButton1 title={t('selectRepeatService')} submitHandler={() => { setModalVisible() }} />
+                            <CTAButton1 title={t('selectRepeatService')} submitHandler={() => { setModalVisible(selected2) }} />
                         </View>
 
                     </View>

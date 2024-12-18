@@ -25,7 +25,7 @@ const Home = ({ navigation }) => {
     const styles = createStyles(colors, theme);
     let user = useSelector((state) => state.reducer.user);
     let allcategories = useSelector((state) => state.reducer.categories);
-    console.log(allcategories, 'allcategories');
+    // console.log(allcategories, 'allcategories');
 
     const [search, setsearch] = useState('');
     const [selectedTab, setselectedTab] = useState();

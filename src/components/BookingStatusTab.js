@@ -16,7 +16,6 @@ const BookingStatusTab = ({ selectedState, setselectedState, title }) => {
             style={[styles.catBox, {
                 backgroundColor: selectedState === title ? colors.Primary_01 : colors.Neutral_02,
                 borderColor: selectedState !== title ? colors.Primary_01 : colors.black,
-                // borderWidth: 1,
             }]}
             onPress={() => { setselectedState(title) }}
         >
