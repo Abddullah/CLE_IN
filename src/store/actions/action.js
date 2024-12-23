@@ -164,9 +164,7 @@ export const fetchAditionalService = (navigation) => async (dispatch) => {
     const snapshot = await firestore().collection('additionalServices').get();
     const additionalServices = snapshot.docs.map((doc) => ({ ...doc.data(), }));
     console.log(additionalServices, 'additionalServices')
-
-
-    // dispatch({ type: 'SET_ADITIONALSERVICE', payload: additionalServices });
+    dispatch({ type: 'SET_ADITIONAL_SERVICE', payload: additionalServices });
     dispatch({ type: 'IS_LOADER', payload: false });
   } catch (error) {
     console.log(error, 'fetchAditionalService_error');

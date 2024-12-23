@@ -63,8 +63,15 @@ const CreateService = ({ navigation }) => {
     const [roomsize, setroomsize] = useState('');
 
     const [needCleaningMaterials, setneedCleaningMaterials] = useState('');
+    const [aditionalSelectedServices, setaditionalSelectedServices] = useState([]);
 
     const [totalPrice, settotalPrice] = useState('5');
+
+
+
+
+
+
 
     const [rates, setrates] = useState('');
     const [description, setdescription] = useState('');
@@ -523,7 +530,7 @@ const CreateService = ({ navigation }) => {
 
                         {
                             isJobCreate &&
-                            <AdditionalServices />
+                            <AdditionalServices onSelectedServicesChange={setaditionalSelectedServices} />
                         }
 
                     </View>

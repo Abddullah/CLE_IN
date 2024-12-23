@@ -1,32 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckBox from '@react-native-community/checkbox';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { t } from 'i18next';
+// local import
 import { useTheme } from '../../ThemeContext';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import screenResolution from '../utilities/constants/screenResolution';
-import { t } from 'i18next';
 
-const AdditionalServices = () => {
+const AdditionalServices = ({ onSelectedServicesChange }) => {
   const { theme } = useTheme();
   const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
   const styles = createStyles(colors);
+  let additionalService = useSelector((state) => state.reducer.additionalService);
 
-  const [services, setServices] = useState([
-    { service: t('Oven'), isSelect: false, price: 8 },
-    { service: t('Laundry'), isSelect: false, price: 5 },
-    { service: t('Fridge'), isSelect: false, price: 10 },
-    { service: t('Ironing'), isSelect: false, price: 6 },
-    { service: t('Balcony'), isSelect: false, price: 12 },
-    { service: t('Cupboard'), isSelect: false, price: 12 },
-  ]);
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    setServices(additionalService)
+  }, [additionalService])
 
   const toggleCheckbox = (index) => {
-    setServices((prev) =>
-      prev.map((item, i) =>
-        i === index ? { ...item, isSelect: !item.isSelect } : item
-      )
+    const updatedServices = services.map((item, i) =>
+      i === index ? { ...item, isSelect: !item.isSelect } : item
     );
+    setServices(updatedServices);
+    const selectedServices = updatedServices.filter((service) => service.isSelect);
+    onSelectedServicesChange(selectedServices);
   };
 
   const renderServicesInRows = () => {
@@ -42,7 +43,7 @@ const AdditionalServices = () => {
                 tintColors={{ true: colors.Primary_01, false: colors.Primary_01 }}
               />
               <Text style={styles.optionText}>
-                {service.service}
+                {service.title}
                 {/* - ${service.price} */}
               </Text>
             </View>

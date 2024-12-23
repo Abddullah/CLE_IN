@@ -9,6 +9,7 @@ const initState = {
   savedCords: [],
   isLocation: false,
   categories: [],
+  additionalService: [],
 };
 
 const reducer = (state = initState, action) => {
@@ -47,6 +48,11 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         categories: action.payload,
+      }
+    case 'SET_ADITIONAL_SERVICE':
+      return {
+        ...state,
+        additionalService: action.payload,
       }
     default:
       return state;
