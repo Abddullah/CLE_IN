@@ -9,6 +9,9 @@ const initState = {
   savedCords: [],
   isLocation: false,
   categories: [],
+  hourlyRates: '',
+  roomSize: [],
+  noOfRooms: [],
   additionalService: [],
 };
 
@@ -48,6 +51,21 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         categories: action.payload,
+      }
+    case 'SET_HOURLY_RATE':
+      return {
+        ...state,
+        hourlyRates: action.payload,
+      }
+    case 'SET_ROOM_SIZE':
+      return {
+        ...state,
+        roomSize: action.payload,
+      }
+    case 'SET_NO_OF_ROOMS':
+      return {
+        ...state,
+        noOfRooms: action.payload,
       }
     case 'SET_ADITIONAL_SERVICE':
       return {

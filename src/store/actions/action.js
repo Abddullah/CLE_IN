@@ -32,6 +32,9 @@ export const getCurrentUser = (navigation) => async dispatch => {
     }
   }
   dispatch(fetchCategories());
+  dispatch(fetchHourlyRates());
+  dispatch(fetchRoomAreaSize());
+  dispatch(fetchNoOfRooms());
   dispatch(fetchAditionalService());
 };
 
@@ -158,12 +161,56 @@ export const fetchCategories = (navigation) => async (dispatch) => {
   }
 };
 
+export const fetchHourlyRates = (navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    const snapshot = await firestore().collection('hourlyRates').get();
+    const hourlyRates = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    dispatch({ type: 'SET_HOURLY_RATE', payload: hourlyRates ? hourlyRates[0]?.rate : 5 });
+    dispatch({ type: 'IS_LOADER', payload: false });
+  } catch (error) {
+    console.log(error, 'fetchAditionalService_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    const errorMessage = await getFirebaseErrorMessage(error.code);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
+  }
+};
+
+export const fetchRoomAreaSize = (navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    const snapshot = await firestore().collection('roomSize').get();
+    const roomSize = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    dispatch({ type: 'SET_ROOM_SIZE', payload: roomSize });
+    dispatch({ type: 'IS_LOADER', payload: false });
+  } catch (error) {
+    console.log(error, 'fetchAditionalService_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    const errorMessage = await getFirebaseErrorMessage(error.code);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
+  }
+};
+
+export const fetchNoOfRooms = (navigation) => async (dispatch) => {
+  try {
+    dispatch({ type: 'IS_LOADER', payload: true });
+    const snapshot = await firestore().collection('NoOfRooms').get();
+    const noOfRooms = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    dispatch({ type: 'SET_NO_OF_ROOMS', payload: noOfRooms });
+    dispatch({ type: 'IS_LOADER', payload: false });
+  } catch (error) {
+    console.log(error, 'fetchAditionalService_error');
+    dispatch({ type: 'IS_LOADER', payload: false });
+    const errorMessage = await getFirebaseErrorMessage(error.code);
+    Toast.show({ type: 'error', text1: errorMessage, position: 'bottom' });
+  }
+};
+
 export const fetchAditionalService = (navigation) => async (dispatch) => {
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
     const snapshot = await firestore().collection('additionalServices').get();
     const additionalServices = snapshot.docs.map((doc) => ({ ...doc.data(), }));
-    console.log(additionalServices, 'additionalServices')
     dispatch({ type: 'SET_ADITIONAL_SERVICE', payload: additionalServices });
     dispatch({ type: 'IS_LOADER', payload: false });
   } catch (error) {

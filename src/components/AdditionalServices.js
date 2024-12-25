@@ -36,7 +36,7 @@ const AdditionalServices = ({ onSelectedServicesChange }) => {
       rows.push(
         <View key={i} style={styles.rowContainer}>
           {services.slice(i, i + 3).map((service, index) => (
-            <View key={service.service} style={styles.optionContainer}>
+            <View key={index} style={styles.optionContainer}>
               <CheckBox
                 value={service.isSelect}
                 onValueChange={() => toggleCheckbox(i + index)}

@@ -44,6 +44,13 @@ const CreateService = ({ navigation }) => {
     let isJobCreate = route.params.isJobCreate;
     let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+    let hourlyRates = useSelector((state) => state.reducer.hourlyRates);
+    let roomSize = useSelector((state) => state.reducer.roomSize);
+    let noOfRooms = useSelector((state) => state.reducer.noOfRooms);
+
+    console.log(hourlyRates, "hourlyRates");
+    console.log(roomSize, "roomSize");
+    console.log(noOfRooms, "noOfRooms");
 
     const [step, setstep] = useState(0);
     // repeate service modal state
