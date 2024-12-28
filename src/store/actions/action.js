@@ -129,6 +129,19 @@ export const updateUser = (credentials, userId, navigation) => async (dispatch) 
   }
 };
 
+export const updateUserStatus = async (userId, isOnline) => {
+  try {
+    const userRef = firestore().collection('users').doc(userId);
+    await userRef.update({
+      online: isOnline,
+      lastSeen: isOnline ? null : firestore.FieldValue.serverTimestamp(), // Set lastSeen for offline users
+    });
+    console.log(`User status updated: ${isOnline ? 'Online' : 'Offline'}`);
+  } catch (error) {
+    console.error('Error updating user status:', error);
+  }
+};
+
 export const logoutUser = (navigation) => async (dispatch) => {
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
