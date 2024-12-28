@@ -180,7 +180,20 @@ export const fetchRoomAreaSize = (navigation) => async (dispatch) => {
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
     const snapshot = await firestore().collection('roomSize').get();
-    const roomSize = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    let roomSize = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    roomSize = roomSize.sort((a, b) => {
+      const aIsNumber = !isNaN(a.title);
+      const bIsNumber = !isNaN(b.title);
+      if (aIsNumber && bIsNumber) {
+        return Number(b.title) - Number(a.title);
+      } else if (aIsNumber) {
+        return -1;
+      } else if (bIsNumber) {
+        return 1;
+      } else {
+        return a.title.localeCompare(b.title);
+      }
+    });
     dispatch({ type: 'SET_ROOM_SIZE', payload: roomSize });
     dispatch({ type: 'IS_LOADER', payload: false });
   } catch (error) {
@@ -195,7 +208,20 @@ export const fetchNoOfRooms = (navigation) => async (dispatch) => {
   try {
     dispatch({ type: 'IS_LOADER', payload: true });
     const snapshot = await firestore().collection('NoOfRooms').get();
-    const noOfRooms = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    let noOfRooms = snapshot.docs.map((doc) => ({ ...doc.data(), }));
+    noOfRooms = noOfRooms.sort((a, b) => {
+      const aIsNumber = !isNaN(a.title);
+      const bIsNumber = !isNaN(b.title);
+      if (aIsNumber && bIsNumber) {
+        return Number(a.title) - Number(b.title);
+      } else if (aIsNumber) {
+        return -1;
+      } else if (bIsNumber) {
+        return 1;
+      } else {
+        return a.title.localeCompare(b.title);
+      }
+    });
     dispatch({ type: 'SET_NO_OF_ROOMS', payload: noOfRooms });
     dispatch({ type: 'IS_LOADER', payload: false });
   } catch (error) {

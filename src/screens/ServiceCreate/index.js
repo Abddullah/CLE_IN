@@ -44,13 +44,15 @@ const CreateService = ({ navigation }) => {
     let isJobCreate = route.params.isJobCreate;
     let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+    let allcategories = useSelector((state) => state.reducer.categories);
     let hourlyRates = useSelector((state) => state.reducer.hourlyRates);
-    let roomSize = useSelector((state) => state.reducer.roomSize);
+    let roomSizes = useSelector((state) => state.reducer.roomSize);
     let noOfRooms = useSelector((state) => state.reducer.noOfRooms);
 
-    console.log(hourlyRates, "hourlyRates");
-    console.log(roomSize, "roomSize");
-    console.log(noOfRooms, "noOfRooms");
+    // console.log(allcategories, "allcategories");
+    // console.log(hourlyRates, "hourlyRates");
+    // console.log(roomSizes, "roomSize");
+    // console.log(noOfRooms, "noOfRooms");
 
     const [step, setstep] = useState(0);
     // repeate service modal state
@@ -60,25 +62,83 @@ const CreateService = ({ navigation }) => {
     const [informationPopup, setinformationPopup] = useState(false);
     const [informationPopup1, setinformationPopup1] = useState(false);
 
-    const [selectedHour, setselectedHour] = useState('');
-    const [selectedProfessional, setselectedProfessional] = useState('');
+    const [previousHourlyRates, setPreviousHourlyRates] = useState(0);
 
-    const [categories, setcategories] = useState('');
-    const [subcategories, setsubcategories] = useState('');
+    const [selectedHour, setselectedHour] = useState('1');
+    const [previousSelectedHour, setPreviousSelectedHour] = useState(0);
+
+    const [selectedProfessional, setselectedProfessional] = useState('1');
+    const [previousSelectedProfessional, setPreviousSelectedProfessional] = useState(0);
+
+    const [selectedCategories, setselectedCategories] = useState('');
+    const [subcategories, setsubcategories] = useState([]);
+    const [selectedsubcategories, setselectedsubcategories] = useState('');
+
+    const [roomsize, setroomsize] = useState('');
+    const [previousRoomRate, setPreviousRoomRate] = useState(0);
 
     const [roomsQty, setroomsQty] = useState('1');
-    const [roomsize, setroomsize] = useState('');
+    const [previousRoomQtyPrice, setPreviousRoomQtyPrice] = useState(0);
 
     const [needCleaningMaterials, setneedCleaningMaterials] = useState('');
+
     const [aditionalSelectedServices, setaditionalSelectedServices] = useState([]);
+    const [previousAdditionalServices, setPreviousAdditionalServices] = useState([]);
 
-    const [totalPrice, settotalPrice] = useState('5');
+    const [totalPrice, settotalPrice] = useState('0');
+    console.log(aditionalSelectedServices, "aditionalSelectedServices");
 
+    useEffect(() => {
+        let previousTotal = previousSelectedHour * previousHourlyRates * previousSelectedProfessional;
+        let newTotal = selectedHour * hourlyRates * selectedProfessional;
+        let total = Number(totalPrice) - previousTotal + newTotal;
+        settotalPrice(total);
+        // Update previous values
+        setPreviousHourlyRates(hourlyRates);
+        setPreviousSelectedHour(selectedHour);
+        setPreviousSelectedProfessional(selectedProfessional);
+    }, [hourlyRates, selectedHour, selectedProfessional, aditionalSelectedServices]);
 
+    const categoryHandler = (categoryName) => {
+        setselectedCategories(categoryName);
+        let subCat = allcategories.find(category => category.categoryName === categoryName);
+        setsubcategories(subCat.subCategories)
+        // Clear the previous values
+        let newTotal = selectedHour * hourlyRates * selectedProfessional;
+        settotalPrice(newTotal);
+        setselectedsubcategories('');
+        setroomsize('');
+        setroomsQty('');
+        setneedCleaningMaterials('');
+        setaditionalSelectedServices([]);
+    };
 
+    const roomSizeHandler = (itemValue) => {
+        setroomsize(itemValue);
+        let find = roomSizes.find(item => item.title === itemValue);
+        let total = Number(totalPrice) - Number(previousRoomRate) + Number(find.rate);
+        settotalPrice(total);
+        // Update previous values
+        setPreviousRoomRate(Number(find.rate));
+    }
 
+    const roomQtyHandler = (itemValue) => {
+        setroomsQty(itemValue);
+        let find = noOfRooms.find(item => item.title === itemValue);
+        let total = Number(totalPrice) - Number(previousRoomQtyPrice) + Number(find.price);
+        settotalPrice(total);
+        // Update previous values
+        setPreviousRoomQtyPrice(Number(find.price));
+    }
 
-
+    const additionalServicesHandler = (itemValue) => {
+        let total = Number(totalPrice);
+        previousAdditionalServices.forEach(item => { total -= Number(item.price); });
+        itemValue.forEach(item => { total += Number(item.price); });
+        setaditionalSelectedServices(itemValue);
+        settotalPrice(total);
+        setPreviousAdditionalServices(itemValue);
+    }
 
     const [rates, setrates] = useState('');
     const [description, setdescription] = useState('');
@@ -137,6 +197,8 @@ const CreateService = ({ navigation }) => {
     ])
 
     const [isLoader, setisLoader] = useState(false);
+
+
 
 
     useEffect(() => {
@@ -310,6 +372,8 @@ const CreateService = ({ navigation }) => {
         }
     }
 
+
+
     const backHandler = () => {
         if (step === 0) {
             navigation.goBack()
@@ -325,14 +389,6 @@ const CreateService = ({ navigation }) => {
         }));
         settimeSlots(updatedTimeSlots);
     };
-
-    const roomHandler = (itemValue) => {
-        setroomsQty(itemValue)
-        const roomCount = parseInt(itemValue.split('-')[0], 10);
-        const pricePerRoom = 5;
-        const totalPrice = roomCount * pricePerRoom;
-        settotalPrice(totalPrice);
-    }
 
     return (
         <View style={styles.container}>
@@ -396,14 +452,16 @@ const CreateService = ({ navigation }) => {
                                 </ScrollView>
                             </>
                         }
+
                         <View style={[styles.heading, { marginTop: 30 }]}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectCategory')}</Text>
                         </View>
+
                         <View style={styles.listDropDown}>
                             <Select
                                 bg={colors.white}
                                 borderWidth={0}
-                                selectedValue={categories}
+                                selectedValue={selectedCategories}
                                 minWidth="100%"
                                 accessibilityLabel={t('selectCategory')}
                                 placeholder={t('selectCategory')}
@@ -412,18 +470,23 @@ const CreateService = ({ navigation }) => {
                                     background: colors.Primary_01,
                                 }}
                                 color={colors.Neutral_01}
-                                mt={1} onValueChange={itemValue => setcategories(itemValue)}
+                                mt={1}
+                                onValueChange={itemValue => categoryHandler(itemValue)}
                             >
-                                <Select.Item label="Cleaning and Hygiene Services" value="Cleaning and Hygiene Services" />
-                                <Select.Item label="Home Maintenance Services" value="Home Maintenance Services" />
-                                <Select.Item label="Installation Services" value="Installation Services" />
-                                <Select.Item label="Renovation Services" value="Renovation Services" />
+                                {
+                                    allcategories.length && allcategories.map((category, index) => (
+                                        <Select.Item
+                                            key={index}
+                                            label={category.categoryName}
+                                            value={category.categoryName}
+                                        />
+                                    ))
+                                }
                             </Select>
                         </View>
 
-
                         {
-                            categories != '' &&
+                            selectedCategories != '' &&
                             <>
                                 <View style={styles.heading}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('subCategories')}</Text>
@@ -432,7 +495,7 @@ const CreateService = ({ navigation }) => {
                                     <Select
                                         bg={colors.white}
                                         borderWidth={0}
-                                        selectedValue={subcategories}
+                                        selectedValue={selectedsubcategories}
                                         minWidth="100%"
                                         accessibilityLabel={t('subCategories')}
                                         placeholder={t('subCategories')}
@@ -441,20 +504,25 @@ const CreateService = ({ navigation }) => {
                                             background: colors.Primary_01,
                                         }}
                                         color={colors.Neutral_01}
-                                        mt={1} onValueChange={itemValue => setsubcategories(itemValue)}
+                                        mt={1}
+                                        onValueChange={itemValue => setselectedsubcategories(itemValue)}
                                     >
-                                        <Select.Item label="Office cleaning" value="Office cleaning" />
-                                        <Select.Item label="Room cleaning" value="Room cleaning" />
-                                        <Select.Item label="Pest control service" value="Pest control service" />
-                                        <Select.Item label="Laundry Service" value="Laundry Service" />
-                                        <Select.Item label="Etc" value="Etc" />
+                                        {
+                                            subcategories.length && subcategories.map((category, index) => (
+                                                <Select.Item
+                                                    key={index}
+                                                    label={category}
+                                                    value={category}
+                                                />
+                                            ))
+                                        }
                                     </Select>
                                 </View>
                             </>
                         }
 
                         {
-                            isJobCreate &&
+                            isJobCreate && selectedCategories === 'Cleaning and Hygiene Services' &&
                             <>
                                 <View style={styles.heading}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('areaSize')}</Text>
@@ -472,20 +540,24 @@ const CreateService = ({ navigation }) => {
                                             background: colors.Primary_01,
                                         }}
                                         color={colors.Neutral_01}
-                                        mt={1} onValueChange={itemValue => setroomsize(itemValue)}
+                                        mt={1} onValueChange={itemValue => roomSizeHandler(itemValue)}
                                     >
-                                        <Select.Item label="Less than 50 m2" value="Less than 50 m2" />
-                                        <Select.Item label="51 - 100 m2" value="51 - 100 m2" />
-                                        <Select.Item label="101 - 150 m2" value="101 - 150 m2" />
-                                        <Select.Item label="151 - 200 m2" value="151 - 200 m2" />
-                                        <Select.Item label="Over 200 m2" value="Over 200 m2" />
+                                        {
+                                            roomSizes.length && roomSizes.map((key, index) => (
+                                                <Select.Item
+                                                    key={index}
+                                                    label={key.title}
+                                                    value={key.title}
+                                                />
+                                            ))
+                                        }
                                     </Select>
                                 </View>
                             </>
                         }
 
                         {
-                            isJobCreate &&
+                            isJobCreate && selectedCategories === 'Cleaning and Hygiene Services' &&
                             <>
                                 <View style={styles.heading}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('roomsNumber')}</Text>
@@ -503,21 +575,25 @@ const CreateService = ({ navigation }) => {
                                             background: colors.Primary_01,
                                         }}
                                         color={colors.Neutral_01}
-                                        mt={1} onValueChange={itemValue => roomHandler(itemValue)}
+                                        mt={1} onValueChange={itemValue => roomQtyHandler(itemValue)}
                                     >
-                                        <Select.Item label="Studio" value="Studio" />
-                                        <Select.Item label="1 Room" value="1 Room" />
-                                        <Select.Item label="2 Rooms" value="2 Rooms" />
-                                        <Select.Item label="3 Rooms" value="3 Rooms" />
-                                        <Select.Item label="4 Rooms" value="4 Rooms" />
-                                        <Select.Item label="5 Rooms" value="5 Rooms" />
+
+                                        {
+                                            noOfRooms.length && noOfRooms.map((key, index) => (
+                                                <Select.Item
+                                                    key={index}
+                                                    label={key.title}
+                                                    value={key.title}
+                                                />
+                                            ))
+                                        }
                                     </Select>
                                 </View>
                             </>
                         }
 
                         {
-                            isJobCreate &&
+                            isJobCreate && selectedCategories === 'Cleaning and Hygiene Services' &&
                             <>
                                 <TouchableOpacity
                                     onPress={() => { setinformationPopup1(!informationPopup1) }}
@@ -536,8 +612,8 @@ const CreateService = ({ navigation }) => {
                         }
 
                         {
-                            isJobCreate &&
-                            <AdditionalServices onSelectedServicesChange={setaditionalSelectedServices} />
+                            isJobCreate && selectedCategories === 'Cleaning and Hygiene Services' &&
+                            <AdditionalServices onSelectedServicesChange={(e) => { additionalServicesHandler(e) }} />
                         }
 
                     </View>
@@ -748,28 +824,6 @@ const CreateService = ({ navigation }) => {
                                 )}
                             />
 
-                            {/* <FlatList
-                                data={timeSlots}
-                                contentContainerStyle={[styles.timeFlatList,]}
-                                numColumns={3}
-                                columnWrapperStyle={{ justifyContent: 'space-between', paddingHorizontal: '5%', alignItems: 'flex-start' }}
-                                showsVerticalScrollIndicator={false}
-                                renderItem={({ item, index }) => (
-                                    <TouchableOpacity
-                                        activeOpacity={.8}
-                                        style={[
-                                            styles.timeContainer,
-                                            { borderColor: item.isSelected ? colors.White_Primary_01 : colors.Neutral_02 },
-                                        ]}
-                                        onPress={() => timeSlotHandler(index)}
-                                    >
-                                        <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.startTime}</Text>
-                                        <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{t('to')}</Text>
-                                        <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.endTime}</Text>
-                                    </TouchableOpacity>
-                                )}
-                            /> */}
-
                         </View>
                     }
 
@@ -894,18 +948,10 @@ const CreateService = ({ navigation }) => {
                 </ScrollView>
             }
 
-
-            {/* <View style={styles.footer}>
-                <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', }}>
-                    <CTAButton1 title={t('next')} submitHandler={() => { stepsHandler() }} />
-                </View>
-            </View> */}
-
             <View style={styles.footer}>
                 <View style={{ width: '90%', flexDirection: 'row', justifyContent: 'space-between', }}>
-
                     {
-                        (roomsQty != '') ? (
+                        (totalPrice != '0' || totalPrice != 0) ? (
                             <>
                                 <View style={{ width: '45%', justifyContent: 'center', }}>
                                     <View style={{ flexDirection: 'row' }}>
@@ -924,10 +970,8 @@ const CreateService = ({ navigation }) => {
                                     <CTAButton1 title={step < 4 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} />
                                 </View>
                             </>
-
                         ) : (<CTAButton1 title={step < 4 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} />)
                     }
-                    {/* <CTAButton1 title={step < 3 ? t('next') : t('book')} submitHandler={() => { stepsHandler() }} /> */}
                 </View>
             </View>
         </View>
@@ -951,7 +995,6 @@ const createStyles = (colors, theme, deviceWidth) => {
             alignItems: 'center',
         },
         footer: {
-            // flex: 2,
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
@@ -993,27 +1036,12 @@ const createStyles = (colors, theme, deviceWidth) => {
             borderColor: colors.Primary_01,
             borderWidth: 1
         },
-        // list: {
-        //     marginTop: 10,
-        //     flexDirection: 'row',
-        //     alignItems: 'center',
-        //     justifyContent: 'space-between',
-        //     padding: 10,
-        //     width: '100%',
-        //     borderRadius: 5,
-        //     height: 50,
-        //     overflow: 'hidden',
-        //     backgroundColor: colors.white,
-        //     borderColor: colors.Primary_01,
-        //     borderWidth: 1,
-        // },
         list: {
             marginTop: 10,
             justifyContent: 'center',
             alignItems: 'flex-start',
             width: '100%'
         },
-
         list1: {
             marginTop: 10,
             flexDirection: 'row',
@@ -1045,12 +1073,8 @@ const createStyles = (colors, theme, deviceWidth) => {
             backgroundColor: colors.Neutral_02
         },
         timeFlatList: {
-            // width: '100%',
             marginTop: 10,
             alignSelf: 'center',
-            // backgroundColor: 'red'
-            // alignItems:'center',
-            // marginHorizontal: '5%',
         },
         inputContiner: {
             alignItems: 'center',

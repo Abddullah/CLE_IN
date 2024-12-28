@@ -1,111 +1,89 @@
-
 import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Image, } from 'react-native';
 import Images from '../assets/images/index'
-import { colors } from '../utilities/constants';
+import { useSelector } from 'react-redux';
 import { LightThemeColors, DarkThemeColors } from '../utilities/constants';
 import { useTheme } from '../../ThemeContext';
+import moment from 'moment';
 
-const ChatBox = ({ }) => {
+const ChatBox = ({ messages }) => {
     const { theme } = useTheme();
     const colors = theme === 'dark' ? DarkThemeColors : LightThemeColors;
-    const styles = createStyles(colors, theme);
+    const styles = createStyles(colors);
+    let user = useSelector((state) => state.reducer.user);
 
     return (
         <ScrollView style={styles.wrapper} contentContainerStyle={{ paddingBottom: 30 }}>
+            {messages.map((msg, index) => (
+                <View
+                    key={index}
+                    style={[
+                        styles.msgContainer,
+                        { alignItems: msg.senderId === user.userId ? 'flex-end' : 'flex-start' },
+                    ]}
+                >
+                    <View
+                        style={[
+                            styles.msgBubble,
+                            {
+                                backgroundColor:
+                                    msg.senderId === user.userId ? colors.Primary_04 : colors.Neutral_05,
+                            },
+                        ]}
+                    >
+                        {
+                            (msg.senderId === user.userId) ? (
+                                (user.profilePhoto != '') ? (
+                                    <Image
+                                        source={{ uri: user.profilePhoto }}
+                                        style={styles.profilePic}
+                                        resizeMode="contain"
+                                    />
+                                ) : (
+                                    <Image
+                                        source={Images.noPhoto}
+                                        style={styles.profilePic}
+                                        resizeMode="contain"
+                                    />
+                                )
+                            ) : (
+                                <Image
+                                    source={Images.noPhoto}
+                                    style={styles.profilePic}
+                                    resizeMode="contain"
+                                />
+                            )
+                        }
 
-            <View style={{ marginTop: 10, alignItems: 'flex-start', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_05 }]}>
-                    <Image
-                        source={Images.noPhoto}
-                        style={{ width: 40, height: 40, borderRadius: 50 }}
-                        resizeMode="contain"
-                    />
-                    <View style={{ marginLeft: 20, maxWidth: '75%', }}>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>You haven't started chat yet. ?</Text>
-                        <Text style={{ textAlign: 'left', color: colors.black }} >2:15 pm</Text>
+
+                        <View style={styles.msgContent}>
+                            <Text style={{ color: colors.black }}>{msg.text}</Text>
+                            <Text style={styles.timestamp}>
+                                {
+                                    moment(msg.timestamp).format('LT')
+                                }
+                                {/* {new Date(msg.timestamp?.toDate()).toLocaleTimeString()} */}
+                            </Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-
-
-            <View style={{ marginTop: 10, alignItems: 'flex-start', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_05 }]}>
-                    <Image
-                        source={Images.noPhoto}
-                        style={{ width: 40, height: 40, borderRadius: 50 }}
-                        resizeMode="contain"
-                    />
-                    <View style={{ marginLeft: 20, maxWidth: '75%', }}>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when a</Text>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>2:15 pm</Text>
-                    </View>
-                </View>
-            </View>
-
-
-
-            <View style={{ marginTop: 10, alignItems: 'flex-start', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Neutral_05 }]}>
-                    <Image
-                        source={Images.noPhoto}
-                        style={{ width: 40, height: 40, borderRadius: 50 }}
-                        resizeMode="contain"
-                    />
-                    <View style={{ marginLeft: 20, maxWidth: '75%', }}>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when a</Text>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>2:15 pm</Text>
-                    </View>
-                </View>
-            </View>
-
-
-
-            <View style={{ marginTop: 10, alignItems: 'flex-end', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Primary_04 }]}>
-                    <Image
-                        source={Images.profilePic}
-                        style={{ width: 40, height: 40, borderRadius: 50 }}
-                        resizeMode="contain"
-                    />
-                    <View style={{ marginLeft: 20, maxWidth: '75%', }}>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>Still Available??</Text>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>2:25 pm</Text>
-                    </View>
-                </View>
-            </View>
-
-            <View style={{ marginTop: 10, alignItems: 'flex-end', }}>
-                <View style={[styles.msgContainer, { backgroundColor: colors.Primary_04 }]}>
-                    <Image
-                        source={Images.profilePic}
-                        style={{ width: 40, height: 40, borderRadius: 50 }}
-                        resizeMode="contain"
-                    />
-                    <View style={{ marginLeft: 20, maxWidth: '75%', }}>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>No</Text>
-                        <Text style={{ textAlign: 'left', color: colors.black }}>2:25 pm</Text>
-                    </View>
-                </View>
-            </View>
-
+            ))}
         </ScrollView>
     );
 };
 
 export default ChatBox;
 
-const createStyles = (colors, theme) => {
-    return StyleSheet.create({
-        wrapper: {
-            flex: 1,
-            marginTop: 10,
-        },
-        msgContainer: {
-            borderRadius: 10,
-            padding: 10,
-            marginHorizontal: 10,
-            flexDirection: 'row',
-        },
-    });
-};
+const createStyles = (colors) => StyleSheet.create({
+    wrapper: { flex: 1, marginTop: 10 },
+    msgContainer: { marginTop: 10 },
+    msgBubble: {
+        borderRadius: 10,
+        padding: 10,
+        marginHorizontal: 10,
+        flexDirection: 'row',
+    },
+    profilePic: { width: 40, height: 40, borderRadius: 50 },
+    msgContent: { marginLeft: 20, maxWidth: '75%' },
+    timestamp: { fontSize: 10, color: colors.black, textAlign: 'right' },
+});
