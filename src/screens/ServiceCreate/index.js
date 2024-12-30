@@ -30,6 +30,8 @@ import InformationPopup from '../../components/Information_Popup';
 import BookingStatusTab from '../../components/BookingStatusTab';
 import HorizontalList from '../../components/horizontalList';
 import AdditionalServices from '../../components/AdditionalServices';
+import { showError } from '../../store/actions/action';
+import SmallMap from '../../components/smallMap';
 
 const deviceWidth = screenResolution.screenWidth;
 
@@ -44,6 +46,7 @@ const CreateService = ({ navigation }) => {
     let isJobCreate = route.params.isJobCreate;
     let user = useSelector((state) => state.reducer.user);
     let isError = useSelector((state) => state.reducer.isError);
+    let savedCords = useSelector((state) => state.reducer.savedCords);
     let allcategories = useSelector((state) => state.reducer.categories);
     let hourlyRates = useSelector((state) => state.reducer.hourlyRates);
     let roomSizes = useSelector((state) => state.reducer.roomSize);
@@ -77,7 +80,7 @@ const CreateService = ({ navigation }) => {
     const [roomsize, setroomsize] = useState('');
     const [previousRoomRate, setPreviousRoomRate] = useState(0);
 
-    const [roomsQty, setroomsQty] = useState('1');
+    const [roomsQty, setroomsQty] = useState('');
     const [previousRoomQtyPrice, setPreviousRoomQtyPrice] = useState(0);
 
     const [needCleaningMaterials, setneedCleaningMaterials] = useState('');
@@ -123,6 +126,7 @@ const CreateService = ({ navigation }) => {
     }
 
     const roomQtyHandler = (itemValue) => {
+        console.log(itemValue, "itemValue");
         setroomsQty(itemValue);
         let find = noOfRooms.find(item => item.title === itemValue);
         let total = Number(totalPrice) - Number(previousRoomQtyPrice) + Number(find.price);
@@ -347,7 +351,53 @@ const CreateService = ({ navigation }) => {
 
     const stepsHandler = () => {
         if (isJobCreate ? step < 4 : step < 2) {
+            if (step === 0) {
+                if (selectedCategories === '') {
+                    alert('Please select category')
+                }
+                else if (selectedsubcategories === '') {
+                    alert('Please select sub category')
+                }
+                else if (selectedCategories === 'Cleaning and Hygiene Services' && roomsize === '') {
+                    alert('Please select room size')
+                }
+                else if (selectedCategories === 'Cleaning and Hygiene Services' && roomsQty === '') {
+                    alert('Please select room quantity')
+                }
+                else if (selectedCategories === 'Cleaning and Hygiene Services' && needCleaningMaterials === '') {
+                    alert('Please select cleaning material')
+                }
+                else {
+                    setstep(step + 1)
+                }
+            }
+            if (step === 1) {
+                // if (selectedCategories === '') {
+                //     alert('Please select category')
+                // }
+                // else if (selectedsubcategories === '') {
+                //     alert('Please select sub category')
+                // }
+                // else if (roomsize === '') {
+                //     alert('Please select room size')
+                // }
+                // else if (roomsQty === '') {
+                //     alert('Please select room quantity')
+                // }
+                // else if (needCleaningMaterials === '') {
+                //     alert('Please select cleaning material')
+                // }
+                // else {
+                //     setstep(step + 1)
+                // }
+                setstep(step + 1)
+            }
             setstep(step + 1)
+
+
+            dispatch(showError())
+
+
         } else {
             if (isJobCreate) {
                 navigation.navigate('Home')
@@ -453,8 +503,11 @@ const CreateService = ({ navigation }) => {
                             </>
                         }
 
-                        <View style={[styles.heading, { marginTop: 30 }]}>
+                        <View style={[styles.heading, { marginTop: 30, }]}>
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('selectCategory')}</Text>
+                            {
+                                isError && selectedCategories == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                            }
                         </View>
 
                         <View style={styles.listDropDown}>
@@ -490,6 +543,9 @@ const CreateService = ({ navigation }) => {
                             <>
                                 <View style={styles.heading}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('subCategories')}</Text>
+                                    {
+                                        isError && selectedsubcategories == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                    }
                                 </View>
                                 <View style={styles.listDropDown}>
                                     <Select
@@ -526,6 +582,9 @@ const CreateService = ({ navigation }) => {
                             <>
                                 <View style={styles.heading}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('areaSize')}</Text>
+                                    {
+                                        isError && roomsize == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                    }
                                 </View>
                                 <View style={styles.listDropDown}>
                                     <Select
@@ -561,6 +620,9 @@ const CreateService = ({ navigation }) => {
                             <>
                                 <View style={styles.heading}>
                                     <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('roomsNumber')}</Text>
+                                    {
+                                        isError && roomsQty == '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                                    }
                                 </View>
                                 <View style={styles.listDropDown}>
                                     <Select
@@ -732,7 +794,9 @@ const CreateService = ({ navigation }) => {
                         />
                         <View style={styles.list}>
                             <Text style={[Typography.text_paragraph_1, { fontWeight: 'bold', color: colors.black, }]}>{t('location')}</Text>
-                            <MapSmall width={'100%'} marginTop={10} />
+                            <View style={{ height: 250, width: '100%', marginTop: 10, overflow: 'hidden' }}>
+                                <SmallMap savedCords={savedCords} />
+                            </View>
                         </View>
                     </View>
                 </ScrollView>
@@ -1007,6 +1071,7 @@ const createStyles = (colors, theme, deviceWidth) => {
         heading: {
             width: '100%',
             marginTop: 10,
+            flexDirection: 'row'
         },
         headingText: {
             fontWeight: 'bold',

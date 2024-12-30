@@ -3,11 +3,12 @@ const initState = {
   errorMsg: '',
   isLoader: false,
   user: {},
-  // savedCords: [24.963673, 67.06837], // Nagan chowrangi location
+  savedCords: [24.963673, 67.06837], // Nagan chowrangi location
+  isLocation: true,
   // savedCords: [24.8854, 67.0159], // Golimar location
   // savedCords: [24.979781, 67.067024], // saleem center
-  savedCords: [],
-  isLocation: false,
+  // savedCords: [],
+  // isLocation: false,
   categories: [],
   hourlyRates: '',
   roomSize: [],
