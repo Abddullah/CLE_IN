@@ -91,6 +91,9 @@ const CreateService = ({ navigation }) => {
     const [totalPrice, settotalPrice] = useState('0');
     console.log(aditionalSelectedServices, "aditionalSelectedServices");
 
+    const [productImages, setProductImages] = useState([{ imagURL: '' }, { imagURL: '' }, { imagURL: '' }, { imagURL: '' }, { imagURL: '' }, { imagURL: '' },]);
+
+
     useEffect(() => {
         let previousTotal = previousSelectedHour * previousHourlyRates * previousSelectedProfessional;
         let newTotal = selectedHour * hourlyRates * selectedProfessional;
@@ -148,16 +151,6 @@ const CreateService = ({ navigation }) => {
     const [description, setdescription] = useState('');
     const [location, setlocation] = useState('')
     const [instructions, setinstructions] = useState('');
-    const [productImages, setProductImages] = useState(
-        [
-            { imagURL: '' },
-            { imagURL: '' },
-            { imagURL: '' },
-            { imagURL: '' },
-            { imagURL: '' },
-            { imagURL: '' },
-        ]
-    );
 
     const [date, setDate] = useState(new Date())
     const [openBs, setopenBs] = useState(false)
@@ -372,31 +365,18 @@ const CreateService = ({ navigation }) => {
                 }
             }
             if (step === 1) {
-                // if (selectedCategories === '') {
-                //     alert('Please select category')
-                // }
-                // else if (selectedsubcategories === '') {
-                //     alert('Please select sub category')
-                // }
-                // else if (roomsize === '') {
-                //     alert('Please select room size')
-                // }
-                // else if (roomsQty === '') {
-                //     alert('Please select room quantity')
-                // }
-                // else if (needCleaningMaterials === '') {
-                //     alert('Please select cleaning material')
-                // }
-                // else {
-                //     setstep(step + 1)
-                // }
-                setstep(step + 1)
+                if (productImages[0].imagURL === '') {
+                    alert('Please select image')
+                }
+                else {
+                    setstep(step + 1)
+                }
             }
-            setstep(step + 1)
 
-
+            // setstep(step + 1)
             dispatch(showError())
 
+            setstep(step + 1)
 
         } else {
             if (isJobCreate) {
@@ -432,13 +412,13 @@ const CreateService = ({ navigation }) => {
         }
     }
 
-    const timeSlotHandler = (index) => {
-        const updatedTimeSlots = timeSlots.map((slot, i) => ({
-            ...slot,
-            isSelected: i === index,
-        }));
-        settimeSlots(updatedTimeSlots);
-    };
+    // const timeSlotHandler = (index) => {
+    //     const updatedTimeSlots = timeSlots.map((slot, i) => ({
+    //         ...slot,
+    //         isSelected: i === index,
+    //     }));
+    //     settimeSlots(updatedTimeSlots);
+    // };
 
     return (
         <View style={styles.container}>
@@ -744,8 +724,12 @@ const CreateService = ({ navigation }) => {
                     <View style={{ width: '90%', marginTop: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <TouchableOpacity
                             activeOpacity={.8}
+                            style={{ flexDirection: 'row', }}
                         >
                             <Text style={[Typography.text_paragraph_1, styles.headingText]}>{t('photos')}</Text>
+                            {
+                                isError && productImages[0].imagURL === '' && <Text style={{ top: 3, color: colors.Error_Red }}>*</Text>
+                            }
                         </TouchableOpacity>
                         <TouchableOpacity
                             // onPress={pickImages}
@@ -861,12 +845,51 @@ const CreateService = ({ navigation }) => {
                             </View>
 
                             {/* Time Section */}
-                            <View style={styles.heading}>
-                                <Text style={[styles.listText, { color: colors.Neutral_01 }]}>{t('selectTime')}</Text>
+                            <View style={{ width: '100%', marginTop: 10 }}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text style={[styles.fieldHeading, { color: colors.Neutral_01 }]}>{t('selectTime')}</Text>
+                                    {isError && <Text style={{ top: 3, color: "red", top: -1 }}>*</Text>}
+                                </View>
+                                <View style={styles.list1}>
+                                    <View style={styles.dob}>
+                                        {/* Date Picker */}
+                                        <TouchableOpacity onPress={() => { setopenBs(true) }}  >
+                                            {!showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.Neutral_01 }]}>{t('selectTime')}</Text>}
+                                            {showBs && <Text style={[styles.listText, { marginLeft: 10, color: colors.black }]}>{moment(date).format('DD MM YYYY')}</Text>}
+                                        </TouchableOpacity>
+
+                                        <DatePicker
+                                            minimumDate={new Date()}
+                                            mode='time'
+                                            modal
+                                            open={openBs}
+                                            date={date}
+                                            onConfirm={(date) => {
+                                                setopenBs(false);
+                                                setDate(date);
+                                                setshowBs(true);
+                                            }}
+                                            onCancel={() => {
+                                                setopenBs(false);
+                                                setshowBs(false);
+                                            }}
+                                        />
+
+                                        {/* Date Icon */}
+                                        <TouchableOpacity onPress={() => { setopenBs(true) }}>
+                                            <Fontisto name="date" style={styles.listIcon} />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
                             </View>
 
+                            {/* Time Section */}
+                            {/* <View style={styles.heading}>
+                                <Text style={[styles.listText, { color: colors.Neutral_01 }]}>{t('selectTime')}</Text>
+                            </View> */}
+
                             {/* Time Slots */}
-                            <FlatList
+                            {/* <FlatList
                                 data={timeSlots}
                                 contentContainerStyle={[styles.timeFlatList,]}
                                 numColumns={3}
@@ -886,7 +909,7 @@ const CreateService = ({ navigation }) => {
                                         <Text style={[styles.listText, { color: colors.black, fontSize: RFValue(12, screenResolution.screenHeight) }]}>{item.endTime}</Text>
                                     </TouchableOpacity>
                                 )}
-                            />
+                            /> */}
 
                         </View>
                     }
